@@ -1,0 +1,35 @@
+/* Brote brand colors — alineado con landing brote.ai */
+:root {
+  /* Lime accent — primary brand color */
+  --sl-color-accent-low: #1a2300;
+  --sl-color-accent: #c8ff1a;
+  --sl-color-accent-high: #e8ffa3;
+
+  /* Dark theme (default) */
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #f0f0f0;
+  --sl-color-gray-2: #d0d0d0;
+  --sl-color-gray-3: #a0a0a0;
+  --sl-color-gray-4: #6e6e6e;
+  --sl-color-gray-5: #3a3a3a;
+  --sl-color-gray-6: #1f1f1f;
+  --sl-color-black: #0a0a0a;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #c8ff1a;
+  --sl-color-accent: #5a8a00;
+  --sl-color-accent-high: #1a2300;
+}
+
+/* Reservamos el destaque visual del acento para los CTAs principales */
+.action.primary {
+  background: var(--sl-color-accent) !important;
+  color: #000 !important;
+  font-weight: 600;
+}
+
+/* Bordes redondos y bonitos por defecto */
+.card {
+  border-radius: 1rem;
+}

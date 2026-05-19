@@ -1,0 +1,82 @@
+---
+title: Preguntas frecuentes
+description: Respuestas a las dudas más comunes sobre Brote, trial, pricing, canales, campañas y más.
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+## Cuenta y trial
+
+### ¿Necesito tarjeta para arrancar?
+No. Los **14 días son sin tarjeta**. Te avisamos al día 7 y al día 12, y solo si decides seguir agregas un método de pago.
+
+### ¿Qué plan obtengo en el trial?
+Empiezas con todas las features del plan **Starter ($49/mes)** por 14 días: 500 conversaciones IA, WhatsApp + Webchat, integración Shopify y Mercado Pago, campañas, pipeline kanban. Al activar pago eliges el plan que mejor te sirva (puedes bajar a Mini si te alcanza).
+
+### ¿Qué pasa si no agrego tarjeta al terminar el trial?
+Tu cuenta pasa a **modo lectura por 30 días**: puedes ver tus conversaciones, contactos y configuración, pero el agente IA queda pausado. Después de 30 días la cuenta se archiva. Los datos se preservan 180 días más por si vuelves.
+
+## Conversaciones y cuotas
+
+### ¿Qué cuenta como una conversación?
+Cada hilo donde el agente IA responde al menos una vez en el ciclo mensual. Si un cliente vuelve después con otra duda, esa es una conversación nueva.
+
+### ¿Qué pasa si excedo las conversaciones del plan?
+El agente IA pausa y te avisamos para subir de plan. Tu equipo puede seguir respondiendo manualmente desde el inbox sin tope.
+
+### ¿Hay alguna otra cuota?
+Cada plan tiene un cap de Knowledge Base (30 MB Mini, 100 MB Starter, 500 MB Pro, 5 GB Business). Si subes muchos PDFs / docs, puedes llegar al cap.
+
+## Planes y facturación
+
+### ¿Puedo cambiar de plan?
+Sí, en cualquier momento. El cambio aplica de inmediato y se prorratea con tu ciclo actual.
+
+### ¿Cómo funciona el descuento anual?
+Pagas 10 meses, te llevas 12 — equivale a **2 meses gratis al año** (≈17% de descuento). Aplica a los 4 planes y puedes activarlo en cualquier momento.
+
+### ¿Cómo se factura?
+Trabajamos con **Polar como Merchant of Record**: ellos cobran, manejan IVA por país y emiten factura. Tú solo eliges el plan.
+
+### ¿Existe el cupón COQUIMBO?
+Sí — promo regional para PYMEs de la Región de Coquimbo, Chile. Aplica `-USD $26/mes sobre Starter` durante 6 meses → queda en **USD $23/mes (~$21.600 CLP)**. URL con auto-aplicación: [brote.ai/es/pricing?coupon=COQUIMBO](https://brote.ai/es/pricing?coupon=COQUIMBO).
+
+## Canales
+
+### ¿Qué canales soporta Brote?
+Activos en landing pública: **WhatsApp, Webchat, Instagram, Messenger, Email**. Premium (planes Pro/Business): **LinkedIn, Telegram**. También soportamos técnicamente X (Twitter), Google Business Messages y Microsoft Teams para clientes Business por solicitud.
+
+### ¿Necesito WhatsApp Business API oficial?
+No. Brote usa **Evolution API** (WhatsApp Business non-Cloud) por default — gratis por mensaje. La integración con **Meta WhatsApp Cloud API oficial** está en roadmap.
+
+### ¿Mi número personal puede usar Brote?
+Técnicamente sí, pero recomendamos usar un **número dedicado al negocio** (puede ser un número WhatsApp Business). Evita mezclar conversaciones personales con las del agente IA.
+
+## Campañas
+
+### ¿Las campañas son spam?
+No — son para **reactivación de tu base propia**: contactos que ya conversaron contigo. Brote tiene opt-out automático con "STOP" y caps diarios para proteger tu número.
+
+### ¿Cuántas campañas puedo mandar al mes?
+Depende del plan: Starter 2/mes (100 contactos), Pro 10/mes (500 contactos), Business ilimitadas (1.500 contactos). Detalle en [Campañas — Caps por plan](/campanas/caps/).
+
+## Seguridad y datos
+
+### ¿Quién ve mis conversaciones?
+Solo tu equipo (los usuarios que invitaste a tu organización). Los datos están aislados por **Row Level Security** en Postgres — la org A nunca puede leer la org B, ni siquiera por bug de la app.
+
+### ¿Brote toca la plata?
+No. Cuando el agente genera un link de pago de **Mercado Pago**, el cobro va directo a tu cuenta MP. Brote solo confirma que el pago se concretó.
+
+### ¿Dónde están mis datos?
+**Supabase Cloud** (Postgres + Storage) con cifrado TLS 1.3 en tránsito y en reposo. Hosting de la app en **Oracle Cloud** (Chile/LATAM). Backups cifrados diarios.
+
+## Soporte
+
+### ¿Cómo contacto al equipo?
+- **Email**: [hola@brote.ai](mailto:hola@brote.ai)
+- **Formulario**: [brote.ai/contact](https://brote.ai/es/contact)
+- **Tiempo de respuesta**: < 24 horas hábiles (priorizado para clientes Business)
+
+### ¿Tienen soporte en mi país?
+Sí — atendemos en **español neutro chileno** (entendemos modismos LATAM completos), inglés y portugués (limitado). Operamos desde Chile pero atendemos toda LATAM.

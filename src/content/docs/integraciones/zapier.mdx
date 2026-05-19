@@ -1,0 +1,63 @@
+---
+title: Zapier (6.000+ apps)
+description: Conecta Brote con HubSpot, Sheets, Mailchimp, Notion y miles más sin código.
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote está integrado con **Zapier**, lo que te permite conectar tu agente IA con más de 6.000 apps sin escribir código.
+
+![Brote + Zapier en brote.ai/integrations/zapier](/screenshots/zapier-integration.png)
+
+<Aside type="note" title="Disponible en Pro y Business">
+La integración Zapier es parte de los planes **Pro** ($129/mes) y **Business** ($349/mes). Más info en [comparativa de planes](/planes/comparativa/).
+</Aside>
+
+## Triggers (Brote → Zapier)
+
+Cuando algo pasa en Brote, Zapier lo recibe firmado con HMAC y dispara la acción que elijas:
+
+- **`new_conversation`** — Nueva conversación inicia
+- **`payment_received`** — Pago confirmado vía Mercado Pago
+- **`ticket_won`** — Ticket cerrado como ganado
+- **`handoff_to_human`** — Agente IA pasa la conversación a un humano
+
+## Actions (Zapier → Brote)
+
+Zapier puede invocar acciones en Brote:
+
+- **`send_message`** — Envía un mensaje WhatsApp/Webchat desde un trigger externo
+- **`create_contact`** — Crea contacto en Brote desde un form/CRM
+- **`qualify_lead`** — Marca un contacto como lead caliente
+- **`add_note`** — Agrega nota interna a una conversación
+- **`move_ticket_stage`** — Mueve un ticket de etapa en el pipeline
+- **`tag_conversation`** — Agrega tag a la conversación
+
+## Casos de uso típicos
+
+### Pago en Mercado Pago → factura en Holded
+Cuando un cliente paga via link generado por el agente, Zapier copia el monto a tu sistema contable.
+
+### Lead calificado → CRM
+El agente IA marca un lead caliente → aparece como deal en HubSpot/Pipedrive/Salesforce con todos los datos.
+
+### Handoff → Slack
+Cuando el cliente pide hablar con humano, llega un ping a #ventas con el contexto completo.
+
+### Spreadsheet → Brote contactos
+Importa tu base de Google Sheets a Brote como contactos con tags listos para campaña.
+
+## Configurar
+
+1. **En Brote**: anda a `Configuración → Integraciones` y genera una **API key**.
+2. **En Zapier**: busca "Brote" en el directorio de apps.
+3. **Conecta tu cuenta** pegando la API key.
+4. Crea tu primer Zap usando triggers o actions.
+
+[Ir a Zapier →](https://zapier.com)
+
+## App pública en Zapier
+
+La app está en **review pública por Zapier** (visible solo en el directorio una vez aprobada). Mientras tanto está disponible como **app privada** — pídenos el invite en [hola@brote.ai](mailto:hola@brote.ai) y la conectas igual.
+
+Estado app: **v1.0.2 en producción**, 6 triggers + actions estables, validado end-to-end con clientes activos.
