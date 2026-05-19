@@ -1,0 +1,10 @@
+# Cloudflare Pages config — fuerza modo Pages estático en lugar de Workers.
+# Sin este archivo, CF auto-detecta Astro e instala @astrojs/cloudflare adapter
+# que rompe Starlight (incompatibilidad con astro-expressive-code).
+#
+# Con `pages_build_output_dir`, wrangler usa el flow de Pages: build + sirve
+# `dist/` como estático. No genera Worker, no requiere SSR.
+
+name = "brote-academy"
+compatibility_date = "2026-05-19"
+pages_build_output_dir = "./dist"
