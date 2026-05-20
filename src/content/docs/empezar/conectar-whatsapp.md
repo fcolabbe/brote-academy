@@ -5,6 +5,8 @@ description: Cómo conectar tu cuenta de WhatsApp Business a Brote vía Evolutio
 
 Brote se conecta a tu **WhatsApp Business** vía Evolution API (self-hosted en nuestro servidor). El proceso es escanear un QR — los mismos pasos que conectar WhatsApp Web.
 
+![Configuración de canal WhatsApp en Brote](/screenshots/whatsapp-config.png)
+
 ## Antes de empezar
 
 - Necesitas un **número con WhatsApp Business** activo en un celular.

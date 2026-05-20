@@ -5,6 +5,8 @@ description: Tu agente IA para WhatsApp, Webchat, Instagram, Messenger y Email �
 
 Brote es un **agente IA conversacional** que atiende a tus clientes en WhatsApp, Webchat, Instagram, Messenger y Email, cobra con Mercado Pago dentro del chat y deriva al humano cuando hace falta.
 
+![Dashboard de Brote — KPIs de la semana en tiempo real](/screenshots/dashboard-home.png)
+
 A diferencia de un chatbot tradicional:
 
 - **No escribes prompts**: el agente se configura solo desde tu sitio web o un audio de 2-5 minutos donde cuentas cómo opera tu negocio.

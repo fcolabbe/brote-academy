@@ -1,15 +1,62 @@
 ---
 title: Auditoría automática del agente
-description: Brote Copilot Audit detecta gaps en las respuestas reales y propone quick-tunes.
+description: "Brote Copilot Audit escanea conversaciones reales, detecta gaps en las respuestas del agente y propone quick-tunes que vos aceptás o rechazás."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+**Brote Copilot Audit** es el motor de mejora continua del agente IA. Lee tus conversaciones reales, detecta dónde el agente respondió mal (o no respondió), y te propone correcciones específicas que aplicar al prompt.
+
+![Dashboard de Brote Copilot Audit](/screenshots/copilot-audit.png)
+
+## Cómo funciona
+
+Cada cierto tiempo (o on-demand cuando haces click en "Auditar ahora"), Brote Copilot Audit:
+
+1. **Lee las últimas conversaciones reales** del agente (últimas 50-200 según plan).
+2. **Detecta patrones problemáticos**:
+   - Preguntas frecuentes que el agente respondió mal
+   - Escalamientos a humano que podrían haberse evitado
+   - Oportunidades de venta perdidas (cliente mostró intención + agente no cerró)
+   - Inconsistencias entre conversaciones similares
+   - Brechas de información (cosas que el agente NO sabe pero debería)
+3. **Propone correcciones específicas** al prompt o agent_blocks:
+   - "Agregar esta FAQ con esta respuesta"
+   - "Modificar instrucción de pricing"
+   - "Cambiar tono en preguntas de devolución"
+4. **Genera recomendaciones revisables** — vos aceptás, rechazás, editás cada una antes de aplicarla. **Nunca cambia el agente sin tu OK.**
+
+## La columna "Recomendaciones pendientes"
+
+Es el corazón del audit. Cada fila es una sugerencia con:
+
+- **Tipo**: FAQ nueva / Edge case nuevo / Instrucción / Tono / Catálogo
+- **Razón**: por qué el copilot detectó esto (ej: "3 clientes preguntaron por devolución, agente respondió 3 cosas distintas")
+- **Cambio propuesto**: el diff exacto al prompt
+- **Botones**: ✓ Aceptar / ✗ Rechazar / ✎ Editar antes de aplicar
+
+Al aceptar, la recomendación se aplica al agente y se registra en `copilot_recommendations` con estado `applied`. La próxima conversación del cliente ya ve la versión nueva.
+
+<Aside type="tip" title="Quick-tunes desde audio">
+Además del audit automático, podés grabar un **audio rápido** del dueño cuando notes algo a corregir ("hey agente, cuando alguien pregunte X, decí Y"). El copilot transcribe + clasifica + arma la recomendación. Mismo flujo de review + apply.
 </Aside>
 
-## Próximamente
+## Cuándo usar el audit
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+- **Después del onboarding inicial**: corrés audit a los 3-7 días. El agente ya conversó con clientes reales; el audit detecta los primeros gaps.
+- **Mensualmente**: como rutina. El negocio cambia (precios suben, productos rotan, casos nuevos aparecen), el agente se ajusta.
+- **Cuando notas baja conversión**: si el conversion rate del agente bajó (visible en [Analítica](/inbox/inbox-unificado/)), corré audit para ver qué cambió.
+
+## Métricas que ves arriba
+
+- **Conversaciones auditadas** en el período
+- **Recomendaciones generadas** (totales)
+- **Aplicadas** (cuántas aceptaste)
+- **Pendientes** (esperan tu review)
+- **Recomendaciones rechazadas** (vos dijiste que no, el copilot aprende)
+
+## Próximos pasos
+
+- [Qué es Brote Copilot](/copilot/que-es/)
+- [Onboarding por audio](/copilot/audio-onboarding/)
+- [Onboarding por URL del sitio](/copilot/url-onboarding/)

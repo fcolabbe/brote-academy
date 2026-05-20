@@ -1,15 +1,55 @@
 ---
 title: Pipeline kanban
-description: Sigue cada lead por las etapas comerciales de tu negocio.
+description: "Organiza tus conversaciones como tarjetas en columnas. Cada etapa azul la opera la IA, cada etapa amarilla tu equipo humano."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+El pipeline kanban de Brote ordena tus conversaciones como **tickets** que se mueven por etapas (Nuevo lead → En contacto → Atiende humano → Ganado / Perdido). Cada vertical define las etapas que tiene sentido para su negocio.
+
+![Pipeline kanban con tickets distribuidos en etapas](/screenshots/kanban.png)
+
+## La regla "azul = IA, amarillo = humano"
+
+Brote diferencia visualmente las etapas con código de color:
+
+- **Etapas azules/lime**: la operación es del agente IA. Mueve tickets automáticamente según lo que pasa en la conversación.
+- **Etapas amarillas/naranjas**: requiere acción humana. Un operador tiene que ver, decidir, mover.
+- **Etapas grises**: terminales (Ganado, Perdido, Archivado).
+
+Esto te deja a vos ver de un golpe **qué columna necesita atención** sin filtrar manualmente.
+
+## Múltiples pipelines
+
+Una org puede tener varios pipelines en paralelo — útil cuando manejás casos comerciales distintos:
+
+- **Suscripciones**: Nuevo lead → En contacto → Pago confirmado → Suscripción activa → Cancelada
+- **Onboarding clientes nuevos**: Inscrito → Pago → Setup → Active
+- **Soporte**: Reclamo abierto → En revisión → Resuelto → Cerrado
+
+Cada conversación crea un ticket en el pipeline que mejor le corresponda según el agente IA (que detecta intención). Podés mover el ticket entre pipelines si te equivocaste.
+
+## Cómo se mueven los tickets
+
+| Trigger | Acción |
+|---|---|
+| El contacto manda mensaje por primera vez | Crea ticket en columna "Nuevo lead" |
+| El agente IA responde y obtiene info | Mueve a "En contacto" |
+| El agente IA detecta lead caliente o caso complejo | Mueve a "Atiende humano" + notifica |
+| Pago confirmado vía Mercado Pago | Mueve a "Pago confirmado" (en pipeline correspondiente) |
+| Operador cierra como ganado | Mueve a "Ganado" |
+| 7+ días sin actividad y sin compra | Marca "Perdido" |
+
+<Aside type="tip" title="Configurable">
+Las reglas de transición son editables por pipeline. Si querés que "lead caliente" se mueva a humano solo después de 3 mensajes, lo configurás. Si querés que pago automático no haga handoff, lo configurás.
 </Aside>
 
-## Próximamente
+## Drag & drop manual
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+Cualquier operador puede arrastrar un ticket de una columna a otra. El cambio se guarda en `ticket_stage_history` para auditoría (cuándo se movió, quién, desde dónde, hasta dónde). Útil para reportes de ciclo de venta.
+
+## Próximos pasos
+
+- [Inbox unificado](/inbox/inbox-unificado/)
+- [Handoff a humano](/inbox/handoff/)
+- [Cobrar dentro del chat](/pagos/cobro-in-chat/)

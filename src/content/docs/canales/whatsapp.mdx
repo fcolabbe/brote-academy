@@ -1,15 +1,54 @@
 ---
 title: WhatsApp (Evolution)
-description: Conectar WhatsApp Business a Brote vía Evolution API.
+description: "Conectar tu WhatsApp Business a Brote en 60 segundos vía Evolution API. Sin Cloud API de Meta, sin BSP, sin fee por conversación."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Brote conecta a WhatsApp **sin pasar por Cloud API de Meta ni por un BSP**. Usamos **Evolution API**, una integración no oficial que pareja tu número escaneando un QR — igual que WhatsApp Web.
+
+![Configuración del canal WhatsApp en Brote](/screenshots/whatsapp-config.png)
+
+## Qué tiene de bueno este enfoque
+
+| Cloud API de Meta | Evolution (lo que usamos) |
+|---|---|
+| $99 setup mínimo (BSP) + fee por conversación | $0 — incluido en cualquier plan Brote |
+| Aprobación de templates 24-48h | Mandas mensajes sin templates dentro de la ventana de 24h |
+| Una sola sesión por número, gestionada por BSP | Sesión propia, control total |
+| Migración del número implica downtime | Migrar = re-escanear QR (30s de downtime) |
+
+<Aside type="caution" title="Limitación importante">
+Sin Cloud API no podemos enviar **plantillas masivas** sin restricción. Tus campañas masivas WhatsApp respetan caps por plan (Starter 2/mes · 100 contactos, Pro 10/mes · 500, Business sin límite/mes · 1500/día) para no triggear el ban de Meta. Más en [Caps por plan y protección WA](/campanas/caps/).
 </Aside>
 
-## Próximamente
+## Cómo conectar
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+1. Anda a **Configuración → Agente IA → WhatsApp**.
+2. Click en **"Conectar WhatsApp"** y aparece un QR.
+3. En tu teléfono: abre WhatsApp → Configuración → Dispositivos vinculados → Vincular dispositivo.
+4. Escanea el QR. Listo — Brote ya está respondiendo en ese número.
+
+Desde ese momento todos los mensajes que entren a tu WhatsApp aparecen en tu [inbox unificado](/inbox/inbox-unificado/), el agente IA responde según tu configuración, y los nuevos contactos se crean automáticamente.
+
+## Mensajes salientes desde Brote
+
+Tu agente IA puede iniciar conversaciones — no solo responder. Tres caminos:
+
+- **Triggers del agente** (después de un evento Shopify, pago MP, abandono de carrito).
+- **[Campañas masivas](/campanas/que-son/)** a cohortes de tu base de contactos.
+- **API/Webhooks/Zapier** desde sistemas externos ([Zapier](/integraciones/zapier/), [Webhooks Business](/integraciones/webhooks-api/)).
+
+## Multimedia
+
+El agente IA puede enviar **fotos, videos, PDFs y audios** desde tu [Biblioteca de medios](/inbox/tags-fields/). Útil para mandar catálogos, instructivos, fichas de producto o videos demo.
+
+## Si el número se desconecta
+
+WhatsApp puede cerrar la sesión por inactividad o por cambio de teléfono. Brote te avisa por email + notif push. Re-escanear el QR demora 30s y no pierdes mensajes históricos.
+
+## Próximos pasos
+
+- [Configurar tu primer agente](/empezar/primer-agente/)
+- [Conectar Webchat embebible](/canales/webchat/)
+- [Cobrar dentro del chat con Mercado Pago](/pagos/cobro-in-chat/)

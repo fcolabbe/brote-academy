@@ -1,15 +1,57 @@
 ---
 title: Conectar Mercado Pago
-description: Autorizar Mercado Pago con un click para que el agente genere links de pago in-chat.
+description: "Autoriza Mercado Pago con un click. Tu agente IA genera links de pago dentro del chat. La plata va directo a tu cuenta MP — Brote no toca."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Brote se conecta a tu cuenta de Mercado Pago vía OAuth. Cuando autorizás, el agente IA gana acceso a la tool `build_payment_link` y empieza a cobrarte dentro del chat sin que tengas que copiar/pegar nada.
+
+## Por qué Mercado Pago
+
+- **MoR en LATAM**: cobra en CLP/MXN/ARS/COP/BRL/USD según país, sin que tengas que armar gateway.
+- **Sin Stripe ni Adyen**: para PYMEs LATAM, MP es el camino más corto a cobrar online.
+- **Webhooks confiables**: cuando el cliente paga, MP nos avisa por webhook y Brote actualiza el ticket + dispara campañas de post-venta.
+- **Plata directo a tu cuenta**: Brote NO es Merchant of Record para los cobros de tus clientes. La plata va al usuario MP que conectaste. Brote solo cobra su propia suscripción (vía [Polar](/planes/polar/)).
+
+<Aside type="caution" title="Diferencia entre Polar y Mercado Pago">
+**Polar** es el MoR para que vos pagues tu suscripción de Brote (Mini/Starter/Pro/Business). **Mercado Pago** es lo que conectás para cobrar a TUS clientes. Son dos cosas distintas — Polar es Brote te cobra, MP es vos cobrás.
 </Aside>
 
-## Próximamente
+## Cómo conectar
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+1. Anda a **Configuración → Integraciones → Mercado Pago**.
+2. Click en **"Conectar con Mercado Pago"**. Te redirige al login de MP.
+3. Loguea con tu cuenta MP (la que recibe la plata).
+4. Autoriza permisos: crear preferencias de pago, recibir webhooks de pagos confirmados.
+5. Volves a Brote y la integración queda **activa**.
+
+Desde ese momento el agente IA puede generar links de pago. Probalo en [Playground](/empezar/primer-agente/) — pediselo al agente: "mandame un link de pago de $50.000 por una caja XL".
+
+## Qué pasa cuando el cliente paga
+
+El flujo end-to-end:
+
+1. **Cliente le pide al agente**: "lo quiero llevar".
+2. **Agente IA invoca** `build_payment_link({amount, description, external_reference: conversation_id})`.
+3. **Brote llama a MP API** → crea preference → recibe `init_point` URL.
+4. **Agente manda al cliente** el link de pago por chat.
+5. **Cliente paga** en checkout MP.
+6. **MP postea webhook** a Brote con `payment.id` + status `approved`.
+7. **Brote registra el pago** en `mercadopago_payments`, asocia al `conversation_id`, mueve el ticket a "Pago confirmado".
+8. **Agente IA confirma al cliente** en el chat: "Listo, recibí tu pago. Te llega en X días."
+9. **Si tenes Zapier/Webhooks activos**: dispara `payment_received` → tu Holded/QuickBooks crea factura.
+
+## Suscripciones recurrentes
+
+Mercado Pago soporta preapproval (suscripciones recurrentes). Brote puede generar links de preapproval para servicios suscritos (membership mensual, plan de pet food, software SaaS). El cliente acepta una vez y MP cobra automático cada periodo.
+
+## Cupones de descuento
+
+Si configuraste [cupones](/empezar/primer-agente/) en tu org, el agente puede aplicarlos al generar el link: `build_payment_link({...amount, coupon_code: "BIENVENIDO10"})` → MP calcula el descuento + lo refleja en el checkout.
+
+## Próximos pasos
+
+- [Cobrar dentro del chat](/pagos/cobro-in-chat/)
+- [Cobranza Brote con Polar](/planes/polar/)
+- [Webhooks de pagos a Zapier](/integraciones/zapier/)

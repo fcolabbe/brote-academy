@@ -5,6 +5,8 @@ description: Configura el agente IA de Brote desde la URL de tu sitio o un audio
 
 Esta es la parte mágica. Brote Copilot configura el agente IA completo en 15 minutos a partir de **tu sitio web** o **un audio de 2-5 minutos** donde cuentas cómo opera tu negocio.
 
+![Demo público en brote.ai/es/demo donde pruebas el agente sin signup](/screenshots/demo-empty.png)
+
 ## Opción 1 — Pegar la URL de tu sitio (recomendado)
 
 1. En el dashboard, anda a **Onboarding** o **Agente IA → Regenerar**.
@@ -38,7 +40,9 @@ Tras la primera generación, puedes:
 
 - **Editar bloques** del prompt (persona, instrucción, edge cases) en el dashboard.
 - **Re-correr el Copilot** si actualizaste el sitio.
-- Activar el **Brote Copilot Audit** que detecta gaps en las respuestas reales y propone quick-tunes.
+- Activar el **[Brote Copilot Audit](/copilot/audit/)** que detecta gaps en las respuestas reales y propone quick-tunes.
+
+![Configuración del agente IA en el dashboard de Brote](/screenshots/agent-config.png)
 
 ## Probar antes de conectar WhatsApp
 

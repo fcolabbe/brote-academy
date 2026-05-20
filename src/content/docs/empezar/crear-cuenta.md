@@ -5,6 +5,8 @@ description: Cómo crear tu cuenta de Brote, qué incluye el trial de 14 días y
 
 Crear cuenta es 2 minutos. No necesitas tarjeta de crédito.
 
+![Pricing público de Brote con los 4 planes oficiales](/screenshots/pricing-plans.png)
+
 ## Pasos
 
 1. Anda a **[brote.ai/signup](https://brote.ai/es/signup)** (también podés hacer click en cualquier botón _"Empieza gratis · 14 días"_ del sitio).

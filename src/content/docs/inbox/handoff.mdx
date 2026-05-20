@@ -1,15 +1,68 @@
 ---
 title: Handoff a humano
-description: Cuándo y cómo el agente IA pasa la conversación a tu equipo.
+description: "Cuándo y cómo el agente IA pasa la conversación a tu equipo. Con summary auto-generado para que el operador no tenga que leer 30 mensajes."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+El handoff es el momento en que el agente IA dice "esto no me toca a mí" y deriva la conversación a un operador humano. Brote lo hace de forma transparente — el cliente no se entera que pasó del bot al humano, pero tu equipo sí sabe.
+
+## Cuándo dispara handoff el agente IA
+
+El agente IA decide handoff en estos casos típicos:
+
+- El cliente **pide explícitamente** hablar con humano ("quiero hablar con alguien").
+- El cliente **pregunta algo fuera del scope** del agente (precios custom, casos legales, queja formal).
+- El cliente **muestra frustración** o irritación detectable en el tono.
+- El cliente es un **lead caliente** identificado por el agente (compra inminente, oportunidad B2B grande).
+- Errores técnicos: el agente no entiende, el catálogo no tiene la respuesta, hubo un fallo de tool.
+
+Lo configurás en **Configuración → Agente IA → Edge cases** ([más en Copilot](/copilot/que-es/)).
+
+## El handoff summary auto-generado
+
+Cuando hace handoff, el agente IA **genera un resumen** de la conversación que tu operador ve al abrir el ticket:
+
+```
+RESUMEN
+- Cliente: María González (+569 ··· ···)
+- Vertical: Retail
+- Canal: WhatsApp
+- Llegó preguntando: "tienen el modelo XYZ en color rojo, talla M?"
+- Estado: producto sin stock, ofrecimos lista de espera, cliente quiere
+  hablar para ver opciones alternativas
+- Intención detectada: alta — pregunta variantes, no precio
+- Última acción IA: derivó a humano + sugirió revisar stock interno
+
+CONTEXTO DEL CLIENTE
+- Compras previas: 0
+- Tags: lead_caliente, retail
+- Notas internas: (ninguna)
+```
+
+Esto se guarda como nota interna del ticket. El operador no tiene que leer 30 mensajes para entender — ya tiene el resumen.
+
+## Notificación al equipo
+
+Cuando entra un handoff:
+
+- **Push notification** al device de cada miembro asignado (web push, iOS PWA compatible).
+- **Email** opcional (configurable per-miembro).
+- **Slack ping** si conectaste [integración Slack](/integraciones/slack/).
+- **Webhook saliente** `handoff_to_human` si conectaste [Webhooks Business](/integraciones/webhooks-api/) o [Zapier](/integraciones/zapier/).
+
+<Aside type="tip" title="SLA configurable">
+Podés definir un SLA por equipo: "si nadie agarra el handoff en 15 min, sube de prioridad y vuelve a notificar". Útil para garantizar tiempo de respuesta humano sin perder leads.
 </Aside>
 
-## Próximamente
+## Volver a IA después del handoff
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+Cuando el operador cierra la conversación (ganada/perdida/archivada), el agente IA vuelve a estado `active` para esa contact. La próxima interacción la maneja el agente otra vez.
+
+Si el operador quiere que el agente NO se haga cargo de futuras interacciones de ese contacto (ej: cliente VIP que requiere atención humana permanente), puede toggle "IA off para este contacto" — ahí queda en humano por siempre.
+
+## Próximos pasos
+
+- [Inbox unificado](/inbox/inbox-unificado/)
+- [Pipeline kanban](/inbox/pipeline/)
+- [Cómo configurar edge cases del agente](/copilot/audit/)

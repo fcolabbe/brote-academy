@@ -1,15 +1,47 @@
 ---
 title: Webchat embebible
-description: Cómo embeber el widget de Brote en tu sitio web con una línea de JS.
+description: "Pega un snippet en tu sitio y el agente IA responde 24/7 a los visitantes. Sin cuentas externas, sin terceros."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+El webchat de Brote es un widget JavaScript que pegas antes de `</body>` y empieza a recibir conversaciones reales en tu inbox. El agente IA responde a los visitantes desconocidos sin que tengan que crear cuenta.
+
+![Configuración del webchat embebible](/screenshots/webchat-config.png)
+
+## Por qué importa
+
+- **No depende de un tercero**: no es Tidio, ni Intercom, ni Crisp. El widget se sirve desde tu dominio o `brote.ai`, y la data vive en tu organización.
+- **Misma IA que en WhatsApp**: el agente responde con la misma persona, los mismos catálogos, las mismas reglas comerciales.
+- **Visitantes anónimos = leads anónimos**: si el visitante deja email/teléfono durante la conversación, queda como contacto identificado y entra a tu pipeline.
+
+## Cómo conectarlo
+
+1. Anda a **Configuración → Agente IA → Webchat**.
+2. Copia el snippet (`<script>` con tu widget key per-org).
+3. Pégalo antes de `</body>` en tu sitio (WordPress, Shopify, Webflow, sitio custom — funciona en cualquier lado).
+4. Recargá tu sitio: aparece el botón flotante abajo a la derecha. Click → chat con tu agente IA.
+
+## Personalización
+
+Desde la configuración podés ajustar:
+
+- **Color primario y fondo** del botón flotante
+- **Avatar y nombre del agente** (sale automático del onboarding)
+- **Mensaje de bienvenida** (heredado del agente IA, mismo prompt para todos los canales)
+- **Posición** del botón (izquierda/derecha)
+- **Visibilidad** por hora y día (ej: solo de 9-18, oculto domingo)
+
+## Cuándo el visitante se vuelve contacto
+
+Si el agente pide email/teléfono y el visitante los da, Brote crea un contacto identificado. Mientras tanto aparece como "Visitante web" en el inbox + pipeline. Una vez identificado, todas las conversaciones futuras desde ese device se asocian al mismo contacto.
+
+<Aside type="tip" title="Combiná con Webhooks">
+Si necesitas que un nuevo contacto identificado dispare algo externo (HubSpot, Sheets, Mailchimp), conecta [Zapier](/integraciones/zapier/) o [Webhooks Business](/integraciones/webhooks-api/) — cada `new_contact` o `qualify_lead` se postea firmado con HMAC.
 </Aside>
 
-## Próximamente
+## Próximos pasos
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+- [Conectar WhatsApp](/canales/whatsapp/)
+- [Cobrar dentro del chat](/pagos/cobro-in-chat/)
+- [Cómo funciona el Inbox unificado](/inbox/inbox-unificado/)

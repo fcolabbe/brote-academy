@@ -1,15 +1,48 @@
 ---
 title: Shopify
-description: Tu agente IA consulta catálogo + stock + arma carritos in-chat con Shopify.
+description: "Conecta tu tienda Shopify para que el agente IA consulte catálogo + stock + arme carritos en el chat. Disponible desde plan Starter."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Brote tiene integración nativa con **Shopify Storefront API**. Tu agente IA consulta productos, variantes, precios, stock, y arma carritos pre-llenos que el cliente solo tiene que pagar. Disponible desde el plan **Starter**.
+
+## Qué hace el agente con Shopify
+
+- **Lookup de catálogo**: cuando el cliente pregunta "¿tienen el modelo X en color azul?", el agente busca en tu Shopify y responde con los detalles reales + foto + precio.
+- **Verificación de stock**: el agente sabe si hay stock antes de prometer. Si no hay, ofrece alternativas o sugiere lista de espera.
+- **Build cart link**: genera un link de carrito pre-armado con los productos que el cliente eligió. El cliente solo da click → checkout pre-poblado en tu Shopify.
+- **Recomendación cruzada**: si el cliente compra X, el agente sugiere productos relacionados según tu data Shopify.
+
+<Aside type="tip" title="Cart link > Configurador">
+Cuando el cliente identificó variante + cantidad, el agente prioriza mandar un **cart link** directo (deeplink al checkout Shopify) sobre mandarlo al configurador. Menos clicks = más conversión.
 </Aside>
 
-## Próximamente
+## Cómo conectar
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+1. Anda a **Configuración → Integraciones → Shopify**.
+2. Ingresa el **handle de tu tienda** (ej: `mitienda.myshopify.com` o `mitienda.com`).
+3. Generamos automáticamente un Storefront API access token leyendo `mitienda.com/products.json` (público).
+4. Si tu tienda tiene productos no listados públicamente (private storefront), pegás el token Storefront manual.
+
+## Suscripciones nativas
+
+Si tu Shopify usa una app de suscripciones (Bold, Recharge, Native Subscriptions), las suscripciones aparecen como **variantes** del producto. Brote las detecta automáticamente — el cliente puede pedir "lo quiero suscrito" y el agente arma el cart con la variante suscripción.
+
+## Sincronización
+
+La data se lee on-demand cuando el agente la necesita — **no hay sync periódico**. Esto significa:
+
+- Tus precios siempre están actualizados (sin lag de cache).
+- Tu stock es real-time.
+- No tenemos copia del catálogo en Brote — confiamos en Shopify como source of truth.
+
+## Combinable con Mercado Pago
+
+Si querés que el cobro pase por **Mercado Pago** en lugar del checkout nativo Shopify, lo configurás. El agente genera link de pago MP, el cliente paga, y el webhook MP dispara la orden en tu Shopify (vía Zapier o Webhooks).
+
+## Próximos pasos
+
+- [Conectar Mercado Pago](/pagos/mercado-pago/)
+- [Cobrar dentro del chat](/pagos/cobro-in-chat/)
+- [Zapier para sincronizar Shopify con tu CRM](/integraciones/zapier/)

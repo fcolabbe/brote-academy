@@ -1,15 +1,59 @@
 ---
 title: Qué son las campañas
-description: Reactivación de tu base de contactos con mensajes masivos vía WhatsApp + agente IA continuando la conversación.
+description: "Reactivación masiva de tu base de contactos: el agente IA inicia la conversación y la continúa según las respuestas. No es un blast tonto."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Una **campaña de Brote** es un envío masivo de mensaje inicial a una cohorte de tus contactos (ej: clientes que compraron Black Friday 2025, leads que dejaron carrito abandonado, suscriptores caducados). La diferencia con un blast tradicional: **el agente IA continúa la conversación según las respuestas**.
+
+![Vista de campañas en el dashboard](/screenshots/campaigns.png)
+
+## El flujo end-to-end
+
+1. **Eligís cohorte**: filtras tus contactos por tags, etapa de pipeline, fecha de última compra, vertical, etc.
+2. **Armás mensaje inicial**: texto + opcionalmente media (foto/video) + opcionalmente link de pago pre-armado.
+3. **Programás envío**: ahora, o en fecha/hora futura.
+4. **Brote envía respetando caps** del plan + horario civil del contacto + opt-out automático.
+5. **El agente IA toma la posta** cuando el contacto responde — sin que vos tengas que tocar nada.
+6. **Tracking en tiempo real**: cuántos recibieron, cuántos abrieron, cuántos respondieron, cuántos compraron.
+
+## Por qué importa que la IA continúe
+
+Un blast tradicional (Mailchimp, plantilla WA Business API) te deja con cientos de respuestas en bandeja que NADIE responde. Brote es diferente:
+
+- Si el contacto dice "no me interesa" → agente IA cierra educadamente + marca opt-out.
+- Si dice "contame más" → agente IA da contexto + recomienda producto.
+- Si dice "lo quiero" → agente IA arma el link de pago.
+- Si pregunta algo fuera de scope → handoff a humano con summary.
+
+Resultado: una campaña con 500 contactos no te genera 500 conversaciones que atender — te genera 30-50 ventas cerradas y 450 marcadas según su intent real.
+
+<Aside type="caution" title="Caps obligatorios por plan">
+Como Brote usa Evolution (no Cloud API), no podés mandar miles de mensajes en minutos sin que Meta te banee. Cada plan tiene cap mensual + diario para proteger tu número. Ver [Caps por plan](/campanas/caps/).
 </Aside>
 
-## Próximamente
+## Casos de uso típicos
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+| Cohorte | Mensaje inicial | Resultado típico |
+|---|---|---|
+| Clientes 2024 sin compra en 2025 | "Hola, hace tiempo que no hablamos. Tenemos novedades en pet food que te van a interesar." | Reactivación 8-15% |
+| Carritos abandonados últimos 7 días | "Vi que dejaste tu carrito. ¿Tienes alguna duda? Te ayudo a cerrar." | Recuperación 12-20% |
+| Leads "calientes" sin compra | "Habíamos quedado en mandarte info. Acá va: [link]" | Conversión 25-30% |
+| Lanzamiento producto nuevo | "Recién llegó esto, mirá: [foto + descripción]" | Engagement 30-40% |
+| Black Friday | "Mañana se acaba el 30% off. Si te interesaba algo, ahora es el momento." | Boost ventas semana |
+
+## Opt-out automático
+
+Toda campaña incluye un opt-out implícito. Si un contacto responde "stop", "baja", "no más mensajes", el agente IA:
+
+- Cierra la conversación cordialmente.
+- Marca el contacto con tag `opted_out`.
+- Lo excluye de **todas las campañas futuras** automáticamente.
+- Si quisieras invitarlo de nuevo, tenés que reverter el tag manualmente (raramente lo querés hacer).
+
+## Próximos pasos
+
+- [Crear tu primera campaña](/campanas/crear/)
+- [Caps por plan y protección WA](/campanas/caps/)
+- [Opt-out automático](/campanas/opt-out/)

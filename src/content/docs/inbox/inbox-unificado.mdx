@@ -1,15 +1,69 @@
 ---
 title: Inbox unificado
-description: Una sola bandeja para conversaciones de todos los canales conectados.
+description: "Una sola bandeja para todas tus conversaciones — WhatsApp, Webchat, Instagram, Messenger, Email. Filtros por canal, etapa, agente."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+El inbox unificado de Brote concentra todas las conversaciones de todos tus canales en una sola vista. Tu equipo no tiene que abrir WhatsApp, Instagram y Facebook por separado — todo está acá.
+
+![Inbox unificado con conversaciones de múltiples canales](/screenshots/inbox.png)
+
+## Qué ves en el inbox
+
+Cada fila de la lista es una conversación con:
+
+- **Avatar e iniciales** del contacto (o "Visitante web" si todavía es anónimo)
+- **Nombre** del contacto (si lo tenemos)
+- **Último mensaje** recibido o enviado, con preview
+- **Canal**: badge ícono (WA, IG, Webchat, FB, Email, LinkedIn, Telegram)
+- **Estado IA vs Humano**: pill que indica si el agente está manejando o si está en handoff
+- **Tags**: etiquetas que armaste en [Tags y campos custom](/inbox/tags-fields/)
+
+## Filtros disponibles
+
+Arriba de la lista:
+
+- **Todos los canales** / WhatsApp / Webchat / Instagram / ...
+- **Todos los estados** / Sin leer / En IA / En humano / Cerrada
+- **Todos los agentes** (si tu equipo tiene más de uno) / agente específico
+- **Búsqueda libre** por nombre, teléfono, email, contenido del mensaje
+
+<Aside type="tip" title="Realtime sin recargar">
+El inbox usa **Supabase Realtime** sobre WebSocket. Cuando entra un mensaje nuevo, aparece arriba de la lista sin que tengas que refrescar. Si estás en una conversación, los mensajes nuevos aparecen al final del thread con un ping sonoro opcional.
 </Aside>
 
-## Próximamente
+## Cómo lo opera tu equipo
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+| Rol | Qué puede hacer |
+|---|---|
+| **Superadmin** (owner) | Todo: inbox + config + billing + admins |
+| **Admin** | Inbox + config + invitar miembros (no billing) |
+| **Operador (agente humano)** | Solo conversaciones asignadas + cambiar estado + responder |
+
+Asignación: si una conversación entra en **handoff** (el agente IA derivó), el sistema la asigna al operador con menos carga, o a uno fijo si configuraste round-robin/preferred.
+
+## Tomar control desde la IA
+
+Cualquier miembro con permisos puede **pausar la IA** en una conversación y responder manualmente. Hay 3 caminos:
+
+1. Click en el toggle "IA on/off" arriba del thread.
+2. Escribir un mensaje manual — automáticamente pone IA en `paused`.
+3. Cambiar la conversación a estado "humano" en el kanban.
+
+Al cerrar la conversación (ganado / perdido / archivado) la IA vuelve a `active` para futuras interacciones del mismo contacto.
+
+## Acciones rápidas en cada conversación
+
+- Marcar como **leído / no leído**
+- **Asignar** a otro miembro del equipo
+- **Mover en pipeline** (cambia la etapa del ticket asociado)
+- **Agregar tag** o **crear nota interna**
+- **Enviar link de pago** (si tenés Mercado Pago conectado)
+- **Cerrar** ganada / perdida / archivada
+
+## Próximos pasos
+
+- [Pipeline kanban](/inbox/pipeline/)
+- [Handoff a humano](/inbox/handoff/)
+- [Tags y campos custom](/inbox/tags-fields/)
