@@ -14,7 +14,7 @@ export default defineConfig({
       description:
         'Aprende a configurar tu agente IA de Brote en 15 minutos, conectar canales, cobrar con Mercado Pago y vender mientras duermes.',
       logo: {
-        src: './src/assets/logo.svg',
+        src: './src/assets/isotipo.png',
         replacesTitle: false,
       },
       favicon: '/favicon.svg',
