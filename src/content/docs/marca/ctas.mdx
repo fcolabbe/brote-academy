@@ -1,15 +1,76 @@
 ---
 title: CTAs oficiales
-description: Empieza gratis · 14 días — el único CTA oficial post-GA mayo 2026.
+description: "Empieza gratis · 14 días — el único CTA oficial post-GA mayo 2026. Reglas para landing, ads, emails."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+A partir del lanzamiento oficial GA de mayo 2026, Brote unificó su CTA principal. Esta página documenta cuál es y qué reglas aplican.
+
+## El CTA oficial
+
+> **Empieza gratis · 14 días**
+
+Variantes aceptadas:
+
+- `Empieza gratis · 14 días` (default)
+- `Probar gratis · 14 días`
+- `Crear cuenta · 14 días gratis` (forma larga, OK en algunos contextos)
+
+## Reglas
+
+### ✓ Lo que siempre incluímos
+
+- **"Gratis"**: porque es trial real, sin tarjeta.
+- **"14 días"**: para que sea concreto, no "trial gratis" abstracto.
+- **Plan implícito = Starter**: el trial es sobre Starter completo (500 conv IA + Shopify + MP + WA + Webchat).
+
+### ✗ Lo que NO usamos
+
+- ~~"Solicitar demo"~~ — somos self-service, no enterprise sales con form.
+- ~~"Contáctanos"~~ — sí en footer/contacto, NO como CTA principal.
+- ~~"Free forever"~~ / "Plan gratis para siempre" — no tenemos free tier permanente post-GA.
+- ~~"Compra ahora"~~ — no vendemos one-shot, vendemos suscripción.
+- ~~"Beta privada"~~ — ya no, salimos de beta en mayo 2026.
+
+## Pre-GA (histórico) vs Post-GA
+
+| Etapa | CTA usado |
+|---|---|
+| Beta privada (2025 - abril 2026) | "Solicitar acceso" / "Beta cerrada" |
+| **GA — mayo 2026** | **"Empieza gratis · 14 días"** |
+
+Si encontrás referencias a "beta privada" en cualquier output público (landing, email, ads, slides), es **stale** — reportá o corregilo.
+
+## CTAs secundarios permitidos
+
+En contexto específico podés usar:
+
+- **"Ver demo en vivo"** → linka a `/es/demo` (el demo público sin signup).
+- **"Hablar con ventas"** → en pricing page para plan Business (que sí justifica conversación previa).
+- **"Iniciar sesión"** → en navbar para users existentes.
+
+Lo que NUNCA reemplaza al CTA principal **"Empieza gratis · 14 días"** en hero, pricing cards, post-blog, footer principal.
+
+<Aside type="tip" title="Cupón regional Coquimbo">
+Si la audiencia es de la Región de Coquimbo (Chile), podés usar el CTA secundario **"Coquimbo: USD $23/mes por 6 meses"** con cupón pre-aplicado. URL: `brote.ai/es/pricing?coupon=COQUIMBO`. Más en [Cupón COQUIMBO](/planes/cupon-coquimbo/).
 </Aside>
 
-## Próximamente
+## Botón visual
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+Estilo del botón principal en la marca Brote:
+
+- **Background**: `#C8FF1A` (lime accent)
+- **Color del texto**: `#000` (negro)
+- **Peso**: `font-weight: 600`
+- **Border radius**: `9999px` (pill)
+- **Padding**: `0.75rem 1.5rem` (12px / 24px)
+- **Hover**: glow effect lime + ligero scale (1.02)
+
+Implementado en clase `action.primary` de `brand.css` en Academy + en componente `<CTA primary>` en landing.
+
+## Próximos pasos
+
+- [Tono y registro](/marca/tono/)
+- [Trial de 14 días](/planes/trial/)
+- [Comparativa de planes](/planes/comparativa/)

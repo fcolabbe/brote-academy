@@ -1,15 +1,73 @@
 ---
 title: Onboarding por URL del sitio
-description: Cómo Brote Copilot lee tu sitio web y configura el agente automáticamente.
+description: "Pegás el URL de tu sitio y Brote Copilot configura el agente IA automáticamente. El camino más rápido si tu web ya tiene info."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Si tu sitio web tiene buen contenido (descripciones de productos, precios, About, Contact), el camino más rápido para configurar tu agente IA es **pegar el URL** — Brote Copilot hace todo el resto.
+
+![Demo público en brote.ai/demo donde pruebas el flujo URL → agente](/screenshots/demo-empty.png)
+
+## Cómo funciona
+
+1. **Pegas el URL** completo de tu sitio (ej: `https://misitio.com`).
+2. **Brote Copilot crawlea** automáticamente:
+   - Home + About + Contact + Servicios + Productos
+   - Hasta ~30 páginas internas relevantes
+   - Detecta meta tags, JSON-LD Schema.org, OG tags
+   - Lee el contenido visible (no JS-rendered si requiere scroll infinito)
+3. **Extrae estructura**:
+   - Productos / servicios + precios
+   - Horarios y contacto
+   - Vertical de negocio (retail, hotelería, salud, etc)
+   - Tono del copy
+4. **Sintetiza el agente**:
+   - Persona (nombre, voz, tono)
+   - Opening message acorde
+   - FAQs con respuestas
+   - Edge cases típicos
+   - Catálogo simplificado
+5. **Te lo muestra en 60 segundos** listo para probar.
+
+## Cuándo URL gana al audio
+
+URL onboarding es mejor cuando:
+
+- Tu sitio **describe tus servicios con detalle** (no es solo una landing visual).
+- **Precios están públicos** o al menos rangos.
+- Hay **About bien escrito** que ayuda a definir tono y persona.
+- Tu **catálogo está online** (no en una sheet privada).
+
+Si tu sitio es solo una landing con un form de contacto, mejor usar [audio del dueño](/copilot/audio-onboarding/).
+
+## Casos donde el crawl no llega
+
+- **Sitios JS-only (SPA mal SSReada)**: Next.js/Vue/Angular sin SSR pueden quedar parcialmente leídos.
+- **Sitios con paywall** o login obligatorio.
+- **Catálogos con muchas variantes** que requieren clickear filtros.
+- **Productos que NO están listados** públicamente (B2B).
+
+En esos casos podés **combinar**: pegar URL + agregar audio del dueño + editar manualmente los blocks generados.
+
+<Aside type="tip" title="Combo más fuerte: URL + audio">
+Para el mejor agente posible, **primero URL** (carga catálogo + estructura), **después audio** (agrega contexto humano + casos edge + tono). El sistema combina las dos fuentes y prioriza la que tenga más data específica.
 </Aside>
 
-## Próximamente
+## Re-correr el Copilot cuando actualices el sitio
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+Si actualizas tu sitio (precios nuevos, productos nuevos, redesign), podés **re-correr el Copilot** desde el dashboard sin perder tu config actual:
+
+- Re-crawlea la URL.
+- Detecta cambios vs versión previa.
+- Te muestra **diff** de qué propondría cambiar.
+- Vos aceptás/rechazás cambio por cambio (igual que [Copilot Audit](/copilot/audit/)).
+
+Esto te deja mantener el agente al día sin re-configurar de cero cada vez.
+
+## Próximos pasos
+
+- [Qué es Brote Copilot](/copilot/que-es/)
+- [Onboarding por audio del dueño](/copilot/audio-onboarding/)
+- [Auditoría automática del agente](/copilot/audit/)
+- [Probar el demo público sin crear cuenta](https://brote.ai/es/demo)

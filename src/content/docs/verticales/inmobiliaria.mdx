@@ -1,15 +1,93 @@
 ---
 title: Inmobiliaria
-description: Calificación de leads, agendamiento de visitas, seguimiento de cotizaciones.
+description: "Brote para corretaje y desarrolladoras: calificación de leads, agendamiento de visitas, seguimiento de cotizaciones."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+En inmobiliaria, el problema no es la falta de leads — es que el 80% son no calificados. Brote opera como el **SDR virtual** que filtra antes de pasarle el lead al corredor humano.
+
+## El flujo típico
+
+1. **Lead llega** (portal, ad, recomendación) → entra al chat de Brote.
+2. **Calificación**: agente pregunta presupuesto, zona, dormitorios, urgencia, financiamiento.
+3. **Match con propiedades**: agente cruza requerimientos con tu catálogo (sheet / Zapier desde Inmobalia/Toctoc/InfoCasas).
+4. **Si califica**: agenda visita en [Google Calendar](/integraciones/calendar/) del corredor.
+5. **Si no califica**: cierra educadamente con info general + agrega a cohorte para nurturing.
+6. **Seguimiento**: pre/post visita, follow-up sin pesar al corredor.
+
+## Setup recomendado
+
+### Custom fields
+
+```
+presupuesto_max (number)
+moneda (select: UF / CLP / USD)
+zona_busqueda (text)
+comuna (select)
+dormitorios (number)
+bath (number)
+parking (boolean)
+tipo_propiedad (select: depto / casa / oficina)
+timeline (select: ya / 3_meses / 6_meses / explorando)
+financiamiento (select: subsidio / banco / contado)
+visita_agendada_fecha (date)
+```
+
+### Tags útiles
+
+`califica_premium`, `califica_medio`, `no_califica`, `visita_realizada`, `cotizacion_enviada`, `oferta_en_negociacion`
+
+### Reglas de calificación típica
+
+El agente IA califica con un check simple:
+
+- **Califica premium**: presupuesto sobre X UF + timeline menor a 3 meses + financiamiento bancario aprobado.
+- **Califica medio**: presupuesto OK + timeline 3-6 meses.
+- **No califica**: presupuesto bajo el mínimo de tu portafolio o timeline >6 meses.
+
+Cada nivel dispara acción distinta:
+- Premium → handoff inmediato al corredor con summary completo.
+- Medio → agendamiento de visita estándar.
+- No califica → response cortés + nurture campaign mensual.
+
+<Aside type="tip" title="Catálogo de propiedades">
+Si vendes propiedades de portafolio rotativo (no inventario fijo), conectá [Google Sheets](/integraciones/sheets/) con tu pipeline interno. Cuando cargues una propiedad nueva, el agente la conoce en 5 min.
 </Aside>
 
-## Próximamente
+## Ejemplo conversacional
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+```
+Cliente: hola, vi el aviso del depto en Vitacura, todavía está?
+
+Agente: Hola! Sí, sigue disponible. Antes de mandarte más info, dale:
+- ¿Estás buscando para vivir o como inversión?
+- ¿Tu presupuesto está cerca de las 6.500 UF que pide el dueño?
+- ¿Para cuándo necesitas tomar la decisión?
+
+Cliente: Para vivir, presupuesto hasta 7.000 UF, queremos en 2 meses
+
+Agente: Buenísimo, vas dentro del rango. Te paso el detalle:
+- Vitacura · 3D2B + servicio
+- 95m² útiles + terraza 12m²
+- Estacionamiento + bodega
+- Conserje 24/7
+
+¿Querés que agende una visita esta semana? Tengo disponible:
+- Miércoles 16:00 con [Corredor]
+- Sábado 11:00 con [Corredor]
+
+Cliente: Miércoles 16
+
+Agente: ✅ Agendada visita miércoles 16:00. Te llega invite al mail.
+La dirección la mando el día antes.
+
+[Tag aplicado: califica_premium, visita_agendada_fecha actualizado]
+[Handoff summary enviado al corredor por Slack]
+```
+
+## Próximos pasos
+
+- [Configurar tu agente IA](/empezar/primer-agente/)
+- [Google Calendar para agendamiento](/integraciones/calendar/)
+- [Slack para notificar corredores](/integraciones/slack/)

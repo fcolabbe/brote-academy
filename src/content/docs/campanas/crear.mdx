@@ -1,15 +1,63 @@
 ---
 title: Crear tu primera campaña
-description: "Wizard de 4 pasos: segmento, mensaje, goal, schedule."
+description: "Wizard de 4 pasos: segmento, mensaje, goal, schedule. El agente IA toma la posta cuando el contacto responde."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Crear una campaña en Brote toma 5 minutos. El sistema es un wizard de 4 pasos pensado para que cualquier dueño PYME pueda lanzarla sin equipo de marketing.
+
+![Sección de campañas en el dashboard de Brote](/screenshots/campaigns.png)
+
+## Paso 1 — Segmento
+
+Filtras tus contactos por una combinación de:
+
+- **Tag**: cualquier tag de [Tags y campos custom](/inbox/tags-fields/) (ej: `cliente_2024`, `lead_frio`, `BlackFriday`).
+- **Etapa del pipeline**: contactos en "Perdido" para reactivar, en "Atiende humano" para follow-up, etc.
+- **Última conversación**: hace 30 / 60 / 90 / 180 días sin mensaje.
+- **Última compra**: contactos con/sin compra reciente (vía [Mercado Pago](/pagos/mercado-pago/)).
+- **Origen**: vinieron por WhatsApp, Webchat, IG, etc.
+- **Vertical / Field custom**: si tenes campos custom (ciudad, tamaño empresa, plan que usa), filtras por eso.
+
+Al armar el filtro, Brote te muestra **count estimado en tiempo real** (ej: "1.247 contactos coinciden con este filtro"). Si supera tu cap diario/mensual del plan, te avisa antes de proceder.
+
+## Paso 2 — Mensaje inicial
+
+- **Texto libre** (con preview emoji + variables `{nombre}` que se reemplazan al envío).
+- **Media opcional**: foto, video, audio, PDF — sube desde tu [Biblioteca](/inbox/tags-fields/).
+- **Link de pago opcional**: si la campaña tiene oferta cerrada (ej: "compra ahora con 20% off"), incluyes un link MP pre-armado.
+- **Variables disponibles**: `{nombre}`, `{ciudad}`, `{ultima_compra}`, `{tag}`, cualquier `custom_field`.
+
+<Aside type="tip" title="Personalización con LLM">
+En plan Pro+, podés activar **mensaje personalizado por contacto**: el agente IA genera la apertura adaptada a cada contacto basándose en su historial. Más conversión, más caro de procesar (consume cuota mensual de conv IA).
 </Aside>
 
-## Próximamente
+## Paso 3 — Goal
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+Defines qué considerás "éxito" para esta campaña — Brote lo trackea automático:
+
+- **Respuesta**: el contacto contestó algo (engagement).
+- **Conversión**: el contacto avanzó a una etapa específica del pipeline.
+- **Pago**: el contacto pagó vía link MP.
+- **Click**: el contacto abrió un link incluido.
+- **Visita**: el contacto entró a tu sitio (si tenes UTMs).
+
+Al cerrar la campaña, Brote te muestra el funnel completo: enviados → entregados → abiertos → respondidos → ganados → pagados.
+
+## Paso 4 — Schedule
+
+- **Ahora**: arranca en 30 segundos.
+- **Fecha/hora específica**: ej "lunes 9 de junio a las 10:00 GMT-3".
+- **Throttling**: la campaña respeta el [cap diario](/campanas/caps/) — si tu plan es Starter (100/día), una campaña de 500 contactos demora 5 días.
+- **Horario civil**: por defecto no enviamos fuera del horario civil del contacto (8:00-21:00 según timezone). Configurable.
+
+## Cancelar antes de tiempo
+
+Si lanzaste y querés cancelar, hay un botón "Pausar campaña". Los mensajes ya enviados quedan enviados; los pendientes no salen.
+
+## Próximos pasos
+
+- [Qué son las campañas](/campanas/que-son/)
+- [Caps por plan](/campanas/caps/)
+- [Opt-out automático](/campanas/opt-out/)

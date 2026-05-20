@@ -1,15 +1,46 @@
 ---
 title: Telegram (Pro/Business)
-description: Conectar Telegram como canal adicional en planes Pro y Business.
+description: "Conecta Telegram para atender clientes desde un bot oficial — útil para comunidades, soporte técnico y verticales tech."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Brote conecta a **Telegram** vía Bot API (oficial de Telegram). El agente IA opera como un bot de tu negocio que cualquiera puede chatear iniciando una conversación con tu username.
+
+<Aside type="note" title="Disponible en Pro y Business">
+Telegram es parte de los planes **Pro** ($129/mes) y **Business** ($349/mes). En Mini y Starter no está disponible. Ver [comparativa](/planes/comparativa/).
 </Aside>
 
-## Próximamente
+## Cuándo Telegram tiene sentido
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+- **Tu vertical es tech**: software, crypto, dev tools, startups → tu audiencia ya vive en Telegram.
+- **Manejás comunidades**: tienes grupo de Telegram con clientes/prospects y querés un bot que responda dudas.
+- **Sos LATAM-Argentina**: Telegram tiene penetración fuerte en AR y Chile entre audiencias jóvenes.
+
+Si tu cliente ideal es PYME tradicional retail/hotelería/salud → probablemente no necesitás Telegram. WhatsApp + Webchat cubren bien.
+
+## Cómo conectar
+
+1. En Telegram, abrí un chat con **@BotFather** y crea un bot nuevo (`/newbot` + nombre + username).
+2. BotFather te devuelve un **token** (algo como `5234567890:AAH...`).
+3. En Brote, anda a **Configuración → Integraciones → Telegram** y pegá el token.
+4. Brote verifica el token contra Telegram API y queda **conectado**.
+5. Probalo: buscá tu bot por username y mandale un mensaje.
+
+## Comportamiento del bot
+
+- **/start**: el bot responde con el mensaje de bienvenida del agente IA.
+- **Texto libre**: el agente IA responde como en cualquier otro canal (mismo prompt, mismo catálogo, mismo tono).
+- **Media**: el bot puede recibir y enviar fotos, videos, audios, documents — todo aparece en tu [inbox unificado](/inbox/inbox-unificado/).
+- **Comandos**: si querés que el bot tenga comandos fijos (`/precios`, `/horarios`, `/contacto`), los configurás en BotFather + Brote los reconoce.
+
+## Grupos vs DMs
+
+- **DMs (chats 1:1)**: el agente responde a todos los mensajes que recibe.
+- **Grupos**: el bot solo responde si lo **mencionan explícitamente** (`@mibot ...`) o si responden a uno de sus mensajes. Esto evita spam en comunidades grandes.
+
+## Próximos pasos
+
+- [Configurar tu agente IA](/empezar/primer-agente/)
+- [Inbox unificado](/inbox/inbox-unificado/)
+- [Conectar Mercado Pago para cobros in-chat](/pagos/mercado-pago/)

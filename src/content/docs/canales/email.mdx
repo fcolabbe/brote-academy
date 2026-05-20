@@ -1,15 +1,54 @@
 ---
 title: Email (Gmail / Outlook)
-description: Tu agente IA responde correos manteniendo el hilo y derivando a humano cuando hace falta.
+description: "Tu agente IA responde correos manteniendo el hilo, derivando a humano cuando hace falta. Disponible en Pro+."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Brote conecta a tu **Gmail u Outlook** vía OAuth (Unipile como proveedor). El agente IA lee los emails entrantes, responde como si fuera un humano del equipo, y mantiene el hilo correctamente.
+
+<Aside type="note" title="Disponible en Pro y Business">
+Email es parte de los planes **Pro** ($129/mes) y **Business** ($349/mes). En Mini y Starter no está disponible. Ver [comparativa](/planes/comparativa/).
 </Aside>
 
-## Próximamente
+## Qué hace el agente con emails
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+- **Responde correos entrantes** manteniendo el subject + thread (`In-Reply-To` header correcto).
+- **Detecta intención**: cotización, soporte, consulta, queja, lead nuevo.
+- **Genera ticket** en tu pipeline igual que en otros canales.
+- **Maneja attachments**: si el cliente adjunta una foto/PDF, el agente la guarda como contexto.
+- **Handoff a humano** con summary cuando es un caso complejo (queja formal, propuesta enterprise, legal).
+
+## Cómo conectar
+
+1. Anda a **Configuración → Integraciones → Email** (Gmail u Outlook).
+2. Click en **"Conectar Gmail"** o **"Conectar Outlook"**.
+3. Loguea con la cuenta del email del negocio (no tu personal).
+4. Autoriza permisos: leer mails, enviar mails, marcar como leído.
+5. Brote crea un alias de respuesta interno y queda **conectado**.
+
+## Una cuenta vs varias
+
+Podés conectar **una sola cuenta de email** por organización en plan Pro. En Business podés conectar **múltiples cuentas** (ej: `ventas@`, `soporte@`, `cobranza@`) y el agente IA toma decisiones distintas según la cuenta destino.
+
+## Filtrado anti-spam
+
+El agente NO responde:
+
+- Newsletters automáticas (detectadas por `Precedence: bulk`, `List-Unsubscribe`, etc).
+- Confirmaciones transaccionales de otros servicios (Stripe, MercadoLibre, etc).
+- Spam evidente (Score SpamAssassin > 5).
+
+Esos mails siguen llegando a tu inbox de Gmail/Outlook normalmente — Brote no los toca, solo no los procesa.
+
+## Limitaciones
+
+- **No deja drafts**: el agente envía o no envía. No te deja un "borrador a revisar" antes.
+- **Respeta DNS**: usamos el SMTP de Gmail/Outlook (no relayamos). Tu deliverability depende de tu setup SPF/DKIM/DMARC.
+- **Sin email marketing masivo**: este canal es para conversaciones 1:1. Si querés mandar campañas a tu base, usa [Campañas](/campanas/que-son/) por WhatsApp.
+
+## Próximos pasos
+
+- [Configurar el agente IA](/empezar/primer-agente/)
+- [Inbox unificado](/inbox/inbox-unificado/)
+- [Handoff a humano](/inbox/handoff/)

@@ -1,15 +1,78 @@
 ---
 title: Onboarding por audio del dueño
-description: Cómo grabar el audio perfecto para que Brote Copilot configure tu agente IA.
+description: "Cómo grabar el audio perfecto para que Brote Copilot configure tu agente IA en 15 minutos sin que escribas prompts."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Cuando tu sitio web es básico (o no tenes), el camino más rápido para configurar tu agente IA es grabar un **audio de 2-5 minutos** explicando tu negocio. Brote Copilot transcribe + clasifica + arma el agente.
+
+## El audio perfecto
+
+Brote Copilot saca lo más posible de tu audio si cubrís estos 5 bloques:
+
+### 1. Qué vendes / qué servicio ofreces (~30s)
+
+> "Soy [tu nombre], dueña de [nombre del negocio]. Vendo [producto/servicio] en [ciudad/región]. Mis clientes son [tipo de cliente]."
+
+Ejemplo: "Hola, soy María, dueña de Tienda Brote en Coquimbo. Vendo pet food premium y accesorios para gatos. Mis clientes son dueños de gatos que buscan calidad sin pagar precios de farmacia."
+
+### 2. Tus productos/servicios típicos (~60s)
+
+> "Mis productos más vendidos son [3-5 productos con precios]. También ofrezco [servicios adicionales]."
+
+Mencionar:
+- 3-5 productos/servicios estrella con precios aproximados
+- Productos premium vs económicos
+- Productos suscripción si los hay
+- Categorías que NO atendés (para que el agente sepa cuándo derivar)
+
+### 3. Reglas comerciales (~60s)
+
+> "Para pagar acepto [formas de pago]. Mis horarios son [horarios]. Hago envíos a [zonas] que demoran [tiempos]. Mi política de devoluciones es [política]."
+
+Mencionar también:
+- Si tenes mínimo de compra
+- Si hacés delivery gratis sobre cierto monto
+- Si tenes garantías o cambios
+
+### 4. Tono que querés que use el agente (~30s)
+
+> "Quiero que el agente hable como [estilo]. Que sea [adjetivos: cercano/profesional/divertido/formal]. Que use [tuteo/usted]. Que [no use voseo / use modismos chilenos / use spanglish]."
+
+Si tu marca tiene tono ya definido, mencionarlo. Si no, dilo natural — el copilot deduce desde tu propia voz.
+
+### 5. Casos especiales / handoff (~60s)
+
+> "Cuando el cliente pida [casos complejos], que derive a humano. Cuando alguien pregunte por [info confidencial], que diga [respuesta]. Cuando un cliente esté molesto, que [acción]."
+
+Útil para que el agente NO meta la pata en casos sensibles.
+
+## Tips para grabar
+
+- **Ambiente silencioso**: el modelo transcribe mejor sin ruido de fondo.
+- **Hablá natural**: no es un guión, es como contarle a un nuevo empleado.
+- **Repetí datos clave**: precios, horarios, contacto — repetir 2 veces los fija mejor.
+- **No leas**: si lees, sonás formal y el agente te imita. Conversá.
+- **Pausá entre bloques**: ayuda al modelo a separar secciones.
+
+<Aside type="tip" title="¿Cuánto debe durar?">
+**2-5 minutos es el sweet spot.** Menos de 2 min suele faltar contexto. Más de 5 min se vuelve repetitivo y diluye lo importante. Si naturalmente te sale 7-8 min, está OK.
 </Aside>
 
-## Próximamente
+## Qué hace Brote Copilot con tu audio
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+1. **Transcribe** (Whisper) → texto.
+2. **Clasifica** secciones (productos, reglas, tono, casos especiales).
+3. **Detecta vertical** automáticamente.
+4. **Genera 6 agent_blocks**: persona, instrucción, edge_cases, FAQs, catálogo simplificado, tono.
+5. **Sintetiza opening message** alineado con tu negocio.
+6. Te muestra el agente listo para probar en [Playground](/empezar/primer-agente/).
+
+Todo en **2-5 minutos de procesamiento**.
+
+## Próximos pasos
+
+- [Qué es Brote Copilot](/copilot/que-es/)
+- [Onboarding por URL del sitio](/copilot/url-onboarding/)
+- [Auditoría automática del agente](/copilot/audit/)

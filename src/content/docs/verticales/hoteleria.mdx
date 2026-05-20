@@ -1,15 +1,81 @@
 ---
 title: Hotelería y turismo
-description: Cómo configurar Brote para hoteles boutique, hostales, tour operadores.
+description: "Brote configurado para hoteles boutique, hostales, glamping y tour operadores. Reservas, pre-estadía, post-estadía."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Para hotelería y turismo, Brote opera como el **front-desk virtual** que atiende las 4 etapas del journey del huésped — sin saturar a tu equipo real.
+
+## El flujo típico
+
+1. **Pre-reserva**: huésped pregunta disponibilidad, precios, fotos, política → agente responde y captura datos.
+2. **Reserva**: huésped confirma → agente envía link de pago MP / preapproval / depósito.
+3. **Pre-estadía**: día antes → agente manda info de check-in, dirección, código de WiFi, datos del anfitrión.
+4. **Post-estadía**: día después → agente pide reseña, ofrece descuento para próxima reserva.
+
+## Setup recomendado
+
+### Custom fields
+
+```
+fecha_check_in (date)
+fecha_check_out (date)
+huespedes_adultos (number)
+huespedes_ninos (number)
+tipo_habitacion (select: standard / suite / departamento)
+pais_origen (text)
+es_repetido (boolean)
+ocasion (select: pareja / familia / negocios / amigos)
+```
+
+### Tags útiles
+
+`reserva_confirmada`, `pago_pendiente`, `check_in_hoy`, `repetido`, `oferta_diciembre`, `lead_temporada_alta`
+
+### Integraciones clave
+
+- **[Google Calendar](/integraciones/calendar/)**: el agente consulta tu disponibilidad real y bloquea fechas reservadas.
+- **[Mercado Pago](/pagos/mercado-pago/)**: cobro depósito + saldo. Preapproval para tarifas con cancellation policy.
+- **[Webhooks/Zapier](/integraciones/zapier/)**: cuando hay reserva confirmada → tu PMS (Cloudbeds, Mews, Octorate) recibe el dato.
+
+## Ejemplo conversacional
+
+```
+Cliente: Hola, tienen para 2 personas del 15 al 18 de junio?
+
+Agente: Hola! Sí, tenemos disponibilidad esos días. Te puedo ofrecer:
+- Habitación standard: $85.000 por noche
+- Suite con vista al mar: $135.000 por noche
+Las 2 incluyen desayuno y WiFi.
+Qué te tinca más?
+
+Cliente: La standard
+
+Agente: Perfecto. Para 3 noches (15, 16, 17) son $255.000 totales.
+Te mando el link de pago con depósito del 30% ($76.500). El saldo
+lo pagas al hacer check-in.
+[link MP]
+
+Cliente: [paga]
+
+Agente: ✅ Recibí tu depósito. Reserva confirmada para Camila Vega
+del 15 al 18 de junio, habitación standard.
+Te escribo el día 14 con info de check-in. Cualquier cambio, avisame!
+```
+
+<Aside type="tip" title="Tarifas dinámicas">
+Si tu negocio usa precios dinámicos (temporada alta / baja, fin de semana), configura el agente con un **agent_block "tarifas"** donde detallas las reglas. El agente cotiza correctamente sin que tengas que actualizar a mano.
 </Aside>
 
-## Próximamente
+## Métricas a vigilar
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+- **Tiempo de respuesta promedio**: en hotelería compite con OTAs (Booking, Airbnb). Si tu agente tarda menos de 1 min, ganas reservas directas (sin comisión).
+- **Conversion rate de consulta a reserva**: benchmark hotel boutique = 18-25%. Con Brote bien configurado se llega a 30-35%.
+- **Repetición** (huésped que vuelve): la post-estadía con descuento mueve esto a 15-20%.
+
+## Próximos pasos
+
+- [Configurar tu primer agente](/empezar/primer-agente/)
+- [Conectar Google Calendar](/integraciones/calendar/)
+- [Cobrar dentro del chat](/pagos/cobro-in-chat/)

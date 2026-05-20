@@ -1,15 +1,94 @@
 ---
 title: Gastronomía
-description: Reservas, menú dinámico, pedidos para delivery con link MP.
+description: "Brote para restaurantes, cafeterías, dark kitchens: reservas, menú dinámico, pedidos delivery con cobro MP in-chat."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Para gastronomía, Brote opera como el **anfitrión digital** que toma reservas, gestiona pedidos delivery, responde dudas del menú y cobra — todo desde WhatsApp.
+
+## Los 3 escenarios típicos
+
+### 1. Restaurante con reservas
+
+- Cliente pregunta disponibilidad → agente consulta tu [Google Calendar](/integraciones/calendar/) de mesas.
+- Agente confirma reserva + captura datos (comensales, ocasión, restricciones dietéticas).
+- Día antes → recordatorio + opción de modificar.
+- Día de la reserva → "los esperamos hoy a las [hora]".
+
+### 2. Delivery / take-away
+
+- Cliente pide el menú → agente envía PDF / link / foto del menú actual.
+- Cliente arma su pedido → agente calcula total + costo de envío.
+- Agente manda [link MP](/pagos/mercado-pago/) → cliente paga.
+- Pago confirmado → agente avisa "ya se está preparando, tiempo estimado X min".
+- Si tenes integración con tu sistema de cocina (vía Webhooks/Zapier), la orden entra automático.
+
+### 3. Cafetería / casual dining
+
+- Cliente pregunta "abren hoy?" / "tienen tortas sin gluten?" → agente responde con info actualizada.
+- Cliente reserva mesa para grupo → agente captura comensales + fecha.
+- Post-visita → encuesta de satisfacción + cupón para próxima visita.
+
+## Setup recomendado
+
+### Custom fields
+
+```
+comensales (number)
+fecha_reserva (date)
+ocasion (select: pareja / familia / amigos / negocios / cumple)
+restriccion_dietetica (select: vegano / vegetariano / sin_gluten / sin_lactosa / ninguna)
+mesa_preferida (select: terraza / interior / barra)
+es_cliente_frecuente (boolean)
+ultimo_pedido_delivery (date)
+direccion_delivery (text)
+```
+
+### Tags útiles
+
+`reserva_confirmada`, `cliente_frecuente`, `mesa_preferida_terraza`, `restriccion_sin_gluten`, `delivery_zona_norte`, `birthday_mes`
+
+### Integraciones clave
+
+- **[Google Calendar](/integraciones/calendar/)**: cada mesa o turno = un slot.
+- **[Mercado Pago](/pagos/mercado-pago/)**: cobro delivery + cobro reserva (depósito para grupos grandes).
+- **[Google Sheets](/integraciones/sheets/)**: menú dinámico (precios + disponibilidad por día).
+
+## Ejemplo conversacional — Reserva
+
+```
+Cliente: Hola, tienen mesa para 4 el sábado a las 21?
+
+Agente: Hola! Sábado 21:00 para 4 personas, déjame ver...
+Sí, tengo mesa en terraza o interior. Algún tipo en particular?
+
+Cliente: terraza si hay
+
+Agente: Perfecto, te reservo en terraza. Para confirmar:
+- ¿Algún cumpleaños o aniversario?
+- ¿Alguien con restricción dietética (vegano, sin gluten, etc)?
+
+Cliente: cumple de mi suegra, hay sin gluten en el menú?
+
+Agente: 🎉 Anoto cumpleaños. Le preparamos algo especial.
+Sí, tenemos opciones sin gluten en entrada, plato principal y postre.
+Te muestro el día de la reserva.
+
+Reserva confirmada:
+📅 Sábado 23 de mayo · 21:00
+👥 4 personas · terraza
+🎂 Cumpleaños de tu suegra
+
+Te confirmo el día antes para asegurar la mesa. Cualquier cambio, avisame!
+```
+
+<Aside type="tip" title="Anti-no-show para reservas grandes">
+Si tu mesa es para 6+ personas, configurá que el agente pida **depósito vía MP** para garantizar la reserva. Reduce no-shows de grupos en 60-80%.
 </Aside>
 
-## Próximamente
+## Próximos pasos
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+- [Configurar tu agente IA](/empezar/primer-agente/)
+- [Google Calendar](/integraciones/calendar/)
+- [Cobrar dentro del chat](/pagos/cobro-in-chat/)

@@ -1,15 +1,68 @@
 ---
 title: Google Calendar
-description: "Agendamiento automático: el agente propone horarios, agenda y manda confirmación."
+description: "Tu agente IA propone horarios disponibles, agenda la cita y manda confirmación + recordatorio. Sin volver a abrir Calendar."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
-</Aside>
+Brote conecta a tu **Google Calendar** vía OAuth. El agente IA puede leer tu disponibilidad y agendar citas en el calendario sin que vos tengas que abrir Google.
 
-## Próximamente
+## Cuándo importa
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+Verticales donde el agendamiento es el bottleneck:
+
+- **Salud y clínicas**: pacientes que piden cita por WhatsApp.
+- **Servicios profesionales**: consultoras, abogados, dentistas, estilistas.
+- **Inmobiliaria**: visitas a propiedades.
+- **B2B**: discovery calls que no caen en Calendly.
+- **Hotelería pequeña**: check-in / check-out custom.
+
+## Cómo conectar
+
+1. Anda a **Configuración → Integraciones → Google Calendar**.
+2. Click en **"Conectar Google Calendar"**.
+3. Autoriza con tu cuenta Google (la que tiene el calendar relevante).
+4. Elegí **qué calendar(s) querés exponer al agente** (puedes tener varios, ej: "Citas Doctora Pérez", "Visitas Inmuebles Norte").
+
+## Cómo lo usa el agente
+
+Cuando el cliente pide cita:
+
+```
+Cliente: "necesito reservar una hora con el doctor"
+Agente IA:
+  → invoca find_calendar_slots({calendar_id, duration: 30min, range: next_14_days})
+  → recibe slots disponibles
+"Tengo disponible mañana 10-11h o jueves 15-16h. Cuál te queda mejor?"
+
+Cliente: "jueves 15h"
+
+Agente IA:
+  → invoca create_calendar_event({slot, summary, attendees: [cliente_email]})
+"Confirmado, te agendé jueves 15:00. Te llega el invite a tu mail.
+ Te mando recordatorio el día antes."
+```
+
+## Configuración por calendar
+
+Por cada calendar conectado podés definir:
+
+- **Duración default** del slot (15 / 30 / 60 / 90 min).
+- **Buffer** entre citas (5 / 10 / 15 min entre slots).
+- **Horario disponible** (ej: lunes-viernes 9-13 y 15-19).
+- **Anticipación mínima** (ej: no podes pedir cita con menos de 4h de anticipación).
+- **Anticipación máxima** (ej: máximo 30 días en el futuro).
+
+## Recordatorios automáticos
+
+Cuando se agenda una cita, el agente puede mandar recordatorios automáticos:
+
+- **24h antes**: "Recordá tu cita mañana a las [hora]".
+- **1h antes**: "Tu cita es en 1 hora, dirección X".
+- **Reschedule fácil**: si el cliente responde "no puedo, mover", el agente vuelve a proponer slots.
+
+## Próximos pasos
+
+- [Google Sheets](/integraciones/sheets/)
+- [Configurar tu agente IA](/empezar/primer-agente/)
+- [Vertical Salud](/verticales/salud/)

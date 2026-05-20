@@ -1,15 +1,59 @@
 ---
 title: LinkedIn (Pro/Business)
-description: Responder DMs e InMail de LinkedIn — ideal para ventas B2B.
+description: "Responder DMs e InMail de LinkedIn — ideal para ventas B2B donde tus leads viven en LinkedIn más que en WhatsApp."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Brote conecta a **LinkedIn** vía Unipile. El agente IA responde mensajes directos (DMs) e **InMails** que recibes en tu perfil — útil para PYMEs B2B (consultoras, agencias, SaaS, servicios profesionales) donde tus prospects no están en WhatsApp.
+
+<Aside type="note" title="Disponible en Pro y Business">
+LinkedIn es parte de los planes **Pro** ($129/mes) y **Business** ($349/mes). En Mini y Starter no está disponible. Ver [comparativa](/planes/comparativa/).
 </Aside>
 
-## Próximamente
+## Por qué importa
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+LinkedIn es **el canal de outreach B2B por excelencia** en LATAM y España:
+
+- Tus leads enterprise empiezan ahí (Sales Navigator).
+- Los inbound de "vi tu perfil" suelen venir por DM de LinkedIn.
+- Las conversaciones B2B en WhatsApp son raras hasta que el lead se calificó.
+
+Hasta hoy, atender LinkedIn requería que un humano lo revise. Con Brote, el agente IA responde como vos (con tu tono, tu posicionamiento, tus casos) y deriva al humano cuando el lead califica.
+
+## Cómo conectar
+
+1. Anda a **Configuración → Integraciones → LinkedIn**.
+2. Click en **"Conectar LinkedIn"**.
+3. Loguea con tu cuenta personal de LinkedIn.
+4. Autoriza Unipile a leer y enviar mensajes.
+5. Volvés a Brote y queda **conectado** (cuenta perfil aparece en la lista).
+
+## Limitaciones de LinkedIn
+
+LinkedIn es más restrictivo que Meta:
+
+- **Sin envío masivo**: LinkedIn detecta scripts y bloquea. Brote respeta throttling automático.
+- **Rate limits**: ~30-50 DMs/día sostenido. Si superas eso, LinkedIn marca la cuenta como sospechosa.
+- **No podemos automatizar "Connect requests"**: la integración es solo para mensajes a contactos ya conectados.
+- **InMail (paid)**: si tenes LinkedIn Sales Navigator, podes recibir InMails. Brote los gestiona igual que un DM.
+
+## Caso típico — Agencia B2B
+
+Una agencia de marketing recibe ~20 DMs/semana en LinkedIn pidiendo info. Sin Brote, el dueño contesta 3-5 días después.
+
+Con Brote conectado:
+
+1. El DM entra → agente IA lo detecta.
+2. Responde con info inicial (servicios, modelos de trabajo, casos similares).
+3. Pregunta calificadoras: industria, tamaño, problema concreto, timeline.
+4. Si el lead califica (B2B real, presupuesto razonable, timeline corto) → handoff a humano con summary.
+5. Si no califica (perfil bajo, "solo curiosidad", sin presupuesto) → cierra cordialmente con un PDF de servicios.
+
+Resultado: el dueño solo abre LinkedIn para los handoffs ya calificados.
+
+## Próximos pasos
+
+- [Instagram DMs](/canales/instagram/)
+- [Configurar tu agente IA](/empezar/primer-agente/)
+- [Handoff a humano](/inbox/handoff/)

@@ -1,15 +1,68 @@
 ---
 title: Slack
-description: Notificaciones al equipo cuando entra un lead caliente o se cierra una conversación.
+description: "Notificaciones a #canal cuando entra un lead caliente, se cierra una conversación o el agente IA hace handoff."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Brote envía notificaciones a tu Slack cuando pasan eventos importantes — útil para equipos que viven en Slack y no quieren abrir Brote constantemente.
+
+## Eventos que dispara
+
+Configurás qué eventos van a Slack:
+
+| Evento | Cuándo |
+|---|---|
+| `new_lead` | Nuevo contacto identificado (capturó email/teléfono) |
+| `handoff_to_human` | El agente IA pasa la conversación a humano |
+| `lead_qualified` | Lead marcado como "caliente" por el agente |
+| `payment_received` | Pago confirmado vía [Mercado Pago](/pagos/mercado-pago/) |
+| `ticket_won` | Ticket cerrado como ganado |
+| `ticket_lost` | Ticket cerrado como perdido |
+| `campaign_completed` | Campaña terminada con stats finales |
+
+Cada evento manda un mensaje con info relevante + link directo a la conversación en Brote.
+
+## Cómo conectar
+
+1. Anda a **Configuración → Integraciones → Slack**.
+2. Click en **"Conectar Slack"**. Te redirige al OAuth de Slack.
+3. Elegí el **workspace** y autorizá.
+4. Configurá **a qué canal** mandar cada tipo de evento (puedes tener todos al mismo, o separar `#ventas`, `#soporte`, `#cobros`).
+5. Probá: pídele a un colega que mande un mensaje a tu agente — vas a ver `new_lead` aparecer en Slack.
+
+## Mensaje típico
+
+```
+🌱 Brote · Nuevo lead caliente
+
+Cliente: María González (+569 ··· ···)
+Canal: WhatsApp
+Vertical: Retail
+Intención: alta — pregunta variantes, no precio
+
+Resumen:
+Cliente preguntó por la caja XL en color rojo, sin stock.
+Quiere lista de espera + ver alternativas. Agente derivó.
+
+[ Ver conversación en Brote → ]
+```
+
+<Aside type="tip" title="Combinable con Zapier">
+Si querés que Slack reciba eventos custom que no estén en la lista de arriba (ej: tag específica aplicada, custom_field actualizado), conecta vía [Zapier](/integraciones/zapier/) — más flexible pero requiere armar el Zap.
 </Aside>
 
-## Próximamente
+## Threading
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+Si una misma conversación dispara múltiples eventos (ej: new_lead → handoff → payment), los mensajes en Slack se postean **en thread** del primer mensaje. Tu canal no se llena de updates sueltos.
+
+## Limitaciones
+
+- **Reply desde Slack al cliente**: no implementado. Si querés responderle al cliente, abrís Brote.
+- **Slack acciones (botones)**: aún no soportado. Los mensajes son read-only.
+
+## Próximos pasos
+
+- [Zapier (6.000+ apps)](/integraciones/zapier/)
+- [Webhooks Business](/integraciones/webhooks-api/)
+- [Handoff a humano](/inbox/handoff/)

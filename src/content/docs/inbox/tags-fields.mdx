@@ -1,15 +1,69 @@
 ---
 title: Tags y campos custom
-description: Etiquetas y campos personalizados para clasificar conversaciones y contactos.
+description: "Etiquetas para clasificar conversaciones y campos personalizados para enriquecer contactos según tu vertical."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Tags y custom fields son los dos sistemas que tenés para clasificar contactos y conversaciones más allá de las etapas del pipeline.
+
+## Tags — etiquetas multi-valor
+
+Las **tags** son etiquetas libres que aplicas a contactos o conversaciones. Una conversación puede tener muchas tags simultáneas. Útil para:
+
+- Segmentar cohortes de [campañas](/campanas/que-son/): `cliente_2024`, `BlackFriday`, `prospect_inmobiliaria_premium`
+- Marcar caracteristicas de cliente: `vip`, `requiere_factura`, `delivery_zona_norte`
+- Trackear origen: `vino_de_meta_ad`, `referido_socio`, `evento_expo`
+- Flags operacionales: `lead_caliente`, `requiere_seguimiento`, `opted_out`
+
+### Crear tags
+
+Hay 3 formas de crear una tag:
+
+1. **Manual**: en la conversación o contacto → "Agregar tag" → escribe el nombre → autocomplete de tags existentes.
+2. **Automática por el agente IA**: si configuraste reglas (ej: "cuando el cliente diga que es B2B, agregá tag `b2b`"), el agente las aplica solo.
+3. **Vía Zapier/Webhooks**: si un sistema externo dispara `tag_conversation`, llega como POST y Brote la aplica.
+
+### Búsqueda y filtros
+
+- En el inbox: filtra conversaciones por tag con el dropdown de tags arriba.
+- En contactos: misma lógica.
+- En campañas: tags son el filtro principal para armar cohortes.
+
+## Custom fields — datos estructurados
+
+Los **campos custom** son atributos estructurados que agregás a tus contactos según tu vertical:
+
+| Vertical | Campos típicos |
+|---|---|
+| Retail | `talla_preferida`, `direccion_envio`, `ciudad` |
+| Hotelería | `fecha_check_in`, `huespedes`, `tipo_habitacion`, `pais_origen` |
+| Inmobiliaria | `presupuesto_max`, `comuna_busqueda`, `dormitorios`, `bath` |
+| Salud | `fecha_cita`, `motivo_consulta`, `medico_preferido` |
+| Gastronomía | `restriccion_dietetica`, `comensales`, `fecha_reserva` |
+
+Cada campo tiene tipo: texto, número, fecha, select (lista de opciones), boolean.
+
+### Cómo se llenan
+
+- **Manual** desde el perfil del contacto.
+- **Automático**: el agente IA captura desde la conversación. Si el cliente dice "soy para 4 personas, fecha 23 de junio, quiero la suite", el agente parsea + llena `comensales=4, fecha_reserva=2026-06-23, tipo_habitacion=suite`.
+- **Importación**: si subes CSV de contactos, mapeás columnas a custom fields.
+
+### Disponibles en variables de campaña
+
+Cuando creás una campaña, podés usar `{custom_field_name}` en el mensaje y se reemplaza por el valor de cada contacto. Útil para personalizar a escala: `Hola {nombre}, vi que tu última estadía fue en la {tipo_habitacion}, te interesa volver?`
+
+<Aside type="tip" title="Setup automático por vertical">
+Cuando hacés [onboarding por URL del sitio](/copilot/url-onboarding/), Brote Copilot detecta tu vertical y **te pre-configura los custom fields típicos**. Después podés agregar más o sacar los que no usás.
 </Aside>
 
-## Próximamente
+## Biblioteca de medios
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+Anexo a esta sección está la **Biblioteca de medios** del agente — archivos (fotos, videos, PDFs) que el agente puede enviar a clientes en conversaciones. Subís archivos una vez, los tagueás (ej: `catalogo`, `instructivo`, `politica_devoluciones`), y el agente los manda cuando sea relevante.
+
+## Próximos pasos
+
+- [Inbox unificado](/inbox/inbox-unificado/)
+- [Pipeline kanban](/inbox/pipeline/)
+- [Crear tu primera campaña](/campanas/crear/)

@@ -1,15 +1,60 @@
 ---
 title: Tono y registro
-description: Tu agente IA habla en tuteo neutro chileno (no voseo argentino). Sin expresiones rioplatenses.
+description: "Tuteo neutro chileno, nunca voseo argentino. Cercano, directo, sin tecnicismos. Lo que sí decimos y lo que no."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Brote habla en **tuteo neutro chileno** — la variante de español que se entiende en todo LATAM sin sonar regional. Nada de voseo argentino, nada de modismos exclusivos.
+
+## La regla en una línea
+
+> **Tú / tienes / configura / pega**. NUNCA **vos / tenés / configurá / pegá**.
+
+## Por qué importa
+
+Brote opera en Chile, México, Argentina, Colombia, Perú, Uruguay y España. Cada región tiene su acento:
+
+- **Argentina/Uruguay**: voseo (vos tenés, vos sos).
+- **México**: tú formal (usted en muchos contextos).
+- **Chile**: tuteo informal (tú tienes, también "vo' tení'" pero coloquial).
+- **Colombia/Perú/España**: tú formal/neutro.
+
+Si el agente IA de tu negocio en Coquimbo (Chile) habla con voseo argentino, suena raro. Si habla con "vosotros tenéis" (España), suena más raro. El **tuteo neutro chileno** es el menor denominador común que funciona en todo LATAM sin sonar de ninguna región específica.
+
+## Glosario de variantes (qué SÍ y qué NO usamos)
+
+| Concepto | ✓ Usamos | ✗ NO usamos |
+|---|---|---|
+| Pronombre 2da persona | tú | vos / usted (en chat informal) |
+| Verbo "tener" | tienes | tenés / tiene |
+| Verbo "configurar" | configura | configurá / configure |
+| Verbo "pegar" | pega | pegá / pegue |
+| "Decir" | di / dile | decí / digale |
+| Diminutivo | poquito | poquitito |
+| Coletilla afirmativa | bueno / dale | ta' bien / vale / órale |
+| "Aquí" | acá | aquí (suena formal) |
+| "También" | también | tmb / tb |
+
+## En la app
+
+El dictionary de Brote (`src/i18n/dictionaries/es.json`) está auditado para tuteo neutro chileno. Si encontrás un voseo, es un bug — reportá.
+
+En el agente IA configurado para cada org, el tono **se hereda del onboarding** ([URL](/copilot/url-onboarding/) o [audio](/copilot/audio-onboarding/)). Si tu negocio es argentino y querés voseo, lo configurás en el agent_block "tono". Pero el chat del **dashboard de Brote** (que usás vos como dueño) siempre es tuteo neutro chileno.
+
+## Lo que NO hacemos
+
+- **No emojis decorativos**: si un emoji aporta info (✅ 🎉 📅) lo usamos. Decoración gratuita (✨🚀💫), no.
+- **No exclamaciones múltiples**: una "!" basta. No "!!!".
+- **No CAPS para enfatizar**: si tenes que gritar, no lo digas. **negrita** para énfasis.
+- **No anglicismos innecesarios**: "deadline" → "fecha límite". "feedback" → "comentarios" (OK para audiencias técnicas). "engagement" → según contexto.
+- **No marketing-speak**: "transformamos tu negocio", "revolucionamos", "ecosistema disruptivo" → no.
+
+<Aside type="tip" title="Cuando dudes">
+**Imagina que se lo estás escribiendo a un amigo dueño de PYME en Coquimbo o Concepción.** Si esa persona lo leería natural, está bien. Si suena a copy de agencia de Buenos Aires o a manual técnico de México DF, reescribí.
 </Aside>
 
-## Próximamente
+## Próximos pasos
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+- [CTAs oficiales](/marca/ctas/)
+- [Configurar tono del agente IA](/empezar/primer-agente/)

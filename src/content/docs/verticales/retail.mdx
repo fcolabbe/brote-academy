@@ -1,15 +1,83 @@
 ---
 title: Retail / e-commerce
-description: Brote para tiendas online y físicas — catálogo Shopify + Mercado Pago in-chat.
+description: "Brote para tiendas online y físicas. Catálogo Shopify en vivo, cobro MP in-chat, recompra automática, soporte 24/7."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Para retail, Brote es el **vendedor virtual** que conoce tu catálogo, calcula precios + stock en tiempo real, arma el carrito y cobra. Todo dentro del chat — sin que el cliente abra el sitio.
+
+## El flujo end-to-end
+
+1. **Pre-venta**: cliente pregunta por producto → agente busca en [Shopify](/integraciones/shopify/), responde con foto + precio + stock.
+2. **Decisión**: cliente pregunta variantes / alternativas → agente recomienda según preferencias.
+3. **Compra**: cliente confirma → agente genera [link MP](/pagos/mercado-pago/) o cart link Shopify.
+4. **Post-venta**: cliente pregunta status pedido → agente consulta orden Shopify y responde.
+5. **Recompra**: 30-60 días después → agente sugiere reposición del consumible (pet food, productos de skincare, suplementos).
+
+## Setup recomendado
+
+### Integraciones clave
+
+- **[Shopify](/integraciones/shopify/)**: lookup catálogo + stock + variantes + cart link.
+- **[Mercado Pago](/pagos/mercado-pago/)**: cobro dentro del chat.
+- **[Google Sheets](/integraciones/sheets/)** (opcional): si tu catálogo está en sheet en lugar de Shopify.
+- **[Zapier](/integraciones/zapier/)**: sincronizar leads → Mailchimp / CRM.
+
+### Custom fields
+
+```
+talla_preferida (select por vertical: ropa, calzado, etc)
+direccion_envio (text)
+ciudad (text)
+ultimo_producto_comprado (text)
+fecha_ultima_compra (date)
+suscripcion_activa (boolean)
+```
+
+### Tags útiles
+
+`compra_premium`, `requiere_envio_express`, `cliente_vip`, `descuento_aplicado`, `abandono_carrito`, `recompra_pendiente`
+
+## Ejemplo conversacional
+
+```
+Cliente: hola, tienen el alimento Acana light? para gato
+
+Agente: Sí, tengo el Acana Light & Fit para gato:
+- Bolsa 1.8 kg: $24.990
+- Bolsa 4.5 kg: $54.990 (mejor relación precio/kg)
+- Bolsa 1.8 kg suscripta cada 30 días: $22.491 (10% off)
+
+Tenes 3 unidades en stock de la 4.5 kg. La 1.8 kg está pronto a reponer.
+¿Qué te tinca?
+
+Cliente: la 4.5 suscripta cuanto sale
+
+Agente: La 4.5 kg suscripta cada 30 días queda en $49.491 con 10% off
+recurrente. ¿Querés que te arme el link?
+
+Cliente: dale
+
+Agente: [link MP de preapproval]
+Al pagar el primer mes ($49.491) queda activa la suscripción.
+Te envío cada 30 días sin que tengas que pedirlo. Podés pausar o
+cancelar cuando quieras desde tu cuenta MP.
+```
+
+<Aside type="tip" title="Recompra automática">
+Configurá tu agente para que **detecte el ciclo de consumo** de tu producto (ej: comida para mascota dura ~30 días). 25 días después de la última compra, el agente puede iniciar conversación con `Te queda poco [producto]? Te mando el link de recompra?`. Conversion de recompra automática suele ser 25-40%.
 </Aside>
 
-## Próximamente
+## Métricas a vigilar
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+- **Conversion rate de chat a compra**: benchmark retail = 8-15% sin chatbot, 18-25% con Brote bien configurado.
+- **Recovery de carrito abandonado**: si conectas evento de abandono (Shopify webhook), el agente intenta recuperar — recovery 12-20%.
+- **Ticket promedio**: el agente puede sugerir up-sell durante la conversación; suele subir 5-12%.
+
+## Próximos pasos
+
+- [Shopify](/integraciones/shopify/)
+- [Mercado Pago](/pagos/mercado-pago/)
+- [Cobrar dentro del chat](/pagos/cobro-in-chat/)
+- [Crear campaña de recompra](/campanas/crear/)

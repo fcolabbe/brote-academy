@@ -1,15 +1,96 @@
 ---
 title: Salud y clínicas
-description: Triage conversacional, agendamiento, recordatorios sin saturar a tu equipo.
+description: "Brote para clínicas, consultorios, veterinarias: triage conversacional, agendamiento, recordatorios. Sin saturar a tu equipo."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+En salud, el bottleneck operacional es **el agendamiento**. Las clínicas pierden horas en confirmaciones, reprogramaciones, recordatorios. Brote automatiza el 70-80% sin reemplazar el rol clínico real.
+
+<Aside type="caution" title="Brote NO es asesoramiento médico">
+El agente IA **NO diagnostica ni recomienda tratamientos**. Está configurado para hacer triage operacional (qué especialidad, qué duración de cita, qué documentos llevar) y derivar a un profesional cuando hace falta. Cualquier consulta clínica real → handoff a humano.
 </Aside>
 
-## Próximamente
+## El flujo típico
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+1. **Paciente escribe** ("necesito reservar con Dr. Pérez").
+2. **Agente busca disponibilidad** en [Google Calendar](/integraciones/calendar/) del médico.
+3. **Propone slots** + agenda el que elija.
+4. **Captura datos** del paciente (nombre, RUT, isapre/fonasa, motivo de consulta).
+5. **Confirmación** + invite al calendario del paciente.
+6. **Recordatorios automáticos**: 24h antes + 1h antes.
+7. **Reprogramación fácil**: si el paciente avisa que no puede, el agente vuelve a proponer slots.
+
+## Setup recomendado
+
+### Custom fields
+
+```
+rut_paciente (text)
+isapre_fonasa (select)
+fecha_cita (date)
+duracion_cita (number, min)
+medico_preferido (text)
+motivo_consulta (text — alto nivel, no detalles clínicos)
+primera_consulta (boolean)
+acompanante (boolean)
+```
+
+### Tags útiles
+
+`cita_confirmada`, `primera_vez`, `reagendo`, `no_show_previo`, `fonasa`, `requiere_examenes_previos`
+
+### Integraciones clave
+
+- **[Google Calendar](/integraciones/calendar/)**: por cada médico/profesional un calendar separado, el agente lee disponibilidad real.
+- **[Webhooks](/integraciones/webhooks-api/)**: si tu clínica usa software clínico (Doctoralia, Reservo, Calmedical), un webhook sincroniza la cita.
+- **[Mercado Pago](/pagos/mercado-pago/)**: cobro de copago particular antes de la cita.
+
+## Ejemplo conversacional
+
+```
+Paciente: Hola, necesito una hora con un kinesiólogo
+
+Agente: Hola! Te ayudo. Antes de agendar, una pregunta:
+¿Es por dolor lumbar, hombro, rodilla, deportiva u otro?
+
+Paciente: rodilla, llevo 2 semanas con dolor
+
+Agente: Entendido, te dejo con un kinesiólogo deportivo entonces.
+Es Fonasa, particular, o tienes Isapre?
+
+Paciente: Isapre Banmédica
+
+Agente: Perfecto, tenemos convenio. La consulta sale $25.000
+con copago Banmédica.
+
+Disponibilidad esta semana:
+- Martes 16:00 con [Profesional]
+- Jueves 11:00 con [Profesional]
+- Viernes 18:00 con [Profesional]
+
+Paciente: martes 16
+
+Agente: ✅ Confirmado martes 16:00 con [Profesional].
+Te paso por mail el invite + autorización a firmar al llegar.
+Recordatorio 24h antes. Cualquier cosa, avisame.
+
+[Custom fields actualizados: fecha_cita, medico_preferido, isapre]
+[Tag aplicado: cita_confirmada, primera_vez]
+```
+
+## No-shows: el problema real
+
+Las clínicas pierden 15-25% por no-shows. Brote ayuda a bajarlo:
+
+- **Recordatorio 24h antes** → confirma o re-agenda automático.
+- **Recordatorio 1h antes** → última chance.
+- **Si paciente con tag `no_show_previo` agenda otra vez**: el agente le pide **copago anticipado vía MP** como compromiso.
+
+Con estos 3 → no-shows bajan a 5-10%.
+
+## Próximos pasos
+
+- [Configurar tu agente IA](/empezar/primer-agente/)
+- [Google Calendar](/integraciones/calendar/)
+- [Mercado Pago para copagos](/pagos/mercado-pago/)

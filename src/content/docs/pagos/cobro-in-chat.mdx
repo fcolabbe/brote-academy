@@ -1,15 +1,81 @@
 ---
 title: Cobrar dentro del chat
-description: Cómo el agente IA detecta intención de compra, calcula el monto y manda el link de MP.
+description: "El agente IA detecta intención de compra, calcula el monto, manda el link MP. Cliente paga sin salir de WhatsApp. Tu ticket avanza."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+El cobro in-chat es la feature que más mueve la aguja. El agente IA detecta cuándo el cliente quiere comprar, calcula el monto, manda el link de [Mercado Pago](/pagos/mercado-pago/) y maneja el follow-up — todo sin que vos tengas que intervenir.
+
+## El flujo end-to-end
+
+```
+Cliente: "lo quiero llevar"
+Agente IA: 
+  → invoca build_payment_link({amount: 49000, description, ref})
+  → recibe init_point URL de MP
+  → manda link al cliente
+"Listo, acá va el link de pago: https://mpago.la/abc123 
+ Pagas con tarjeta, Mercado Pago o transferencia."
+
+Cliente: [paga en MP]
+
+[MP webhook → Brote → ticket actualizado]
+
+Agente IA:
+"Perfecto, recibí tu pago. Te llega en 2 días hábiles a tu dirección.
+ Cualquier duda, escribime."
+```
+
+## Cómo detecta la intención
+
+El agente IA detecta intención de compra desde frases como:
+
+- "lo quiero", "me lo llevo", "dame eso"
+- "cómo pago", "cuál es el link de pago"
+- "ya me decidí", "ok mandame"
+- Confirmación tras una sugerencia ("ok genial, ese es")
+
+Para ambigüedades ("estoy interesado") el agente pregunta antes ("¿lo querés comprar ahora o lo pensás un poco más?") para no presionar de más.
+
+## Cálculo del monto
+
+El agente IA calcula:
+
+- **Precio base** de los productos elegidos (vía [Shopify](/integraciones/shopify/) si está conectado).
+- **Cantidad** que pide el cliente.
+- **Cupón** si el cliente menciona o si la conversación viene de una campaña con cupón pre-aplicado.
+- **Envío** si tenés tabla de costos de envío configurada en agent_blocks.
+- **Impuestos** si tu negocio los incluye en el monto final (B2B suele facturarlos separados).
+
+Si hay duda, el agente confirma el desglose con el cliente antes de mandar link: "Confirmo: 1 caja XL = $49.000 + envío $3.500 = $52.500 total. ¿Procedo?".
+
+## Lo que el cliente ve
+
+Click en el link → checkout MP nativo:
+
+- Tarjeta, débito, MercadoPago wallet, transferencia.
+- Cuotas según tu config MP (1-12 cuotas, sin/con interés).
+- Confirmación instantánea cuando paga.
+
+<Aside type="tip" title="Sin salir de WhatsApp">
+Mercado Pago tiene web view optimizada para WhatsApp — el cliente paga sin abrir el browser. Reducir esa fricción es lo que dispara conversión.
 </Aside>
 
-## Próximamente
+## Qué pasa después del pago
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+1. **MP postea webhook** a Brote con `payment.id` + status `approved`.
+2. **Brote registra** en `mercadopago_payments`, asocia al `conversation_id`.
+3. **Mueve el ticket** del pipeline a "Pago confirmado".
+4. **Notifica al cliente** automáticamente.
+5. **Si tenes [Zapier](/integraciones/zapier/) activo**: dispara `payment_received` → tu Holded crea factura, tu Sheet anota, tu Shopify marca order como paid.
+
+## Suscripciones recurrentes
+
+Para servicios suscritos (membership mensual, pet food box mensual, SaaS B2B), el agente puede generar **link de preapproval** en lugar de pago único. El cliente acepta una vez, MP cobra automático cada mes/semana/lo que configures.
+
+## Próximos pasos
+
+- [Conectar Mercado Pago](/pagos/mercado-pago/)
+- [Cobranza Brote con Polar](/planes/polar/)
+- [Sincronizar pagos con CRM vía Zapier](/integraciones/zapier/)

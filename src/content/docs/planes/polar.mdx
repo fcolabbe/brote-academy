@@ -1,15 +1,66 @@
 ---
 title: Cobranza con Polar
-description: "Polar como Merchant of Record: cobra en tu moneda local, factura con IVA por país."
+description: "Polar como Merchant of Record: cobra tu suscripción en moneda local, factura con IVA por país, sin que toquemos plata directamente."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Brote no cobra directo a sus clientes — usa **[Polar](https://polar.sh)** como Merchant of Record (MoR). Polar es el responsable legal de cobrarte, emitir factura con IVA según tu país y mover la plata.
+
+## Por qué Polar y no Stripe
+
+Para una PYME LATAM tradicional, contratar Stripe directo implica:
+- Cuenta bancaria en USD o en jurisdicción soportada.
+- Compliance fiscal manual (IVA, retenciones).
+- Currency conversion donde el cliente paga en USD aunque viva en CLP.
+
+**Polar resuelve esto siendo el comerciante**:
+- **Cobra en tu moneda local**: CLP en Chile, MXN en México, ARS en Argentina, COP en Colombia, BRL en Brasil, USD en US, EUR en España. Sin currency conversion sorpresa.
+- **Emite factura con IVA correcto**: 19% Chile, 16% México, 21% Argentina, 19% Colombia, etc. Vos solo recibes la factura limpia.
+- **Maneja compliance**: si vendes en 7 países, no necesitás registro fiscal en 7 — Polar lo absorbe como MoR.
+
+## Cómo funciona en práctica
+
+1. Eligís un plan (Mini / Starter / Pro / Business) en `brote.ai/es/pricing`.
+2. Click en "Empezar gratis · 14 días" → te lleva al checkout de Polar.
+3. Ingresas tu **país** + **datos fiscales mínimos**.
+4. Polar calcula el precio final con IVA tu país + currency.
+5. Pagas con tarjeta (Visa, Mastercard, Amex) o medios locales soportados (MercadoPago en algunos países).
+6. Polar emite la factura → llega a tu mail PDF.
+7. Brote recibe el webhook `subscription.created` → tu cuenta queda activa con el plan elegido.
+
+## El trial encaja acá también
+
+Durante los 14 días de [trial](/planes/trial/) NO te cobramos nada. Polar acepta tarjeta como método pero **no carga hasta el día 14** (si elegiste seguir).
+
+Si NO elegiste seguir → al día 14 tu cuenta entra en [modo lectura](/planes/trial/) y Polar no te cobra.
+
+## Actualizaciones de plan
+
+Si cambiás de plan (ej: Starter → Pro), Polar:
+- Prorratea el costo del cambio (te cobra solo la diferencia desde el día del cambio).
+- Emite **factura suplementaria** por la diferencia.
+- Tu próximo ciclo arranca con el nuevo plan.
+
+Misma lógica al bajar (Pro → Starter): Polar te devuelve crédito prorrateado o lo aplica al próximo ciclo.
+
+## Cupones y descuentos
+
+Polar soporta **discount codes**. El [cupón COQUIMBO](/planes/cupon-coquimbo/) está implementado como Polar Discount aplicable al plan Starter, con `duration: repeating` 6 meses. Otros cupones futuros (promo verano, B2B partners) se gestionan desde el dashboard de Polar de Brote.
+
+<Aside type="tip" title="Refunds y cancelaciones">
+**Cancelás cuando quieras**, sin call ni form: botón en tu dashboard "Cancelar suscripción". Polar procesa el cancel en el día. Tu acceso sigue activo hasta el final del ciclo pagado actual.
 </Aside>
 
-## Próximamente
+## Diferencia con Mercado Pago
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+**Polar** = vos pagás tu suscripción de Brote (B2B SaaS).
+**[Mercado Pago](/pagos/mercado-pago/)** = vos cobrás a tus clientes finales (tu negocio).
+
+Son dos cosas distintas. Polar es el SaaS que te cobra a vos. MP es el gateway que TÚ usás para cobrarle a tus clientes.
+
+## Próximos pasos
+
+- [Comparativa de planes](/planes/comparativa/)
+- [Trial de 14 días](/planes/trial/)
+- [Cupón COQUIMBO](/planes/cupon-coquimbo/)

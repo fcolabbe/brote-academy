@@ -1,15 +1,55 @@
 ---
 title: Google Sheets
-description: Catálogo en una planilla → tu agente IA lee precios y disponibilidad en vivo.
+description: "Catálogo y leads en una planilla compartida. Tu agente IA lee precios y disponibilidad en vivo, escribe nuevos contactos."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-<Aside type="caution" title="En construcción">
-Este artículo está en construcción. Mientras tanto, escríbenos a [hola@brote.ai](mailto:hola@brote.ai)
-si necesitas ayuda específica con este tema.
+Si tu negocio no tiene Shopify pero sí mantenés un Google Sheets con productos/precios/stock, Brote puede leerlo en vivo. El agente consulta la sheet cuando el cliente pregunta por precio o disponibilidad.
+
+## Dos modos de uso
+
+### Modo lectura — Sheet como catálogo
+
+El agente lee tu sheet para responder preguntas de catálogo:
+
+- **Cliente pregunta** "¿cuánto vale la caja XL?"
+- **Agente busca** en la fila de la sheet → encuentra precio + stock
+- **Responde** "La caja XL cuesta $45.000 y tenemos 8 en stock"
+
+Útil cuando:
+- No tenes Shopify ni e-commerce
+- Tu catálogo cambia 1-2 veces por semana (no requiere e-commerce real)
+- Sos servicio (precios por hora, por paquete) y no producto
+
+### Modo escritura — Sheet como CRM rudimentario
+
+Brote escribe en la sheet cuando captura un lead nuevo:
+
+- **Cliente nuevo** entra al chat → agente captura nombre, email, teléfono, interés.
+- **Brote agrega fila** en tu sheet con timestamp + canal + tags.
+- Útil cuando tu equipo no usa Brote — pueden ver leads desde la sheet en tiempo real.
+
+## Cómo conectar
+
+1. **Crea o abre tu sheet** en Google Drive.
+2. **Compartila** con el email de servicio de Brote (te lo damos al conectar) con permiso de Editor.
+3. En Brote: **Configuración → Integraciones → Google Sheets** → pegá el URL de la sheet.
+4. Brote detecta las columnas → mapeás cuál es "Producto", "Precio", "Stock", "Categoria" para el modo lectura. Mapeás "Nombre", "Email", "Teléfono", "Origen" para el modo escritura.
+5. **Probalo**: agregá una fila manualmente, esperá 30 segundos, preguntale al agente.
+
+<Aside type="tip" title="Una sheet por org">
+En MVP soportamos **una sola sheet por organización**. Si tenes catálogo + leads en sheets distintas, junta ambas en un solo Sheet con dos tabs (`catalog_tab` y `leads_tab`) — Brote los lee separados pero conoce ambos.
 </Aside>
 
-## Próximamente
+## Performance
 
-Estamos documentando este tema. Suscríbete a nuestras [novedades](https://brote.ai/es/contact) para enterarte cuando publiquemos.
+- **Cache**: Brote cachea la lectura por 5 minutos. Si actualizás un precio, el agente lo ve después de 5 min como máximo.
+- **Force refresh**: en la config hay botón "Refrescar ahora" si querés forzar el reload.
+- **Sheets grandes**: hasta 5.000 filas funciona fluido. Si tu catálogo es mayor, considerá Shopify.
+
+## Próximos pasos
+
+- [Shopify (e-commerce)](/integraciones/shopify/)
+- [Configurar tu agente IA](/empezar/primer-agente/)
+- [Zapier para sincronizar sheets con otros sistemas](/integraciones/zapier/)
