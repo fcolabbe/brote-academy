@@ -88,6 +88,82 @@ en tu máquina.
    - *"Cotizá un envío de 2kg a Providencia"*
    - *"Generá un link de pago Mercado Pago por $25.000 con descripción 'Sesión de fotos'"*
 
+### Cómo es el handshake (qué pasa por debajo)
+
+```
+┌────────────────┐                                ┌────────────────┐
+│ Claude Desktop │                                │   brote.ai     │
+│    (stdio)     │                                │   /api/mcp     │
+└───────┬────────┘                                └────────┬───────┘
+        │                                                  │
+        │  1. spawn `npx mcp-remote https://brote.ai/...` │
+        │ ───────────────────────────────────────────────►│
+        │                                                  │
+        │  2. POST initialize                             │
+        │ ───────────────────────────────────────────────►│
+        │  ◄─── { protocolVersion, capabilities, ... }    │
+        │                                                  │
+        │  3. POST notifications/initialized              │
+        │ ───────────────────────────────────────────────►│
+        │  ◄─── 204 No Content                            │
+        │                                                  │
+        │  4. POST tools/list                             │
+        │ ───────────────────────────────────────────────►│
+        │  ◄─── { tools: [9 tool defs] }                  │
+        │                                                  │
+        │  El usuario habla con Claude — Claude decide    │
+        │  cuándo usar las tools de Brote.                 │
+        │                                                  │
+        │  5. POST tools/call (ej: list_conversations)    │
+        │ ───────────────────────────────────────────────►│
+        │  ◄─── { content: [{ type: "text", text }] }     │
+```
+
+Claude lee el `content.text` (JSON stringificado en nuestro caso) y lo
+incorpora al razonamiento para responderte.
+
+## Troubleshooting
+
+### Claude Desktop dice "Server disconnected"
+
+1. Abrí los logs: `~/Library/Logs/Claude/mcp-server-brote.log` (macOS).
+2. Buscá la última línea con `error` o `Connection error`.
+3. Causas comunes:
+
+| Error en log | Causa | Fix |
+|---|---|---|
+| `EACCES` o `npx: command not found` | Node/npm no están en el PATH del proceso Claude | Asegurate que Node está instalado globalmente (`brew install node`) y reiniciá Claude |
+| `401 unauthorized` | API key inválida o revocada | Generá una nueva en Settings → Integraciones → Desarrollador → API key |
+| `400 Invalid JSON-RPC 2.0 envelope` | Tu instalación de mcp-remote usa una versión vieja del protocolo | `rm -rf ~/.npm/_npx && killall node` para que descargue la última |
+| `EAI_AGAIN` o timeout | DNS o red bloquea brote.ai | Probá `curl https://brote.ai/api/mcp` desde la terminal — si no responde, problema de red |
+
+### Las tools no aparecen aunque conectó
+
+Asegurate que Claude Desktop esté en una **conversación nueva** (no en
+una existente abierta antes del restart). Los MCP servers solo se cargan
+al abrir conversación.
+
+Probá pedirle explícitamente: *"qué tools del MCP brote tenés
+disponibles?"*. Debería listar las 9.
+
+### Claude usa Supabase u otro MCP en vez de Brote
+
+Cuando tenés varios MCP servers configurados, Claude elige cuál usar.
+Si Brote no aparece como opción válida para una intención, generalmente
+es porque:
+- La tool tiene una descripción ambigua → reportanos y la mejoramos.
+- Le pediste algo demasiado genérico ("traeme mis datos") sin mencionar
+  Brote. Sé explícito: *"de Brote, listame..."*.
+
+### Quiero ver las requests en tiempo real
+
+```bash
+tail -f ~/Library/Logs/Claude/mcp-server-brote.log
+```
+
+Cada `Message from client` muestra el JSON-RPC entrante. Cada
+`Connection error` el saliente con código.
+
 ## Conectar desde un agente propio (HTTP raw)
 
 Cualquier agente que hable JSON-RPC 2.0 puede usar Brote.
