@@ -82,6 +82,7 @@ export default defineConfig({
           label: 'Automatización',
           items: [
             { label: 'Tools del agente IA', slug: 'automatizacion/tools-del-agente' },
+            { label: 'Agente con voz clonada', slug: 'automatizacion/agente-voz-clonada', badge: { text: 'NEW', variant: 'success' } },
           ],
         },
         {
@@ -131,6 +132,8 @@ export default defineConfig({
             { label: 'Webhooks y API (Business)', slug: 'integraciones/webhooks-api' },
             { label: 'MCP Server (Claude / ChatGPT)', slug: 'integraciones/mcp-server', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Meta Conversions API (ROAS)', slug: 'integraciones/meta-conversions-api', badge: { text: 'NEW', variant: 'success' } },
+            { label: 'Make + n8n + cualquier endpoint', slug: 'integraciones/make-n8n', badge: { text: 'NEW', variant: 'success' } },
+            { label: 'TikTok Events API (ROAS)', slug: 'integraciones/tiktok-events-api', badge: { text: 'NEW', variant: 'success' } },
           ],
         },
         {
