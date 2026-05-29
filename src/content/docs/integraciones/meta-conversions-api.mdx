@@ -1,0 +1,149 @@
+---
+title: Meta Conversions API — atribución ROAS
+description: Brote captura el ctwa_clid cuando un cliente entra por un Click-to-WhatsApp Ad y manda eventos Purchase server-side a tu Pixel cuando paga.
+---
+
+import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
+
+Si invertís en Click-to-WhatsApp Ads de Meta, querés saber **qué ad
+generó qué venta**. Brote cierra el loop completo: detecta el ad de
+entrada, guarda la atribución en el contacto, y cuando ese contacto paga
+envía un evento `Purchase` a tu Pixel via Conversions API.
+
+## Cómo funciona el flow
+
+```
+1) Cliente ve tu ad Meta → click "Send Message"
+   └─ Meta agrega ctwa_clid en el primer msg de WhatsApp
+
+2) Brote recibe el msg vía webhook Evolution
+   └─ extrae externalAdReply.ctwaClid + sourceId + title
+   └─ guarda en contact.metadata.attribution (first-touch)
+
+3) Cliente conversa con tu agente IA → recibe link MP/Flow/Khipu
+
+4) Cliente paga → webhook de la pasarela aprueba el pago
+   └─ Brote dispara sendConversionForContact()
+   └─ POST a https://graph.facebook.com/v18.0/{pixel_id}/events
+       body: { event_name: "Purchase", user_data: { ph: sha256(phone),
+               ctwa_clid }, custom_data: { value, currency } }
+
+5) Meta matchea el ctwa_clid con el click original y atribuye la
+   conversión al ad correcto en tu Events Manager.
+```
+
+## Configurar la integración
+
+### Paso 1 — Obtener Pixel ID + Access Token
+
+1. Andá a [Events Manager](https://business.facebook.com/events_manager2).
+2. Elegí tu Pixel (o creá uno si no tenés).
+3. **Pixel ID** aparece en la card del pixel (15-16 dígitos).
+4. **Configuración → Conversions API → Generar token de acceso**. Copialo
+   YA — se muestra una sola vez. Si lo perdés, generás uno nuevo y
+   revocás el viejo.
+
+### Paso 2 — (Opcional) Test Event Code
+
+Durante el setup, querés validar que los eventos llegan sin contar como
+conversiones reales:
+
+1. En Events Manager → **Test Events** → genera código tipo `TEST12345`.
+2. Pegalo en Brote cuando conectes. Los eventos van a aparecer en
+   "Test Events" y no contar en tus reports de ROAS.
+3. Una vez validado, sacá el code y los eventos empiezan a contar como
+   conversiones reales.
+
+### Paso 3 — Conectar en Brote
+
+1. **Settings → Integraciones → Pagos** → bajá hasta "Meta Conversions API".
+2. Pegá Pixel ID + Access Token + Test Code (opcional).
+3. Click **Conectar Meta**. Brote hace un ping con un evento `Lead` para
+   validar que las credenciales funcionan.
+
+<Aside type="tip">
+Si el ping falla con "invalid_credentials", probablemente:
+- El Access Token no es del Pixel que pegaste
+- El Access Token expiró (regeneralo)
+- El Pixel ID está mal escrito (solo dígitos, sin espacios)
+</Aside>
+
+## Qué se manda y cuándo
+
+| Evento | Cuándo | Custom data |
+|---|---|---|
+| `Purchase` | Cuando MP / Flow / Khipu aprueba el pago | value (CLP), currency, content_name |
+| `Lead` (futuro) | Cuando lifecycle pasa a `mql` o `sql` | — |
+| `InitiateCheckout` (futuro) | Cuando agente manda link de pago | value, currency |
+
+Por ahora solo `Purchase` está activo automático. El resto los activamos
+cuando midamos volumen de uso.
+
+## Logs y debugging
+
+Cada evento enviado queda registrado en la tabla `meta_conversion_events`
+con:
+- `status`: `sent | failed`
+- `error_detail` si falló
+- `payload` con custom_data
+- `fbtrace_id` que Meta asigna (útil para correlacionar con tu Events Manager)
+
+Para ver el log de los últimos eventos, podés correr una query en
+Supabase Studio:
+
+```sql
+select event_name, status, event_value, ctwa_clid, error_detail, sent_at
+from public.meta_conversion_events
+where organization_id = '<tu_org_id>'
+order by sent_at desc
+limit 20;
+```
+
+En Events Manager → **Test Events** vas a ver los eventos llegando casi
+en tiempo real (10-30 seg de delay).
+
+## Atribución visible en el inbox
+
+En la conversación de cualquier contacto que vino por un Meta Ad, el
+panel lateral muestra un badge azul **"🎯 Vino por Meta Ad"** con:
+- Título del ad (si Meta lo mandó)
+- Fecha de captura
+
+Útil para que los humanos del equipo sepan que ese cliente costó plata
+de Ads y priorizar la respuesta.
+
+## Límites y costos
+
+- **Meta Conversions API es gratis** — no cobran por evento.
+- **Rate limit**: 200 events/second por Pixel ID (más que suficiente
+  para PYMEs LATAM).
+- Brote trackea `events_sent_this_month` en `meta_integrations` para
+  visibilidad (no es cap, solo info).
+
+## Posicionamiento competitivo
+
+| Plataforma | Meta CAPI integrado |
+|---|---|
+| **Brote** | ✅ ctwa_clid + Purchase auto desde MP/Flow/Khipu |
+| respond.io | ✅ "Send Conversions API Event" step (manual en workflow) |
+| Wati | 🟡 Solo Pixel client-side (no CAPI server) |
+| SleekFlow | ❌ |
+
+Brote y respond.io son hoy las únicas con CAPI server-side en
+LATAM-relevant. Diff: respond.io requiere configurar el evento por
+workflow; Brote lo dispara automático cuando hay pago, sin que toques
+nada después de conectar.
+
+## Próximos pasos
+
+<CardGrid>
+  <Card title="Click-to-WhatsApp Ads guía" icon="external">
+    [Cómo crear un ad CTWA en Meta →](https://www.facebook.com/business/help/click-to-whatsapp-ads)
+  </Card>
+  <Card title="Conectar Mercado Pago" icon="approve-check">
+    [Para que dispare Purchase events →](/pagos/mercado-pago)
+  </Card>
+  <Card title="Etapas del ciclo (Lead/MQL)" icon="rocket">
+    Próximamente: eventos automáticos al cambiar lifecycle
+  </Card>
+</CardGrid>

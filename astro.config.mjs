@@ -130,6 +130,7 @@ export default defineConfig({
             { label: 'Zapier (6.000+ apps)', slug: 'integraciones/zapier' },
             { label: 'Webhooks y API (Business)', slug: 'integraciones/webhooks-api' },
             { label: 'MCP Server (Claude / ChatGPT)', slug: 'integraciones/mcp-server', badge: { text: 'NEW', variant: 'success' } },
+            { label: 'Meta Conversions API (ROAS)', slug: 'integraciones/meta-conversions-api', badge: { text: 'NEW', variant: 'success' } },
           ],
         },
         {
