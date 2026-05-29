@@ -85,6 +85,20 @@ export default defineConfig({
           ],
         },
         {
+          label: 'Voz IA (TTS)',
+          items: [
+            { label: 'Qué es la voz clonada', slug: 'voz/que-es' },
+          ],
+        },
+        {
+          label: 'Contactos (CRM)',
+          items: [
+            { label: 'Importar desde CSV', slug: 'contactos/importar-csv' },
+            { label: 'Fusionar duplicados', slug: 'contactos/merge' },
+            { label: 'Etapas (lifecycle)', slug: 'contactos/lifecycle' },
+          ],
+        },
+        {
           label: 'Pagos',
           items: [
             { label: 'Conectar Mercado Pago', slug: 'pagos/mercado-pago' },

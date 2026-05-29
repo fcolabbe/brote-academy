@@ -1,0 +1,81 @@
+---
+title: Etapas del ciclo de vida (lifecycle)
+description: Brote ofrece etapas estándar para clasificar contactos en su recorrido — de lead a cliente.
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+El **lifecycle stage** es la etapa del cliente en su relación con tu
+negocio. Es ortogonal al **pipeline de tickets** (que es por conversación):
+una persona puede ser `customer` (ya pagó) y tener un ticket abierto
+en `nuevo` simultáneamente.
+
+## Etapas estándar
+
+| Etapa | Color | Cuándo |
+|---|---|---|
+| **Lead** | gris | Entró al chat pero todavía no calificó |
+| **MQL** | azul | Marketing Qualified — interés expresado |
+| **SQL** | violeta | Sales Qualified — intención clara de comprar |
+| **Oportunidad** | ámbar | Negociando precio/términos |
+| **Cliente** | verde | Pagó al menos una vez |
+| **Evangelista** | cyan | Cliente que refiere a otros |
+| **Churned** | rojo | Cliente perdido o inactivo |
+
+## Cómo cambiar la etapa
+
+### Desde el panel lateral de una conversación
+
+En cualquier conversación del inbox, en el panel derecho hay un picker
+"Etapa del cliente". Click → elegís la etapa nueva. Brote guarda el
+cambio + registra quién lo hizo y cuándo en
+`contact_lifecycle_history` (para reporting + auditoría).
+
+### Desde un CSV import
+
+Incluí la columna `lifecycle`, `stage` o `etapa` en tu CSV. Valores
+válidos: `lead`, `mql`, `sql`, `opportunity`, `customer`, `evangelist`,
+`churned`.
+
+### Desde el agente IA (próximo)
+
+Estamos trabajando en una tool del agente `set_lifecycle_stage` para
+que la IA mueva al contacto cuando detecta señales claras (ej: cliente
+dice "ya pagué" → mover a `customer` automático).
+
+## Reporting
+
+Las etapas alimentan:
+
+- **Funnel de conversión**: lead → mql → sql → customer (cuántos pasan
+  de cada etapa a la siguiente).
+- **Tiempo promedio en cada etapa**: para detectar cuellos de botella.
+- **Segmentación de campañas**: enviar broadcast solo a `customer` o
+  excluir `churned`.
+
+Por ahora estas vistas viven en el dashboard general; en una próxima
+update vamos a tener un funnel dedicado en `/app/analytics/funnel`.
+
+<Aside type="tip">
+Si tu negocio tiene un funnel distinto (ej: SaaS B2B con `trial → paid`),
+podés ignorar las etapas estándar y usar solo las que apliquen. No es
+obligatorio tener todas.
+</Aside>
+
+## Historial de cambios
+
+Cada cambio queda registrado:
+
+```sql
+contact_lifecycle_history (
+  contact_id,
+  from_stage,
+  to_stage,
+  changed_by,
+  source ('manual' | 'csv_import' | 'workflow' | 'api'),
+  created_at
+)
+```
+
+Útil para auditoría y para detectar reversiones (cliente vuelve de
+`churned` a `customer` = recompra).

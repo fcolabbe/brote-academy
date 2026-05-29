@@ -1,0 +1,72 @@
+---
+title: Fusionar contactos duplicados
+description: Brote detecta automáticamente contactos repetidos por teléfono, email o nombre, y te deja fusionarlos en un click.
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Los contactos se duplican fácil: una persona escribe desde dos números,
+te manda un email, o vino dos veces por canales distintos. Brote detecta
+estos duplicados y te permite unirlos.
+
+## Cómo detecta duplicados
+
+Brote agrupa contactos por:
+
+- **Teléfono exacto** (mejor señal, casi siempre indica misma persona)
+- **Email exacto** (case-insensitive)
+- **Nombre normalizado** (lowercase, sin acentos, sin espacios extras)
+
+Si el mismo grupo aparece por dos criterios distintos (ej: phone + name),
+solo se muestra el match más confiable.
+
+## Resolver duplicados
+
+1. Andá a **Settings → Contactos** → sección "Duplicados detectados".
+2. Para cada grupo, te muestra los contactos con su lifecycle stage,
+   datos de contacto y fecha de creación.
+3. Click **"Quedarse con este"** en el ganador → Brote fusiona los demás
+   contra él.
+
+## Qué pasa cuando hacés merge
+
+El ganador (`to_id`) queda intacto en sus campos completos. Los perdedores
+(`from_id`):
+
+- **Conversaciones**, **tickets**, **notas**, **tareas**, **tags**,
+  **custom fields** y **pagos** se reasignan al ganador.
+- **Historia de lifecycle** se conserva — todos los cambios de etapa
+  de cada contacto pasan al ganador.
+- **Campos vacíos** del ganador se rellenan con datos del perdedor
+  (ej: el ganador no tenía email, el perdedor sí → el ganador queda
+  con ese email).
+- **Tags y notas** se mergean (la unión de ambos sets).
+- **Metadata** del ganador prima — el perdedor queda guardado en
+  `metadata.merged_from` para auditoría.
+- Finalmente, el perdedor se borra.
+
+<Aside type="caution">
+La operación es **irreversible**. Antes de mergear muchos, validá con
+1-2 que el resultado sea el que esperás. Si te equivocaste, escribime
+y miramos los logs para reconstruir.
+</Aside>
+
+## Casos comunes
+
+**Mismo cliente con dos teléfonos**: pasaron de un Movistar a un Entel y
+ahora hay 2 contactos. Brote no los detecta automáticamente porque los
+números son distintos — vas a tener que hacer el merge manual desde la
+vista de detalle.
+
+**Cliente escribió por WhatsApp y por Instagram**: te quedan dos contactos
+en canales distintos. Si comparten email o nombre exacto, Brote los detecta;
+si no, también hay que mergear manual.
+
+**Cliente con full name en mayúscula y otro en minúscula**: Brote
+normaliza nombres, así que estos los agrupa solos.
+
+## Reporting
+
+El historial de cada merge queda en `metadata.merged_from[]` del contacto
+ganador (un array con los UUIDs perdidos) + `metadata.merged_at` (timestamp).
+Útil si auditás cuántos duplicados resolviste este mes.

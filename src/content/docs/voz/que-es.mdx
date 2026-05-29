@@ -1,0 +1,97 @@
+---
+title: Voz IA — clonado + TTS
+description: Brote clona tu voz una vez y la usa para responder en audio dentro del chat, manualmente o con quick replies.
+---
+
+import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
+
+Tu agente Brote puede responder al cliente con **una nota de voz que suena
+exactamente como vos** — no como una voz robot, no como un actor. Esto es lo
+que llamamos **Voz IA clonada**.
+
+## Cómo funciona
+
+1. Una sola vez, grabás una muestra de 30-45 segundos leyendo natural.
+2. Brote envía esa muestra a ElevenLabs (provider de cloning), que genera
+   un `voice_id` único para tu negocio.
+3. A partir de ahí, cualquier texto que escribas o que el agente IA quiera
+   responder se puede convertir en audio con tu voz, dentro del chat.
+
+<Aside type="tip">
+La voz queda guardada en tu organización — todos los miembros del equipo
+mandan audios con esa misma voz. Si tu negocio tiene varios "personajes",
+podemos sumar soporte multi-voz; pedinos.
+</Aside>
+
+## Configurar tu voz
+
+1. Andá a **Settings → Voz IA** (`/app/settings/voice`).
+2. Click **Empezar a grabar** y leé el texto sugerido (sirve cualquier
+   párrafo de tu negocio).
+3. Mínimo 20 segundos, ideal 45. Stop cuando quieras.
+4. Click **Clonar esta voz** → 5-15 seg de espera.
+5. Una vez clonada, podés:
+   - Probarla con cualquier texto desde el bloque "Probar la voz".
+   - Reentrenar con una grabación nueva.
+   - Borrarla y volver a hacerla desde cero.
+
+## Usar la voz en una conversación
+
+### Desde un quick-reply (atajo `/`)
+
+Si en `/app/settings/quick-replies` creaste un atajo con **modo Audio (TTS)**,
+al tipear `/saludo` el agente genera audio con tu voz, resuelve las
+variables `{{contact.first_name}}` y lo envía directo al cliente en
+WhatsApp como nota de voz.
+
+### Ad-hoc desde el composer
+
+Próximamente: un botón TTS en el composer para convertir cualquier texto
+en audio antes de enviarlo. Por ahora usá quick-replies.
+
+## Caps por plan
+
+Cada plan tiene un cap mensual de caracteres generados (no audios — chars,
+porque ElevenLabs cobra por carácter):
+
+| Plan | Incluidos / mes | Hard cap | Overage |
+|---|---|---|---|
+| Trial | 500 | 500 | — |
+| Mini ($19) | 0 | 0 | feature bloqueada |
+| Starter ($49) | 5.000 | 15.000 | $0.20 / 100 chars |
+| Pro ($129) | 30.000 | 75.000 | $0.18 / 100 chars |
+| Business ($349) | 150.000 | 350.000 | $0.15 / 100 chars |
+| Enterprise | sin tope | sin tope | — |
+
+- **Incluidos**: gratis dentro del plan.
+- **Overage**: arriba de los incluidos, sigue funcionando pero se va a
+  cobrar a fin de mes en el próximo update de Brote (Polar). Hoy es
+  informativo.
+- **Hard cap**: arriba de esto, Brote bloquea la generación y muestra el
+  cap excedido. Volvés a generar el mes próximo o subís de plan.
+
+El uso en vivo se muestra en `/app/settings/voice` con barras de progreso
+amarilla (zona overage) y roja (cap duro alcanzado).
+
+## Errores comunes
+
+**`paid_plan_required` al clonar**: tu cuenta de ElevenLabs es Free.
+Necesita plan Starter ($5/mes) o superior para usar Instant Voice Cloning.
+Brote no controla esto — la upgrade es directa en elevenlabs.io.
+
+**`hard_cap_exceeded` al enviar audio**: pasaste el cap absoluto del mes.
+Esperá al próximo período o pedinos un upgrade del plan Brote.
+
+**Voz que suena rara**: la muestra de cloning era de baja calidad (ruido
+de fondo, eco, micrófono malo). Reentrená con un audio limpio.
+
+## Próximos pasos
+
+<CardGrid>
+  <Card title="Crear quick-replies de audio" icon="approve-check">
+    [Guía paso a paso →](/automatizacion/tools-del-agente)
+  </Card>
+  <Card title="Conectar WhatsApp" icon="document">
+    [Cómo conectar →](/canales/whatsapp)
+  </Card>
+</CardGrid>
