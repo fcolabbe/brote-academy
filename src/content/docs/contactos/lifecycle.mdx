@@ -10,6 +10,44 @@ negocio. Es ortogonal al **pipeline de tickets** (que es por conversación):
 una persona puede ser `customer` (ya pagó) y tener un ticket abierto
 en `nuevo` simultáneamente.
 
+## Pipeline kanban vs Lifecycle funnel — la diferencia
+
+Brote tiene dos vistas que se parecen pero son distintas:
+
+| | Pipeline kanban | Lifecycle funnel |
+|---|---|---|
+| **Por** | Ticket (una conversación) | Contacto (la persona) |
+| **Stages** | Definidos por la org (Nuevo, Calificado, Cerrado-ganado/perdido…) | Canon Brote (Lead → MQL → SQL → Opportunity → Customer → Evangelist → Churned) |
+| **Multiplicidad** | Una persona puede tener N tickets en N stages | Una persona = un solo lifecycle stage |
+| **Propósito** | Workflow operativo de una conversación específica | Etapa relacional del cliente con tu negocio |
+| **URL** | `/app/pipelines/...` | `/app/contacts/funnel` |
+
+### Brote vincula los dos automáticamente
+
+No tenés que actualizar el lifecycle manualmente cuando un ticket cierra:
+
+| Cuando pasa esto | Lifecycle del contacto se actualiza así |
+|---|---|
+| Ticket pasa a stage `is_won = true` | Bumpea de Lead/MQL/SQL/Opportunity → **Customer** |
+| Pago aprobado en Mercado Pago, Flow o Khipu | Bumpea a **Customer** |
+
+Si el contacto ya está en `Customer`, `Evangelist` o `Churned`, **no se degrada** — Brote no pisa estados manuales con automáticos.
+
+El cambio queda registrado en `contact_lifecycle_history` con `source = 'workflow'` para distinguir de los cambios manuales (`source = 'manual'`) y de imports (`source = 'csv_import'`).
+
+### Con Meta CAPI conectado
+
+Si tu org tiene Meta Conversions API conectado, cada transición de lifecycle también dispara un evento server-side:
+
+| Stage destino | Evento Meta |
+|---|---|
+| MQL / SQL | `Lead` |
+| Opportunity | `InitiateCheckout` |
+| Customer | `Purchase` (vía webhook de pago) |
+| Evangelist | `CompleteRegistration` |
+
+Esto cierra el funnel completo de atribución: Meta sabe qué ad generó cada Lead, MQL, SQL, Opportunity y Purchase, no solo la conversión final.
+
 ## Etapas estándar
 
 | Etapa | Color | Cuándo |
