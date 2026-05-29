@@ -79,10 +79,22 @@ export default defineConfig({
           ],
         },
         {
+          label: 'Automatización',
+          items: [
+            { label: 'Tools del agente IA', slug: 'automatizacion/tools-del-agente' },
+          ],
+        },
+        {
           label: 'Pagos',
           items: [
             { label: 'Conectar Mercado Pago', slug: 'pagos/mercado-pago' },
             { label: 'Cobrar dentro del chat', slug: 'pagos/cobro-in-chat' },
+          ],
+        },
+        {
+          label: 'Logística (Chile)',
+          items: [
+            { label: 'Chilexpress + Starken', slug: 'logistica' },
           ],
         },
         {

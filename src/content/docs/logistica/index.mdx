@@ -1,0 +1,106 @@
+---
+title: Logística in-chat (Chile)
+description: Brote cotiza envíos y trackea pedidos dentro del chat con Chilexpress y Starken. Sin abrir el sitio del courier, sin saltar de app.
+---
+
+import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
+
+Tu agente IA cotiza envíos, verifica cobertura y trackea pedidos **directo en
+el chat**. Brote rutea automáticamente entre los couriers que conectaste —
+el cliente solo recibe la respuesta, no decide la operadora.
+
+## Couriers soportados (Chile)
+
+### Chilexpress
+Tres APIs integradas:
+- **Coverage** — verifica si una comuna está cubierta antes de cotizar.
+- **Rating** — devuelve precio + tiempo de entrega. Si conectaste tu **TCC**
+  (Tarjeta Cliente Comercial), aplica descuento ~19% sobre tarifa pública.
+- **Transport Orders / Tracking** — estado actualizado del envío por número
+  de OT.
+
+Configurá en **Settings → Integraciones → Chilexpress** con tus 3
+subscription keys (Coberturas / Cotizador / Envíos) desde
+[developers.wschilexpress.com](https://developers.wschilexpress.com/).
+
+### Starken
+Segundo courier CL como alternativa o complemento. Dos APIs integradas:
+- **Cotización** (`consultarTarifas`) — precio + días estimados por modo
+  (AGENCIA / DOMICILIO).
+- **Tracking** (`getDetalleSeguimientoNuevo`) — estado por número de flete.
+
+Configurá en **Settings → Integraciones → Starken**. Requiere credenciales
+**API** (no son las del portal web — pedirlas a tu ejecutivo Starken).
+
+<Aside type="caution">
+Las credenciales con las que entrás a `starken.cl` no sirven para la API.
+Starken te entrega credenciales API distintas cuando contratás el plan
+empresarial. Si recibís error `401` al conectar, ese es el motivo.
+</Aside>
+
+## Router automático
+
+Si conectaste **los dos couriers**, Brote elige uno según prioridad:
+
+1. Por defecto: **Chilexpress** (más cobertura nacional y API más moderna).
+2. Override por org: en `organizations.settings.shipping_priority` podés
+   forzar `starken` si tu cliente típico vive en zonas donde Starken cubre
+   mejor (sur de Chile, sectores rurales).
+
+El agente solo decide *"cotizar a Providencia, 1 kg"* — Brote elige courier,
+arma el request, devuelve precio.
+
+## Tools del agente
+
+| Tool | Qué hace |
+|---|---|
+| `check_shipping_coverage` | Verifica si el courier llega a la comuna del cliente |
+| `quote_shipping` | Cotiza envío (precio + días) |
+| `track_shipment` | Estado de un envío por número de OT |
+
+[Detalle completo de las tools →](/automatizacion/tools-del-agente)
+
+## Configuración del origen
+
+Para cotizar, Brote necesita saber **desde dónde** sale el envío:
+
+- **Chilexpress**: configurá `origin_county_code` (código de 4 letras tipo
+  `STGO`, `VALP`, `CONC`).
+- **Starken**: elegí ciudad de origen del listado cacheado al conectar (es
+  un dropdown con las ciudades válidas).
+
+Sin origen configurado el agente devuelve `no_origin_configured` y avisa
+al admin.
+
+## Resolver de comunas CL
+
+Brote viene con un resolver de **80 comunas principales** mapeadas a
+códigos Chilexpress + Starken. Cuando el cliente escribe "Providencia",
+"Quilpué" o "Talcahuano", el agente resuelve automáticamente sin pedir el
+código.
+
+Si la comuna está en una zona rural fuera del listado, el agente
+responde con honestidad: *"voy a coordinar con el equipo si llegamos a esa
+comuna y te confirmo"* — **no inventa cobertura**.
+
+## Costos
+
+- **Chilexpress**: 0 costo Brote — pagás el envío directo al courier según
+  tarifa cotizada. Si conectás TCC, recibís ~19% descuento sobre pública.
+- **Starken**: 0 costo Brote — idem, pagás según tu cuenta corriente o tarifa
+  cliente.
+- **Brote**: viene en cualquier plan desde Starter $49/mes. No es un add-on.
+
+## Próximos pasos
+
+<CardGrid>
+  <Card title="Tools del agente" icon="rocket">
+    [Ver las 18 tools nativas →](/automatizacion/tools-del-agente)
+  </Card>
+  <Card title="Plan Starter $49" icon="seti:plan">
+    [Ver pricing →](https://brote.ai/es/pricing)
+  </Card>
+  <Card title="Conectar Chilexpress" icon="approve-check">
+    Próximamente — guía paso a paso
+  </Card>
+</CardGrid>

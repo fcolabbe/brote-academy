@@ -1,0 +1,160 @@
+---
+title: Tools del agente IA
+description: Las 18 tools nativas que tu agente Brote puede ejecutar dentro del chat — sin código, sin Zapier intermedio, sin saltar de app.
+---
+
+import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
+
+Tu agente Brote no es un chatbot que solo responde texto. Es un **agente autónomo**
+con **18 tools nativas** organizadas por dominio. Cuando el cliente pide algo —
+cobrar, cotizar envío, agendar — el agente decide qué tool ejecutar y la corre
+dentro del chat.
+
+A continuación, el catálogo completo agrupado por capa.
+
+<Aside type="tip">
+Las tools se activan por agente desde **Configuración → Agentes → Tools habilitadas**.
+No todas vienen activas por default: vos elegís cuáles necesita tu negocio.
+</Aside>
+
+## Conversación e intent
+
+### `handoff_to_human`
+Cuando el cliente pide hablar con una persona (o cuando el agente detecta tema
+sensible), pasa el ticket a la columna de handoff y notifica al equipo por
+push. El cliente ve un mensaje claro de "te conectamos con un asesor".
+
+### `change_stage`
+Mueve el ticket por el pipeline kanban: `nuevo → calificado → propuesta →
+cerrado-ganado/perdido`. El agente lo dispara cuando detecta una señal de
+avance ("listo, te lo compro" → cerrado-ganado).
+
+### `assign_tag`
+Etiqueta al contacto con tags como `interesado`, `vip`, `cliente-recurrente`,
+`carrito-abandonado`. Sirve para segmentar campañas después.
+
+### `update_contact`
+Actualiza datos del contacto: nombre, email, teléfono adicional. El agente
+los infiere de lo que dice el cliente sin necesidad de un form.
+
+### `set_custom_field`
+Setea campos custom que vos definiste por org. Ej: `presupuesto`, `fecha-evento`,
+`tamaño-empresa`. Permiten reportes y segmentación específica a tu negocio.
+
+## Mensajería
+
+### `send_template`
+Envía un template WhatsApp pre-aprobado por Meta. Útil para confirmaciones,
+recordatorios y mensajes fuera de la ventana de 24 horas.
+
+### `send_media`
+Envía imágenes, PDFs, audios o videos. El agente decide el formato apropiado
+(ej: ficha técnica como PDF, foto de producto como imagen).
+
+## Agenda
+
+### `check_availability`
+Lee tu Google Calendar conectado y devuelve los próximos slots libres según las
+reglas que definiste (duración, horario laboral, buffer entre reuniones).
+
+### `book_appointment`
+Reserva el slot en tu Google Calendar y manda invitación al cliente. Bloquea
+el horario automáticamente.
+
+## Catálogo y productos
+
+### `lookup_product`
+Busca un producto en tu catálogo (Shopify o Google Sheets). Devuelve precio,
+stock, descripción, foto. El agente puede recomendar productos por
+características que el cliente describe.
+
+### `check_stock`
+Confirma disponibilidad de una variante específica antes de armar el carrito.
+Evita que el cliente reserve algo que no tenés.
+
+### `build_cart_link`
+Para Shopify: arma un link directo al carrito con los productos elegidos.
+El cliente abre el link y solo confirma el pago — sin volver a buscar
+productos.
+
+### `lookup_coupon`
+Verifica si un cupón existe y aplica al carrito. Devuelve el descuento exacto
+para que el agente sea claro: *"con COQUIMBO te queda en $23 en vez de $49"*.
+
+## Datos externos
+
+### `lookup_sheet_data`
+Lee de un Google Sheet conectado. Útil para precios dinámicos, listas de
+sucursales, tablas de equivalencias o cualquier dato que vive fuera del
+producto.
+
+## Pagos (in-chat)
+
+### `build_payment_link`
+**Tool polimórfica clave.** Genera un link de cobro según la pasarela
+conectada en tu org. Brote rutea automáticamente con prioridad:
+
+1. **Khipu** primero (~$300 fijo por transacción, transferencia CL)
+2. **Flow** después (Webpay + Servipag + tarjetas CL)
+3. **Mercado Pago** como fallback (LATAM amplio)
+
+El agente solo decide *"cobrar $X"* y Brote elige la pasarela. El webhook de
+confirmación llega y el agente cierra el ticket automáticamente.
+
+## Logística (in-chat)
+
+### `check_shipping_coverage`
+Verifica si el courier conectado llega a la comuna del cliente. Funciona con
+**Chilexpress** y **Starken** — Brote rutea según courier conectado y avisa
+si la comuna no está cubierta antes de cotizar.
+
+### `quote_shipping`
+Cotiza un envío a la comuna del cliente. Devuelve precios aproximados
+(valor estimado, no final) con tiempo de entrega.
+
+- **Chilexpress**: usa tu cuenta TCC si la conectaste (~19% descuento).
+- **Starken**: usa cuenta corriente o RUT cliente según cómo configuraste.
+
+### `track_shipment`
+Trackea el estado de un envío por número de Orden de Transporte (OT). El
+agente le cuenta al cliente: *"tu envío está en tránsito a La Serena,
+llega aproximadamente el 5 de junio"*.
+
+## Cómo se comparan con respond.io
+
+| Capa | Brote tools | respond.io |
+|---|---|---|
+| Conversación | 5 tools (handoff, stage, tag, contact, field) | sí |
+| Mensajería | 2 tools (template, media) | sí |
+| Agenda | 2 tools (availability, book) | parcial |
+| Catálogo | 4 tools (product, stock, cart, coupon) | parcial |
+| Datos externos | 1 tool (sheet) | parcial |
+| **Pagos LATAM** | 1 tool polimórfica (MP / Flow / Khipu) | ❌ |
+| **Logística LATAM** | 3 tools (coverage / quote / track) | ❌ |
+
+El gap de respond.io es estructural: no tiene pagos LATAM ni logística
+chilena nativos. Sus actions equivalentes son horizontales (HTTP request +
+update field + asignar). Brote tiene tools **verticales**: cobrar con
+Khipu o cotizar Chilexpress es una llamada de función, no un workflow
+manual.
+
+<Aside type="note">
+Si necesitás una tool que no está en este listado (ej: enviar SMS, llamar
+a tu sistema interno por HTTP), usá el **trigger Incoming Webhook + step
+HTTP Request** desde el plan Starter en adelante. No te hacemos pagar
+$279/mes para abrir esa puerta.
+</Aside>
+
+## Próximos pasos
+
+<CardGrid>
+  <Card title="Conectar Mercado Pago" icon="approve-check">
+    [Guía paso a paso →](/pagos/mercado-pago)
+  </Card>
+  <Card title="Configurar Brote Copilot" icon="setting">
+    [15 min wizard →](/copilot/que-es)
+  </Card>
+  <Card title="Conectar Chilexpress" icon="open-book">
+    Próximamente — guía de cobertura + cotización + tracking
+  </Card>
+</CardGrid>
