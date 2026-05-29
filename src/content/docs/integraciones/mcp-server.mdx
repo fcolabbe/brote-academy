@@ -11,12 +11,12 @@ Connectors, agentes propios — puede conectarse y usar las tools de Brote
 como si fueran nativas del modelo.
 
 <Aside type="tip">
-Esto es lo que llamamos **agente-to-agente**: vos hablás con Claude, Claude
+Esto es lo que llamamos **agente-to-agente**: tú hablas con Claude, Claude
 habla con Brote, Brote actúa sobre tus conversaciones, tus contactos, tus
-pagos y tu logística. Sin que vos hagas APIs ni Zapier.
+pagos y tu logística. Sin que tú hagas APIs ni Zapier.
 </Aside>
 
-## Qué podés hacer
+## Qué puedes hacer
 
 Hoy Brote expone **9 tools** al protocolo MCP:
 
@@ -44,7 +44,7 @@ Próximas tools en roadmap: `lookup_product` (catálogo Shopify),
 - **Protocol version**: `2024-11-05`
 
 Para generar una API key:
-1. Andá a **Settings → Integraciones → "Conecta con 6.000+ apps"**.
+1. Ve a **Settings → Integraciones → "Conecta con 6.000+ apps"**.
 2. Click **"Generar API key"**. Copiá el token (se muestra una sola vez).
 
 ## Conectar desde Claude Desktop
@@ -143,12 +143,12 @@ Asegurate que Claude Desktop esté en una **conversación nueva** (no en
 una existente abierta antes del restart). Los MCP servers solo se cargan
 al abrir conversación.
 
-Probá pedirle explícitamente: *"qué tools del MCP brote tenés
+Probá pedirle explícitamente: *"qué tools del MCP brote tienes
 disponibles?"*. Debería listar las 9.
 
 ### Claude usa Supabase u otro MCP en vez de Brote
 
-Cuando tenés varios MCP servers configurados, Claude elige cuál usar.
+Cuando tienes varios MCP servers configurados, Claude elige cuál usar.
 Si Brote no aparece como opción válida para una intención, generalmente
 es porque:
 - La tool tiene una descripción ambigua → reportanos y la mejoramos.
@@ -258,7 +258,7 @@ Brote y respond.io son hoy las únicas plataformas LATAM-relevantes con
 MCP Server propio. La diferencia: respond.io expone tools genéricas;
 Brote expone tools **verticales LATAM** — `build_payment_link` con
 Mercado Pago, `quote_shipping` con Chilexpress/Starken, `change_lifecycle_stage`
-nativo. Tu agente IA externo puede cobrar y despachar en CL sin que vos
+nativo. Tu agente IA externo puede cobrar y despachar en CL sin que tú
 escribas integraciones.
 
 ## Próximos pasos

@@ -5,7 +5,7 @@ description: "Catálogo y leads en una planilla compartida. Tu agente IA lee pre
 
 import { Aside } from '@astrojs/starlight/components'
 
-Si tu negocio no tiene Shopify pero sí mantenés un Google Sheets con productos/precios/stock, Brote puede leerlo en vivo. El agente consulta la sheet cuando el cliente pregunta por precio o disponibilidad.
+Si tu negocio no tiene Shopify pero sí mantienes un Google Sheets con productos/precios/stock, Brote puede leerlo en vivo. El agente consulta la sheet cuando el cliente pregunta por precio o disponibilidad.
 
 ## Dos modos de uso
 
@@ -18,7 +18,7 @@ El agente lee tu sheet para responder preguntas de catálogo:
 - **Responde** "La caja XL cuesta $45.000 y tenemos 8 en stock"
 
 Útil cuando:
-- No tenes Shopify ni e-commerce
+- No tienes Shopify ni e-commerce
 - Tu catálogo cambia 1-2 veces por semana (no requiere e-commerce real)
 - Sos servicio (precios por hora, por paquete) y no producto
 
@@ -34,18 +34,18 @@ Brote escribe en la sheet cuando captura un lead nuevo:
 
 1. **Crea o abre tu sheet** en Google Drive.
 2. **Compartila** con el email de servicio de Brote (te lo damos al conectar) con permiso de Editor.
-3. En Brote: **Configuración → Integraciones → Google Sheets** → pegá el URL de la sheet.
+3. En Brote: **Configuración → Integraciones → Google Sheets** → pega el URL de la sheet.
 4. Brote detecta las columnas → mapeás cuál es "Producto", "Precio", "Stock", "Categoria" para el modo lectura. Mapeás "Nombre", "Email", "Teléfono", "Origen" para el modo escritura.
-5. **Probalo**: agregá una fila manualmente, esperá 30 segundos, preguntale al agente.
+5. **Pruébalo**: agrega una fila manualmente, espera 30 segundos, pregúntale al agente.
 
 <Aside type="tip" title="Una sheet por org">
-En MVP soportamos **una sola sheet por organización**. Si tenes catálogo + leads en sheets distintas, junta ambas en un solo Sheet con dos tabs (`catalog_tab` y `leads_tab`) — Brote los lee separados pero conoce ambos.
+En MVP soportamos **una sola sheet por organización**. Si tienes catálogo + leads en sheets distintas, junta ambas en un solo Sheet con dos tabs (`catalog_tab` y `leads_tab`) — Brote los lee separados pero conoce ambos.
 </Aside>
 
 ## Performance
 
 - **Cache**: Brote cachea la lectura por 5 minutos. Si actualizás un precio, el agente lo ve después de 5 min como máximo.
-- **Force refresh**: en la config hay botón "Refrescar ahora" si querés forzar el reload.
+- **Force refresh**: en la config hay botón "Refrescar ahora" si quieres forzar el reload.
 - **Sheets grandes**: hasta 5.000 filas funciona fluido. Si tu catálogo es mayor, considerá Shopify.
 
 ## Próximos pasos

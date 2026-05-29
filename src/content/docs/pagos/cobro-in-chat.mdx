@@ -5,7 +5,7 @@ description: "El agente IA detecta intención de compra, calcula el monto, manda
 
 import { Aside } from '@astrojs/starlight/components'
 
-El cobro in-chat es la feature que más mueve la aguja. El agente IA detecta cuándo el cliente quiere comprar, calcula el monto, manda el link de [Mercado Pago](/pagos/mercado-pago/) y maneja el follow-up — todo sin que vos tengas que intervenir.
+El cobro in-chat es la feature que más mueve la aguja. El agente IA detecta cuándo el cliente quiere comprar, calcula el monto, manda el link de [Mercado Pago](/pagos/mercado-pago/) y maneja el follow-up — todo sin que tú tengas que intervenir.
 
 ## El flujo end-to-end
 
@@ -24,7 +24,7 @@ Cliente: [paga en MP]
 
 Agente IA:
 "Perfecto, recibí tu pago. Te llega en 2 días hábiles a tu dirección.
- Cualquier duda, escribime."
+ Cualquier duda, escríbeme."
 ```
 
 ## Cómo detecta la intención
@@ -33,10 +33,10 @@ El agente IA detecta intención de compra desde frases como:
 
 - "lo quiero", "me lo llevo", "dame eso"
 - "cómo pago", "cuál es el link de pago"
-- "ya me decidí", "ok mandame"
+- "ya me decidí", "ok mándame"
 - Confirmación tras una sugerencia ("ok genial, ese es")
 
-Para ambigüedades ("estoy interesado") el agente pregunta antes ("¿lo querés comprar ahora o lo pensás un poco más?") para no presionar de más.
+Para ambigüedades ("estoy interesado") el agente pregunta antes ("¿lo quieres comprar ahora o lo pensás un poco más?") para no presionar de más.
 
 ## Cálculo del monto
 
@@ -45,7 +45,7 @@ El agente IA calcula:
 - **Precio base** de los productos elegidos (vía [Shopify](/integraciones/shopify/) si está conectado).
 - **Cantidad** que pide el cliente.
 - **Cupón** si el cliente menciona o si la conversación viene de una campaña con cupón pre-aplicado.
-- **Envío** si tenés tabla de costos de envío configurada en agent_blocks.
+- **Envío** si tienes tabla de costos de envío configurada en agent_blocks.
 - **Impuestos** si tu negocio los incluye en el monto final (B2B suele facturarlos separados).
 
 Si hay duda, el agente confirma el desglose con el cliente antes de mandar link: "Confirmo: 1 caja XL = $49.000 + envío $3.500 = $52.500 total. ¿Procedo?".
@@ -68,7 +68,7 @@ Mercado Pago tiene web view optimizada para WhatsApp — el cliente paga sin abr
 2. **Brote registra** en `mercadopago_payments`, asocia al `conversation_id`.
 3. **Mueve el ticket** del pipeline a "Pago confirmado".
 4. **Notifica al cliente** automáticamente.
-5. **Si tenes [Zapier](/integraciones/zapier/) activo**: dispara `payment_received` → tu Holded crea factura, tu Sheet anota, tu Shopify marca order como paid.
+5. **Si tienes [Zapier](/integraciones/zapier/) activo**: dispara `payment_received` → tu Holded crea factura, tu Sheet anota, tu Shopify marca order como paid.
 
 ## Suscripciones recurrentes
 

@@ -1,12 +1,12 @@
 ---
 title: Agente IA responde con voz clonada
-description: La tool send_voice_reply deja que el agente IA mande respuestas en audio usando tu voz clonada — el cliente lo escucha como si fueras vos.
+description: La tool send_voice_reply deja que el agente IA mande respuestas en audio usando tu voz clonada — el cliente lo escucha como si fueras tú.
 ---
 
 import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
 
 Una vez que clonaste tu voz en
-[Settings → Voz IA](/voz/que-es), podés habilitar una tool nueva del
+[Settings → Voz IA](/voz/que-es), puedes habilitar una tool nueva del
 agente IA — `send_voice_reply` — para que **el bot conteste con audio
 usando tu voz**. El cliente lo escucha como una nota de voz personal.
 
@@ -38,8 +38,8 @@ decide cuándo invocarla.
 1. Asegurate de tener voz clonada en
    [Settings → Voz IA](/voz/que-es). Si no, el agente recibe error
    `no_voice` y manda texto en su lugar (fallback graceful).
-2. Andá a **Settings → Agente IA → Tools habilitadas**.
-3. Tildá `send_voice_reply`.
+2. Ve a **Settings → Agente IA → Tools habilitadas**.
+3. Marca `send_voice_reply`.
 4. Guardá. Desde el próximo mensaje, el agente puede invocarla.
 
 ## Cómo el agente decide
@@ -51,7 +51,7 @@ El LLM lee la `description` de la tool:
 > o el contexto pide cercanía (saludos, agradecimientos, confirmaciones).
 > Para info técnica o numérica, preferí texto. Max 300 caracteres.
 
-Y combina con el contexto de la conversación para decidir. Si querés
+Y combina con el contexto de la conversación para decidir. Si quieres
 forzar el comportamiento (ej: "siempre responder en audio a clientes
 VIP"), agregalo al prompt del agente.
 
@@ -86,7 +86,7 @@ con micrófono limpio y sin ruido de fondo.
 
 - **Solo WhatsApp** — Instagram/Messenger no soporta audio nativo PTT
   todavía.
-- **Una voz por org** — no podés tener "voz de Mario" y "voz de Jorge"
+- **Una voz por org** — no puedes tener "voz de Mario" y "voz de Jorge"
   separadas en el mismo agente.
 - **Max 300 chars por audio** — texto más largo se siente artificial.
 

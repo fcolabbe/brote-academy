@@ -5,7 +5,7 @@ description: "Etiquetas para clasificar conversaciones y campos personalizados p
 
 import { Aside } from '@astrojs/starlight/components'
 
-Tags y custom fields son los dos sistemas que tenés para clasificar contactos y conversaciones más allá de las etapas del pipeline.
+Tags y custom fields son los dos sistemas que tienes para clasificar contactos y conversaciones más allá de las etapas del pipeline.
 
 ## Tags — etiquetas multi-valor
 
@@ -21,7 +21,7 @@ Las **tags** son etiquetas libres que aplicas a contactos o conversaciones. Una 
 Hay 3 formas de crear una tag:
 
 1. **Manual**: en la conversación o contacto → "Agregar tag" → escribe el nombre → autocomplete de tags existentes.
-2. **Automática por el agente IA**: si configuraste reglas (ej: "cuando el cliente diga que es B2B, agregá tag `b2b`"), el agente las aplica solo.
+2. **Automática por el agente IA**: si configuraste reglas (ej: "cuando el cliente diga que es B2B, agrega tag `b2b`"), el agente las aplica solo.
 3. **Vía Zapier/Webhooks**: si un sistema externo dispara `tag_conversation`, llega como POST y Brote la aplica.
 
 ### Búsqueda y filtros
@@ -32,7 +32,7 @@ Hay 3 formas de crear una tag:
 
 ## Custom fields — datos estructurados
 
-Los **campos custom** son atributos estructurados que agregás a tus contactos según tu vertical:
+Los **campos custom** son atributos estructurados que agregas a tus contactos según tu vertical:
 
 | Vertical | Campos típicos |
 |---|---|
@@ -52,10 +52,10 @@ Cada campo tiene tipo: texto, número, fecha, select (lista de opciones), boolea
 
 ### Disponibles en variables de campaña
 
-Cuando creás una campaña, podés usar `{custom_field_name}` en el mensaje y se reemplaza por el valor de cada contacto. Útil para personalizar a escala: `Hola {nombre}, vi que tu última estadía fue en la {tipo_habitacion}, te interesa volver?`
+Cuando creas una campaña, puedes usar `{custom_field_name}` en el mensaje y se reemplaza por el valor de cada contacto. Útil para personalizar a escala: `Hola {nombre}, vi que tu última estadía fue en la {tipo_habitacion}, te interesa volver?`
 
 <Aside type="tip" title="Setup automático por vertical">
-Cuando hacés [onboarding por URL del sitio](/copilot/url-onboarding/), Brote Copilot detecta tu vertical y **te pre-configura los custom fields típicos**. Después podés agregar más o sacar los que no usás.
+Cuando haces [onboarding por URL del sitio](/copilot/url-onboarding/), Brote Copilot detecta tu vertical y **te pre-configura los custom fields típicos**. Después puedes agregar más o sacar los que no usas.
 </Aside>
 
 ## Biblioteca de medios

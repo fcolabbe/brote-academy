@@ -19,7 +19,7 @@ Tres APIs integradas:
 - **Transport Orders / Tracking** — estado actualizado del envío por número
   de OT.
 
-Configurá en **Settings → Integraciones → Chilexpress** con tus 3
+Configura en **Settings → Integraciones → Chilexpress** con tus 3
 subscription keys (Coberturas / Cotizador / Envíos) desde
 [developers.wschilexpress.com](https://developers.wschilexpress.com/).
 
@@ -29,13 +29,13 @@ Segundo courier CL como alternativa o complemento. Dos APIs integradas:
   (AGENCIA / DOMICILIO).
 - **Tracking** (`getDetalleSeguimientoNuevo`) — estado por número de flete.
 
-Configurá en **Settings → Integraciones → Starken**. Requiere credenciales
+Configura en **Settings → Integraciones → Starken**. Requiere credenciales
 **API** (no son las del portal web — pedirlas a tu ejecutivo Starken).
 
 <Aside type="caution">
-Las credenciales con las que entrás a `starken.cl` no sirven para la API.
-Starken te entrega credenciales API distintas cuando contratás el plan
-empresarial. Si recibís error `401` al conectar, ese es el motivo.
+Las credenciales con las que entras a `starken.cl` no sirven para la API.
+Starken te entrega credenciales API distintas cuando contratas el plan
+empresarial. Si recibes error `401` al conectar, ese es el motivo.
 </Aside>
 
 ## Router automático
@@ -43,7 +43,7 @@ empresarial. Si recibís error `401` al conectar, ese es el motivo.
 Si conectaste **los dos couriers**, Brote elige uno según prioridad:
 
 1. Por defecto: **Chilexpress** (más cobertura nacional y API más moderna).
-2. Override por org: en `organizations.settings.shipping_priority` podés
+2. Override por org: en `organizations.settings.shipping_priority` puedes
    forzar `starken` si tu cliente típico vive en zonas donde Starken cubre
    mejor (sur de Chile, sectores rurales).
 
@@ -64,10 +64,10 @@ arma el request, devuelve precio.
 
 Para cotizar, Brote necesita saber **desde dónde** sale el envío:
 
-- **Chilexpress**: configurá `origin_county_code` (código de 4 letras tipo
+- **Chilexpress**: configura `origin_county_code` (código de 4 letras tipo
   `STGO`, `VALP`, `CONC`).
-- **Starken**: elegí ciudad de origen del listado cacheado al conectar (es
-  un dropdown con las ciudades válidas).
+- **Starken**: elige la ciudad de origen del listado cacheado al conectar
+  (es un dropdown con las ciudades válidas).
 
 Sin origen configurado el agente devuelve `no_origin_configured` y avisa
 al admin.
@@ -85,9 +85,9 @@ comuna y te confirmo"* — **no inventa cobertura**.
 
 ## Costos
 
-- **Chilexpress**: 0 costo Brote — pagás el envío directo al courier según
-  tarifa cotizada. Si conectás TCC, recibís ~19% descuento sobre pública.
-- **Starken**: 0 costo Brote — idem, pagás según tu cuenta corriente o tarifa
+- **Chilexpress**: 0 costo Brote — pagas el envío directo al courier según
+  tarifa cotizada. Si conectas TCC, recibes ~19% descuento sobre pública.
+- **Starken**: 0 costo Brote — idem, pagas según tu cuenta corriente o tarifa
   cliente.
 - **Brote**: viene en cualquier plan desde Starter $49/mes. No es un add-on.
 

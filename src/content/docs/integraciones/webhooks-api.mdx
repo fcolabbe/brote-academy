@@ -70,7 +70,7 @@ const expected = crypto.createHmac('sha256', WEBHOOK_SECRET)
 const isValid = `sha256=${expected}` === req.headers['x-brote-signature']
 ```
 
-Si no validás el HMAC, cualquiera podría postearte fake events. Validá siempre.
+Si no validas el HMAC, cualquiera podría postearte fake events. Validá siempre.
 
 ### Retries + deliveries log
 
@@ -80,7 +80,7 @@ Si tu endpoint responde con 5xx o timeout, Brote re-intenta con backoff exponenc
 
 Endpoint base: `https://api.brote.ai/v1/`
 
-Auth: Bearer token (API key per-org, generás desde **Configuración → API Keys**).
+Auth: Bearer token (API key per-org, generas desde **Configuración → API Keys**).
 
 ### Endpoints principales
 

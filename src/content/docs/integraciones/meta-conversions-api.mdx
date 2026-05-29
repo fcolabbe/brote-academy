@@ -5,7 +5,7 @@ description: Brote captura el ctwa_clid cuando un cliente entra por un Click-to-
 
 import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
 
-Si invertís en Click-to-WhatsApp Ads de Meta, querés saber **qué ad
+Si invertís en Click-to-WhatsApp Ads de Meta, quieres saber **qué ad
 generó qué venta**. Brote cierra el loop completo: detecta el ad de
 entrada, guarda la atribución en el contacto, y cuando ese contacto paga
 envía un evento `Purchase` a tu Pixel via Conversions API.
@@ -36,22 +36,22 @@ envía un evento `Purchase` a tu Pixel via Conversions API.
 
 ### Paso 1 — Obtener Pixel ID + Access Token
 
-1. Andá a [Events Manager](https://business.facebook.com/events_manager2).
-2. Elegí tu Pixel (o creá uno si no tenés).
+1. Ve a [Events Manager](https://business.facebook.com/events_manager2).
+2. Elegí tu Pixel (o creá uno si no tienes).
 3. **Pixel ID** aparece en la card del pixel (15-16 dígitos).
 4. **Configuración → Conversions API → Generar token de acceso**. Copialo
-   YA — se muestra una sola vez. Si lo perdés, generás uno nuevo y
+   YA — se muestra una sola vez. Si lo perdés, generas uno nuevo y
    revocás el viejo.
 
 ### Paso 2 — (Opcional) Test Event Code
 
-Durante el setup, querés validar que los eventos llegan sin contar como
+Durante el setup, quieres validar que los eventos llegan sin contar como
 conversiones reales:
 
 1. En Events Manager → **Test Events** → genera código tipo `TEST12345`.
 2. Pegalo en Brote cuando conectes. Los eventos van a aparecer en
    "Test Events" y no contar en tus reports de ROAS.
-3. Una vez validado, sacá el code y los eventos empiezan a contar como
+3. Una vez validado, saca el code y los eventos empiezan a contar como
    conversiones reales.
 
 ### Paso 3 — Conectar en Brote
@@ -88,7 +88,7 @@ con:
 - `payload` con custom_data
 - `fbtrace_id` que Meta asigna (útil para correlacionar con tu Events Manager)
 
-Para ver el log de los últimos eventos, podés correr una query en
+Para ver el log de los últimos eventos, puedes correr una query en
 Supabase Studio:
 
 ```sql

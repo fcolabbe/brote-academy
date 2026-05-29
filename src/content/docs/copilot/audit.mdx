@@ -1,6 +1,6 @@
 ---
 title: Auditoría automática del agente
-description: "Brote Copilot Audit escanea conversaciones reales, detecta gaps en las respuestas del agente y propone quick-tunes que vos aceptás o rechazás."
+description: "Brote Copilot Audit escanea conversaciones reales, detecta gaps en las respuestas del agente y propone quick-tunes que tú aceptas o rechazas."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
@@ -24,7 +24,7 @@ Cada cierto tiempo (o on-demand cuando haces click en "Auditar ahora"), Brote Co
    - "Agregar esta FAQ con esta respuesta"
    - "Modificar instrucción de pricing"
    - "Cambiar tono en preguntas de devolución"
-4. **Genera recomendaciones revisables** — vos aceptás, rechazás, editás cada una antes de aplicarla. **Nunca cambia el agente sin tu OK.**
+4. **Genera recomendaciones revisables** — tú aceptas, rechazas, editas cada una antes de aplicarla. **Nunca cambia el agente sin tu OK.**
 
 ## La columna "Recomendaciones pendientes"
 
@@ -38,7 +38,7 @@ Es el corazón del audit. Cada fila es una sugerencia con:
 Al aceptar, la recomendación se aplica al agente y se registra en `copilot_recommendations` con estado `applied`. La próxima conversación del cliente ya ve la versión nueva.
 
 <Aside type="tip" title="Quick-tunes desde audio">
-Además del audit automático, podés grabar un **audio rápido** del dueño cuando notes algo a corregir ("hey agente, cuando alguien pregunte X, decí Y"). El copilot transcribe + clasifica + arma la recomendación. Mismo flujo de review + apply.
+Además del audit automático, puedes grabar un **audio rápido** del dueño cuando notes algo a corregir ("hey agente, cuando alguien pregunte X, decí Y"). El copilot transcribe + clasifica + arma la recomendación. Mismo flujo de review + apply.
 </Aside>
 
 ## Cuándo usar el audit
@@ -53,7 +53,7 @@ Además del audit automático, podés grabar un **audio rápido** del dueño cua
 - **Recomendaciones generadas** (totales)
 - **Aplicadas** (cuántas aceptaste)
 - **Pendientes** (esperan tu review)
-- **Recomendaciones rechazadas** (vos dijiste que no, el copilot aprende)
+- **Recomendaciones rechazadas** (tú dijiste que no, el copilot aprende)
 
 ## Próximos pasos
 

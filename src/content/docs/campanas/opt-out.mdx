@@ -5,7 +5,7 @@ description: "Brote detecta cuando un contacto pide salir y lo excluye de todas 
 
 import { Aside } from '@astrojs/starlight/components'
 
-Cuando un contacto responde a una campaña pidiendo no recibir más mensajes, Brote lo detecta automáticamente y lo **excluye de todas las campañas futuras**. No tenés que armar listas de unsuscribe ni filtrar manualmente.
+Cuando un contacto responde a una campaña pidiendo no recibir más mensajes, Brote lo detecta automáticamente y lo **excluye de todas las campañas futuras**. No tienes que armar listas de unsuscribe ni filtrar manualmente.
 
 ## Palabras que disparan opt-out
 
@@ -20,10 +20,10 @@ También reconoce el equivalente en inglés/portugués si tu agente está config
 
 ## Qué pasa cuando hay opt-out
 
-1. **Cierra la conversación cordialmente**: "Listo, te saco de la lista. Si en algún momento querés volver a recibir info, escríbeme y te re-activo."
+1. **Cierra la conversación cordialmente**: "Listo, te saco de la lista. Si en algún momento quieres volver a recibir info, escríbeme y te re-activo."
 2. **Marca el contacto** con tag `opted_out` (visible en su perfil).
 3. **Lo excluye** de futuras cohortes — aunque hagas filtros que técnicamente lo incluyan, Brote lo deja afuera.
-4. **Si tenes Webhooks/Zapier activos**, dispara evento `contact_opted_out` para que tu CRM/sistemas externos también lo marquen.
+4. **Si tienes Webhooks/Zapier activos**, dispara evento `contact_opted_out` para que tu CRM/sistemas externos también lo marquen.
 
 <Aside type="tip" title="No te bloquea conversaciones inbound">
 El opt-out es para **campañas masivas outbound**. Si el mismo contacto te escribe primero después ("hola, tengo una duda"), el agente IA responde normal — eso no es spam, es soporte. Lo único bloqueado es que tu sistema le inicie un mensaje.
@@ -37,13 +37,13 @@ El opt-out automático te deja en compliance con:
 - **LFPDPPP (México)**: derecho de oposición.
 - **Ley 19.628 (Chile)**: cancelación del tratamiento de datos.
 - **Ley 25.326 (Argentina)**: derecho de supresión.
-- **GDPR** (si tenes clientes EU): right to unsubscribe.
+- **GDPR** (si tienes clientes EU): right to unsubscribe.
 
-Brote no es asesoría legal, pero el opt-out automático cubre el caso técnico de "el contacto pidió salir y vos no lo seguís contactando".
+Brote no es asesoría legal, pero el opt-out automático cubre el caso técnico de "el contacto pidió salir y tú no lo sigues contactando".
 
 ## Re-activar manualmente
 
-Si un contacto querés volver a activar (porque te escribió pidiendo volver, o porque hubo un opt-out por error), abrí su perfil → quita el tag `opted_out` manualmente. Desde ese momento vuelve a ser elegible para campañas.
+Si un contacto quieres volver a activar (porque te escribió pidiendo volver, o porque hubo un opt-out por error), abrí su perfil → quita el tag `opted_out` manualmente. Desde ese momento vuelve a ser elegible para campañas.
 
 ## Métricas de opt-out
 

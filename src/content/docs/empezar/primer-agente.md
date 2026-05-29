@@ -31,7 +31,7 @@ Si tu sitio web es básico, tipo Wix sin texto, o no tienes sitio:
    - Quiénes son tus clientes
    - Precios típicos
    - Reglas comerciales (formas de pago, garantías, horarios)
-   - Tono que querés que use el agente
+   - Tono que quieres que use el agente
 3. Brote Copilot transcribe + clasifica + construye el agente.
 
 ## Refinamiento

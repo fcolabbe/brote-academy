@@ -1,11 +1,11 @@
 ---
 title: Make + n8n — conectar Brote a cualquier flujo
-description: Brote habla nativo con Make, n8n, Pipedream y cualquier orquestador via Webhooks + API keys. Misma infra que Zapier — solo cambia donde lo armás.
+description: Brote habla nativo con Make, n8n, Pipedream y cualquier orquestador via Webhooks + API keys. Misma infra que Zapier — solo cambia donde lo armas.
 ---
 
 import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
 
-Si ya usás **Make.com** (ex-Integromat) o **n8n** (open source / self-hosted)
+Si ya usas **Make.com** (ex-Integromat) o **n8n** (open source / self-hosted)
 para orquestar tus apps, Brote conecta sin paquete especial. Usa los mismos
 patterns standard que Zapier:
 
@@ -18,7 +18,7 @@ patterns standard que Zapier:
 Si solo necesitás patrones simples (lead → Sheets, payment → Slack),
 usá Brote con Zapier desde
 [Settings → Integraciones → Desarrollador](/integraciones/webhooks-api).
-Make y n8n son para cuando querés flujos más sofisticados (branching,
+Make y n8n son para cuando quieres flujos más sofisticados (branching,
 loops, scheduled, JSON transforms).
 </Aside>
 
@@ -28,7 +28,7 @@ loops, scheduled, JSON transforms).
 
 1. **Settings → Integraciones → Desarrollador** → bloque "Webhooks".
 2. Click **"Agregar webhook"**.
-3. URL: pegá la **URL única** que te dio Make o n8n (instrucciones abajo).
+3. URL: pega la **URL única** que te dio Make o n8n (instrucciones abajo).
 4. Eventos a suscribir:
    - `message_received` — cada vez que llega un msg de cliente.
    - `payment_received` — pago confirmado (MP/Flow/Khipu).
@@ -48,20 +48,20 @@ loops, scheduled, JSON transforms).
 5. Click **"Run once"** en Make.
 6. En Brote, mandate un mensaje de prueba (o disparale a manopla un
    `webhook test` desde el panel Webhooks).
-7. Make captura el payload + auto-detecta el schema → usás esos campos
+7. Make captura el payload + auto-detecta el schema → usas esos campos
    en los siguientes módulos.
 
 ### En n8n
 
 1. Crea un nuevo workflow.
 2. Agregá el node **"Webhook"** como trigger.
-3. Method: **POST**. Path: dejalo random o customizalo.
+3. Method: **POST**. Path: déjalo random o customizalo.
 4. n8n te muestra una URL `https://tuserver.com/webhook/abc-def`.
 5. Pegala en Brote como URL.
 6. (Opcional) Activá la firma HMAC-SHA256 en el node Webhook con el
    secret de Brote.
 7. Activá el workflow.
-8. Mandá un mensaje de prueba. n8n lo captura.
+8. Mve un mensaje de prueba. n8n lo captura.
 
 ### Validar firma HMAC (recomendado)
 
@@ -88,7 +88,7 @@ payloads falsos.
 ### Generar API key
 
 1. **Brote → Settings → Integraciones → Desarrollador** → bloque "API keys".
-2. Click **"Generar API key"** → copiá el token tipo `brote_live_xxx`
+2. Click **"Generar API key"** → copia el token tipo `brote_live_xxx`
    (se muestra **una sola vez**).
 
 ### Llamar desde Make
@@ -136,7 +136,7 @@ HTTP (401 invalid, 403 forbidden, 404 not found).
 ## Templates listos para importar
 
 Desde **Brote → Settings → Integraciones → Desarrollador → "Make / n8n /
-cualquier endpoint"** podés descargar JSON skeletons para Make y n8n de
+cualquier endpoint"** puedes descargar JSON skeletons para Make y n8n de
 los flows comunes:
 
 - Lead nuevo → Slack

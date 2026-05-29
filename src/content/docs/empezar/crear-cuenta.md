@@ -9,7 +9,7 @@ Crear cuenta es 2 minutos. No necesitas tarjeta de crédito.
 
 ## Pasos
 
-1. Anda a **[brote.ai/signup](https://brote.ai/es/signup)** (también podés hacer click en cualquier botón _"Empieza gratis · 14 días"_ del sitio).
+1. Entra a **[brote.ai/signup](https://brote.ai/es/signup)** (también puedes hacer click en cualquier botón _"Empieza gratis · 14 días"_ del sitio).
 2. Ingresa tu **email y contraseña** (o usa Google si lo prefieres).
 3. Confirma tu email haciendo click en el link que te llega.
 4. Listo: tu cuenta queda activa con **trial de 14 días sobre el plan Starter**.
@@ -28,7 +28,7 @@ Detalles completos en [Trial de 14 días](/planes/trial/).
 
 ## ¿Qué pasa al día 14?
 
-- Si **agregas tarjeta + eliges plan** → seguís normal con el plan elegido.
+- Si **agregas tarjeta + eliges plan** → sigues normal con el plan elegido.
 - Si **NO agregas tarjeta** → tu cuenta pasa a **modo lectura por 30 días** (puedes ver conversaciones / contactos / configuración, pero el agente IA queda pausado). A los 30 días sin pago, la cuenta se archiva y los datos se preservan 180 días.
 
 ## Cobranza
