@@ -1,0 +1,186 @@
+---
+title: MCP Server — Brote como tool de Claude / ChatGPT / agentes externos
+description: Brote implementa el Model Context Protocol de Anthropic. Cualquier agente IA puede invocar tus tools de Brote como si fueran nativas.
+---
+
+import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
+
+Brote es un **servidor MCP** (Model Context Protocol — protocolo abierto de
+Anthropic). Cualquier cliente compatible — Claude Desktop, ChatGPT Custom
+Connectors, agentes propios — puede conectarse y usar las tools de Brote
+como si fueran nativas del modelo.
+
+<Aside type="tip">
+Esto es lo que llamamos **agente-to-agente**: vos hablás con Claude, Claude
+habla con Brote, Brote actúa sobre tus conversaciones, tus contactos, tus
+pagos y tu logística. Sin que vos hagas APIs ni Zapier.
+</Aside>
+
+## Qué podés hacer
+
+Hoy Brote expone **9 tools** al protocolo MCP:
+
+| Tool | Qué hace |
+|---|---|
+| `list_conversations` | Lista conversaciones del inbox con filtros (status, channel) |
+| `get_conversation` | Detalle + últimos N mensajes de una conversación |
+| `send_message` | Manda mensaje al cliente (con auto-handoff de IA) |
+| `upsert_contact` | Crea o actualiza contacto por phone/email |
+| `assign_tag` | Agrega un tag a un contacto |
+| `change_lifecycle_stage` | Cambia etapa (lead → mql → … → customer) |
+| `build_payment_link` | Genera link Mercado Pago |
+| `quote_shipping` | Cotiza envío Chilexpress o Starken |
+| `get_inbox_metrics` | KPIs del inbox últimos N días |
+
+Próximas tools en roadmap: `lookup_product` (catálogo Shopify),
+`check_shipping_coverage`, `track_shipment`, `quote_shipping_starken`,
+`add_internal_note`, `get_contact_history`.
+
+## Endpoint y autenticación
+
+- **URL**: `https://brote.ai/api/mcp`
+- **Transport**: HTTP + JSON-RPC 2.0
+- **Auth**: `Authorization: Bearer brote_live_TU_API_KEY`
+- **Protocol version**: `2024-11-05`
+
+Para generar una API key:
+1. Andá a **Settings → Integraciones → "Conecta con 6.000+ apps"**.
+2. Click **"Generar API key"**. Copiá el token (se muestra una sola vez).
+
+## Conectar desde Claude Desktop
+
+1. Abrí Claude Desktop → **Settings → Developer → Edit Config**.
+2. Pegá este bloque (reemplazando tu API key real):
+
+```json
+{
+  "mcpServers": {
+    "brote": {
+      "url": "https://brote.ai/api/mcp",
+      "transport": "http",
+      "headers": {
+        "Authorization": "Bearer brote_live_TU_API_KEY_AQUI"
+      }
+    }
+  }
+}
+```
+
+3. Reiniciá Claude Desktop.
+4. En cualquier conversación, Claude va a tener acceso a las 9 tools de
+   Brote. Probá pedidos como:
+   - *"Listame mis 10 conversaciones abiertas más recientes de Brote"*
+   - *"Cambia el lifecycle de Pedro González a customer"*
+   - *"Cotizá un envío de 2kg a Providencia"*
+   - *"Generá un link de pago Mercado Pago por $25.000 con descripción 'Sesión de fotos'"*
+
+## Conectar desde un agente propio (HTTP raw)
+
+Cualquier agente que hable JSON-RPC 2.0 puede usar Brote.
+
+### 1. Initialize
+
+```bash
+curl -X POST https://brote.ai/api/mcp \
+  -H "Authorization: Bearer brote_live_TU_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "initialize",
+    "params": {}
+  }'
+```
+
+Devuelve `protocolVersion`, `serverInfo` y `capabilities.tools`.
+
+### 2. Listar tools
+
+```bash
+curl -X POST https://brote.ai/api/mcp \
+  -H "Authorization: Bearer brote_live_TU_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "method": "tools/list"
+  }'
+```
+
+Devuelve array con definiciones JSON Schema de cada tool.
+
+### 3. Llamar a una tool
+
+```bash
+curl -X POST https://brote.ai/api/mcp \
+  -H "Authorization: Bearer brote_live_TU_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 3,
+    "method": "tools/call",
+    "params": {
+      "name": "list_conversations",
+      "arguments": { "status": "open", "limit": 5 }
+    }
+  }'
+```
+
+El `result.content[0].text` trae el JSON con la respuesta.
+
+## Permisos y scopes
+
+Por ahora las API keys de Brote tienen scope `*` — pueden invocar
+cualquier tool sobre cualquier dato de la org. Próximamente vamos a
+agregar scopes granulares (`conversations:read`, `contacts:write`, etc).
+
+<Aside type="caution">
+Tratá tu API key como contraseña — el agente que la tenga puede leer
+todo tu inbox, mandar mensajes a tus clientes, modificar contactos y
+generar cobros. Si se filtra, rotala desde Settings → Integraciones →
+"Revocar".
+</Aside>
+
+## Discovery
+
+Si necesitás verificar que el endpoint es realmente MCP sin enviar
+credenciales, hacé un `GET`:
+
+```bash
+curl https://brote.ai/api/mcp
+```
+
+Devuelve metadata pública: nombre del servidor, versión, protocol_version,
+transport, métodos soportados, link a esta doc.
+
+## Posicionamiento competitivo
+
+| Plataforma | MCP Server propio |
+|---|---|
+| **Brote** | ✅ 9 tools live (2026-05-29) |
+| respond.io | ✅ |
+| Wati | ❌ |
+| SleekFlow | ❌ |
+| Manychat | ❌ |
+| Hapee.ai | ❌ |
+
+Brote y respond.io son hoy las únicas plataformas LATAM-relevantes con
+MCP Server propio. La diferencia: respond.io expone tools genéricas;
+Brote expone tools **verticales LATAM** — `build_payment_link` con
+Mercado Pago, `quote_shipping` con Chilexpress/Starken, `change_lifecycle_stage`
+nativo. Tu agente IA externo puede cobrar y despachar en CL sin que vos
+escribas integraciones.
+
+## Próximos pasos
+
+<CardGrid>
+  <Card title="Generar API key" icon="approve-check">
+    [Settings → Integraciones](/integraciones/webhooks-api)
+  </Card>
+  <Card title="Catálogo completo de tools" icon="rocket">
+    [Tools del agente IA →](/automatizacion/tools-del-agente)
+  </Card>
+  <Card title="Spec oficial MCP" icon="external">
+    [spec.modelcontextprotocol.io](https://spec.modelcontextprotocol.io)
+  </Card>
+</CardGrid>

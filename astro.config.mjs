@@ -129,6 +129,7 @@ export default defineConfig({
             { label: 'Slack', slug: 'integraciones/slack' },
             { label: 'Zapier (6.000+ apps)', slug: 'integraciones/zapier' },
             { label: 'Webhooks y API (Business)', slug: 'integraciones/webhooks-api' },
+            { label: 'MCP Server (Claude / ChatGPT)', slug: 'integraciones/mcp-server', badge: { text: 'NEW', variant: 'success' } },
           ],
         },
         {
