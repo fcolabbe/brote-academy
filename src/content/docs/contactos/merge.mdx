@@ -15,10 +15,30 @@ Brote agrupa contactos por:
 
 - **Teléfono exacto** (mejor señal, casi siempre indica misma persona)
 - **Email exacto** (case-insensitive)
-- **Nombre normalizado** (lowercase, sin acentos, sin espacios extras)
+- **`visitor_id` del widget** (mismo browser que volvió en sesiones distintas)
+- **Nombre normalizado** (lowercase, sin acentos, sin espacios extras) —
+  pero solo cuando el contacto tiene `phone` o `email`. Sin esos datos
+  (visitantes anónimos del widget), Brote NO usa el nombre para detectar
+  duplicados.
 
 Si el mismo grupo aparece por dos criterios distintos (ej: phone + name),
-solo se muestra el match más confiable.
+solo se muestra el match más confiable: phone > email > visitor_id > name.
+
+### Visitantes web anónimos
+
+Cuando alguien escribe por el widget embebido (sin dejar nombre ni
+contacto), Brote lo guarda como `"Visitante web"` con un `visitor_id`
+UUID generado en su browser. Estos contactos **no son duplicados entre sí
+aunque compartan el nombre** — son personas distintas.
+
+Brote los reconoce porque están en la blacklist `ANONYMOUS_NAMES`
+(`Visitante web`, `Web visitor`, `Anonymous`, `Sin nombre`, etc) y los
+excluye del match por nombre.
+
+Si querés convertir un visitante anónimo en un contacto identificado,
+edítalo desde el panel lateral del inbox y agregale phone o email.
+Cuando el cliente vuelva y deje sus datos, Brote no lo confunde con
+otros visitantes anónimos.
 
 ## Resolver duplicados
 
