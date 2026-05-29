@@ -49,24 +49,38 @@ Para generar una API key:
 
 ## Conectar desde Claude Desktop
 
-1. Abrí Claude Desktop → **Settings → Developer → Edit Config**.
-2. Pegá este bloque (reemplazando tu API key real):
+<Aside type="caution">
+Claude Desktop al día de hoy **solo soporta MCP via stdio**, no HTTP directo.
+Para conectarte a un servidor MCP HTTP como Brote, usamos `mcp-remote`
+(paquete npm) como bridge stdio→HTTP. Necesitás Node + npx instalados
+en tu máquina.
+</Aside>
+
+1. Abrí Claude Desktop → **Settings → Developer → Edit Config**, o editá
+   manualmente `~/Library/Application Support/Claude/claude_desktop_config.json`
+   en macOS (equivalente en Windows).
+2. Agregá la entrada `"brote"` dentro de `mcpServers` — **sin borrar las
+   otras** que ya tengas (filesystem, notebooklm, etc):
 
 ```json
 {
   "mcpServers": {
     "brote": {
-      "url": "https://brote.ai/api/mcp",
-      "transport": "http",
-      "headers": {
-        "Authorization": "Bearer brote_live_TU_API_KEY_AQUI"
-      }
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://brote.ai/api/mcp",
+        "--header",
+        "Authorization: Bearer brote_live_TU_API_KEY_AQUI"
+      ]
     }
   }
 }
 ```
 
-3. Reiniciá Claude Desktop.
+3. Reiniciá Claude Desktop completamente (cmd+Q + abrir de nuevo, no
+   solo cerrar la ventana).
 4. En cualquier conversación, Claude va a tener acceso a las 9 tools de
    Brote. Probá pedidos como:
    - *"Listame mis 10 conversaciones abiertas más recientes de Brote"*
