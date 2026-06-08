@@ -1,0 +1,51 @@
+---
+title: Link público de reserva
+description: "Un link para que tus clientes agenden solos desde tu web, bio de Instagram o email — sin chat y sin login. Embebible como iframe."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Además de agendar por WhatsApp, Brote te da una **página pública de reserva**: un link que cualquier cliente puede abrir para tomar un turno solo, sin estar en una conversación y sin crear cuenta.
+
+## Tu link
+
+```
+https://brote.ai/es/book/<slug-de-tu-negocio>
+```
+
+El `slug` es el identificador de tu negocio. Compartilo donde tengas tráfico:
+
+- **Bio de Instagram / TikTok**
+- **Botón "Reservar" en tu sitio web**
+- **Firma de email** o un email de campaña
+- **Google Business Profile**
+
+## Qué ve el cliente
+
+1. Elige el **servicio** (si tenés más de uno).
+2. Elige un **horario** libre real.
+3. Completa **nombre + teléfono** (email opcional).
+4. Confirma → ve "¡Cita confirmada!" y recibe su [recordatorio por WhatsApp](/agendamiento/recordatorios/).
+
+La cita queda registrada como contacto + conversación en tu Inbox, igual que si hubiera escrito.
+
+## Embeber en tu web (iframe)
+
+Para incrustar la reserva dentro de tu propia página, usá el parámetro `?embed=1` (saca el encabezado/pie para que quede limpio dentro del iframe):
+
+```html
+<iframe
+  src="https://brote.ai/es/book/<slug-de-tu-negocio>?embed=1"
+  width="100%"
+  height="640"
+  style="border:0;border-radius:16px"
+></iframe>
+```
+
+## Anti doble-booking
+
+Si dos personas intentan el mismo horario, **solo una lo consigue** — el sistema lo garantiza a nivel de base de datos y le ofrece otro horario a la segunda. Los horarios ya tomados desaparecen automáticamente de la lista.
+
+<Aside type="note">
+La reserva pública requiere plan **Starter** o superior y al menos un servicio + disponibilidad configurados. Si no, el link muestra "Reservas no disponibles".
+</Aside>

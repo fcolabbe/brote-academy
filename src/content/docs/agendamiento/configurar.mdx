@@ -1,0 +1,49 @@
+---
+title: Configurar servicios y horarios
+description: "Definí qué se puede reservar y cuándo. Servicios con duración y buffer, disponibilidad semanal con corte de almuerzo, y la agenda de próximas citas."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Toda la configuración vive en **Ajustes → Agendamiento**.
+
+<Aside type="note">
+Disponible desde el plan **Starter**. En planes inferiores vas a ver la sección con un aviso de plan requerido.
+</Aside>
+
+## 1. Crear un servicio
+
+Un servicio es lo que el cliente puede reservar. Cada uno tiene:
+
+- **Nombre** — ej. "Corte de pelo", "Sesión de fotos", "Visita técnica".
+- **Duración** (minutos) — cuánto dura la cita.
+- **Buffer** (minutos) — tiempo de descanso/limpieza entre citas. Se suma al paso entre horarios.
+- **Precio** (opcional) — si lo cargás, después podés cobrarlo con el [link de pago](/pagos/cobro-in-chat/).
+
+Completá los campos y dale **Agregar**. Podés tener varios servicios.
+
+## 2. Cargar la disponibilidad semanal
+
+Definí en qué horarios se pueden reservar citas, por día de la semana. Para cada día podés agregar **una o varias franjas** con el botón **+ franja**.
+
+```
+Lunes a Viernes:  10:00–13:00  y  15:00–18:00   (corte de almuerzo)
+Sábado:           10:00–14:00
+Domingo:          cerrado
+```
+
+Cuando termines, dale **Guardar disponibilidad**. Brote calcula los horarios libres reales = disponibilidad − citas ya tomadas − buffer, respetando la zona horaria.
+
+<Aside type="caution">
+"Guardar disponibilidad" **reemplaza** toda la disponibilidad anterior por lo que tengas en pantalla. Si querés ajustar, editá las franjas y volvé a guardar.
+</Aside>
+
+## 3. Ver la agenda
+
+En la misma página, **Próximas citas** muestra las reservas confirmadas. Desde ahí podés marcarlas como **completadas** o **cancelarlas** (cancelar libera el horario y borra los recordatorios pendientes).
+
+## Listo
+
+Con al menos un servicio activo + disponibilidad, ya podés:
+- Dejar que el [agente agende por WhatsApp](/agendamiento/que-es/), y
+- Compartir tu [link público de reserva](/agendamiento/link-publico/).
