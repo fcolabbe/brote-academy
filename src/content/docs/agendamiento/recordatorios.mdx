@@ -1,0 +1,33 @@
+---
+title: Recordatorios automáticos
+description: "Brote manda recordatorios por WhatsApp antes de cada cita para bajar los no-shows. Automáticos, sin que toques nada."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Cada vez que se reserva una cita (por el agente, por el link público o a mano), Brote **programa recordatorios automáticos por WhatsApp** para bajar los no-shows.
+
+## Cómo funciona
+
+- Por defecto se programan recordatorios **24 horas** y **2 horas** antes de la cita.
+- Se envían por **WhatsApp** al teléfono del contacto.
+- Si la cita se **reagenda**, los recordatorios se reprograman al nuevo horario.
+- Si se **cancela**, los recordatorios pendientes se eliminan.
+
+```
+🌱 Hola Camila, te recordamos tu cita de Corte de pelo el jueves 12 de junio, 15:00.
+Si necesitas reagendar o cancelar, responde este mensaje.
+```
+
+## Requisitos
+
+- La org debe tener **WhatsApp conectado** ([cómo conectarlo](/canales/whatsapp/)) para que el recordatorio salga. Si no, la cita igual queda agendada, solo que sin el aviso automático.
+- El contacto debe tener un **teléfono** (el link público lo pide siempre).
+
+<Aside type="note">
+Los recordatorios cuentan como mensajes salientes dentro de los [límites de mensajería de tu plan](/campanas/caps/). Son de bajo volumen (uno o dos por cita), así que rara vez vas a notarlo.
+</Aside>
+
+## Reagendar y cancelar
+
+El cliente puede simplemente **responder el recordatorio** ("¿lo puedo mover al viernes?") y el agente IA reagenda o cancela en la conversación, ajustando los recordatorios solo.

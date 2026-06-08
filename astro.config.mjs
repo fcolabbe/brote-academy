@@ -107,6 +107,15 @@ export default defineConfig({
           ],
         },
         {
+          label: 'Agendamiento',
+          items: [
+            { label: 'Qué es el agendamiento', slug: 'agendamiento/que-es', badge: { text: 'NEW', variant: 'success' } },
+            { label: 'Configurar servicios y horarios', slug: 'agendamiento/configurar' },
+            { label: 'Link público de reserva', slug: 'agendamiento/link-publico', badge: { text: 'NEW', variant: 'success' } },
+            { label: 'Recordatorios automáticos', slug: 'agendamiento/recordatorios' },
+          ],
+        },
+        {
           label: 'Logística (Chile)',
           items: [
             { label: 'Chilexpress + Starken', slug: 'logistica' },
