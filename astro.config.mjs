@@ -60,13 +60,12 @@ export default defineConfig({
         {
           label: 'Canales',
           items: [
-            { label: 'WhatsApp (Evolution)', slug: 'canales/whatsapp' },
+            { label: 'WhatsApp (oficial)', slug: 'canales/whatsapp' },
+            { label: 'Instagram DMs (oficial)', slug: 'canales/instagram' },
+            { label: 'Messenger (oficial)', slug: 'canales/messenger' },
             { label: 'Webchat embebible', slug: 'canales/webchat' },
-            { label: 'Instagram DMs', slug: 'canales/instagram' },
-            { label: 'Messenger', slug: 'canales/messenger' },
-            { label: 'Email (Gmail / Outlook)', slug: 'canales/email' },
-            { label: 'LinkedIn (Pro/Business)', slug: 'canales/linkedin' },
-            { label: 'Telegram (Pro/Business)', slug: 'canales/telegram' },
+            { label: 'Email (próximamente)', slug: 'canales/email' },
+            { label: 'Telegram (próximamente)', slug: 'canales/telegram' },
           ],
         },
         {

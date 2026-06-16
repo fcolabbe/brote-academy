@@ -1,51 +1,41 @@
 ---
-title: Email (Gmail / Outlook)
-description: "Tu agente IA responde correos manteniendo el hilo, derivando a humano cuando hace falta. Disponible en Pro+."
+title: Email (Próximamente)
+description: "El canal de email nativo de Brote está en el roadmap: tu agente IA responderá correos manteniendo el hilo. Aún no disponible."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-Brote conecta a tu **Gmail u Outlook** vía OAuth (Unipile como proveedor). El agente IA lee los emails entrantes, responde como si fuera un humano del equipo, y mantiene el hilo correctamente.
-
-<Aside type="note" title="Disponible en Pro y Business">
-Email es parte de los planes **Pro** ($129/mes) y **Business** ($349/mes). En Mini y Starter no está disponible. Ver [comparativa](/planes/comparativa/).
+<Aside type="caution" title="Próximamente">
+El canal de **email nativo** todavía no está disponible. Está en el roadmap de Brote y lo presentamos acá para que sepas qué viene. Mientras tanto, los canales oficiales que sí puedes usar hoy son [WhatsApp](/canales/whatsapp/), [Instagram](/canales/instagram/) y [Messenger](/canales/messenger/) y el [webchat embebible](/canales/webchat/).
 </Aside>
 
-## Qué hace el agente con emails
+Estamos construyendo un canal de **email propio de Brote** (correo nativo, sin depender de proveedores externos) para que tu agente IA lea los correos entrantes, responda como si fuera un humano del equipo, y mantenga el hilo correctamente.
 
-- **Responde correos entrantes** manteniendo el subject + thread (`In-Reply-To` header correcto).
-- **Detecta intención**: cotización, soporte, consulta, queja, lead nuevo.
-- **Genera ticket** en tu pipeline igual que en otros canales.
-- **Maneja attachments**: si el cliente adjunta una foto/PDF, el agente la guarda como contexto.
+## Qué hará el agente con emails
+
+Cuando lancemos el canal, el agente IA va a poder:
+
+- **Responder correos entrantes** manteniendo el subject + thread (`In-Reply-To` header correcto).
+- **Detectar intención**: cotización, soporte, consulta, queja, lead nuevo.
+- **Generar ticket** en tu pipeline igual que en otros canales.
+- **Manejar attachments**: si el cliente adjunta una foto/PDF, el agente la guarda como contexto.
 - **Handoff a humano** con summary cuando es un caso complejo (queja formal, propuesta enterprise, legal).
 
-## Cómo conectar
+## Mientras tanto
 
-1. Entra a **Configuración → Integraciones → Email** (Gmail u Outlook).
-2. Click en **"Conectar Gmail"** o **"Conectar Outlook"**.
-3. Loguea con la cuenta del email del negocio (no tu personal).
-4. Autoriza permisos: leer mails, enviar mails, marcar como leído.
-5. Brote crea un alias de respuesta interno y queda **conectado**.
+El email nativo todavía no está disponible. Si querés conversar 1:1 con tus clientes hoy, usá los canales que ya están en producción:
 
-## Una cuenta vs varias
+- [WhatsApp](/canales/whatsapp/) — vía la Cloud API oficial de Meta.
+- [Instagram](/canales/instagram/) y [Messenger](/canales/messenger/) — canal oficial de Meta directo.
+- [Webchat embebible](/canales/webchat/) — para tu sitio web.
 
-Podés conectar **una sola cuenta de email** por organización en plan Pro. En Business puedes conectar **múltiples cuentas** (ej: `ventas@`, `soporte@`, `cobranza@`) y el agente IA toma decisiones distintas según la cuenta destino.
+<Aside type="note" title="Telegram también viene">
+Igual que email, **Telegram** es un canal nativo que estamos preparando. Ambos llegarán como canales propios de Brote, no vía integraciones de terceros.
+</Aside>
 
-## Filtrado anti-spam
+## Para campañas masivas
 
-El agente NO responde:
-
-- Newsletters automáticas (detectadas por `Precedence: bulk`, `List-Unsubscribe`, etc).
-- Confirmaciones transaccionales de otros servicios (Stripe, MercadoLibre, etc).
-- Spam evidente (Score SpamAssassin > 5).
-
-Esos mails siguen llegando a tu inbox de Gmail/Outlook normalmente — Brote no los toca, solo no los procesa.
-
-## Limitaciones
-
-- **No deja drafts**: el agente envía o no envía. No te deja un "borrador a revisar" antes.
-- **Respeta DNS**: usamos el SMTP de Gmail/Outlook (no relayamos). Tu deliverability depende de tu setup SPF/DKIM/DMARC.
-- **Sin email marketing masivo**: este canal es para conversaciones 1:1. Si quieres mandar campañas a tu base, usa [Campañas](/campanas/que-son/) por WhatsApp.
+El canal de email será para conversaciones 1:1. Si lo que querés es mandar mensajes a tu base de contactos, usá [Campañas](/campanas/que-son/) por WhatsApp.
 
 ## Próximos pasos
 

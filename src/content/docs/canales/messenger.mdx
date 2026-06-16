@@ -1,41 +1,41 @@
 ---
 title: Facebook Messenger
-description: "Conecta Messenger de tu página Business vía Unipile. Mismo agente IA respondiendo, mismo inbox unificado. Pro+."
+description: "Conecta Messenger de tu página Business por el canal oficial de Meta. Mismo agente IA respondiendo, mismo inbox unificado. Starter+."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-Brote conecta a **Facebook Messenger** vía Unipile. Funciona sobre tu Página de Facebook Business — los mensajes que recibe tu página son atendidos por el agente IA igual que en WhatsApp o Webchat.
+Brote conecta a **Facebook Messenger** por el **canal oficial de Meta** (directo). Funciona sobre tu Página de Facebook Business — los mensajes que recibe tu página son atendidos por el agente IA igual que en WhatsApp o Webchat.
 
 ![Hub de integraciones donde aparece Facebook Messenger](/screenshots/integrations.png)
 
-<Aside type="note" title="Disponible en Pro y Business">
-Messenger es parte de los planes **Pro** ($129/mes) y **Business** ($349/mes), junto a Instagram, LinkedIn, Telegram y Email. En Mini y Starter el agente solo opera en WhatsApp + Webchat. Ver [comparativa](/planes/comparativa/).
+<Aside type="note" title="Disponible desde Starter">
+Messenger es parte de los planes **Starter** ($49/mes), **Pro** ($129/mes) y **Business** ($349/mes), junto a Instagram. En Mini el agente solo opera en WhatsApp + Webchat. Los canales oficiales son iguales de Starter para arriba. Ver [comparativa](/planes/comparativa/).
 </Aside>
 
 ## Antes de empezar
 
 - Tu Página de Facebook tiene que estar **conectada a una cuenta Business Manager**.
-- Tenés que ser **admin de la página** para autorizar.
-- Si la página recibe pocos mensajes, considerá agrupar Messenger con Instagram (Meta los unifica como "Meta Inbox") — Brote los gestiona como dos canales separados con el mismo agente.
+- Tienes que ser **admin de la página** para autorizar.
+- Si la página recibe pocos mensajes, considera agrupar Messenger con Instagram (Meta los unifica como "Meta Inbox") — Brote los gestiona como dos canales separados con el mismo agente.
 
 ## Cómo conectar
 
 1. Entra a **Configuración → Integraciones → Messenger**.
-2. Click en **"Conectar Messenger"**. Te redirige a Unipile → Facebook OAuth.
-3. Loguea con tu cuenta personal de Facebook (la que admin la página).
-4. Elegí la página que quieres conectar.
-5. Autoriza permisos: leer mensajes, enviar mensajes, manage Pages.
-6. Volves a Brote y la cuenta queda **conectada**.
+2. Click en **"Conectar Messenger"**. Te redirige al login oficial de Meta.
+3. Loguea con tu cuenta de Facebook (la que administra la página).
+4. Elige la página que quieres conectar.
+5. Autoriza los permisos: leer mensajes, enviar mensajes, gestionar Páginas.
+6. Vuelves a Brote y la cuenta queda **conectada**.
 
 ## Limitaciones de Meta (igual que IG)
 
 Messenger tiene reglas similares a Instagram:
 
-- Solo respondés si el usuario **escribió primero**.
+- Solo respondes si el usuario **escribió primero**.
 - Después del primer mensaje del usuario tienes **24h** para responder sin restricción.
 - Pasadas las 24h, solo "marketing" si el usuario aceptó subscription.
-- Sin Cloud API → sin envío masivo proactivo.
+- Sin envío masivo proactivo fuera de la ventana.
 
 ## Casos típicos en LATAM
 
@@ -43,8 +43,18 @@ Messenger tiene reglas similares a Instagram:
 - **Comments con respuesta automática**: cuando alguien comenta en un post pidiendo info, Meta permite que tu página le mande DM automático. Brote toma ese DM como inicio de conversación.
 - **Comercio social**: si tienes catálogo en tu página, el agente puede compartir productos en el chat (cart link vía [Shopify](/integraciones/shopify/)).
 
+## Atribución de conversiones (Business)
+
+Con el plan **Business** ($349/mes), Brote cierra el loop de ROAS también en Messenger:
+
+- Captura el click del anuncio (**Click-to-Messenger**) cuando el lead aterriza en la conversación.
+- Cuando el cliente paga (Mercado Pago / Flow / Khipu), Brote dispara el evento **Purchase** a Meta vía Conversions API (CAPI) — y también a TikTok.
+- Así mides qué anuncios realmente generan ventas, no solo clicks.
+
+La atribución (CAPI Meta + TikTok) funciona en los tres canales oficiales: WhatsApp, Instagram y Messenger. Es exclusiva del plan Business.
+
 ## Próximos pasos
 
 - [Instagram DMs](/canales/instagram/)
-- [WhatsApp (Evolution)](/canales/whatsapp/)
+- [WhatsApp](/canales/whatsapp/)
 - [Inbox unificado](/inbox/inbox-unificado/)

@@ -5,7 +5,14 @@ description: "Tu agente IA propone horarios disponibles, agenda la cita y manda 
 
 import { Aside } from '@astrojs/starlight/components'
 
-Brote conecta a tu **Google Calendar** vía OAuth. El agente IA puede leer tu disponibilidad y agendar citas en el calendario sin que tú tengas que abrir Google.
+Brote conecta a tu **Google Calendar** directo, vía OAuth propio de Brote. El agente IA lee tu disponibilidad y agenda citas en tu calendario sin que tú tengas que abrir Google.
+
+Hay dos piezas:
+
+- **Escribe las citas** que toma el agente en un calendario **"Brote — Citas"** dentro de tu cuenta de Google (queda separado y ordenado).
+- **Lee tu disponibilidad (free/busy)** de tu calendario principal para **no agendar sobre tus eventos existentes**.
+
+Es sync bidireccional: lo que agenda el agente aparece en tu Google, y tus eventos personales bloquean esos horarios para el agente.
 
 ## Cuándo importa
 
@@ -19,10 +26,10 @@ Verticales donde el agendamiento es el bottleneck:
 
 ## Cómo conectar
 
-1. Entra a **Configuración → Integraciones → Google Calendar**.
+1. Entra a **Configuración → Agendamiento**.
 2. Click en **"Conectar Google Calendar"**.
-3. Autoriza con tu cuenta Google (la que tiene el calendar relevante).
-4. Elegí **qué calendar(s) quieres exponer al agente** (puedes tener varios, ej: "Citas Doctora Pérez", "Visitas Inmuebles Norte").
+3. Autoriza con tu cuenta Google (la que tiene el calendario relevante).
+4. Brote crea el calendario **"Brote — Citas"** para escribir las citas, y elige **qué calendario(s) leer para tu disponibilidad** (puedes tener varios, ej: "Citas Doctora Pérez", "Visitas Inmuebles Norte").
 
 ## Cómo lo usa el agente
 

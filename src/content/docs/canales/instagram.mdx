@@ -1,16 +1,16 @@
 ---
 title: Instagram DMs
-description: "Conecta Instagram (cuenta Business) para que tu agente IA responda DMs como un humano. Disponible en Pro y Business."
+description: "Conecta Instagram (cuenta Business) por el canal oficial de Meta para que tu agente IA responda DMs como un humano. Disponible desde Starter."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-Brote se conecta a tu Instagram Business vía **Unipile** y responde DMs automáticamente con el mismo agente IA que usas en WhatsApp y Webchat.
+Brote se conecta a tu Instagram Business por el **canal oficial de Meta (directo)** y responde DMs automáticamente con el mismo agente IA que usas en WhatsApp y Webchat. Conectas tu cuenta de Instagram una vez y el agente responde los DMs.
 
 ![Hub de integraciones con todos los canales sociales disponibles](/screenshots/integrations.png)
 
-<Aside type="note" title="Disponible en Pro y Business">
-Los canales sociales premium (Instagram, Messenger, LinkedIn, Telegram, Email externo) son parte de los planes **Pro** ($129/mes) y **Business** ($349/mes). En Mini y Starter el agente solo opera en WhatsApp + Webchat. Ver [comparativa de planes](/planes/comparativa/).
+<Aside type="note" title="Disponible desde Starter">
+Los canales oficiales (Instagram y Messenger) están disponibles desde el plan **Starter** ($49/mes) hacia arriba. En Mini el agente solo opera en WhatsApp + Webchat. Un negocio = sus canales: una vez en Starter o superior, conectas los oficiales sin costo adicional por canal. Ver [comparativa de planes](/planes/comparativa/).
 </Aside>
 
 ## Qué hace Brote en Instagram
@@ -23,10 +23,10 @@ Los canales sociales premium (Instagram, Messenger, LinkedIn, Telegram, Email ex
 ## Cómo conectar
 
 1. Entra a **Configuración → Integraciones → Instagram**.
-2. Click en **"Conectar Instagram"**. Te redirige a Unipile (nuestro provider oficial).
+2. Click en **"Conectar Instagram"**. Te redirige al flujo oficial de Meta.
 3. Loguea con tu cuenta de Instagram Business (tiene que estar conectada a una página de Facebook — eso lo pide Meta, no nosotros).
-4. Autoriza permisos: leer DMs, enviar DMs.
-5. Volvés a Brote y la cuenta queda en estado **Conectado**.
+4. Autoriza los permisos que pide Meta: leer DMs, enviar DMs.
+5. Vuelves a Brote y la cuenta queda en estado **Conectado**.
 
 Desde ese momento todos los DMs nuevos aparecen en tu [inbox unificado](/inbox/inbox-unificado/), filtrables por canal "Instagram".
 
@@ -40,14 +40,25 @@ Instagram tiene reglas estrictas:
 
 Brote respeta esas reglas — si tu agente intenta responder fuera de la ventana de 24h, marca el mensaje como `pending_human_review` y notifica.
 
+## Atribución de ventas (Click-to-Instagram ads)
+
+Si corres anuncios con CTA "Send Message" hacia Instagram, Brote cierra el loop de ROAS con la **Conversions API de Meta y TikTok (CAPI)**:
+
+- Captura el click del anuncio (Click-to-Instagram) cuando el lead te escribe.
+- Cuando el cliente paga (Mercado Pago / Flow / Khipu), Brote dispara el evento **Purchase** server-side a Meta → atribuyes la venta al anuncio que la originó.
+
+<Aside type="tip" title="Exclusivo de Business">
+La atribución de conversiones (CAPI Meta + TikTok) es exclusiva del plan **Business** ($349/mes), junto con outcomes, analítica avanzada y el MCP server. Funciona en los 3 canales oficiales: WhatsApp, Instagram y Messenger.
+</Aside>
+
 ## Combinable con
 
 - **Comentarios en posts**: por ahora solo respondemos DMs. Comentarios en posts se gestionan desde la misma cuenta de Instagram.
 - **Stories replies**: cuando un usuario responde a tu story → llega como DM → Brote responde igual.
-- **Click-to-Instagram ads**: si tienes Ads Manager activo y armas un ad con CTA "Send Message", los leads aterrizan en Brote.
+- **Click-to-Instagram ads**: si tienes Ads Manager activo y armas un ad con CTA "Send Message", los leads aterrizan en Brote (y se atribuyen en Business).
 
 ## Próximos pasos
 
-- [Messenger (también vía Unipile)](/canales/messenger/)
+- [Messenger (también por el canal oficial de Meta)](/canales/messenger/)
 - [Pipeline kanban para tus DMs](/inbox/pipeline/)
 - [Configurar el agente IA](/empezar/primer-agente/)

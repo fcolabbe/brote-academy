@@ -5,19 +5,21 @@ description: "Límites diarios y mensuales por plan para que tu número WhatsApp
 
 import { Aside } from '@astrojs/starlight/components'
 
-Como Brote usa **Evolution API** y no Cloud API de Meta, no puedes mandar miles de mensajes sin restricción — Meta detecta patrones y banea tu número. Para protegerte, cada plan tiene **caps mensuales y diarios** que respeta automáticamente.
+Aunque conectes WhatsApp por la **Cloud API oficial de Meta** (el camino recomendado), no conviene mandar miles de mensajes sin restricción — Meta detecta patrones y puede limitar o banear tu número. Para protegerte, cada plan tiene **caps mensuales y diarios** que Brote respeta automáticamente.
 
 ## Caps por plan
 
+Las campañas son una feature de **Pro y Business**. Planes inferiores no tienen campañas masivas.
+
 | Plan | Campañas/mes | Contactos/campaña | Mensajes/día (total) |
 |---|---:|---:|---:|
-| **Mini** ($19) | 0 — no campañas | — | — |
-| **Starter** ($49) | 2 | 100 | 200 |
+| **Mini** ($29) | 0 — no campañas | — | — |
+| **Starter** ($49) | 0 — no campañas | — | — |
 | **Pro** ($129) | 10 | 500 | 800 |
 | **Business** ($349) | sin límite | 1.500 | 2.500 |
 
-<Aside type="caution" title="Por qué Mini no tiene campañas">
-El plan Mini está pensado para que las micro-PYMEs prueben Brote sin riesgo. Permitir campañas en ese tier expondría a usuarios sin experiencia a riesgo de ban WA. Para campañas, mínimo Starter.
+<Aside type="caution" title="Por qué Mini y Starter no tienen campañas">
+Mini y Starter están pensados para conversaciones 1:1 (atender lo que llega), no para envíos masivos. Permitir campañas en esos tiers expondría a usuarios sin experiencia a riesgo de limitación o ban WA. Para campañas, mínimo Pro.
 </Aside>
 
 ## Cómo se cuentan
@@ -36,7 +38,7 @@ Cuando una campaña va a superar tu cap diario:
 
 Si quisieras superar el cap (ej: Black Friday y tienes 800 contactos), tienes 3 opciones:
 
-1. **Upgrade del plan**: si pasas de Starter a Pro, el cap sube de 200 a 800/día y la cohorte sale ese mismo día.
+1. **Upgrade del plan**: si pasas de Pro a Business, el cap sube de 800 a 2.500/día y la cohorte sale ese mismo día.
 2. **Espera**: si no tienes urgencia, déjala encolada — 4 días después está toda enviada.
 3. **Reduce la cohorte**: filtra más fino (solo "lead caliente", solo "cliente recurrente").
 
@@ -52,7 +54,7 @@ Si te baneás, no es porque Brote te falló — es porque WA detectó algo. Re-c
 
 ## Cap WA vs cap canales sociales
 
-Los caps anteriores aplican **solo a WhatsApp**. Para campañas por Instagram/Messenger/Email no hay caps (las plataformas tienen sus propios rate limits, mucho más bajos — ej: IG bloquea outreach masivo a no-followers).
+Los caps anteriores aplican **solo a WhatsApp**. Para campañas por Instagram/Messenger no hay caps propios de Brote (las plataformas tienen sus propios rate limits, mucho más bajos — ej: IG bloquea outreach masivo a no-followers).
 
 En la práctica, **el 95% de las campañas Brote son por WhatsApp** porque es donde tu base está.
 

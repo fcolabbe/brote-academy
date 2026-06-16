@@ -11,7 +11,7 @@ import { Aside } from '@astrojs/starlight/components'
 No. Los **14 días son sin tarjeta**. Te avisamos al día 7 y al día 12, y solo si decides seguir agregas un método de pago.
 
 ### ¿Qué plan obtengo en el trial?
-Empiezas con todas las features del plan **Starter ($49/mes)** por 14 días: 500 conversaciones IA, WhatsApp + Webchat, integración Shopify y Mercado Pago, campañas, pipeline kanban. Al activar pago eliges el plan que mejor te sirva (puedes bajar a Mini si te alcanza).
+Empiezas con todas las features del plan **Starter ($49/mes)** por 14 días: 500 conversaciones IA, WhatsApp + Webchat + Instagram + Messenger, cobros (Mercado Pago / Flow / Khipu), agendamiento, pipeline kanban. Al activar pago eliges el plan que mejor te sirva (puedes bajar a Mini si te alcanza).
 
 ### ¿Qué pasa si no agrego tarjeta al terminar el trial?
 Tu cuenta pasa a **modo lectura por 30 días**: puedes ver tus conversaciones, contactos y configuración, pero el agente IA queda pausado. Después de 30 días la cuenta se archiva. Los datos se preservan 180 días más por si vuelves.
@@ -25,7 +25,7 @@ Cada hilo donde el agente IA responde al menos una vez en el ciclo mensual. Si u
 El agente IA pausa y te avisamos para subir de plan. Tu equipo puede seguir respondiendo manualmente desde el inbox sin tope.
 
 ### ¿Hay alguna otra cuota?
-Cada plan tiene un cap de Knowledge Base (30 MB Mini, 100 MB Starter, 500 MB Pro, 5 GB Business). Si subes muchos PDFs / docs, puedes llegar al cap.
+Cada plan tiene un cap de Knowledge Base (30 MB Mini, 100 MB Starter, 500 MB Pro, 5 GB Business). Si subes muchos PDFs / docs, puedes llegar al cap. Además, las conversaciones IA por plan: 150 (Mini), 500 (Starter), 1.500 (Pro), 3.000 (Business).
 
 ## Planes y facturación
 
@@ -44,13 +44,32 @@ Sí — promo regional para PYMEs de la Región de Coquimbo, Chile. Aplica `-USD
 ## Canales
 
 ### ¿Qué canales soporta Brote?
-Activos en landing pública: **WhatsApp, Webchat, Instagram, Messenger, Email**. Premium (planes Pro/Business): **LinkedIn, Telegram**. También soportamos técnicamente X (Twitter), Google Business Messages y Microsoft Teams para clientes Business por solicitud.
+Canales oficiales disponibles: **WhatsApp, Instagram DM, Facebook Messenger** (los tres por el canal oficial de Meta) y **Webchat** embebible. Instagram y Messenger están disponibles de **Starter para arriba**. **Email y Telegram** llegan **próximamente** con canal nativo propio (correo propio / Telegram Bot API).
 
 ### ¿Necesito WhatsApp Business API oficial?
-No. Brote usa **Evolution API** (WhatsApp Business non-Cloud) por default — gratis por mensaje. La integración con **Meta WhatsApp Cloud API oficial** está en roadmap.
+El camino recomendado es la **Cloud API oficial de Meta**: conectas tu número sin escanear QR. También existe **Evolution API** (WhatsApp Business no oficial) como alternativa, pero lo oficial es lo que recomendamos.
+
+### ¿Cómo conecto Instagram y Messenger?
+Conectas tu **Página de Facebook y tu cuenta de Instagram** por el canal oficial de Meta (directo), y el agente responde los DM. No necesitas herramientas de terceros.
 
 ### ¿Mi número personal puede usar Brote?
 Técnicamente sí, pero recomendamos usar un **número dedicado al negocio** (puede ser un número WhatsApp Business). Evita mezclar conversaciones personales con las del agente IA.
+
+## Agendamiento y calendario
+
+### ¿Cómo conecto mi calendario?
+El agendamiento conecta **Google Calendar directo** (OAuth propio de Brote) desde **Settings → Agendamiento**. No necesitas herramientas de terceros.
+
+### ¿Cómo evita que el agente agende sobre mis eventos?
+La sincronización es bidireccional: las citas que toma el agente se escriben en un calendario **"Brote — Citas"** dentro de tu cuenta de Google, y el agente **lee tu disponibilidad (free/busy)** de tu calendario principal para no agendar sobre eventos que ya tienes.
+
+## Atribución de ventas
+
+### ¿Brote me dice qué anuncio generó cada venta?
+Sí, con la **Conversions API de Meta y TikTok (CAPI)**. Capturamos el click del anuncio (Click-to-WhatsApp / Click-to-Messenger / Click-to-Instagram) y disparamos el evento Purchase cuando el cliente paga (Mercado Pago / Flow / Khipu) → cierras el ROAS. Funciona en **WhatsApp, Instagram y Messenger**.
+
+### ¿En qué plan está la atribución?
+Es **exclusiva del plan Business**, igual que el **MCP server**.
 
 ## Campañas
 

@@ -1,35 +1,45 @@
 ---
-title: WhatsApp (Evolution)
-description: "Conectar tu WhatsApp Business a Brote en 60 segundos vía Evolution API. Sin Cloud API de Meta, sin BSP, sin fee por conversación."
+title: WhatsApp (Cloud API oficial)
+description: "Conectar tu WhatsApp Business a Brote por la Cloud API oficial de Meta — sin escanear QR. Evolution API queda como alternativa no oficial."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-Brote conecta a WhatsApp **sin pasar por Cloud API de Meta ni por un BSP**. Usamos **Evolution API**, una integración no oficial que pareja tu número escaneando un QR — igual que WhatsApp Web.
+Brote conecta a WhatsApp por la **Cloud API oficial de Meta** — el camino recomendado. Conectas tu número desde Brote sin escanear ningún QR, con la estabilidad y el respaldo de la API oficial. **Evolution API** sigue disponible como alternativa no oficial (parea tu número escaneando un QR, igual que WhatsApp Web).
 
 ![Configuración del canal WhatsApp en Brote](/screenshots/whatsapp-config.png)
 
-## Qué tiene de bueno este enfoque
+## Cloud API oficial (recomendado)
 
-| Cloud API de Meta | Evolution (lo que usamos) |
-|---|---|
-| $99 setup mínimo (BSP) + fee por conversación | $0 — incluido en cualquier plan Brote |
-| Aprobación de templates 24-48h | Mandas mensajes sin templates dentro de la ventana de 24h |
-| Una sola sesión por número, gestionada por BSP | Sesión propia, control total |
-| Migración del número implica downtime | Migrar = re-escanear QR (30s de downtime) |
+Es la forma recomendada de conectar WhatsApp a Brote:
 
-<Aside type="caution" title="Limitación importante">
-Sin Cloud API no podemos enviar **plantillas masivas** sin restricción. Tus campañas masivas WhatsApp respetan caps por plan (Starter 2/mes · 100 contactos, Pro 10/mes · 500, Business sin límite/mes · 1500/día) para no triggear el ban de Meta. Más en [Caps por plan y protección WA](/campanas/caps/).
-</Aside>
+- **Sin QR.** Conectas tu número directo desde Brote, sin vincular un teléfono ni re-escanear nada.
+- **Estabilidad oficial.** Tu número no se desconecta por inactividad ni por cambio de teléfono.
+- **Respaldo de Meta.** Es la API oficial de WhatsApp Business, pensada para empresas.
 
-## Cómo conectar
+### Cómo conectar (Cloud API)
 
 1. Entra a **Configuración → Agente IA → WhatsApp**.
-2. Click en **"Conectar WhatsApp"** y aparece un QR.
+2. Elige **conectar por la Cloud API oficial de Meta**.
+3. Sigue el flujo guiado para vincular tu número de WhatsApp Business.
+4. Listo — Brote ya está respondiendo en ese número, sin QR.
+
+Desde ese momento todos los mensajes que entren a tu WhatsApp aparecen en tu [inbox unificado](/inbox/inbox-unificado/), el agente IA responde según tu configuración, y los nuevos contactos se crean automáticamente.
+
+## Evolution API (alternativa no oficial)
+
+Si prefieres una conexión rápida sin pasar por la API oficial, Brote también soporta **Evolution API**, una integración no oficial que parea tu número escaneando un QR — igual que WhatsApp Web.
+
+### Cómo conectar (Evolution)
+
+1. Entra a **Configuración → Agente IA → WhatsApp**.
+2. Elige conectar por **Evolution** y aparece un QR.
 3. En tu teléfono: abre WhatsApp → Configuración → Dispositivos vinculados → Vincular dispositivo.
 4. Escanea el QR. Listo — Brote ya está respondiendo en ese número.
 
-Desde ese momento todos los mensajes que entren a tu WhatsApp aparecen en tu [inbox unificado](/inbox/inbox-unificado/), el agente IA responde según tu configuración, y los nuevos contactos se crean automáticamente.
+<Aside type="caution" title="Limitación de Evolution">
+Por ser una conexión no oficial, las **campañas masivas WhatsApp** respetan caps por plan (Starter 2/mes · 100 contactos, Pro 10/mes · 500, Business sin límite/mes · 1500/día) para no triggear el ban de Meta. Más en [Caps por plan y protección WA](/campanas/caps/).
+</Aside>
 
 ## Mensajes salientes desde Brote
 
@@ -43,9 +53,9 @@ Tu agente IA puede iniciar conversaciones — no solo responder. Tres caminos:
 
 El agente IA puede enviar **fotos, videos, PDFs y audios** desde tu [Biblioteca de medios](/inbox/tags-fields/). Útil para mandar catálogos, instructivos, fichas de producto o videos demo.
 
-## Si el número se desconecta
+## Si el número se desconecta (Evolution)
 
-WhatsApp puede cerrar la sesión por inactividad o por cambio de teléfono. Brote te avisa por email + notif push. Re-escanear el QR demora 30s y no pierdes mensajes históricos.
+Con Evolution, WhatsApp puede cerrar la sesión por inactividad o por cambio de teléfono. Brote te avisa por email + notif push. Re-escanear el QR demora 30s y no pierdes mensajes históricos. Con la Cloud API oficial esto no ocurre: la conexión es estable y no depende de un teléfono vinculado.
 
 ## Próximos pasos
 

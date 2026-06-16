@@ -1,23 +1,31 @@
 ---
 title: Meta Conversions API — atribución ROAS
-description: Brote captura el ctwa_clid cuando un cliente entra por un Click-to-WhatsApp Ad y manda eventos Purchase server-side a tu Pixel cuando paga.
+description: Brote captura el click del anuncio cuando un cliente entra por WhatsApp, Instagram o Messenger y manda eventos Purchase server-side a tu Pixel cuando paga.
 ---
 
 import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
 
-Si invertís en Click-to-WhatsApp Ads de Meta, quieres saber **qué ad
-generó qué venta**. Brote cierra el loop completo: detecta el ad de
-entrada, guarda la atribución en el contacto, y cuando ese contacto paga
-envía un evento `Purchase` a tu Pixel via Conversions API.
+Si inviertes en anuncios de Meta que llevan a conversación
+(Click-to-WhatsApp, Click-to-Instagram, Click-to-Messenger), quieres
+saber **qué ad generó qué venta**. Brote cierra el loop completo: detecta
+el ad de entrada, guarda la atribución en el contacto, y cuando ese
+contacto paga envía un evento `Purchase` a tu Pixel via Conversions API.
+
+<Aside type="note">
+La atribución funciona en los **tres canales oficiales de Meta**:
+WhatsApp, Instagram DM y Messenger. Es una feature **exclusiva del plan
+Business**, igual que el MCP server.
+</Aside>
 
 ## Cómo funciona el flow
 
 ```
-1) Cliente ve tu ad Meta → click "Send Message"
-   └─ Meta agrega ctwa_clid en el primer msg de WhatsApp
+1) Cliente ve tu ad Meta → click "Send Message" / "Enviar mensaje"
+   └─ Meta agrega el click id en el primer msg del canal
+       (ctwa_clid en WhatsApp; el equivalente en Instagram / Messenger)
 
-2) Brote recibe el msg vía webhook Evolution
-   └─ extrae externalAdReply.ctwaClid + sourceId + title
+2) Brote recibe el msg por el canal oficial de Meta
+   └─ extrae el click id del ad + sourceId + título
    └─ guarda en contact.metadata.attribution (first-touch)
 
 3) Cliente conversa con tu agente IA → recibe link MP/Flow/Khipu
@@ -124,7 +132,7 @@ de Ads y priorizar la respuesta.
 
 | Plataforma | Meta CAPI integrado |
 |---|---|
-| **Brote** | ✅ ctwa_clid + Purchase auto desde MP/Flow/Khipu |
+| **Brote** | ✅ click id (WhatsApp/IG/Messenger) + Purchase auto desde MP/Flow/Khipu |
 | respond.io | ✅ "Send Conversions API Event" step (manual en workflow) |
 | Wati | 🟡 Solo Pixel client-side (no CAPI server) |
 | SleekFlow | ❌ |

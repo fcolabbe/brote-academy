@@ -54,12 +54,16 @@ Envía imágenes, PDFs, audios o videos. El agente decide el formato apropiado
 ## Agenda
 
 ### `check_availability`
-Lee tu Google Calendar conectado y devuelve los próximos slots libres según las
-reglas que definiste (duración, horario laboral, buffer entre reuniones).
+Lee tu Google Calendar conectado directo (OAuth propio de Brote, lo conectas en
+**Configuración → Agendamiento**) y devuelve los próximos slots libres según las
+reglas que definiste (duración, horario laboral, buffer entre reuniones). El
+agente revisa tu disponibilidad real (free/busy) de tu calendario principal para
+no agendar sobre eventos que ya tienes.
 
 ### `book_appointment`
-Reserva el slot en tu Google Calendar y manda invitación al cliente. Bloquea
-el horario automáticamente.
+Reserva el slot escribiéndolo en tu calendario **"Brote — Citas"** dentro de tu
+cuenta de Google y manda invitación al cliente. Bloquea el horario
+automáticamente.
 
 ## Catálogo y productos
 

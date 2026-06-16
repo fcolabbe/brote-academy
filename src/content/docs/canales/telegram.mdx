@@ -1,46 +1,37 @@
 ---
-title: Telegram (Pro/Business)
-description: "Conecta Telegram para atender clientes desde un bot oficial — útil para comunidades, soporte técnico y verticales tech."
+title: Telegram (Próximamente)
+description: "Telegram llegará a Brote con un canal nativo vía Bot API — útil para comunidades, soporte técnico y verticales tech."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
 
-Brote conecta a **Telegram** vía Bot API (oficial de Telegram). El agente IA opera como un bot de tu negocio que cualquiera puede chatear iniciando una conversación con tu username.
+Brote tendrá **Telegram** como canal nativo a futuro, vía **Bot API (oficial de Telegram)**. El agente IA operará como un bot de tu negocio que cualquiera podrá chatear iniciando una conversación con tu username.
 
-<Aside type="note" title="Disponible en Pro y Business">
-Telegram es parte de los planes **Pro** ($129/mes) y **Business** ($349/mes). En Mini y Starter no está disponible. Ver [comparativa](/planes/comparativa/).
+<Aside type="caution" title="Próximamente">
+Telegram todavía **no está disponible**. Estamos construyendo el canal nativo con la **Bot API oficial de Telegram**. Mientras tanto, atiende a tus clientes por **WhatsApp**, **Instagram**, **Messenger** y **Webchat**. Ver [comparativa de planes](/planes/comparativa/).
 </Aside>
 
-## Cuándo Telegram tiene sentido
+## Cuándo Telegram tendrá sentido
 
 - **Tu vertical es tech**: software, crypto, dev tools, startups → tu audiencia ya vive en Telegram.
-- **Manejás comunidades**: tienes grupo de Telegram con clientes/prospects y quieres un bot que responda dudas.
-- **Sos LATAM-Argentina**: Telegram tiene penetración fuerte en AR y Chile entre audiencias jóvenes.
+- **Manejas comunidades**: tienes grupo de Telegram con clientes/prospects y quieres un bot que responda dudas.
+- **Eres LATAM**: Telegram tiene penetración fuerte en Argentina y Chile entre audiencias jóvenes.
 
-Si tu cliente ideal es PYME tradicional retail/hotelería/salud → probablemente no necesitás Telegram. WhatsApp + Webchat cubren bien.
+Si tu cliente ideal es PYME tradicional retail/hotelería/salud → probablemente no necesitas Telegram. WhatsApp + Webchat cubren bien.
 
-## Cómo conectar
+## Qué traerá el canal nativo
 
-1. En Telegram, abrí un chat con **@BotFather** y crea un bot nuevo (`/newbot` + nombre + username).
-2. BotFather te devuelve un **token** (algo como `5234567890:AAH...`).
-3. En Brote, anda a **Configuración → Integraciones → Telegram** y pega el token.
-4. Brote verifica el token contra Telegram API y queda **conectado**.
-5. Pruébalo: busca tu bot por username y mándale un mensaje.
+Cuando Telegram esté disponible, el bot funcionará así:
 
-## Comportamiento del bot
+- **/start**: el bot responderá con el mensaje de bienvenida del agente IA.
+- **Texto libre**: el agente IA responderá como en cualquier otro canal (mismo prompt, mismo catálogo, mismo tono).
+- **Media**: el bot podrá recibir y enviar fotos, videos, audios y documentos — todo en tu [inbox unificado](/inbox/inbox-unificado/).
+- **Comandos**: comandos fijos (`/precios`, `/horarios`, `/contacto`) configurables desde Brote.
+- **Grupos vs DMs**: en chats 1:1 el agente responde a todos los mensajes; en grupos solo responde si lo mencionan explícitamente (`@mibot ...`) o si responden a uno de sus mensajes, para evitar spam en comunidades grandes.
 
-- **/start**: el bot responde con el mensaje de bienvenida del agente IA.
-- **Texto libre**: el agente IA responde como en cualquier otro canal (mismo prompt, mismo catálogo, mismo tono).
-- **Media**: el bot puede recibir y enviar fotos, videos, audios, documents — todo aparece en tu [inbox unificado](/inbox/inbox-unificado/).
-- **Comandos**: si quieres que el bot tenga comandos fijos (`/precios`, `/horarios`, `/contacto`), los configuras en BotFather + Brote los reconoce.
+## Mientras tanto
 
-## Grupos vs DMs
-
-- **DMs (chats 1:1)**: el agente responde a todos los mensajes que recibe.
-- **Grupos**: el bot solo responde si lo **mencionan explícitamente** (`@mibot ...`) o si responden a uno de sus mensajes. Esto evita spam en comunidades grandes.
-
-## Próximos pasos
-
+- [Conectar WhatsApp (Cloud API oficial)](/canales/whatsapp/)
+- [Conectar Instagram](/canales/instagram/) y [Messenger](/canales/messenger/)
 - [Configurar tu agente IA](/empezar/primer-agente/)
 - [Inbox unificado](/inbox/inbox-unificado/)
-- [Conectar Mercado Pago para cobros in-chat](/pagos/mercado-pago/)
