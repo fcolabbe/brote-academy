@@ -1,0 +1,77 @@
+---
+title: Cobrar la reserva y agenda por profesional
+description: "Servicios profesionales por tiempo: cada profesional con su horario, dirección por servicio, y cobro para confirmar la cita (el horario se reserva hasta que el cliente paga)."
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components'
+
+Pensado para **servicios profesionales vendidos por tiempo** (consultas, asesorías, sesiones, terapias, veterinaria, estudios de abogados). Suma tres cosas sobre el [agendamiento base](/agendamiento/configurar/): **dirección** por servicio, **agenda por profesional**, y **cobro para confirmar** la cita.
+
+Todo se configura en **Ajustes → Agendamiento**. Disponible desde el plan **Starter**.
+
+## Dirección del servicio
+
+Cada servicio puede tener una **dirección** (ej. "Av. Providencia 1234, of. 4"). Cuando el agente propone o confirma una cita, se la comunica al cliente automáticamente. Si el servicio es online, déjala en blanco.
+
+## Agenda por profesional
+
+Si tienes **varios profesionales** (o boxes/salas) que atienden en paralelo, cada uno puede tener **su propio horario** y atender **solo ciertos servicios**.
+
+<Steps>
+
+1. **Agrega los profesionales** en la sección **Recursos (equipo)**: ej. "Dra. Rojas", "Dr. Muñoz".
+
+2. **Asigna quién atiende cada servicio.** En cada servicio verás unos chips **"Lo atienden:"** — marca los profesionales que dan ese servicio. Si no marcas ninguno, lo atienden **todos**.
+
+3. **Dale a cada uno su horario.** En **Disponibilidad semanal** usa el selector **"Editando el horario de:"**:
+   - **Horario compartido de la org** → el horario común de todos.
+   - **Un profesional** → su horario propio (ej. Dra. Rojas L-M-V 09–18, Dr. Muñoz Mar-Jue 10–19). Si un profesional no tiene horario propio, **hereda el compartido de la org**.
+
+</Steps>
+
+Con esto, el agente maneja dos formas de reservar por chat:
+
+- **"Quiero con la Dra. Rojas"** → el agente muestra **la agenda de ese profesional**.
+- **"¿Quién está libre el martes?"** → el agente lista **los profesionales disponibles** ese día.
+
+Cada horario que ofrece indica **qué profesional** atiende, y la reserva **bloquea solo la agenda de ese profesional** (dos clientes distintos pueden tomar la misma hora con profesionales distintos).
+
+<Aside type="note">
+Si no agregas profesionales, todo funciona como una sola agenda (comportamiento clásico). Los profesionales son opcionales.
+</Aside>
+
+## Cobrar para confirmar la cita
+
+Para reducir los **no-shows**, puedes exigir el **pago por adelantado**: la cita no se confirma hasta que el cliente paga.
+
+### Cómo se activa
+
+En el servicio, marca **💳 Cobrar para confirmar** y define los **minutos de reserva** (por defecto **15**). Necesitas una [pasarela de pago conectada](/pagos/cobro-in-chat/) (Mercado Pago, Flow o Khipu en Chile; Stripe o PayPal para pagos internacionales).
+
+### Cómo lo vive el cliente
+
+<Steps>
+
+1. El cliente elige un horario y el agente **reserva la hora** — pero queda **"esperando pago"**, aún **no confirmada**. Ese horario queda **bloqueado** para que nadie más lo tome.
+
+2. El agente le manda el **link de pago** por el mismo chat y le avisa cuánto tiempo tiene para pagar.
+
+3. **Si paga a tiempo** → la cita se **confirma sola**, se agenda y se programan los [recordatorios](/agendamiento/recordatorios/). El cliente recibe la confirmación con la dirección.
+
+4. **Si no paga** dentro de los minutos definidos → el horario **se libera** automáticamente y queda disponible para otros.
+
+</Steps>
+
+<Aside type="tip">
+Un servicio **sin** "Cobrar para confirmar" se agenda directo, como siempre — el cobro es opcional por servicio. Puedes tener unos servicios que cobran y otros que no.
+</Aside>
+
+### Detalles útiles
+
+- **La cita se confirma automática al aprobarse el pago** — no tienes que hacer nada manual.
+- Si el cliente **paga justo después** de que venció la reserva y el horario **sigue libre**, la cita se **re-confirma** igual. Si alguien más tomó el horario en el intervalo, queda una **marca para que tu equipo lo revise** (reagendar o reembolsar) — nunca se cobra dos veces.
+- Todo queda **trazable**: el pago queda ligado a la cita.
+
+<Aside type="caution">
+El cobro exige una pasarela conectada y que el contacto tenga **email** (el agente lo pide antes de generar el link). Si falta, el agente lo solicita primero.
+</Aside>
