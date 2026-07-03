@@ -45,6 +45,7 @@ export default defineConfig({
             { label: 'Bienvenido a Brote', slug: 'empezar/bienvenido' },
             { label: 'Crear tu cuenta', slug: 'empezar/crear-cuenta' },
             { label: 'Tu primer agente IA en 15 min', slug: 'empezar/primer-agente' },
+            { label: 'Plantillas por rubro', slug: 'empezar/plantillas-por-rubro', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Conectar WhatsApp', slug: 'empezar/conectar-whatsapp' },
           ],
         },
