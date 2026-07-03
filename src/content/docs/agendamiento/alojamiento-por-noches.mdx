@@ -47,6 +47,34 @@ La sección "Disponibilidad semanal" es para las citas por hora. En modo estadí
 
 </Steps>
 
+## Precios por temporada
+
+¿Cobras más en temporada alta (verano, fiestas)? Agrega **temporadas** a tu alojamiento y cada noche se cobra según la fecha.
+
+<Steps>
+
+1. En la sección **Temporadas** (aparece bajo cada alojamiento en modo estadía), agrega una fila: **nombre** (ej. "Temporada alta"), **rango de fechas** y **precio por noche**.
+
+2. Listo. Cuando un cliente reserve, el agente **calcula noche por noche**: las que caen en la temporada usan su precio, las demás usan el precio base.
+
+</Steps>
+
+Una estadía que cae **parte en temporada alta y parte en normal** se cobra correcto automáticamente. Por ejemplo, con base $45.000 y temporada alta $80.000 hasta el 28 de febrero, una reserva del **26 de feb al 4 de marzo** (6 noches) cobra 3 noches a $80.000 + 3 a $45.000 = **$375.000** — el mix exacto, sin que muevas un dedo.
+
+<Aside type="note">
+Si dos temporadas se pisan en una misma fecha, gana la de **rango más corto** (la más específica). Así una "Semana de Año Nuevo" puede sobrescribir a una "Temporada alta" más amplia.
+</Aside>
+
+## Calendario de ocupación
+
+En **Ajustes → Agendamiento** tienes una vista de **Ocupación**: una grilla de **mes × unidad** donde ves de un vistazo qué cabaña está tomada qué días.
+
+- **Verde** = reserva confirmada (pagada o sin cobro).
+- **Ámbar** = reserva esperando pago.
+- Navega entre meses con las flechas para planear tu disponibilidad.
+
+Es de solo lectura: te da la foto de ocupación sin salir de Brote.
+
 ## Detalles que te van a servir
 
 - **Sin doble-booking**: una misma unidad no acepta dos estadías cuyas fechas se pisen — lo garantiza Brote a nivel de datos.
