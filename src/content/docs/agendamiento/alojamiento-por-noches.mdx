@@ -1,0 +1,58 @@
+---
+title: Alojamiento por noches (modo estadía)
+description: "Para hoteles, cabañas y hospedaje: reserva unidades por rango de fechas (check-in → check-out), cobra las noches por adelantado y evita el doble-booking. El agente lo maneja por WhatsApp."
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components'
+
+Si arriendas **alojamiento por noches** (cabañas, hotel, hospedaje, glamping), el agendamiento de Brote tiene un **modo estadía**: en vez de reservar "las 15:00", el cliente reserva **"del 10 al 14 de julio"**. Se apoya en todo lo del [agendamiento](/agendamiento/configurar/) — incluido [cobrar la reserva](/agendamiento/servicios-profesionales/) — pero pensado para noches.
+
+Se configura en **Ajustes → Agendamiento**. Disponible desde el plan **Starter**.
+
+## 1. Crea el alojamiento como servicio en modo estadía
+
+<Steps>
+
+1. En **Servicios**, escribe el nombre (ej. "Cabaña Vista al Lago") y en el selector elige **Estadía por noches**.
+
+2. Completa los datos propios de estadía:
+   - **Precio por noche** — se cobra automáticamente × la cantidad de noches.
+   - **Check-in / Check-out** — las horas de entrada y salida (ej. 15:00 / 11:00).
+   - **Mín / Máx noches** (opcional) — ej. mínimo 2 noches.
+   - **Dirección** (opcional) — el agente se la comunica al cliente.
+
+3. Si quieres cobrar la reserva por adelantado, marca **💳 Cobrar para confirmar** (recomendado para evitar cancelaciones de última hora).
+
+</Steps>
+
+## 2. Carga tus unidades
+
+Cada cabaña/habitación es una **unidad**. En la sección **Recursos (equipo)** agrega una por cada unidad real (ej. "Cabaña 1", "Cabaña 2"). Con varias unidades, el agente **reparte solo** entre las que estén libres, y dos clientes pueden reservar las mismas fechas en unidades distintas.
+
+<Aside type="note">
+La sección "Disponibilidad semanal" es para las citas por hora. En modo estadía **no la necesitas**: una unidad está libre todas las noches, salvo las que ya estén reservadas (o un bloqueo por mantención).
+</Aside>
+
+## 3. Así reserva tu cliente (por el bot)
+
+<Steps>
+
+1. El cliente escribe: **"¿tienen una cabaña del 10 al 14 de julio?"**.
+
+2. El agente entiende las fechas, calcula **4 noches**, y responde con las **unidades libres** y el **precio total** (noches × precio/noche). También entiende "3 noches desde el viernes", "este finde", etc.
+
+3. El cliente confirma → el agente **reserva la unidad** para todo el rango.
+
+4. Si activaste el cobro, le manda el **link de pago** por el chat; cuando paga, la estadía **se confirma sola**. Si no paga en el tiempo definido, se libera.
+
+</Steps>
+
+## Detalles que te van a servir
+
+- **Sin doble-booking**: una misma unidad no acepta dos estadías cuyas fechas se pisen — lo garantiza Brote a nivel de datos.
+- **Turnover el mismo día**: la noche de salida queda libre. Si una estadía termina el día 14 a las 11:00, otra puede empezar el 14 a las 15:00 sin conflicto.
+- **La noche de salida no se cobra**: del 10 al 14 = **4 noches**.
+
+<Aside type="tip">
+¿Arriendas **por horas** (day-use, salas, estudios)? Usa el modo **Cita por hora** creando servicios con la duración que ofrezcas (ej. "2 horas", "media jornada"). Mismo cobro para confirmar.
+</Aside>
