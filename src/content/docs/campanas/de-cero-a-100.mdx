@@ -1,0 +1,151 @@
+---
+title: Campañas masivas — de cero a 100
+description: Mandá una promo, novedad o recordatorio por WhatsApp a cientos de contactos de una — sin quemar tu número. Guía completa con ejemplo real, qué necesitás, para quién es y qué vas a lograr.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## En una frase
+
+**Campaña masiva** = mandarle **un mismo mensaje de WhatsApp a cientos de contactos a la vez** (una promo, una novedad, un recordatorio), y que el **agente IA siga cada conversación** según lo que responda cada persona.
+
+Tú ya tenés una base de clientes: gente que te compró, leads que quedaron tibios, suscriptores que se enfriaron. Esa base es plata dormida. Una campaña la despierta: elegís a quién, armás el mensaje, y Brote lo envía respetando límites para **no quemar tu WhatsApp**. Lo distinto de un "blast" tradicional: no te quedan 500 respuestas sin atender — el agente IA responde, recomienda, arma el link de pago y marca a cada uno según su intención real.
+
+<Aside type="tip" title="La pregunta que responde esta función">
+"Tengo 500 clientes en la agenda. ¿Cómo les aviso de mi promo de fin de temporada **sin escribir uno por uno** y sin que Meta me banee el número?"
+</Aside>
+
+## ¿Para quién es esta función?
+
+| Te sirve si… | NO te sirve (todavía) si… |
+|---|---|
+| Tenés una **base de contactos** cargada (clientes, leads) que querés reactivar | Recién arrancás y casi no tenés contactos |
+| Querés avisar **promos, novedades o recordatorios** a muchos de una | Solo atendés lo que llega (1:1 puro) |
+| Vendés por **WhatsApp** y querés que la conversación siga sola | No vendés por conversación |
+| Estás en plan **Pro o Business** | Estás en Mini o Starter (no incluyen campañas) |
+
+**En criollo:** es para el negocio que ya tiene **una lista de gente** y quiere venderle de nuevo — sin equipo de marketing y sin arriesgar el número.
+
+<Aside type="caution" title="Plan requerido: Pro o Business — y con caps que te protegen">
+Las campañas masivas son una función de **Pro y Business**. Mini y Starter están pensados para conversaciones 1:1 (atender lo que llega), no para envíos masivos. Cada plan tiene **límites diarios y mensuales que Brote respeta automáticamente** para que Meta no te limite ni banee el número:
+
+| Plan | Campañas/mes | Contactos/campaña | Mensajes/día (total) |
+|---|---:|---:|---:|
+| **Mini** ($29) | 0 — sin campañas | — | — |
+| **Starter** ($49) | 0 — sin campañas | — | — |
+| **Pro** ($129) | 10 | 500 | 800 |
+| **Business** ($349) | sin límite | 1.500 | 2.500 |
+
+Estos números están calibrados con data real de tolerancia de WhatsApp. No son un capricho: pasarte es cómo te ganás un ban. Detalle en [Caps por plan](/campanas/caps/).
+</Aside>
+
+## ¿Qué necesitás tener antes de lanzar?
+
+<Steps>
+
+1. **Contactos cargados en Brote.** Una campaña sale hacia una *cohorte* — un grupo filtrado de tu base. Si tu agenda está vacía, primero cargá o importá contactos (por CSV o los que ya conversaron con tu agente).
+
+2. **WhatsApp conectado.** El canal por donde salen las campañas. Lo recomendado es la **Cloud API oficial de Meta** (mejor reputación de número); también funciona con la conexión estándar.
+
+3. **Respetar opt-in / opt-out.** Mandá solo a gente que **te dio permiso o ya conversó contigo** — no a números comprados. Y tranquilo con el opt-out: si alguien responde "stop" o "baja", **Brote lo saca solo** de todas las campañas futuras (más abajo el detalle).
+
+4. **Plan Pro o Business** activo.
+
+</Steps>
+
+<Aside type="note">
+No hace falta que sepas nada técnico. Si tenés contactos, WhatsApp conectado y plan Pro+, ya podés lanzar. El wizard son 4 pasos (segmento → mensaje → goal → schedule). Ver [Crear tu primera campaña](/campanas/crear/).
+</Aside>
+
+## Ejemplo real: de cero a 100 con Camila 🌱
+
+> **Camila** tiene **"Trébol"**, una tienda de ropa que vende por WhatsApp e Instagram. Termina la temporada de invierno y le quedó stock. Tiene **520 clientes** en Brote que compraron alguna vez. Quiere vaciar bodega con un **30% off de fin de temporada** — pero sabe que escribirle a 520 personas a mano es imposible, y que mandar un blast salvaje le puede costar el número.
+
+<Steps>
+
+1. **Camila segmenta (Paso 1).** En vez de mandar a los 520, filtra fino: clientes con **compra en los últimos 12 meses** + tag `invierno`. Brote le muestra en vivo: **"487 contactos coinciden"**. Como está en **Pro** (cap 500 contactos/campaña), entra justo. Recorta un poco más a los más activos y queda con **450**.
+
+2. **Camila arma el mensaje (Paso 2).** Escribe algo humano, no robótico:
+   *"Hola `{nombre}` 👋 Cerramos temporada de invierno con 30% off en todo lo que te gustaba. Te dejo el link, es hasta el domingo."* + una foto del rack en oferta + un **link de pago pre-armado**. La variable `{nombre}` se reemplaza sola en cada envío.
+
+3. **Camila define el goal (Paso 3):** *Pago*. Así Brote le va a trackear cuántas de esas 450 personas terminan comprando, no solo cuántas contestan.
+
+4. **Camila programa el envío (Paso 4).** Elige "mañana 10:00". Su plan Pro tiene cap de **800 mensajes/día**, así que las 450 salen **el mismo día** sin encolar. Brote además respeta el **horario civil** de cada contacto (no manda a las 3 AM).
+
+5. **Al día siguiente, la campaña corre sola.** De las 450:
+   - 40 responden "no gracias / no me sirve" → el agente IA cierra cordial. **3 escriben "baja"** → Brote los marca `opted_out` y no vuelven a recibir campañas.
+   - 90 preguntan tallas, colores, "¿tienen el abrigo azul?" → el agente IA responde con el catálogo, sin que Camila toque nada.
+   - Los interesados reciben el **link de pago** del agente y compran.
+
+6. **Camila abre el dashboard y ve el funnel completo:** enviados → entregados → respondidos → **pagados**.
+
+</Steps>
+
+**Resultado de la campaña de Camila (una tarde, cero mensajes escritos a mano):**
+
+| Métrica | Número |
+|---|---|
+| Contactos en la cohorte | 450 |
+| Respondieron | 130 (29%) |
+| **Ventas cerradas** | **38 · ~$1.140.000** 🎉 |
+| Opt-outs | 3 (0,7% — sano) |
+| Baneos de WhatsApp | 0 (Brote respetó el cap) |
+
+**La decisión de Camila (en 10 segundos):** *"38 ventas de un rack que iba a rematar a pérdida. La próxima temporada armo la campaña antes de liquidar."* Sin campañas habría rematado ese stock a mitad de precio en la tienda física — o no lo habría vendido.
+
+<Aside type="tip" title="Esto es lo que lográs">
+Convertís tu agenda de clientes en **ventas repetidas** — sin equipo de marketing, sin escribir uno por uno, y sin arriesgar tu número. La base que ya tenés es tu canal de ventas más barato: reactivarla cuesta casi nada comparado con conseguir un cliente nuevo.
+</Aside>
+
+## ¿Qué vas a lograr?
+
+| Vas a poder… | Para qué te sirve |
+|---|---|
+| **Reactivar clientes dormidos** | Venderle de nuevo a quien ya te compró (lo más barato que hay) |
+| **Avisar promos y novedades** de una | Fin de temporada, Black Friday, producto nuevo, evento |
+| **Mandar recordatorios** masivos | Vencimientos, citas, carritos abandonados |
+| **Que la IA cierre por vos** | 500 contactos no te generan 500 conversaciones — te generan ventas y contactos ordenados por intención |
+| **No quemar tu WhatsApp** | Los caps y el opt-out automático te mantienen dentro de lo que Meta tolera |
+
+## ¿Qué tan fácil es?
+
+Fácil. El wizard son **4 pasos** (segmento → mensaje → goal → schedule) y toma unos **5 minutos**. No necesitás saber de marketing ni de tecnología:
+
+- Brote te muestra **cuántos contactos** caen en tu filtro en tiempo real, y te avisa **antes** si te pasás del cap.
+- El **throttling es automático**: si tu cohorte supera el cap del día, el resto se encola solo para el día siguiente. No tenés que calcular nada.
+- El **opt-out es automático**: no armás listas de baja a mano.
+- El **agente IA sigue las conversaciones** solo. Vos mirás el funnel.
+
+## Preguntas frecuentes
+
+**¿Me pueden banear el WhatsApp por mandar campañas?**
+Ese es exactamente el riesgo que los **caps** y el **opt-out** existen para evitar. Meta detecta patrones de envío masivo y puede limitar o banear un número que se pasa. Por eso cada plan tiene un tope diario/mensual que **Brote respeta por vos** — nunca te deja mandar de más. Sumá a eso mandar solo a gente que te dio permiso y respetar a quien pide "baja", y estás dentro de lo tolerable. Recuperar un número baneado implica downtime de 1 a 7 días, así que el cap está calibrado conservador a propósito.
+
+**¿Qué es el opt-out automático?**
+Si un contacto responde "stop", "baja", "no me mandes más", "unsubscribe" o variantes, el agente IA **cierra cordial**, le pone el tag `opted_out` y lo **excluye de todas las campañas futuras** — aunque un filtro tuyo técnicamente lo incluya, Brote lo deja afuera. No tenés que armar listas de baja. Si una campaña genera **más de 3% de opt-out**, Brote te avisa que revises el mensaje (suele significar que la cohorte fue muy agresiva o sonó a spam). Detalle en [Opt-out automático](/campanas/opt-out/).
+
+**¿Conviene WhatsApp por Cloud API oficial o por la conexión estándar?**
+La **Cloud API oficial de Meta** es la recomendada: tu número tiene mejor reputación y los envíos son más estables. La conexión estándar también funciona, pero es más sensible a patrones de envío masivo — por eso los caps son la protección clave en cualquiera de las dos. En la práctica, **la gran mayoría de las campañas de Brote salen por WhatsApp** porque es donde está tu base. Para Instagram/Messenger no hay caps propios de Brote, pero esas plataformas limitan mucho el envío masivo a no-seguidores.
+
+**¿Cuántos contactos puedo mandar por campaña?**
+Depende del plan: **Pro** hasta **500** por campaña y **800/día** en total; **Business** hasta **1.500** por campaña y **2.500/día**. Si tenés más contactos que el cap diario, Brote **encola** el resto para los días siguientes automáticamente. Ver [Caps por plan](/campanas/caps/).
+
+**¿La misma persona puede recibir dos campañas?**
+Sí, salvo que haya hecho opt-out. Para el conteo del cap, un contacto que está en 2 cohortes cuenta 2 veces.
+
+## Próximos pasos
+
+<CardGrid>
+  <Card title="Crear tu primera campaña" icon="rocket">
+    [El wizard de 4 pasos, paso a paso →](/campanas/crear/)
+  </Card>
+  <Card title="Caps por plan y protección WA" icon="warning">
+    [Los límites que cuidan tu número →](/campanas/caps/)
+  </Card>
+  <Card title="Opt-out automático" icon="approve-check">
+    [Cómo Brote respeta las bajas →](/campanas/opt-out/)
+  </Card>
+  <Card title="Qué son las campañas" icon="open-book">
+    [El concepto en detalle →](/campanas/que-son/)
+  </Card>
+</CardGrid>

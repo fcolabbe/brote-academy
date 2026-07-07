@@ -45,6 +45,7 @@ export default defineConfig({
             { label: 'Bienvenido a Brote', slug: 'empezar/bienvenido' },
             { label: 'Crear tu cuenta', slug: 'empezar/crear-cuenta' },
             { label: 'Tu primer agente IA en 15 min', slug: 'empezar/primer-agente' },
+            { label: '⭐ El Agente IA (de cero a 100)', slug: 'empezar/agente-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Plantillas por rubro', slug: 'empezar/plantillas-por-rubro', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Conectar WhatsApp', slug: 'empezar/conectar-whatsapp' },
           ],
@@ -102,6 +103,7 @@ export default defineConfig({
         {
           label: 'Pagos',
           items: [
+            { label: '⭐ Cobrar en el chat (de cero a 100)', slug: 'pagos/de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Conectar Mercado Pago', slug: 'pagos/mercado-pago' },
             { label: 'Cobrar dentro del chat', slug: 'pagos/cobro-in-chat' },
           ],
@@ -109,6 +111,7 @@ export default defineConfig({
         {
           label: 'Agendamiento',
           items: [
+            { label: '⭐ Agendamiento (de cero a 100)', slug: 'agendamiento/de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Qué es el agendamiento', slug: 'agendamiento/que-es', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Configurar servicios y horarios', slug: 'agendamiento/configurar' },
             { label: 'Cobrar la reserva y agenda por profesional', slug: 'agendamiento/servicios-profesionales', badge: { text: 'NEW', variant: 'success' } },
@@ -126,6 +129,7 @@ export default defineConfig({
         {
           label: 'Campañas',
           items: [
+            { label: '⭐ Campañas (de cero a 100)', slug: 'campanas/de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Qué son las campañas', slug: 'campanas/que-son' },
             { label: 'Crear tu primera campaña', slug: 'campanas/crear' },
             { label: 'Caps por plan y protección WA', slug: 'campanas/caps' },
