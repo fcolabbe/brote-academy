@@ -46,6 +46,7 @@ export default defineConfig({
             { label: 'Crear tu cuenta', slug: 'empezar/crear-cuenta' },
             { label: 'Tu primer agente IA en 15 min', slug: 'empezar/primer-agente' },
             { label: '⭐ El Agente IA (de cero a 100)', slug: 'empezar/agente-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
+            { label: '⭐ Plantillas por rubro (de cero a 100)', slug: 'empezar/plantillas-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Plantillas por rubro', slug: 'empezar/plantillas-por-rubro', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Conectar WhatsApp', slug: 'empezar/conectar-whatsapp' },
           ],
@@ -53,6 +54,7 @@ export default defineConfig({
         {
           label: 'Brote Copilot',
           items: [
+            { label: '⭐ Brote Copilot (de cero a 100)', slug: 'copilot/de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Qué es Brote Copilot', slug: 'copilot/que-es' },
             { label: 'Onboarding por audio', slug: 'copilot/audio-onboarding' },
             { label: 'Onboarding por URL del sitio', slug: 'copilot/url-onboarding' },
@@ -62,6 +64,7 @@ export default defineConfig({
         {
           label: 'Canales',
           items: [
+            { label: '⭐ Canales (de cero a 100)', slug: 'canales/de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'WhatsApp (oficial)', slug: 'canales/whatsapp' },
             { label: 'Instagram DMs (oficial)', slug: 'canales/instagram' },
             { label: 'Messenger (oficial)', slug: 'canales/messenger' },
@@ -83,6 +86,7 @@ export default defineConfig({
         {
           label: 'Automatización',
           items: [
+            { label: '⭐ Automatización (de cero a 100)', slug: 'automatizacion/de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Tools del agente IA', slug: 'automatizacion/tools-del-agente' },
             { label: 'Agente con voz clonada', slug: 'automatizacion/agente-voz-clonada', badge: { text: 'NEW', variant: 'success' } },
           ],
@@ -144,10 +148,12 @@ export default defineConfig({
         {
           label: 'Integraciones',
           items: [
-            { label: 'Shopify', slug: 'integraciones/shopify' },
+            { label: '⭐ Shopify (de cero a 100)', slug: 'integraciones/shopify-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
+            { label: 'Shopify (técnico)', slug: 'integraciones/shopify' },
             { label: 'Google Calendar', slug: 'integraciones/calendar' },
             { label: 'Google Sheets', slug: 'integraciones/sheets' },
             { label: 'Slack', slug: 'integraciones/slack' },
+            { label: '⭐ Conectar con otras apps (de cero a 100)', slug: 'integraciones/conectar-apps-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Zapier (6.000+ apps)', slug: 'integraciones/zapier' },
             { label: 'Webhooks y API (Business)', slug: 'integraciones/webhooks-api' },
             { label: '⭐ MCP Server (de cero a 100)', slug: 'integraciones/mcp-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },

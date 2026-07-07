@@ -1,0 +1,181 @@
+---
+title: Automatización — de cero a 100
+description: Que Brote actúe solo ante eventos — carrito abandonado, mensaje de bienvenida, recordatorios, acciones del agente disparadas por triggers. Sin código. Guía completa con ejemplo real, para quién es y qué vas a lograr.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## En una frase
+
+**Automatización** = que Brote **haga cosas solo** cuando pasa algo, sin que vos estés mirando el celular.
+
+Un cliente deja el carrito → Brote le escribe a las 2 horas con un descuento. Alguien te escribe por primera vez → recibe un saludo de bienvenida al toque. Se acerca una cita → sale el recordatorio. Se aprueba un pago → el ticket se cierra y se etiqueta solo. **Vos definís el "cuando pasa X, hacé Y" una vez, y funciona 24/7** — mientras dormís, mientras atendés a otro cliente, mientras estás de vacaciones.
+
+<Aside type="tip" title="La pregunta que responde esta función">
+"¿Cuántas ventas se me escapan porque nadie contestó a tiempo, nadie hizo el seguimiento, nadie recordó la cita?"
+</Aside>
+
+## ¿Para quién es esta función?
+
+| Te sirve si… | NO te sirve (todavía) si… |
+|---|---|
+| Se te escapan ventas porque **no alcanzás a hacer el seguimiento** | Atendés todo vos y respondés al instante siempre |
+| Tenés **eventos repetibles** (carritos, citas, pagos, primeros contactos) | Cada conversación es única y no hay patrón |
+| Querés que el negocio **venda y retenga en piloto automático** | Recién estás conectando tu primer canal |
+
+**En criollo:** es para el negocio que ya tiene movimiento y quiere que Brote **trabaje solo** en las cosas que se olvidan o se hacen tarde: el seguimiento, la bienvenida, el recordatorio, el cierre.
+
+<Aside type="caution" title="Plan requerido: Pro">
+Las automatizaciones (junto con las campañas y Brote Copilot) son parte del plan **Pro** (USD $129/mes). En Mini y Starter vas a ver la función con un candado. Al pasar a Pro se activan. Los recordatorios de agendamiento son la excepción: funcionan desde Starter porque vienen incluidos con el módulo de citas.
+</Aside>
+
+## ¿Qué necesitás tener antes de armar tu primera automatización?
+
+<Steps>
+
+1. **Un canal conectado** — al menos WhatsApp ([cómo conectarlo](/canales/whatsapp/)). Es por donde Brote va a escribir cuando se dispare la automatización.
+
+2. **Tu agente IA configurado** — el que responde y continúa la conversación cuando el cliente contesta. Si aún no lo armaste, [empezá acá](/empezar/agente-de-cero-a-100/) o usá [Brote Copilot](/copilot/que-es/) para dejarlo listo en minutos.
+
+3. **Contactos con datos** — teléfono y, si es carrito abandonado, saber qué producto dejaron. Todo esto se llena solo con las [tools del agente](/automatizacion/tools-del-agente/) (`update_contact`, `assign_tag`) mientras conversa.
+
+4. **Plan Pro** activo (o el trial de 14 días para probarlo).
+
+5. **Opcional pero recomendado:** una [pasarela de pago conectada](/pagos/de-cero-a-100/) (Mercado Pago, Flow o Khipu) para que la automatización pueda mandar el link de cobro y cerrar la venta ahí mismo.
+
+</Steps>
+
+<Aside type="note">
+No hace falta saber nada de código ni conectar herramientas externas. Las automatizaciones simples se arman dentro de Brote. Si querés flujos muy sofisticados con sistemas propios, después podés sumar [Make, n8n o Zapier](/integraciones/make-n8n/) — pero para empezar no los necesitás.
+</Aside>
+
+## Cómo funciona: trigger → acción
+
+Toda automatización es la misma idea simple: **un disparador** (algo que pasa) conectado a **una acción** (algo que Brote hace).
+
+**Disparadores más usados:**
+
+| Cuando pasa esto… | Se llama |
+|---|---|
+| Un cliente te escribe por primera vez | `message_received` (primer contacto) |
+| Un cliente deja un carrito sin pagar | carrito abandonado (tag `carrito-abandonado`) |
+| Se aprueba un pago | `payment_received` |
+| El contacto avanza de etapa | `lifecycle_changed` |
+| Se cierra un ticket ganado | `ticket_won` |
+| Se acerca una cita agendada | recordatorio programado |
+
+**Acciones que Brote puede hacer solo** (vía las [tools del agente](/automatizacion/tools-del-agente/)):
+
+- Escribir un mensaje (con o sin foto, PDF o audio).
+- Mandar un link de pago armado (`build_payment_link`).
+- Etiquetar al contacto (`assign_tag`) o moverlo de etapa (`change_stage`).
+- Pasar el ticket a una persona del equipo si el tema lo pide (`handoff_to_human`).
+
+Y la magia extra de Brote: **cuando el cliente responde, el agente IA toma la posta** y sigue la conversación solo. No te deja 200 respuestas en la bandeja sin contestar.
+
+## Ejemplo real: de cero a 100 con Trotamundos 🌱
+
+> **Diego** tiene **"Trotamundos"**, una tienda online de zapatillas outdoor. Vende por WhatsApp e Instagram. Su dolor: mucha gente arma el carrito, pregunta el precio… y desaparece. Nadie hace el seguimiento y esas ventas se enfrían.
+
+Diego arma **una sola automatización** de carrito abandonado:
+
+<Steps>
+
+1. **El disparador:** cuando un cliente arma un carrito (el agente ya lo etiqueta con `carrito-abandonado`) y pasan **2 horas sin pagar**.
+
+2. **La acción:** Brote le escribe solo por WhatsApp:
+   *"Hola Valentina 👟 vi que dejaste las Trekking Pro en tu carrito. Te dejo un 10% si las cerramos hoy: quedan en $45.000. ¿Te mando el link de pago?"*
+
+3. **Valentina responde** "dale". El **agente IA toma la posta**: confirma talla, aplica el descuento y le manda el **link de pago de Mercado Pago** (`build_payment_link`).
+
+4. **Valentina paga.** El pago aprobado dispara otra automatización chica: el ticket pasa a **cerrado-ganado** y se etiqueta `cliente-recurrente`. Diego no tocó nada.
+
+</Steps>
+
+**El mes anterior, sin automatización:**
+
+| | Sin automatización |
+|---|---|
+| Carritos abandonados | 120 |
+| Recuperados (seguimiento a mano, a destiempo) | 6 |
+| Ventas recuperadas | $270.000 |
+
+**El primer mes con la automatización de carrito abandonado:**
+
+| | Con automatización |
+|---|---|
+| Carritos abandonados | 120 |
+| Recuperados (Brote escribe a las 2h, solo) | 22 |
+| Ventas recuperadas | **$990.000** 🎉 |
+
+**La diferencia:** $720.000 más al mes, de ventas que antes se enfriaban. Todo con **una automatización que Diego armó una vez** y que corre sola. El plan Pro que la habilita cuesta menos que **una** de esas zapatillas recuperadas.
+
+<Aside type="tip" title="Esto es lo que lográs">
+Dejás de perder ventas por "no alcancé a responder". El seguimiento que **nunca** hacés a tiempo (porque estás vendiendo, despachando o durmiendo) lo hace Brote al segundo exacto. Vender más **sin trabajar más**.
+</Aside>
+
+## Otras automatizaciones típicas (mismo patrón)
+
+| Querés que… | Disparador | Acción de Brote |
+|---|---|---|
+| Todo cliente nuevo reciba una bienvenida | Primer mensaje del cliente | Saludo + presentación del negocio |
+| Bajar los no-shows de tus citas | Faltan 24h / 2h para la cita | [Recordatorio automático](/agendamiento/recordatorios/) por WhatsApp |
+| Reactivar clientes dormidos | Sin compra en 90 días | Mensaje "hace rato no hablamos, mirá esto" |
+| Felicitar tras la compra | Pago aprobado | "¡Gracias por tu compra! Cualquier cosa, acá estoy" |
+| Priorizar leads calientes | Contacto llega a etapa "propuesta" | Etiqueta `vip` + aviso al equipo |
+
+<Aside type="note">
+¿Querés hacer un envío masivo a una lista entera (no un disparo por evento)? Eso son las [campañas](/campanas/que-son/) — reactivar Black Friday, avisar un lanzamiento, recuperar carritos de la última semana en bloque. Automatización y campañas se complementan: una reacciona a eventos, la otra sale a buscar a tu base.
+</Aside>
+
+## ¿Qué vas a lograr?
+
+- **Vender en piloto automático:** el carrito abandonado, el lead caliente y el "lo pienso y te aviso" reciben seguimiento **siempre**, no cuando te acordás.
+- **Retener sin esfuerzo:** recordatorios que bajan no-shows, post-venta que fideliza, reactivación de dormidos — todo solo.
+- **Recuperar tu tiempo:** dejás de ser el cuello de botella. Brote hace el trabajo repetitivo; vos, el que agrega valor.
+- **Cero ventas frías por olvido:** el evento dispara la acción al instante. No hay "se me pasó".
+
+## ¿Qué tan fácil es?
+
+Muy fácil. Una automatización simple se arma eligiendo **cuándo** (el disparador) y **qué hace Brote** (la acción) — como armar una frase. No hay código.
+
+<Aside type="tip" title="El atajo: Brote Copilot">
+Si no querés ni pensar en configurar, [Brote Copilot](/copilot/que-es/) te deja el agente y sus acciones listos en minutos a partir de tu web o un audio contándole tu negocio. Después vos solo prendés las automatizaciones que querés.
+</Aside>
+
+## Preguntas frecuentes
+
+**¿Necesito saber programar?**
+No. Las automatizaciones simples se arman dentro de Brote eligiendo disparador y acción. Cero código.
+
+**¿La automatización manda spam?**
+No. Brote respeta los [caps de mensajería](/campanas/caps/) de tu plan, el horario civil del contacto y el opt-out automático. Si alguien pide "no más mensajes", queda fuera solo.
+
+**¿Qué pasa cuando el cliente responde a un mensaje automático?**
+El **agente IA toma la posta** y sigue la conversación solo: responde dudas, arma el carrito, manda el link de pago o pasa a un humano si el tema lo pide. No te deja la bandeja llena de respuestas sin contestar.
+
+**¿En qué plan está?**
+En **Pro** (USD $129/mes), junto con campañas y Copilot. Los recordatorios de citas funcionan desde Starter porque vienen con el módulo de agendamiento.
+
+**¿Puedo conectar sistemas externos (mi ERP, mi CRM)?**
+Sí, con flujos más avanzados vía [Make, n8n o Zapier](/integraciones/make-n8n/) (desde Pro) o [Webhooks + API](/integraciones/webhooks-api/) (Business). Pero para las automatizaciones del día a día no hace falta nada de eso.
+
+**¿Y si vendo poco todavía?**
+La automatización rinde cuando ya tenés movimiento repetible (carritos, citas, primeros contactos). Si recién empezás, enfocate primero en [conectar tu WhatsApp](/canales/whatsapp/) y [armar tu agente](/empezar/agente-de-cero-a-100/).
+
+## Próximos pasos
+
+<CardGrid>
+  <Card title="Ver las tools del agente" icon="rocket">
+    [Todo lo que Brote puede hacer solo →](/automatizacion/tools-del-agente)
+  </Card>
+  <Card title="Campañas masivas" icon="open-book">
+    [Salir a buscar a tu base →](/campanas/que-son)
+  </Card>
+  <Card title="Recordatorios de citas" icon="approve-check">
+    [Bajar no-shows en automático →](/agendamiento/recordatorios)
+  </Card>
+  <Card title="Armar el agente con Copilot" icon="setting">
+    [Listo en minutos →](/copilot/que-es)
+  </Card>
+</CardGrid>
