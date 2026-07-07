@@ -42,6 +42,7 @@ export default defineConfig({
         {
           label: 'Empezar',
           items: [
+            { label: '🗺️ Mapa de funcionalidades (todo Brote)', slug: 'empezar/mapa-de-funcionalidades', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Bienvenido a Brote', slug: 'empezar/bienvenido' },
             { label: 'Crear tu cuenta', slug: 'empezar/crear-cuenta' },
             { label: 'Tu primer agente IA en 15 min', slug: 'empezar/primer-agente' },
@@ -49,6 +50,7 @@ export default defineConfig({
             { label: '⭐ Plantillas por rubro (de cero a 100)', slug: 'empezar/plantillas-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Plantillas por rubro', slug: 'empezar/plantillas-por-rubro', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Conectar WhatsApp', slug: 'empezar/conectar-whatsapp' },
+            { label: '⭐ App móvil + push (de cero a 100)', slug: 'empezar/app-movil-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
           ],
         },
         {
@@ -150,9 +152,12 @@ export default defineConfig({
           items: [
             { label: '⭐ Shopify (de cero a 100)', slug: 'integraciones/shopify-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Shopify (técnico)', slug: 'integraciones/shopify' },
-            { label: 'Google Calendar', slug: 'integraciones/calendar' },
-            { label: 'Google Sheets', slug: 'integraciones/sheets' },
-            { label: 'Slack', slug: 'integraciones/slack' },
+            { label: '⭐ Google Calendar (de cero a 100)', slug: 'integraciones/calendar-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
+            { label: 'Google Calendar (técnico)', slug: 'integraciones/calendar' },
+            { label: '⭐ Google Sheets (de cero a 100)', slug: 'integraciones/sheets-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
+            { label: 'Google Sheets (técnico)', slug: 'integraciones/sheets' },
+            { label: '⭐ Slack (de cero a 100)', slug: 'integraciones/slack-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
+            { label: 'Slack (técnico)', slug: 'integraciones/slack' },
             { label: '⭐ Conectar con otras apps (de cero a 100)', slug: 'integraciones/conectar-apps-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Zapier (6.000+ apps)', slug: 'integraciones/zapier' },
             { label: 'Webhooks y API (Business)', slug: 'integraciones/webhooks-api' },
@@ -186,6 +191,7 @@ export default defineConfig({
         {
           label: 'Marca y tono',
           items: [
+            { label: '⭐ Marca / personalización (de cero a 100)', slug: 'marca/de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Tono y registro', slug: 'marca/tono' },
             { label: 'CTAs oficiales', slug: 'marca/ctas' },
           ],

@@ -1,0 +1,148 @@
+---
+title: Tus ventas y contactos en una planilla — de cero a 100
+description: Que cada nuevo contacto, lead y venta de Brote caiga solo en un Google Sheets. Para reportes y para tu equipo que vive en Excel/Sheets. Guía completa con ejemplo real, qué necesitás y qué vas a lograr.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## En una frase
+
+**Google Sheets + Brote** = cada persona nueva que le escribe a tu agente (con su nombre, teléfono, email, interés, canal y fecha) **cae sola en una planilla de Google**, lista para reportes o para el equipo que trabaja en Sheets/Excel.
+
+Tu agente IA atiende clientes todo el día por WhatsApp, Instagram o Messenger. Ese flujo de contactos y ventas queda dentro de Brote — pero **tu equipo administrativo, tu contador o tu jefa de ventas viven en una planilla**. Hasta ahora, alguien copiaba a mano los datos de cada cliente nuevo al Sheets. Con esta integración, **Brote escribe la fila sola**: contacto nuevo → fila nueva, en tiempo real. Cero copy-paste.
+
+<Aside type="tip" title="La pregunta que responde esta función">
+"Mi agente atiende y vende, pero mi equipo arma los reportes en una planilla de Google. ¿Cómo hago para que **cada cliente nuevo aparezca solo en el Sheets**, sin copiar nada a mano?"
+</Aside>
+
+## ¿Para quién es esta función?
+
+| Te sirve si… | NO te sirve (todavía) si… |
+|---|---|
+| Tu equipo **arma reportes en Google Sheets / Excel** | Ya trabajás todo dentro de Brote y no necesitás planilla |
+| Querés un **registro compartido** de leads que se llene solo | Manejás tu catálogo en Shopify y no necesitás una hoja |
+| Tenés gente (admin, contador, ventas) que **no entra a Brote** | Trabajás solo/a y no compartís datos con nadie |
+| Querés **reportar sin depender del que copia a mano** | Preferís exportar un CSV cada tanto y listo |
+
+**En criollo:** es para el negocio cuyo **equipo administrativo vive en una planilla** y quiere que los clientes y ventas de Brote lleguen ahí solos, sin picar datos.
+
+<Aside type="note" title="Plan requerido: Starter (Brote) 🌱">
+La integración con Google Sheets está disponible **desde el plan Starter**. No está en el plan Mini (degustación). Con Starter o superior, tu agente puede leer tu planilla como catálogo **y** escribir cada contacto nuevo en ella.
+</Aside>
+
+## ¿Qué necesitás tener antes de conectar?
+
+<Steps>
+
+1. **Una cuenta de Google** con acceso a Google Drive (la que ya usás para tus planillas).
+
+2. **Una planilla de Google Sheets** creada — puede estar vacía. Vas a definir columnas como `Nombre`, `Email`, `Teléfono`, `Origen`. Si además querés usar la hoja como catálogo, agregá una segunda pestaña (`catalog_tab`) con `Producto`, `Precio`, `Stock`.
+
+3. **Un canal conectado en Brote** (WhatsApp, Instagram, Messenger…) — por ahí entran los contactos que se van a escribir en la planilla.
+
+4. **Plan Starter** o superior activo.
+
+</Steps>
+
+<Aside type="note">
+Al conectar, Brote te da un **email de servicio** (algo como `...@brote.iam.gserviceaccount.com`). Compartís tu planilla con ese email en modo **Editor** — así Brote puede escribir filas. No hace falta nada técnico: es el mismo botón "Compartir" de siempre en Google Sheets.
+</Aside>
+
+## Ejemplo real: de cero a 100 con Rodrigo 🌱
+
+> **Rodrigo** tiene **"Clima Norte"**, una empresa de instalación de aire acondicionado en La Serena. Su agente IA atiende cotizaciones por WhatsApp e Instagram. Pero su hermana **Paula**, que lleva la administración, arma todo en una planilla de Google que comparte con el contador y con los dos técnicos que salen a terreno. Cada mañana, Paula copiaba a mano los clientes nuevos del día desde el celular. Perdía 40 minutos y a veces se le escapaba alguno.
+
+<Steps>
+
+1. **Rodrigo conecta Google Sheets en Brote** en 3 minutos: crea una planilla "Leads Clima Norte" con columnas `Fecha`, `Nombre`, `Teléfono`, `Interés`, `Canal`, la comparte con el email de servicio de Brote y pega el URL en Configuración → Integraciones → Google Sheets. Mapea qué columna es cada dato. Listo.
+
+2. **Camila le escribe por WhatsApp** un martes a las 9 de la noche: *"Hola, quiero cotizar un split de 12.000 BTU para mi living."*
+
+3. **El agente IA de Brote la atiende**: le pide los datos, le da un rango de precio y agenda una visita técnica. En silencio, Brote captura: nombre "Camila", teléfono, interés "split 12.000 BTU", canal "WhatsApp".
+
+4. **Automáticamente, Brote agrega una fila** en la planilla de Paula: `05-07-2026 · Camila · +56 9… · Split 12.000 BTU · WhatsApp`. Sin que nadie toque nada.
+
+5. **A la mañana siguiente, Paula abre la planilla** y ya están los 6 leads que entraron de noche — con fecha, canal y qué pidió cada uno. No copió ni uno.
+
+6. **El contador y los técnicos ven la misma hoja en vivo**: los técnicos filtran por "visita agendada", el contador suma los cerrados del mes. Todos trabajan sobre la misma planilla, que se llena sola.
+
+</Steps>
+
+**Rodrigo y Paula no volvieron a copiar un contacto a mano.**
+
+**Al final del mes, Paula hace las cuentas:**
+
+| Antes de conectar Sheets | Con Google Sheets + Brote |
+|---|---|
+| Copiaba a mano ~40 min cada mañana | **0 minutos** — se llena solo |
+| Se le escapaban ~3 leads/semana | **0 leads perdidos** en la planilla |
+| Reporte mensual: medio día armándolo | Reporte listo: la hoja ya tiene todo |
+| El contador pedía los datos por WhatsApp | El contador ve la **misma hoja en vivo** |
+| ~48 leads registrados/mes | **~62 leads registrados/mes** (ninguno se pierde) 🎉|
+
+<Aside type="tip" title="Esto es lo que lográs">
+Tu planilla deja de ser una tarea manual y se vuelve un **registro que se llena solo**. Tu equipo administrativo sigue trabajando donde ya sabe (Sheets/Excel), pero sin picar datos ni perseguir al que "todavía no copió los del día". **Menos trabajo, cero leads perdidos, reportes al toque.**
+</Aside>
+
+## ¿Qué vas a lograr?
+
+| Lográs… | Por qué importa |
+|---|---|
+| **Cada contacto nuevo en la planilla, solo** | Tu equipo no copia a mano ni pierde leads |
+| **Registro compartido en tiempo real** | Admin, contador y ventas ven lo mismo, en vivo |
+| **Reportes sin depender de nadie** | La hoja ya tiene los datos: filtrás y sumás |
+| **Fecha, canal y tags automáticos** | Sabés de dónde vino cada lead y cuándo entró |
+| **Tu equipo sigue en Sheets/Excel** | Cero curva de aprendizaje: usan lo que ya conocen |
+
+**Lo más potente:** no tenés que mover a tu equipo a una herramienta nueva. **Brote lleva los datos a donde tu gente ya trabaja.** El agente vende y atiende por chat; la planilla de siempre se va llenando sola por detrás.
+
+## ¿Qué tan fácil es?
+
+Fácil. La conexión es de **unos 3 minutos** y solo pide compartir tu planilla:
+
+<Steps>
+
+1. Creá o abrí tu planilla en **Google Drive**.
+
+2. En Brote, andá a **Configuración → Integraciones → Google Sheets** — copiá el **email de servicio** que te muestra.
+
+3. En tu planilla, tocá **Compartir**, pegá ese email y dale permiso de **Editor**.
+
+4. De vuelta en Brote, pegá el **URL de tu planilla** → Brote detecta las columnas → **mapeás** cuál es `Nombre`, `Email`, `Teléfono`, `Origen`. ✅
+
+5. Probalo: agregá una fila a mano, esperá unos segundos y pedile al agente que registre un contacto de prueba.
+
+</Steps>
+
+Después de eso, **no hacés nada más**. Cada contacto nuevo que atienda el agente cae solo en la hoja.
+
+## Preguntas frecuentes
+
+**¿Brote necesita mi contraseña de Google?**
+No. Compartís la planilla con un **email de servicio** (una cuenta técnica de Brote) en modo Editor. Brote solo puede editar las planillas que vos le compartiste — nada más de tu Drive.
+
+**¿Puedo usar la misma planilla como catálogo Y para leads?**
+Sí. En el MVP soportamos **una sola planilla por organización**, pero podés armar **dos pestañas** en la misma hoja: una `catalog_tab` (para que el agente lea precios y stock) y una `leads_tab` (donde escribe los contactos nuevos). Brote las reconoce por separado.
+
+**¿Qué tan rápido aparece un contacto nuevo en la hoja?**
+La escritura de un lead nuevo se hace al momento de capturarlo. Para la **lectura** de catálogo, Brote cachea la planilla por 5 minutos (hay un botón "Refrescar ahora" si cambiaste un precio y no querés esperar).
+
+**¿Sirve si mi planilla es enorme?**
+Hasta **5.000 filas** funciona fluido. Si tu catálogo es más grande que eso, conviene una integración de e-commerce como Shopify. Para leads/reportes, difícilmente llegues a ese tamaño.
+
+**¿Y si prefiero llevar los datos a otra herramienta (mi CRM, otra planilla, un sistema)?**
+Google Sheets es el registro directo. Si querés mandar los mismos datos a **otros sistemas** (tu CRM, correo, notificaciones), eso se arma con automatizaciones tipo Zapier o Make/n8n — misma idea, más destinos.
+
+**¿Necesito plan pago?**
+Sí, desde **Starter**. La integración con Google Sheets no está en el plan Mini.
+
+## Próximos pasos
+
+<CardGrid>
+  <Card title="Detalle técnico de Google Sheets" icon="setting">
+    [Cómo conectar, modos y mapeo de columnas →](/integraciones/sheets)
+  </Card>
+  <Card title="Ordená tus contactos en Brote" icon="open-book">
+    [Contactos de cero a 100 →](/contactos/de-cero-a-100)
+  </Card>
+</CardGrid>

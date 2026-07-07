@@ -1,0 +1,186 @@
+---
+title: Notificaciones en Slack — de cero a 100
+description: Que tu equipo reciba un aviso en Slack cuando entra un lead, se cierra una venta o el agente pide ayuda — y reaccione en minutos sin estar mirando Brote. Guía con ejemplo real, qué necesitás y qué vas a lograr.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## En una frase
+
+**Notificaciones en Slack** = que tu equipo reciba un **aviso en un canal de Slack** cada vez que pasa algo importante en Brote (entra un lead, se cierra una venta, el agente pide ayuda) — así **reaccionan en minutos** sin tener que estar mirando la app.
+
+Tu equipo ya vive en Slack todo el día. En vez de pedirles que abran Brote cada rato "por si acaso", Brote les **avisa solo** en el canal que elijas. El aviso llega con la info clave y un link directo a la conversación. **El lead caliente deja de enfriarse esperando que alguien lo vea.**
+
+<Aside type="tip" title="La pregunta que responde esta función">
+"Entró un lead / se cerró una venta hace 3 horas y nadie lo vio. ¿Cómo hago para que mi equipo **reaccione al toque** sin vivir mirando Brote?"
+</Aside>
+
+## ¿Para quién es esta función?
+
+| Te sirve si… | NO te sirve (todavía) si… |
+|---|---|
+| Tu equipo ya **trabaja en Slack** todo el día | No usás Slack (usás solo email o WhatsApp interno) |
+| Sos **varias personas** atendiendo (ventas, soporte, cobros) | Sos una sola persona que ya mira el inbox de Brote |
+| Querés **reaccionar rápido** a leads calientes y ventas | Tus leads no son urgentes (podés revisar 1 vez al día) |
+| Te sirve **separar avisos** por canal (`#ventas`, `#soporte`, `#cobros`) | Preferís todo en un solo lugar y ya lo tenés cubierto |
+
+**En criollo:** es para el equipo que ya **vive en Slack** y no quiere que un lead caliente se enfríe porque nadie estaba mirando Brote.
+
+<Aside type="note" title="¿Qué plan necesito?">
+La conexión con Slack se hace desde **Configuración → Integraciones → Slack** con un flujo de 1-clic (OAuth). Si querés además disparar **eventos custom** que no están en la lista estándar (por ejemplo, una tag específica aplicada), eso se arma vía [Zapier](/integraciones/zapier/) o [Webhooks](/integraciones/webhooks-api/) — funciones de planes superiores. Revisá los detalles de tu plan en la comparativa.
+</Aside>
+
+## ¿Qué necesitás tener antes de conectar?
+
+<Steps>
+
+1. **Un workspace de Slack** donde trabaje tu equipo. Si todavía no tenés uno, se crea gratis en [slack.com](https://slack.com/).
+
+2. **Permiso para instalar apps** en ese workspace (o pedile a quien administra Slack que apruebe la conexión — toma 1 minuto).
+
+3. **Los canales creados** donde querés recibir los avisos. Recomendado: `#ventas` para leads y pagos, `#soporte` para handoffs. Podés arrancar con uno solo y separar después.
+
+4. **Tu agente IA de Brote andando** en al menos un canal (WhatsApp, Instagram, etc.) — es lo que genera los eventos que van a caer en Slack.
+
+</Steps>
+
+<Aside type="note">
+No necesitás saber nada técnico. La conexión es autorizar Brote en Slack con un click, como cuando conectás cualquier app.
+</Aside>
+
+## Ejemplo real: de cero a 100 con "Muebles del Sur" 🌱
+
+> **Muebles del Sur** es una tienda de muebles a medida en Temuco. Vende por Instagram y WhatsApp. El equipo son **3 personas**: **Carla** (ventas), **Diego** (postventa) y **Rocío** (dueña). Todo el día están en Slack coordinando pedidos, entregas y proveedores — pero **nadie tenía Brote abierto** todo el rato.
+
+**El problema (antes de Slack):** un lead escribía preguntando por un ropero a medida, el agente IA le respondía y lo dejaba listo para cerrar… pero **la conversación quedaba esperando en Brote hasta que alguien la revisara**. A veces pasaban **4 horas** hasta que Carla veía el lead. Varios se enfriaron o compraron en otro lado.
+
+<Steps>
+
+1. **Rocío conecta Slack** en Brote: Configuración → Integraciones → Slack → "Conectar Slack" → elige el workspace del equipo y autoriza. **Menos de 1 minuto.**
+
+2. **Configura a qué canal va cada evento:** `new_lead` y `lead_qualified` → `#ventas`. `handoff_to_human` → `#soporte`. `payment_received` → `#ventas`. Todo desde la misma pantalla, sin código.
+
+3. **Al otro día entra Valentina** preguntando por un ropero de 2 metros. El agente IA le muestra medidas, precio y tiempos. Apenas Brote la identifica como lead caliente, **aparece un aviso en `#ventas` de Slack** con su nombre, el canal, la intención y un link "Ver conversación".
+
+4. **Carla ve el aviso en Slack a los 2 minutos** (estaba ahí igual), toca el link, entra a Brote y le cierra la venta a Valentina mientras todavía estaba caliente. Le manda el link de pago.
+
+5. **Valentina paga.** Cae un segundo aviso en `#ventas`: `payment_received · $340.000`. Rocío lo ve, reacciona con un 🎉 y Diego ya sabe que hay un pedido nuevo que agendar para entrega. **Todo sin abrir Brote para enterarse.**
+
+</Steps>
+
+**El cambio, en números:**
+
+| | Antes (sin Slack) | Después (con Slack) |
+|---|---|---|
+| Tiempo hasta que alguien ve el lead | ~4 horas | ~3 minutos |
+| Leads que se enfriaban por demora | Varios por semana | Casi cero |
+| ¿Alguien tenía que mirar Brote? | Sí, todo el día | No, Slack avisa |
+
+<Aside type="tip" title="Por qué funciona">
+No cambia **qué** hace tu equipo — cambia **cuándo se entera**. El aviso llega al lugar donde ya están mirando (Slack), con el link a un click. Reaccionar en 3 minutos en vez de 4 horas es, muchas veces, la diferencia entre cerrar la venta o perderla.
+</Aside>
+
+## ¿Qué eventos podés recibir?
+
+Elegís cuáles querés y a qué canal va cada uno:
+
+| Evento | Cuándo llega el aviso | A qué canal conviene |
+|---|---|---|
+| `new_lead` | Entra un contacto nuevo (capturó email o teléfono) | `#ventas` |
+| `lead_qualified` | El agente marca el lead como "caliente" | `#ventas` |
+| `handoff_to_human` | El agente IA pide que un humano tome la conversación | `#soporte` |
+| `payment_received` | Se confirma un pago | `#ventas` o `#cobros` |
+| `ticket_won` | Un ticket se cierra como **ganado** | `#ventas` |
+| `ticket_lost` | Un ticket se cierra como **perdido** | `#ventas` |
+| `campaign_completed` | Termina una campaña, con sus stats finales | `#marketing` |
+
+Cada aviso trae la info relevante (cliente, canal, intención, resumen) **más un link directo** a la conversación en Brote.
+
+<Aside type="tip" title="Threading: tu canal no se llena de ruido">
+Si una misma conversación dispara varios eventos (por ejemplo `new_lead` → `handoff` → `payment_received`), los avisos se agrupan **en un thread** del primer mensaje. El canal queda ordenado, no inundado de mensajes sueltos.
+</Aside>
+
+## ¿Cómo se ve un aviso en Slack?
+
+```
+🌱 Brote · Nuevo lead caliente
+
+Cliente: Valentina Rojas (+569 ··· ···)
+Canal: Instagram
+Vertical: Retail — muebles
+Intención: alta — pregunta medidas y tiempos, no regatea precio
+
+Resumen:
+Quiere un ropero de 2 metros a medida. El agente le pasó
+precio ($340.000) y tiempo de entrega. Listo para cerrar.
+
+[ Ver conversación en Brote → ]
+```
+
+## ¿Cómo se conecta? (así de fácil)
+
+<Steps>
+
+1. En Brote: **Configuración → Integraciones → Slack**.
+
+2. Tocá **"Conectar Slack"** → te lleva al login de Slack (OAuth).
+
+3. Elegí el **workspace** de tu equipo y **autorizá**.
+
+4. Configurá **a qué canal** va cada tipo de evento (todos al mismo, o separados en `#ventas`, `#soporte`, `#cobros`).
+
+5. **Probalo:** pedile a un colega que le escriba a tu agente. Vas a ver aparecer `new_lead` en Slack. ✅
+
+</Steps>
+
+## ¿Qué vas a lograr?
+
+- **Reacción en minutos, no en horas:** el lead caliente llega al canal donde tu equipo ya está mirando.
+- **Nadie tiene que "vigilar" Brote:** los avisos van solos; tu gente sigue en Slack como siempre.
+- **Cada persona ve lo suyo:** ventas en `#ventas`, soporte en `#soporte`, cobros donde quieras. Menos ruido, más foco.
+- **Visibilidad de equipo:** todos se enteran de las ventas y los handoffs al mismo tiempo → mejor coordinación.
+- **Cero fricción técnica:** conectás una vez con un click y funciona para siempre.
+
+## ¿Qué tan fácil es?
+
+**Muy fácil.** No hay nada que programar ni códigos que pegar:
+
+- **Conectar:** 1 click (autorizar Brote en tu Slack). Menos de 1 minuto.
+- **Configurar canales:** elegís de una lista a qué canal va cada evento. Otro minuto.
+- **Mantenimiento:** cero. Una vez conectado, anda solo.
+
+La parte más "difícil" es decidir **qué eventos** querés y en **qué canal** — y eso lo cambiás cuando quieras.
+
+## Preguntas frecuentes
+
+**¿Puedo responderle al cliente desde Slack?**
+Por ahora no. El aviso es de solo lectura: para responderle al cliente, tocás el link y abrís la conversación en Brote. (Botones de acción dentro de Slack todavía no están soportados.)
+
+**¿Puedo mandar todos los eventos a un solo canal?**
+Sí. Podés apuntar todo a un mismo canal, o separarlos en `#ventas`, `#soporte`, `#cobros` — como te sirva.
+
+**¿Slack me cobra por esto?**
+No. La conexión usa la app de Slack de forma estándar. Solo necesitás un workspace de Slack (que puede ser el plan gratuito).
+
+**¿Y si quiero un evento que no está en la lista?** (por ejemplo, "cuando se aplica una tag X")
+Eso se arma con avisos custom vía [Zapier](/integraciones/zapier/) o [Webhooks](/integraciones/webhooks-api/) — más flexible, pero requiere configurar el flujo. Los eventos de la tabla de arriba salen nativos, sin armar nada.
+
+**¿El canal se me va a llenar de mensajes?**
+No. Cuando una misma conversación genera varios eventos, se agrupan en un thread. Y vos elegís qué eventos querés recibir: si algo hace mucho ruido, lo apagás.
+
+## Próximos pasos
+
+<CardGrid>
+  <Card title="Detalle de Slack" icon="external">
+    [Eventos, mensaje típico y límites →](/integraciones/slack)
+  </Card>
+  <Card title="Dominá tu inbox" icon="open-book">
+    [Inbox de Brote de cero a 100 →](/inbox/de-cero-a-100)
+  </Card>
+  <Card title="Handoff a humano" icon="right-arrow">
+    [Cuándo el agente pide ayuda →](/inbox/handoff)
+  </Card>
+  <Card title="Eventos custom" icon="puzzle">
+    [Con Zapier o Webhooks →](/integraciones/zapier)
+  </Card>
+</CardGrid>

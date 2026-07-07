@@ -1,0 +1,139 @@
+---
+title: Sincronizar Google Calendar — de cero a 100
+description: Conectá tu Google Calendar con Brote para que las citas agendadas por WhatsApp caigan solas en tu agenda y el agente nunca reserve sobre tus eventos. Guía completa con ejemplo real, qué necesitás, para quién es y qué vas a lograr.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## En una frase
+
+**Sincronizar Google Calendar** = conectás tu agenda de Google con Brote para que **las citas que tu agente IA toma por WhatsApp aparezcan solas en tu calendario** y para que **el agente nunca ofrezca un horario en el que ya tenés algo**.
+
+Vos ya vivís en tu Google Calendar. Con esta conexión, cada cita que el agente reserva se escribe automáticamente ahí, y cada evento que vos tenés (una reunión, el almuerzo, un bloqueo personal) le dice al agente *"acá no agendes"*. **Una sola agenda, sin cruces, sin copiar citas a mano.**
+
+<Aside type="tip" title="La pregunta que responde esta función">
+"El agente me agenda citas por WhatsApp… pero ¿cómo hago para que **no me las cruce** con las reuniones que ya tengo en mi Google Calendar, y que **no tenga que copiarlas** una por una?"
+</Aside>
+
+## ¿Para quién es esta función?
+
+| Te sirve si… | NO te sirve (todavía) si… |
+|---|---|
+| Ya usás **Google Calendar** para tu día a día | No usás calendario digital |
+| Tu agente IA **toma citas por WhatsApp** (usás el agendamiento de Brote) | No tomás citas ni reservas |
+| Tenés **eventos personales o reuniones** que no querés pisar | Tu agenda de Brote y tu vida no se cruzan nunca |
+| Sos profesional o local con agenda: **kine, dentista, abogado, estilista, consultora, inmobiliaria, hotelería** | Atendés por orden de llegada sin agenda |
+
+**En criollo:** es para quien **ya organiza su vida en Google Calendar** y quiere que las citas del WhatsApp entren a esa misma agenda, sin duplicar trabajo ni arriesgar dobles reservas.
+
+<Aside type="caution" title="Plan requerido: Starter (Brote) en adelante">
+La sincronización con Google Calendar es parte del **agendamiento**, disponible **desde el plan Starter**. Conectar el calendario en sí no tiene costo extra ni cobra aparte — es una función incluida en tu plan. En Mini vas a ver el agendamiento con un aviso de plan requerido; al pasar a Starter o superior se activa.
+</Aside>
+
+## ¿Qué necesitás tener antes de conectar?
+
+<Steps>
+
+1. **El agendamiento de Brote andando** — al menos un servicio y tu disponibilidad cargados. ([Cómo se configura](/agendamiento/configurar/)).
+
+2. **WhatsApp conectado en Brote** — es por donde entra el cliente que pide la cita. ([Cómo conectarlo](/canales/whatsapp/)).
+
+3. **Una cuenta de Google** con el calendario que usás para tu día a día (Gmail personal o Google Workspace del negocio).
+
+4. **Plan Starter** (Brote) o superior activo.
+
+</Steps>
+
+<Aside type="note">
+No necesitás crear nada raro ni saber de "APIs". La conexión es un clic desde Brote: autorizás con tu cuenta de Google y listo. Brote se encarga del resto.
+</Aside>
+
+## Ejemplo real: de cero a 100 con la Dra. Rojas 🦷
+
+> **La Dra. Rojas** tiene una **consulta dental** y ya organiza toda su vida en Google Calendar: reuniones con el laboratorio, el almuerzo, las clases de su hija, un congreso el jueves. Su agente IA de Brote ya toma turnos por WhatsApp, pero al principio **no sabía de su Google Calendar** — así que un martes agendó una limpieza a las 11:00… justo cuando ella tenía una reunión con el protésico. Doble reserva. Así lo resolvió conectando el calendario.
+
+<Steps>
+
+1. **La Dra. entra a Configuración → Agendamiento** y toca **"Conectar Google Calendar"**. Autoriza con su cuenta de Google en la ventana que aparece. Toma menos de 1 minuto.
+
+2. **Brote crea un calendario nuevo llamado "Brote — Citas"** dentro de su Google, separado de su calendario principal. Ahí van a caer las citas que tome el agente, ordenaditas y aparte de su agenda personal.
+
+3. **La Dra. elige qué calendario(s) lee Brote para su disponibilidad.** Marca su calendario principal → ahora el agente sabe que el jueves del congreso y las reuniones del laboratorio están ocupados.
+
+4. **Camila escribe al WhatsApp de la consulta:** *"Hola, ¿tienen hora para una limpieza esta semana?"*. El agente consulta la disponibilidad real (free/busy) del calendario de la Dra., **descuenta el jueves del congreso y la reunión del martes 11:00**, y responde: *"¡Hola! Tengo martes 15:30 o miércoles 10:00. ¿Cuál te queda?"*
+
+5. **Camila responde "miércoles 10:00".** El agente reserva, confirma por WhatsApp y **escribe la cita en el calendario "Brote — Citas"**. La Dra. no toca nada: abre su Google y ahí está la limpieza del miércoles a las 10:00, con el nombre de Camila.
+
+6. **Esa misma tarde la Dra. bloquea el viernes** en su Google Calendar porque se va antes. El agente lo respeta al instante: cuando otro cliente pide hora el viernes, **el agente ya no la ofrece**. Sin avisarle a nadie, sin editar Brote.
+
+</Steps>
+
+**Un mes después, la Dra. hace las cuentas:**
+
+| | Antes (sin conectar) | Con Google Calendar conectado |
+|---|---|---|
+| Citas cruzadas con reuniones | 2–3 al mes | 0 |
+| Copiar citas del WhatsApp a Google | Una por una, a mano | Automático |
+| Bloquear tiempo personal | El agente igual lo pisaba | El agente lo respeta solo |
+| Su agenda del día | En dos lados (Brote + Google) | En un solo lado (Google) |
+
+**El cálculo que la convenció:** cada cita cruzada le costaba una reprogramación incómoda con el paciente y ~30 minutos de tira y afloja por WhatsApp. Pasó de 2–3 cruces al mes a **cero**, y dejó de copiar a mano cada cita que entraba por el chat. Todo por autorizar su Google una sola vez.
+
+<Aside type="tip" title="Esto es lo que lográs">
+Una sola agenda. Las citas del WhatsApp **caen solas** en tu Google, y todo lo que ya tenés en Google **le pone freno** al agente. Cero doble reserva, cero copiar y pegar.
+</Aside>
+
+## ¿Qué vas a lograr?
+
+| Resultado | Cómo lo consigue Brote |
+|---|---|
+| **Las citas caen solas en tu agenda** | El agente escribe cada cita en el calendario "Brote — Citas" de tu Google, sin que copies nada |
+| **Cero doble reserva con tus eventos** | Brote lee tu disponibilidad (free/busy) antes de ofrecer un horario — solo propone lo que está libre de verdad |
+| **Bloqueás tiempo y el agente lo respeta** | Marcás un evento en tu Google (personal, congreso, almuerzo) y el agente deja de ofrecer ese rato al instante |
+| **Tu calendario principal, intacto y ordenado** | Las citas del agente van a un calendario aparte ("Brote — Citas"), no se mezclan con tu agenda personal |
+| **Una sola fuente de la verdad** | Dejás de mirar en dos lados: tu día completo vive en Google Calendar |
+
+## ¿Qué tan fácil es?
+
+Muy fácil. Es **un clic**: entrás a Configuración → Agendamiento, tocás "Conectar Google Calendar", autorizás con tu cuenta y ya está. Brote crea el calendario "Brote — Citas" solo y vos elegís qué calendario leer para tu disponibilidad. No hay que copiar códigos ni configurar nada técnico.
+
+<Aside type="note" title="¿Cuánto tarda dejarlo andando?">
+Menos de 2 minutos, y solo lo hacés una vez. De ahí en adelante funciona solo: cada cita nueva entra a tu Google y cada evento tuyo bloquea el horario.
+</Aside>
+
+## Preguntas frecuentes
+
+**¿Toca o desordena mi calendario principal?**
+No. Brote **no escribe en tu calendario principal**. Crea un calendario aparte llamado **"Brote — Citas"** donde van solo las citas que toma el agente. Tu agenda personal queda intacta. De tu calendario principal Brote solo **lee** tu disponibilidad para no pisarte.
+
+**¿Brote ve el contenido de mis eventos personales?**
+Para tu disponibilidad, Brote usa el modo **free/busy**: le importa si un rato está **ocupado o libre**, no el detalle de qué tenés. Solo escribe eventos nuevos (las citas) en el calendario "Brote — Citas".
+
+**¿Puedo leer varios calendarios?**
+Sí. Podés elegir varios calendarios para tu disponibilidad — por ejemplo "Citas Doctora Rojas" y "Visitas Inmuebles Norte" — y el agente los respeta todos antes de ofrecer un horario.
+
+**Si bloqueo un rato en mi Google, ¿el agente deja de ofrecerlo?**
+Sí, al instante. Poné un evento en el calendario que Brote lee y ese horario deja de aparecer entre los turnos disponibles. Es la forma más simple de "cerrarle" tiempo al agente.
+
+**¿Necesito Google Calendar sí o sí para agendar?**
+No. El agendamiento de Brote funciona igual sin conectar Google. Pero al conectarlo ganás dos cosas: las citas caen en tu agenda de siempre y el agente nunca reserva sobre tus eventos existentes.
+
+**¿Y si uso Outlook o Apple Calendar?**
+Por ahora la sincronización directa es con **Google Calendar**. Si usás otro, el agendamiento de Brote sigue funcionando (con su propia agenda interna), pero la sincronización automática es con Google.
+
+## Próximos pasos
+
+<CardGrid>
+  <Card title="Agendamiento de cero a 100" icon="rocket">
+    [La guía completa de citas por WhatsApp →](/agendamiento/de-cero-a-100/)
+  </Card>
+  <Card title="Qué es el agendamiento" icon="open-book">
+    [Cómo agenda, reagenda y recuerda tu agente →](/agendamiento/que-es/)
+  </Card>
+  <Card title="Configurar servicios y horarios" icon="setting">
+    [Cargá lo que se puede reservar y cuándo →](/agendamiento/configurar/)
+  </Card>
+  <Card title="Conectar WhatsApp" icon="approve-check">
+    [El canal por donde entra la cita →](/canales/whatsapp/)
+  </Card>
+</CardGrid>
