@@ -1,14 +1,18 @@
 ---
 title: Academy Brote
-description: Aprende a configurar tu agente IA conversacional para WhatsApp, Instagram, Webchat y más en 15 minutos.
+description: Aprendé a usar Brote de cero a 100 — agente IA para WhatsApp/Instagram, cobrar, agendar, campañas y medir tu publicidad. Con ejemplos reales.
 template: splash
 hero:
-  tagline: Aprende a configurar tu agente IA, conectar canales, cobrar con Mercado Pago y vender mientras duermes.
+  tagline: Todo lo que podés hacer con Brote, explicado de cero a 100 — con ejemplos reales de negocios como el tuyo.
   actions:
     - text: Empezar en 15 minutos
       link: /empezar/bienvenido/
       icon: right-arrow
       variant: primary
+    - text: Ver todas las funciones
+      link: /empezar/mapa-de-funcionalidades/
+      icon: open-book
+      variant: secondary
     - text: Ver demo en vivo
       link: https://brote.ai/es/demo
       icon: external
@@ -17,61 +21,92 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components'
 
-## Qué vas a aprender acá
+## ¿No sabés por dónde empezar?
+
+<CardGrid>
+  <Card title="🗺️ Mapa de funcionalidades" icon="open-book">
+    Todo Brote en una sola vista: **para qué sirve cada función, para quién es y en qué plan**. La mejor forma de tener la foto completa.
+
+    [Ver el mapa completo →](/empezar/mapa-de-funcionalidades/)
+  </Card>
+
+  <Card title="🚀 Armá tu agente en 15 min" icon="approve-check-circle">
+    Brote Copilot arma tu agente IA por vos: le das la URL de tu sitio o un audio, y queda listo. Sin escribir prompts, sin consultor.
+
+    [Empezar con Copilot →](/copilot/de-cero-a-100/)
+  </Card>
+</CardGrid>
+
+## Guías "de cero a 100" (con ejemplos reales)
+
+Cada guía te dice **para qué sirve, para quién es, qué necesitás, un ejemplo real con números y en qué plan entra.**
 
 <CardGrid stagger>
-  <Card title="Empezar en 15 minutos" icon="rocket">
-    Crea tu cuenta, configura tu primer agente IA con Brote Copilot y
-    conecta WhatsApp. Sin escribir prompts, sin consultor.
+  <Card title="Agente IA" icon="comment-alt">
+    El asistente que responde, califica, agenda y cobra 24/7 por vos. El corazón de Brote.
 
-    [Ir a Empezar →](/empezar/bienvenido/)
+    [Agente IA de cero a 100 →](/empezar/agente-de-cero-a-100/)
   </Card>
 
-  <Card title="Brote Copilot" icon="magnifier">
-    Audio del dueño o URL del sitio → agente IA configurado en 15 minutos.
-    La innovación que elimina al consultor humano del setup.
+  <Card title="Canales" icon="mobile-android">
+    WhatsApp (Cloud API oficial), Instagram, Messenger y Webchat. Cuál conectar y para qué sirve cada uno.
 
-    [Cómo funciona Copilot →](/copilot/que-es/)
+    [Canales de cero a 100 →](/canales/de-cero-a-100/)
   </Card>
 
-  <Card title="Conectar canales" icon="puzzle">
-    WhatsApp (Cloud API oficial de Meta), Instagram, Messenger y Webchat —
-    paso a paso para conectar cada canal oficial. Email y Telegram: próximamente.
+  <Card title="Cobrar en el chat" icon="approve-check">
+    El agente manda el link de pago (Mercado Pago / Flow / Khipu / Stripe / PayPal) y el cliente paga sin salir de WhatsApp.
 
-    [Ver guía de canales →](/canales/whatsapp/)
+    [Cobrar de cero a 100 →](/pagos/de-cero-a-100/)
   </Card>
 
-  <Card title="Cobrar con Mercado Pago" icon="document">
-    Genera links de pago dentro del chat. Los cobros van directo a tu cuenta MP,
-    Brote no toca la plata.
+  <Card title="Agendamiento" icon="add-document">
+    Tus clientes reservan turnos por WhatsApp solos, con confirmación y recordatorios. Menos ausencias.
 
-    [Configurar Mercado Pago →](/pagos/mercado-pago/)
+    [Agendamiento de cero a 100 →](/agendamiento/de-cero-a-100/)
   </Card>
 
-  <Card title="Campañas masivas" icon="approve-check">
-    Reactiva tu base de contactos con campañas WhatsApp. Opt-out automático,
-    caps anti-ban, dry-run mode.
+  <Card title="Campañas masivas" icon="list-format">
+    Reactivá tu base con promos por WhatsApp. Con caps anti-ban y opt-out automático.
 
-    [Aprender campañas →](/campanas/que-son/)
+    [Campañas de cero a 100 →](/campanas/de-cero-a-100/)
   </Card>
 
-  <Card title="Casos por vertical" icon="open-book">
-    Hotelería, retail, inmobiliaria, salud, gastronomía. Cómo configurar Brote
-    según tu rubro.
+  <Card title="Atribución de ventas (ROAS)" icon="approve-check-circle">
+    Sabé qué anuncio de Meta o TikTok te generó cada venta. Dejá de pautar a ciegas.
 
-    [Ver tu vertical →](/verticales/hoteleria/)
+    [Atribución de cero a 100 →](/integraciones/atribucion-roas/)
+  </Card>
+
+  <Card title="Voz clonada" icon="comment-alt">
+    El agente responde con mensajes de audio en tu propia voz. Más confianza, más cierre.
+
+    [Voz de cero a 100 →](/voz/de-cero-a-100/)
+  </Card>
+
+  <Card title="Automatización" icon="code-branch">
+    Que Brote actúe solo: carrito abandonado, bienvenidas, recordatorios, seguimientos.
+
+    [Automatización de cero a 100 →](/automatizacion/de-cero-a-100/)
+  </Card>
+
+  <Card title="Conectar con otras apps" icon="cloud-download">
+    Zapier (6.000+ apps), Make, n8n y webhooks. Llevá lo de Brote a tus otras herramientas.
+
+    [Integraciones de cero a 100 →](/integraciones/conectar-apps-de-cero-a-100/)
   </Card>
 </CardGrid>
 
 ## Lo más buscado
 
+- [🗺️ Mapa de todas las funcionalidades](/empezar/mapa-de-funcionalidades/)
+- [Inbox unificado + pipeline](/inbox/de-cero-a-100/)
+- [Contactos / CRM](/contactos/de-cero-a-100/)
+- [Plantillas por rubro](/empezar/plantillas-de-cero-a-100/)
+- [App móvil + notificaciones push](/empezar/app-movil-de-cero-a-100/)
 - [Planes desde Mini $29/mes](/planes/)
-- [Trial de 14 días — qué incluye](/planes/trial/)
-- [Cupón COQUIMBO para PYMEs regionales](/planes/cupon-coquimbo/)
-- [Tono y voz del agente IA](/marca/tono/)
-- [Integración Zapier (6.000+ apps)](/integraciones/zapier/)
 
-## ¿Necesitas ayuda?
+## ¿Necesitás ayuda?
 
-Si no encontraste lo que buscas, escríbenos a [hola@brote.ai](mailto:hola@brote.ai) o
-agenda una llamada con el equipo desde [brote.ai/contact](https://brote.ai/es/contact).
+Si no encontraste lo que buscabas, escribinos a [hola@brote.ai](mailto:hola@brote.ai) o
+agendá una llamada con el equipo desde [brote.ai/contact](https://brote.ai/es/contact).
