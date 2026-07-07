@@ -1,0 +1,173 @@
+---
+title: Contactos y etapas del ciclo (CRM) — de cero a 100
+description: Convertí tu planilla desordenada de clientes en un CRM ordenado. Importá tu CSV, eliminá duplicados, y usá las etapas del ciclo (lead → cliente → evangelista) para saber a quién seguir. Guía completa con ejemplo real, qué necesitás y qué vas a lograr.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## En una frase
+
+**Contactos (CRM)** = tu **base de clientes ordenada** dentro de Brote: quién es cada persona, cómo contactarla, en qué **etapa** de su recorrido está (¿recién llegó? ¿ya compró?) y a quién te conviene seguir hoy.
+
+Tus clientes hoy probablemente viven en varios lados: una planilla de Excel, los contactos del celular, los chats de WhatsApp, algún Instagram. **Sin un CRM, no sabés a quién seguir** — se te enfrían leads, le escribís dos veces al mismo cliente, y perdés al que ya casi compraba. Con Brote, todos tus contactos quedan en un solo lugar, sin duplicados, y **clasificados por etapa** para que sepas exactamente quién está caliente y quién necesita un empujón.
+
+<Aside type="tip" title="La pregunta que responde esta función">
+"Tengo cientos de clientes desparramados. ¿Quién es cada uno, en qué anda, y **a quién le escribo hoy** para vender más?"
+</Aside>
+
+## ¿Para quién es esta función?
+
+| Te sirve si… | NO te sirve (todavía) si… |
+|---|---|
+| Ya tenés una **base de clientes** (aunque sea una planilla desordenada) | Recién arrancás y no tenés ni un cliente |
+| Querés **dejar de perder leads** por no hacer seguimiento | Vendés una sola vez y nunca vuelve a haber contacto |
+| Te pasa que **el mismo cliente aparece repetido** en varios lados | Tenés menos de 10 clientes y los conocés a todos de memoria |
+| Querés **segmentar** para campañas (escribirle solo a los clientes, o solo a los interesados) | No hacés seguimiento ni campañas |
+
+**En criollo:** es para el negocio que **ya tiene clientes pero los tiene hechos un desorden** y quiere ordenarlos para venderles mejor.
+
+<Aside type="note" title="Plan requerido: todos (es core)">
+El CRM de contactos —importar CSV, deduplicar, campos custom y etapas del ciclo— está **disponible en todos los planes**, desde Mini. Es la base de Brote, no una función premium. Lo único que escala por plan son cosas conectadas (como campañas masivas o atribución), no el CRM en sí.
+</Aside>
+
+## ¿Qué necesitás tener antes de empezar?
+
+<Steps>
+
+1. **Tu base de clientes actual**, en cualquier formato. Lo ideal es un **archivo CSV** (lo exportás desde Excel, Google Sheets o de tu sistema anterior con "Guardar como CSV"). Si no tenés nada, no importa: podés empezar de cero y los contactos se van creando solos cuando la gente te escribe.
+
+2. Que el CSV tenga, como mínimo, una columna de **teléfono** o de **email** por fila. Sin al menos uno de los dos, esa fila no se puede importar.
+
+3. Acceso a **Configuración → Contactos** en Brote (necesitás ser admin de tu cuenta).
+
+4. Nada técnico más. No hay que instalar ni configurar nada — subís el archivo y Brote hace el resto.
+
+</Steps>
+
+<Aside type="tip">
+¿Tu planilla tiene los headers en español (`nombre`, `telefono`, `correo`) o en inglés (`name`, `phone`, `email`)? Da igual — Brote reconoce ambos, en mayúsculas o minúsculas. No tenés que renombrar nada.
+</Aside>
+
+## Ejemplo real: de cero a 100 con Rodrigo 🌱
+
+> **Rodrigo** tiene **"Muebles del Sur"**, una tienda de muebles a medida en Concepción. Vende por WhatsApp e Instagram. Tras 3 años juntó **1.200 contactos**… todos en una planilla de Excel caótica: nombres repetidos, teléfonos con y sin `+56`, columnas a medio llenar. No sabía a quién seguir.
+
+<Steps>
+
+1. **Rodrigo exporta su Excel a CSV.** Su planilla tiene columnas `nombre`, `whatsapp`, `correo` y una que dice `estado` con cosas como "cotizó", "compró", "no contestó". La guarda como `clientes.csv`.
+
+2. **Sube el CSV a Brote** en Configuración → Contactos → Importar. Antes de confirmar, mapea su columna `estado`: "cotizó" → **Oportunidad**, "compró" → **Cliente**. Elige la opción **"Solo agregar tags"** para no pisar nada por error.
+
+3. **Brote procesa las 1.200 filas en segundos.** Normaliza todos los teléfonos a formato `+56 9 ...` (los que venían sin `+` los arregla solo) y le devuelve un reporte: **1.050 contactos nuevos**, **90 actualizados**, **60 saltados** (filas sin teléfono ni email, que corrige y reimporta después).
+
+4. **Brote detecta 140 duplicados.** El mismo cliente que le escribió desde dos números, o que estaba cargado dos veces con el nombre en mayúscula y en minúscula. En la sección "Duplicados detectados", Rodrigo revisa y toca **"Quedarse con este"** en el correcto → Brote fusiona los repetidos en uno, conservando todas las conversaciones, notas y pagos. Quedan **1.010 contactos limpios**.
+
+5. **Rodrigo abre el funnel de etapas** (`/app/contacts/funnel`). Por primera vez ve su base ordenada en columnas: **380 Leads**, **210 MQL**, **120 SQL**, **95 Oportunidades**, **180 Clientes**, **25 Evangelistas**. Arrastra cards entre columnas para ajustar los pocos que quedaron mal clasificados.
+
+6. **Ahora sabe a quién seguir.** Filtra los **95 en "Oportunidad"** (gente que cotizó y no cerró) y les manda un mensaje de seguimiento con una promo. De esos 95, **18 le compran** en la semana. Ticket promedio $180.000 → **$3.240.000 recuperados** de clientes que estaban "dormidos" en la planilla.
+
+</Steps>
+
+**Lo que cambió para Rodrigo, en números:**
+
+| Antes (planilla Excel) | Después (CRM Brote) |
+|---|---|
+| 1.200 filas con ~190 basura/duplicadas | 1.010 contactos limpios y únicos |
+| "No sé a quién seguir" | 95 Oportunidades identificadas al instante |
+| Seguimiento a ojo | 18 ventas recuperadas ($3,24M) en 1 semana |
+| Escribía dos veces al mismo cliente | Un contacto = una persona, sin repetidos |
+
+<Aside type="tip" title="Esto es lo que lográs">
+Pasás de "tengo un montón de clientes en algún lado" a **"sé exactamente quién es cada uno y a quién le escribo hoy"**. La plata que ya estaba en tu base —clientes tibios que se te olvidaron— se vuelve **vendible de nuevo**.
+</Aside>
+
+## ¿Qué vas a lograr?
+
+| Capacidad | Qué es | Para qué te sirve |
+|---|---|---|
+| **Base unificada** | Todos tus clientes en un solo lugar | Dejar de tener la info desparramada en 5 apps |
+| **Import CSV** | Subir tu planilla existente en segundos | No cargar 1.000 contactos a mano |
+| **Deduplicación + merge** | Detecta y fusiona repetidos por teléfono, email o nombre | Un cliente = un contacto, sin escribirle dos veces |
+| **Campos custom** | Datos propios de tu rubro (talla, comuna, fecha de reserva…) | Personalizar la atención y las campañas |
+| **Etapas del ciclo** | Clasificar a cada persona: lead → cliente → evangelista | Saber a quién seguir y quién ya compró |
+| **Historial de etapas** | Registro de cada cambio (quién, cuándo, por qué) | Auditar y detectar recompras (churned → customer) |
+
+## Las 7 etapas del ciclo (de lead a evangelista)
+
+Cada contacto tiene **una sola etapa** que marca dónde está en su relación con tu negocio. Estas son las etapas canónicas de Brote, en orden:
+
+| Etapa | Color | Cuándo la usás |
+|---|---|---|
+| **Lead** | gris | Entró al chat pero todavía no calificó |
+| **MQL** | azul | Marketing Qualified — mostró interés |
+| **SQL** | violeta | Sales Qualified — intención clara de comprar |
+| **Oportunidad** | ámbar | Negociando precio o condiciones |
+| **Cliente** | verde | Pagó al menos una vez 🎉 |
+| **Evangelista** | cyan | Cliente que te refiere a otros |
+| **Churned** | rojo | Cliente perdido o inactivo |
+
+<Aside type="note" title="Brote mueve las etapas solo (cuando puede)">
+No tenés que actualizar todo a mano. Cuando un cliente **paga** (Mercado Pago, Flow o Khipu) o cuando cerrás un ticket como "ganado", Brote lo sube a **Cliente** automáticamente. Y si ya está en Cliente/Evangelista/Churned, **no lo degrada** — nunca pisa un estado que pusiste vos a mano.
+</Aside>
+
+<Aside type="caution" title="Etapa ≠ pipeline de tickets">
+No confundas la **etapa del ciclo** (es de la **persona**: una sola, marca su relación contigo) con el **pipeline kanban** (es de cada **conversación/ticket**: una persona puede tener varios abiertos a la vez). Son dos vistas distintas y se complementan.
+</Aside>
+
+## ¿Qué tan fácil es?
+
+Muy fácil. La parte "difícil" es tener tus clientes en algún lado — y eso ya lo tenés. Lo demás es:
+
+<Steps>
+
+1. **Exportar tu planilla a CSV** (un "Guardar como" en Excel o Google Sheets): 1 minuto.
+
+2. **Subir el archivo** a Configuración → Contactos → Importar: 30 segundos.
+
+3. **Revisar duplicados** que Brote detectó y fusionar: unos minutos según cuántos tengas.
+
+4. **Mirar tu funnel de etapas** y empezar a seguir a los que están calientes: inmediato.
+
+</Steps>
+
+No hay que saber nada técnico. Brote limpia los teléfonos, entiende tus headers en español o inglés, y te muestra un reporte claro de qué se importó y qué falló.
+
+## Preguntas frecuentes
+
+**¿Cuántos contactos puedo importar de una?**
+Hasta **10.000 filas por archivo** y **5 MB** de tamaño. Si tenés más, lo dividís en lotes o nos pedís un import asistido.
+
+**¿Qué pasa si mi CSV tiene clientes que ya están en Brote?**
+Vos elegís: **solo agregar tags** (deja el existente intacto, default y más seguro), **saltear**, o **sobrescribir** todos los campos. Brote detecta el duplicado por teléfono o email.
+
+**¿El merge se puede deshacer?**
+No, es **irreversible**. Por eso conviene probar con 1-2 antes de fusionar muchos. Igual guardamos en el contacto ganador un registro de qué se fusionó (`merged_from`) por si hay que auditar. Si te equivocaste, escribinos y miramos los logs.
+
+**¿Puedo agregar campos propios de mi rubro?**
+Sí. Los **campos custom** te dejan guardar datos como `talla_preferida`, `comuna`, `fecha_reserva`, etc. El agente IA incluso los llena solo desde la conversación, y podés mapear columnas del CSV a esos campos al importar.
+
+**¿Tengo que usar las 7 etapas?**
+No. Si tu negocio tiene un funnel más simple, usás solo las que te sirven. La columna "Sin etapa" agrupa a los que todavía no clasificaste — los vas moviendo cuando quieras.
+
+**¿Y si el mismo cliente me escribe por WhatsApp e Instagram?**
+Si comparten teléfono o email exacto, Brote los detecta como duplicados y los podés fusionar. Si los datos son distintos, tenés que mergearlos a mano desde la vista de detalle.
+
+**¿En qué plan está?**
+En **todos**, desde Mini. El CRM es la base de Brote, no una función premium.
+
+## Próximos pasos
+
+<CardGrid>
+  <Card title="Importar tu CSV" icon="upload">
+    [Paso a paso del import →](/contactos/importar-csv)
+  </Card>
+  <Card title="Fusionar duplicados" icon="random">
+    [Limpiar tu base de repetidos →](/contactos/merge)
+  </Card>
+  <Card title="Etapas del ciclo" icon="list-format">
+    [Detalle de las 7 etapas →](/contactos/lifecycle)
+  </Card>
+  <Card title="Tags y campos custom" icon="setting">
+    [Enriquecer tus contactos →](/inbox/tags-fields)
+  </Card>
+</CardGrid>

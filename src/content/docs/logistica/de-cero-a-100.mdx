@@ -1,0 +1,134 @@
+---
+title: Logística en el chat — de cero a 100
+description: Tu agente IA cotiza el envío, compara tarifas y trackea pedidos dentro del chat con Chilexpress y Starken. Guía completa con ejemplo real, qué necesitás, para quién es y qué vas a lograr.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## En una frase
+
+**Logística en el chat** = tu agente IA responde solo **"¿cuánto sale el envío a Concepción?"** con precio y días exactos, y después **trackea el pedido** — todo dentro de la misma conversación, sin abrir el sitio del courier.
+
+Vos vendés productos que despachás a regiones. Cada día tus clientes preguntan lo mismo: *"¿cuánto me sale el despacho?"*, *"¿llega a mi comuna?"*, *"¿dónde va mi pedido?"*. Hoy alguien de tu equipo abre la web de Chilexpress, pone la comuna, el peso, copia el precio y lo pega en el chat. **Con Brote, el agente lo hace solo en segundos**, con la tarifa real, 24/7.
+
+<Aside type="tip" title="La pregunta que responde esta función">
+"¿Cuánto sale el envío a Concepción y cuánto se demora?" — respondida al toque por el agente, con el precio real del courier, sin que nadie del equipo mueva un dedo.
+</Aside>
+
+## ¿Para quién es esta función?
+
+| Te sirve si… | NO te sirve (todavía) si… |
+|---|---|
+| Vendés **productos físicos** y los **despachás dentro de Chile** | Vendés **servicios** o productos **digitales** (nada que enviar) |
+| Tus clientes están en **regiones** y preguntan por el costo de envío | Solo vendés y entregás **presencial** en tu local |
+| Ya tenés (o vas a tener) una cuenta con **Chilexpress** o **Starken** | Despachás solo por **retiro en tienda** |
+
+**En criollo:** es para la tienda que despacha productos a todo Chile y se cansó de cotizar envíos a mano.
+
+<Aside type="note" title="Plan requerido: Starter">
+La logística en el chat viene incluida **desde el plan Starter ($49/mes)**. No es un add-on ni una función Business — está disponible en Starter, Pro y Business. Solo necesitás conectar tu cuenta de courier.
+</Aside>
+
+## ¿Qué necesitás tener antes de conectar?
+
+<Steps>
+
+1. **Una cuenta con un courier chileno** — Chilexpress o Starken (podés conectar los dos).
+   - **Chilexpress:** creá tus 3 *subscription keys* (Coberturas / Cotizador / Envíos) en [developers.wschilexpress.com](https://developers.wschilexpress.com/). Gratis.
+   - **Starken:** pedile a tu ejecutivo Starken las **credenciales de API** del plan empresarial (ojo: **NO** son las mismas con las que entrás a `starken.cl`).
+
+2. **Conectar el courier en Brote:** andá a **Configuración → Integraciones → Chilexpress** (o **Starken**) y pegá tus credenciales.
+
+3. **Configurar el origen del envío** — desde dónde sale tu mercadería:
+   - **Chilexpress:** el código de comuna de origen (tipo `STGO`, `VALP`, `CONC`).
+   - **Starken:** elegís tu ciudad de origen de un listado al conectar.
+
+4. **Plan Starter** (o superior) activo.
+
+</Steps>
+
+<Aside type="caution" title="Credenciales de Starken">
+Si recibís un error `401` al conectar Starken, casi siempre es porque estás usando las credenciales del portal web (`starken.cl`) en vez de las de API. Son distintas — pedí las de API a tu ejecutivo.
+</Aside>
+
+## Ejemplo real: de cero a 100 con Rodrigo 🌱
+
+> **Rodrigo** tiene **"Aromas del Valle"**, una tienda de café de especialidad y accesorios que despacha desde Santiago a todo Chile. Vende por WhatsApp. Vive cotizando envíos a mano y perdiendo ventas cuando responde tarde.
+
+<Steps>
+
+1. **Rodrigo conecta Chilexpress en Brote** en 5 minutos: pega sus 3 subscription keys y configura el origen `STGO` (Santiago).
+
+2. **Camila, de Concepción, escribe** un sábado a las 22:00: *"Hola, quiero 2 kilos de café. ¿Cuánto me sale el envío a Concepción?"*
+
+3. **El agente IA resuelve solo:** reconoce "Concepción", verifica que Chilexpress tiene cobertura, cotiza 2 kg y responde al toque: *"El despacho a Concepción sale $4.990 y llega en 2 a 3 días hábiles ☕"*.
+   *(Rodrigo estaba durmiendo. El agente cotizó con la tarifa real del courier.)*
+
+4. **Camila compra.** El agente le manda el link de pago, paga, y pasan los días.
+
+5. **El martes Camila pregunta:** *"¿Dónde va mi pedido?"*. Rodrigo le da a Camila su número de OT y el agente responde: *"Tu envío está **en reparto** en Concepción, llega hoy 📦"*. Sin que Rodrigo abra la web de Chilexpress.
+
+</Steps>
+
+**Lo que cambió para Rodrigo en un mes:**
+
+| Antes (a mano) | Con Brote |
+|---|---|
+| Respondía cotizaciones en horario de oficina | Cotiza **24/7**, incluso de madrugada |
+| ~4 min por cotización abriendo la web del courier | **Segundos**, dentro del chat |
+| Clientes preguntaban 3 veces "¿dónde va mi pedido?" | El agente trackea solo con el número de OT |
+| Perdía ventas de fin de semana por responder tarde | Cierra ventas cuando el cliente está caliente |
+
+<Aside type="tip" title="Esto es lo que lográs">
+Dejás de ser el cuello de botella de cada cotización. El cliente recibe el precio del envío al instante — y un cliente informado al toque es un cliente que **compra más rápido**.
+</Aside>
+
+## ¿Qué vas a lograr?
+
+| Beneficio | Qué significa para tu negocio |
+|---|---|
+| **Menos tiempo cotizando a mano** | Tu equipo no abre más la web del courier — el agente responde solo |
+| **Cliente informado 24/7** | Cotiza y trackea a cualquier hora, aunque estés cerrado |
+| **Menos ventas perdidas** | Respondés el costo de envío al instante, cuando el cliente está decidido |
+| **Tarifa real, sin errores** | El precio sale del courier, no de una estimación a ojo |
+| **Descuento con tu TCC** | Si conectás tu Tarjeta Cliente Comercial de Chilexpress, aplica ~19% de descuento sobre la tarifa pública |
+
+## ¿Qué tan fácil es?
+
+Muy fácil. La parte "difícil" (tener cuenta con un courier) es algo que ya tenés si despachás productos. Conectar en Brote es pegar tus credenciales una vez y configurar de dónde sale tu mercadería. **De ahí en adelante el agente cotiza y trackea solo** — no configurás nada por envío ni por cliente.
+
+Brote incluye un **resolver de 80 comunas principales**: cuando el cliente escribe "Providencia", "Quilpué" o "Talcahuano", el agente resuelve la comuna solo, sin pedir códigos raros. Y si la comuna cae en una zona rural fuera del listado, el agente **no inventa cobertura** — responde con honestidad *"lo confirmo con el equipo y te aviso"*.
+
+## Preguntas frecuentes
+
+**¿El agente genera la etiqueta de despacho?**
+No en esta versión. Hoy la logística en el chat hace **cotización, cobertura y seguimiento** — que es lo que tus clientes preguntan a diario. La **generación de etiqueta** no está incluida todavía (queda para una fase futura). Por ahora la etiqueta la seguís generando en el portal de tu courier.
+
+**¿Qué couriers puedo conectar?**
+**Chilexpress** y **Starken**, los dos couriers principales de Chile. Podés conectar uno o los dos. Si conectás ambos, Brote elige automáticamente (por defecto Chilexpress, con override configurable si tu cliente típico está en zonas donde Starken cubre mejor, como el sur).
+
+**¿Cuánto me cobra Brote por el envío?**
+Cero. Brote solo cotiza y trackea — el envío lo pagás directo al courier según la tarifa cotizada. La función viene incluida en tu plan desde Starter, sin costo extra.
+
+**¿Necesito saber algo técnico?**
+No. Pegás tus credenciales una vez y listo. El agente arma el request al courier, resuelve la comuna y devuelve el precio — todo por dentro.
+
+**¿Y si el cliente pregunta por una comuna rural que no está en el listado?**
+El agente es honesto: no inventa una cobertura que no puede confirmar. Te avisa a vos para que coordines y le confirmes al cliente.
+
+## Próximos pasos
+
+<CardGrid>
+  <Card title="Cómo funciona la logística" icon="rocket">
+    [Detalle de couriers y router →](/logistica/)
+  </Card>
+  <Card title="Tools del agente" icon="setting">
+    [Ver las tools nativas →](/automatizacion/tools-del-agente)
+  </Card>
+  <Card title="Conectar Chilexpress" icon="approve-check">
+    [developers.wschilexpress.com →](https://developers.wschilexpress.com/)
+  </Card>
+  <Card title="Ver planes" icon="seti:plan">
+    [Logística viene desde Starter →](https://brote.ai/es/pricing)
+  </Card>
+</CardGrid>

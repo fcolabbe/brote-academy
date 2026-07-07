@@ -73,6 +73,7 @@ export default defineConfig({
         {
           label: 'Inbox y pipeline',
           items: [
+            { label: '⭐ Inbox y pipeline (de cero a 100)', slug: 'inbox/de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Inbox unificado', slug: 'inbox/inbox-unificado' },
             { label: 'Pipeline kanban', slug: 'inbox/pipeline' },
             { label: 'Tags y campos custom', slug: 'inbox/tags-fields' },
@@ -89,15 +90,18 @@ export default defineConfig({
         {
           label: 'Voz IA (TTS)',
           items: [
+            { label: '⭐ Voz (de cero a 100)', slug: 'voz/de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Qué es la voz clonada', slug: 'voz/que-es' },
           ],
         },
         {
           label: 'Contactos (CRM)',
           items: [
+            { label: '⭐ Contactos / CRM (de cero a 100)', slug: 'contactos/de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Importar desde CSV', slug: 'contactos/importar-csv' },
             { label: 'Fusionar duplicados', slug: 'contactos/merge' },
             { label: 'Etapas (lifecycle)', slug: 'contactos/lifecycle' },
+            { label: 'Identidad cross-canal', slug: 'contactos/identidad-cross-canal', badge: { text: 'NEW', variant: 'success' } },
           ],
         },
         {
@@ -123,6 +127,7 @@ export default defineConfig({
         {
           label: 'Logística (Chile)',
           items: [
+            { label: '⭐ Logística (de cero a 100)', slug: 'logistica/de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Chilexpress + Starken', slug: 'logistica' },
           ],
         },
@@ -145,7 +150,8 @@ export default defineConfig({
             { label: 'Slack', slug: 'integraciones/slack' },
             { label: 'Zapier (6.000+ apps)', slug: 'integraciones/zapier' },
             { label: 'Webhooks y API (Business)', slug: 'integraciones/webhooks-api' },
-            { label: 'MCP Server (Claude / ChatGPT)', slug: 'integraciones/mcp-server', badge: { text: 'NEW', variant: 'success' } },
+            { label: '⭐ MCP Server (de cero a 100)', slug: 'integraciones/mcp-de-cero-a-100', badge: { text: 'NEW', variant: 'success' } },
+            { label: 'MCP Server (técnico)', slug: 'integraciones/mcp-server' },
             { label: '⭐ Atribución de ventas (de cero a 100)', slug: 'integraciones/atribucion-roas', badge: { text: 'NEW', variant: 'success' } },
             { label: 'Meta Conversions API (técnico)', slug: 'integraciones/meta-conversions-api' },
             { label: 'Make + n8n + cualquier endpoint', slug: 'integraciones/make-n8n', badge: { text: 'NEW', variant: 'success' } },
