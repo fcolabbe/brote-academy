@@ -17,14 +17,35 @@ Es la forma recomendada de conectar WhatsApp a Brote:
 - **Estabilidad oficial.** Tu número no se desconecta por inactividad ni por cambio de teléfono.
 - **Respaldo de Meta.** Es la API oficial de WhatsApp Business, pensada para empresas.
 
-### Cómo conectar (Cloud API)
+<Aside type="danger" title="Antes de empezar: el número NO puede tener WhatsApp activo">
+Un número puede estar en la **app de WhatsApp** *o* en la **API oficial** — nunca en las dos. Si el número que vas a conectar ya tiene WhatsApp o WhatsApp Business, **elimina esa cuenta primero**: abre WhatsApp en ese teléfono → **Ajustes → Cuenta → Eliminar mi cuenta**.
 
-1. Entra a **Configuración → Agente IA → WhatsApp**.
-2. Elige **conectar por la Cloud API oficial de Meta**.
-3. Sigue el flujo guiado para vincular tu número de WhatsApp Business.
-4. Listo — Brote ya está respondiendo en ese número, sin QR.
+💡 Lo ideal es usar un **número nuevo/dedicado** para la atención (un chip nuevo sirve), así no pierdes tu WhatsApp personal. **El 90% de los problemas al conectar son por saltarse este paso.**
+</Aside>
+
+### Lo que necesitas
+
+- Tu cuenta de Brote en plan **Starter o superior**, y ser **administrador**.
+- Una **cuenta de Facebook** (personal — solo se usa para el paso de conexión).
+- Un **número** que **no tenga WhatsApp activo** y que pueda **recibir un SMS o llamada** (para el código de verificación).
+- El **nombre de tu negocio** como quieres que lo vean tus clientes.
+
+### Cómo conectar (Cloud API) — 5 a 10 minutos
+
+1. Entra a **Configuración → WhatsApp** y toca **"Conectar WhatsApp oficial"**.
+2. Se abre una ventana de **Facebook/Meta** — inicia sesión con tu cuenta de Facebook.
+3. Sigue los pasos de Meta:
+   - Elige o **crea tu perfil de empresa** (la misma ventana te lo crea si no tienes).
+   - Escribe el **nombre para mostrar** de tu WhatsApp (lo que verán tus clientes).
+   - Elige la **categoría** de tu negocio e ingresa tu **número de teléfono**.
+4. Te llega un **código de 6 dígitos** por SMS o llamada → escríbelo para verificar el número.
+5. Acepta los términos → **¡listo!** 🎉 La ventana se cierra sola y verás tu número **conectado** en Brote.
 
 Desde ese momento todos los mensajes que entren a tu WhatsApp aparecen en tu [inbox unificado](/inbox/inbox-unificado/), el agente IA responde según tu configuración, y los nuevos contactos se crean automáticamente.
+
+<Aside type="note" title="Facturación y nombre para mostrar">
+La mensajería se factura a través de tu **plan de Brote** — no configuras pagos con Meta directamente. El **nombre para mostrar** lo revisa Meta (que represente a tu negocio, nada genérico ni engañoso); mientras lo aprueban, igual puedes recibir y responder mensajes.
+</Aside>
 
 ## Evolution API (alternativa no oficial)
 
