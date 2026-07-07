@@ -142,9 +142,10 @@ export default defineConfig({
             { label: 'Zapier (6.000+ apps)', slug: 'integraciones/zapier' },
             { label: 'Webhooks y API (Business)', slug: 'integraciones/webhooks-api' },
             { label: 'MCP Server (Claude / ChatGPT)', slug: 'integraciones/mcp-server', badge: { text: 'NEW', variant: 'success' } },
-            { label: 'Meta Conversions API (ROAS)', slug: 'integraciones/meta-conversions-api', badge: { text: 'NEW', variant: 'success' } },
+            { label: '⭐ Atribución de ventas (de cero a 100)', slug: 'integraciones/atribucion-roas', badge: { text: 'NEW', variant: 'success' } },
+            { label: 'Meta Conversions API (técnico)', slug: 'integraciones/meta-conversions-api' },
             { label: 'Make + n8n + cualquier endpoint', slug: 'integraciones/make-n8n', badge: { text: 'NEW', variant: 'success' } },
-            { label: 'TikTok Events API (ROAS)', slug: 'integraciones/tiktok-events-api', badge: { text: 'NEW', variant: 'success' } },
+            { label: 'TikTok Events API (técnico)', slug: 'integraciones/tiktok-events-api' },
           ],
         },
         {
