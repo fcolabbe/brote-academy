@@ -1,0 +1,49 @@
+---
+title: Salud del agente (heartbeat)
+description: "Brote revisa tu agente solo, cada 6 horas: canales caídos, cobros bloqueados y clientes con intención de compra esperando — con aviso por email y arreglo a un clic."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+El miedo número uno de tener un agente IA es que se rompa sin que te des cuenta: el WhatsApp se desvincula, un cliente queda esperando, y tú te enteras cuando ya es tarde. Brote lo resuelve con un **chequeo de salud automático** que corre solo — sin que tengas que configurar nada.
+
+## Qué revisa Brote por ti
+
+Cada 6 horas, la plataforma revisa tu organización completa:
+
+| Chequeo | Qué detecta | Qué haces tú |
+|---|---|---|
+| 📵 **WhatsApp desconectado** | El QR se desvinculó o la sesión cayó — tu agente no puede recibir ni responder | Un clic → reconectar |
+| 🔌 **Agente sin canal** | Tu agente está publicado pero no tiene WhatsApp, Instagram, email ni webchat activo | Un clic → conectar un canal |
+| 💳 **Cobros bloqueados** | Tienes servicios con pago obligatorio pero ninguna pasarela conectada — nadie puede pagarte | Un clic → conectar pasarela |
+| ⏳ **Clientes esperando humano** | Conversaciones derivadas a tu equipo sin actividad hace más de 24 horas | Revisar el Inbox |
+
+## Dónde lo ves
+
+**En tu dashboard (Inicio)**: si algo necesita atención, aparece la sección "Salud del agente" con tarjetas de colores — rojo para roturas, ámbar para lo operacional. Cada tarjeta te lleva directo a la pantalla donde se arregla. Si todo está sano, la sección ni aparece.
+
+**Por email**: para las roturas graves (canal caído, cobros bloqueados) te llega un aviso al correo con el botón de arreglo, aunque no estés mirando la app. Brote no te satura: te vuelve a avisar solo si el problema persiste después de 3 días, y deja de avisar apenas lo arreglas.
+
+## 🔥 Triage inteligente: qué conversaciones valen dinero
+
+Además de los chequeos, una IA de Brote **lee las conversaciones que quedaron esperando a un humano** y las clasifica todos los días:
+
+- **🔥 Intención de compra** — el cliente quería comprar, agendar o pagar y quedó esperando. Cada una de estas es una venta en riesgo.
+- **Necesita humano** — pregunta legítima pendiente, sin señal de compra.
+- **Muerta o spam** — despedidas, consultas ya resueltas, publicidad. Puedes cerrarlas sin culpa.
+
+Las de intención de compra aparecen con su propia tarjeta roja en el dashboard ("🔥 Clientes con intención de compra esperando") y con un **chip 🔥 Compra** en la lista del Inbox, para que tu equipo las ataque primero.
+
+<Aside type="tip" title="Un ejemplo real">
+En las pruebas del sistema, el triage encontró casos como: *"El cliente pidió reservar y pagar el Pack Matrimonio, dio su correo y está esperando el link de pago que nunca llegó"*. Ese es exactamente el tipo de venta que se pierde en silencio — y que ahora tiene una tarjeta roja pidiendo tu atención.
+</Aside>
+
+## Qué NO hace (por diseño)
+
+El chequeo de salud **nunca actúa solo**: no cierra conversaciones, no responde clientes, no cambia tu configuración. Detecta, clasifica y te lo muestra — la decisión siempre es tuya. Es un mecánico que revisa el motor todas las mañanas, no un piloto automático.
+
+## Próximos pasos
+
+- [Handoff a humano](/inbox/handoff/) — qué pasa cuando el agente deriva a tu equipo
+- [Inbox unificado](/inbox/inbox-unificado/) — donde viven las conversaciones marcadas
+- [Auditoría automática del agente](/copilot/audit/) — la revisión de calidad del Copilot

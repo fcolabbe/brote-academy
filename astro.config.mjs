@@ -83,6 +83,7 @@ export default defineConfig({
             { label: 'Pipeline kanban', slug: 'inbox/pipeline' },
             { label: 'Tags y campos custom', slug: 'inbox/tags-fields' },
             { label: 'Handoff a humano', slug: 'inbox/handoff' },
+            { label: 'Salud del agente (heartbeat)', slug: 'inbox/salud-del-agente', badge: { text: 'NEW', variant: 'success' } },
           ],
         },
         {

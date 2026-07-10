@@ -24,8 +24,8 @@ El `slug` es el identificador de tu negocio. Compártelo donde tengas tráfico:
 
 1. Elige el **servicio** (si tienes más de uno).
 2. Elige un **horario** libre real.
-3. Completa **nombre + teléfono** (email opcional).
-4. Confirma → ve "¡Cita confirmada!" y recibe su [recordatorio por WhatsApp](/agendamiento/recordatorios/).
+3. Completa **nombre + teléfono** (email opcional — obligatorio si el servicio cobra).
+4. Confirma → ve "¡Cita confirmada!" y recibe su [recordatorio por WhatsApp](/agendamiento/recordatorios/). Si el servicio tiene pago obligatorio, antes pasa por el paso de pago (ver más abajo).
 
 La cita queda registrada como contacto + conversación en tu Inbox, igual que si hubiera escrito.
 
@@ -41,6 +41,21 @@ Para incrustar la reserva dentro de tu propia página, usa el parámetro `?embed
   style="border:0;border-radius:16px"
 ></iframe>
 ```
+
+## Servicios con pago obligatorio
+
+Si tu servicio tiene **"cobra al reservar"** activado, el link público exige el pago para confirmar — igual que el agente en el chat:
+
+1. El cliente elige horario y deja sus datos (el email pasa a ser obligatorio, para el comprobante).
+2. Su hora queda **reservada por 15 minutos** con un contador visible.
+3. Paga con el link que se le muestra (Mercado Pago, Flow, Khipu, Stripe o PayPal — según lo que tengas conectado).
+4. Al aprobarse el pago, la página pasa sola a "¡Cita confirmada!" y se activan los recordatorios.
+
+Si no paga a tiempo, la reserva expira y **el horario vuelve a ofrecerse** a otros clientes — sin citas fantasma ocupando tu agenda.
+
+<Aside type="caution" title="Necesitas una pasarela conectada">
+Un servicio con pago obligatorio sin pasarela conectada no puede reservarse por el link público (el cliente ve un aviso para contactarte directo). Conecta [Mercado Pago](/pagos/mercado-pago/), Flow o Khipu antes de activar el cobro.
+</Aside>
 
 ## Anti doble-booking
 

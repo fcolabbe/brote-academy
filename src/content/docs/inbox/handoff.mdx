@@ -55,6 +55,19 @@ Cuando entra un handoff:
 Podés definir un SLA por equipo: "si nadie agarra el handoff en 15 min, sube de prioridad y vuelve a notificar". Útil para garantizar tiempo de respuesta humano sin perder leads.
 </Aside>
 
+## Shortcuts del operador: agendar y cobrar en un clic
+
+Cuando tomas el control de una conversación, no tienes que redactar todo a mano. Junto al cuadro de mensaje hay dos botones nuevos:
+
+- **📅 Enviar horarios**: eliges el servicio y Brote inserta en tu mensaje los próximos horarios disponibles reales (con precio si corresponde) más el link de reserva pública. Tú lo revisas, lo ajustas si quieres, y lo envías.
+- **💳 Enviar link de pago**: eliges un servicio con precio — o escribes un monto libre con su concepto — y Brote genera el link de cobro real (con la pasarela que tengas conectada) y lo deja escrito en tu mensaje, listo para enviar.
+
+Nada se envía solo: los shortcuts **insertan el texto en tu mensaje** para que siempre tengas la última palabra antes de mandar.
+
+<Aside type="note" title="Requisitos">
+El shortcut de horarios necesita servicios de [agendamiento configurados](/agendamiento/configurar/); el de pago, una [pasarela conectada](/pagos/mercado-pago/) y plan pago (el plan Free no permite cobros). Si falta algo, el propio botón te dice qué configurar.
+</Aside>
+
 ## Volver a IA después del handoff
 
 Cuando el operador cierra la conversación (ganada/perdida/archivada), el agente IA vuelve a estado `active` para esa contact. La próxima interacción la maneja el agente otra vez.
