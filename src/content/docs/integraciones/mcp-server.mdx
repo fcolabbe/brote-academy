@@ -45,21 +45,21 @@ Próximas tools en roadmap: `lookup_product` (catálogo Shopify),
 
 Para generar una API key:
 1. Ve a **Settings → Integraciones → "Conecta con 6.000+ apps"**.
-2. Click **"Generar API key"**. Copiá el token (se muestra una sola vez).
+2. Click **"Generar API key"**. Copia el token (se muestra una sola vez).
 
 ## Conectar desde Claude Desktop
 
 <Aside type="caution">
 Claude Desktop al día de hoy **solo soporta MCP via stdio**, no HTTP directo.
 Para conectarte a un servidor MCP HTTP como Brote, usamos `mcp-remote`
-(paquete npm) como bridge stdio→HTTP. Necesitás Node + npx instalados
+(paquete npm) como bridge stdio→HTTP. Necesitas Node + npx instalados
 en tu máquina.
 </Aside>
 
-1. Abrí Claude Desktop → **Settings → Developer → Edit Config**, o editá
+1. Abre Claude Desktop → **Settings → Developer → Edit Config**, o edita
    manualmente `~/Library/Application Support/Claude/claude_desktop_config.json`
    en macOS (equivalente en Windows).
-2. Agregá la entrada `"brote"` dentro de `mcpServers` — **sin borrar las
+2. Agrega la entrada `"brote"` dentro de `mcpServers` — **sin borrar las
    otras** que ya tengas (filesystem, notebooklm, etc):
 
 ```json
@@ -79,14 +79,14 @@ en tu máquina.
 }
 ```
 
-3. Reiniciá Claude Desktop completamente (cmd+Q + abrir de nuevo, no
+3. Reinicia Claude Desktop completamente (cmd+Q + abrir de nuevo, no
    solo cerrar la ventana).
 4. En cualquier conversación, Claude va a tener acceso a las 9 tools de
-   Brote. Probá pedidos como:
+   Brote. Prueba pedidos como:
    - *"Listame mis 10 conversaciones abiertas más recientes de Brote"*
    - *"Cambia el lifecycle de Pedro González a customer"*
-   - *"Cotizá un envío de 2kg a Providencia"*
-   - *"Generá un link de pago Mercado Pago por $25.000 con descripción 'Sesión de fotos'"*
+   - *"Cotiza un envío de 2kg a Providencia"*
+   - *"Genera un link de pago Mercado Pago por $25.000 con descripción 'Sesión de fotos'"*
 
 ### Cómo es el handshake (qué pasa por debajo)
 
@@ -126,16 +126,16 @@ incorpora al razonamiento para responderte.
 
 ### Claude Desktop dice "Server disconnected"
 
-1. Abrí los logs: `~/Library/Logs/Claude/mcp-server-brote.log` (macOS).
-2. Buscá la última línea con `error` o `Connection error`.
+1. Abre los logs: `~/Library/Logs/Claude/mcp-server-brote.log` (macOS).
+2. Busca la última línea con `error` o `Connection error`.
 3. Causas comunes:
 
 | Error en log | Causa | Fix |
 |---|---|---|
-| `EACCES` o `npx: command not found` | Node/npm no están en el PATH del proceso Claude | Asegurate que Node está instalado globalmente (`brew install node`) y reiniciá Claude |
-| `401 unauthorized` | API key inválida o revocada | Generá una nueva en Settings → Integraciones → Desarrollador → API key |
+| `EACCES` o `npx: command not found` | Node/npm no están en el PATH del proceso Claude | Asegurate que Node está instalado globalmente (`brew install node`) y reinicia Claude |
+| `401 unauthorized` | API key inválida o revocada | Genera una nueva en Settings → Integraciones → Desarrollador → API key |
 | `400 Invalid JSON-RPC 2.0 envelope` | Tu instalación de mcp-remote usa una versión vieja del protocolo | `rm -rf ~/.npm/_npx && killall node` para que descargue la última |
-| `EAI_AGAIN` o timeout | DNS o red bloquea brote.ai | Probá `curl https://brote.ai/api/mcp` desde la terminal — si no responde, problema de red |
+| `EAI_AGAIN` o timeout | DNS o red bloquea brote.ai | Prueba `curl https://brote.ai/api/mcp` desde la terminal — si no responde, problema de red |
 
 ### Las tools no aparecen aunque conectó
 
@@ -143,7 +143,7 @@ Asegurate que Claude Desktop esté en una **conversación nueva** (no en
 una existente abierta antes del restart). Los MCP servers solo se cargan
 al abrir conversación.
 
-Probá pedirle explícitamente: *"qué tools del MCP brote tienes
+Prueba pedirle explícitamente: *"qué tools del MCP brote tienes
 disponibles?"*. Debería listar las 9.
 
 ### Claude usa Supabase u otro MCP en vez de Brote
@@ -225,7 +225,7 @@ cualquier tool sobre cualquier dato de la org. Próximamente vamos a
 agregar scopes granulares (`conversations:read`, `contacts:write`, etc).
 
 <Aside type="caution">
-Tratá tu API key como contraseña — el agente que la tenga puede leer
+Trata tu API key como contraseña — el agente que la tenga puede leer
 todo tu inbox, mandar mensajes a tus clientes, modificar contactos y
 generar cobros. Si se filtra, rotala desde Settings → Integraciones →
 "Revocar".
@@ -233,8 +233,8 @@ generar cobros. Si se filtra, rotala desde Settings → Integraciones →
 
 ## Discovery
 
-Si necesitás verificar que el endpoint es realmente MCP sin enviar
-credenciales, hacé un `GET`:
+Si necesitas verificar que el endpoint es realmente MCP sin enviar
+credenciales, haz un `GET`:
 
 ```bash
 curl https://brote.ai/api/mcp

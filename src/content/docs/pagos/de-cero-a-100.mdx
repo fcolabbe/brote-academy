@@ -1,6 +1,6 @@
 ---
 title: Cobrar dentro del chat — de cero a 100
-description: El agente IA manda un link de pago y el cliente paga sin salir de WhatsApp. Guía completa con ejemplo real, qué necesitás, para quién es y qué vas a lograr.
+description: El agente IA manda un link de pago y el cliente paga sin salir de WhatsApp. Guía completa con ejemplo real, qué necesitas, para quién es y qué vas a lograr.
 ---
 
 import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
@@ -9,7 +9,7 @@ import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
 
 **Cobrar in-chat** = tu agente IA **manda un link de pago dentro de la conversación** y el cliente paga sin salir de WhatsApp (o Instagram, o el canal por donde te escribió).
 
-El cliente pregunta por un producto, el agente cotiza, arma el link de pago (Mercado Pago, Flow, Khipu, Stripe o PayPal) y lo manda en el mismo chat. El cliente toca, paga, y la venta queda confirmada — **sin mandarlo a otra página, sin que vos toques nada**.
+El cliente pregunta por un producto, el agente cotiza, arma el link de pago (Mercado Pago, Flow, Khipu, Stripe o PayPal) y lo manda en el mismo chat. El cliente toca, paga, y la venta queda confirmada — **sin mandarlo a otra página, sin que tú toques nada**.
 
 <Aside type="tip" title="La pregunta que responde esta función">
 "Un cliente me dice *'lo quiero llevar'* a las 11 de la noche. ¿Cómo le cobro **ahí mismo**, sin que se enfríe la venta ni yo tenga que estar despierto?"
@@ -19,10 +19,10 @@ El cliente pregunta por un producto, el agente cotiza, arma el link de pago (Mer
 
 | Te sirve si… | NO te sirve (todavía) si… |
 |---|---|
-| Vendés algo con **precio** (producto, servicio, plan) y querés cobrar en el chat | Solo das información y no cobrás |
-| Estás en **Chile** → conectás **Mercado Pago, Flow o Khipu** | No tenés cuenta en ninguna pasarela |
-| Vendés **fuera de Chile / cobrás en otras monedas** → conectás **Stripe o PayPal** | Cobrás solo en efectivo presencial |
-| Perdés ventas porque el cliente "lo piensa" cuando lo mandás a pagar afuera | — |
+| Vendes algo con **precio** (producto, servicio, plan) y quieres cobrar en el chat | Solo das información y no cobras |
+| Estás en **Chile** → conectas **Mercado Pago, Flow o Khipu** | No tienes cuenta en ninguna pasarela |
+| Vendes **fuera de Chile / cobras en otras monedas** → conectas **Stripe o PayPal** | Cobras solo en efectivo presencial |
+| Pierdes ventas porque el cliente "lo piensa" cuando lo mandas a pagar afuera | — |
 
 **En criollo:** es para cualquiera que **venda y quiera cobrar sin fricción**, en el mismo momento en que el cliente dice que sí.
 
@@ -30,15 +30,15 @@ El cliente pregunta por un producto, el agente cotiza, arma el link de pago (Mer
 Cobrar dentro del chat es una función de los **planes pagos** (Starter en adelante). Conectar tu pasarela y que el agente genere links de pago está incluido desde Starter. Las suscripciones recurrentes y el volumen alto son parte de los planes superiores. Si estás en el trial o en Mini, vas a ver la función disponible según tu plan.
 </Aside>
 
-## ¿Qué necesitás tener antes de conectar?
+## ¿Qué necesitas tener antes de conectar?
 
 <Steps>
 
-1. **Una cuenta en una pasarela de pago.** Elegí según dónde vendés:
+1. **Una cuenta en una pasarela de pago.** Elige según dónde vendes:
    - **Chile:** [Mercado Pago](https://www.mercadopago.cl/), [Flow](https://www.flow.cl/) o [Khipu](https://khipu.com/) (transferencia).
    - **Internacional / otras monedas:** [Stripe](https://stripe.com/) o [PayPal](https://www.paypal.com/).
 
-2. **Conectarla en Brote.** En **Configuración → Integraciones → Pagos**, tocás tu pasarela y la autorizás. En la mayoría es 1 clic (te redirige al login de la pasarela y volvés). La plata va **directo a tu cuenta** — Brote no la toca.
+2. **Conectarla en Brote.** En **Configuración → Integraciones → Pagos**, tocas tu pasarela y la autorizas. En la mayoría es 1 clic (te redirige al login de la pasarela y vuelves). La plata va **directo a tu cuenta** — Brote no la toca.
 
 3. **Tu catálogo o precios cargados** para que el agente sepa cuánto cobrar (productos, servicios o una tabla de precios en tu agente).
 
@@ -47,7 +47,7 @@ Cobrar dentro del chat es una función de los **planes pagos** (Starter en adela
 </Steps>
 
 <Aside type="tip" title="La plata es tuya, directa">
-Cuando conectás Mercado Pago / Flow / Khipu / Stripe / PayPal, los pagos de tus clientes caen **en tu cuenta de esa pasarela**, no en Brote. Brote solo cobra su propia suscripción por separado.
+Cuando conectas Mercado Pago / Flow / Khipu / Stripe / PayPal, los pagos de tus clientes caen **en tu cuenta de esa pasarela**, no en Brote. Brote solo cobra su propia suscripción por separado.
 </Aside>
 
 ## Ejemplo real: de cero a 100 con Vivero Raíz 🌿
@@ -66,7 +66,7 @@ Cuando conectás Mercado Pago / Flow / Khipu / Stripe / PayPal, los pagos de tus
 
 5. **Diego paga** los $32.400 desde el link, sin abrir otra app. Flow aprueba el pago.
 
-6. **Brote confirma la venta automáticamente:** el ticket pasa a "Pago confirmado", el agente le responde a Diego *"¡Recibí tu pago! Te despachamos mañana, te aviso con el seguimiento 📦"*, y **se dispara la logística** (etiqueta de envío) y la **atribución** (si Diego vino de un anuncio, esa venta queda registrada en el ad que la generó).
+6. **Brote confirma la venta automáticamente:** el ticket pasa a "Pago confirmado", el agente le responde a Diego *"¡Recibe tu pago! Te despachamos mañana, te aviso con el seguimiento 📦"*, y **se dispara la logística** (etiqueta de envío) y la **atribución** (si Diego vino de un anuncio, esa venta queda registrada en el ad que la generó).
 
 </Steps>
 
@@ -80,8 +80,8 @@ Cuando conectás Mercado Pago / Flow / Khipu / Stripe / PayPal, los pagos de tus
 
 **De cero (una consulta a las 22:40) a 100 (venta cobrada de $32.400) en menos de 3 minutos — sin que Javiera tocara el teléfono.**
 
-<Aside type="tip" title="Esto es lo que lográs">
-La venta se cierra **cuando el cliente está caliente**, no cuando vos te despertás. Menos carritos abandonados, cero fricción, y cada peso queda registrado.
+<Aside type="tip" title="Esto es lo que logras">
+La venta se cierra **cuando el cliente está caliente**, no cuando tú te despiertas. Menos carritos abandonados, cero fricción, y cada peso queda registrado.
 </Aside>
 
 ## ¿Qué vas a lograr?
@@ -90,20 +90,20 @@ La venta se cierra **cuando el cliente está caliente**, no cuando vos te desper
 |---|---|
 | **Menos carritos abandonados** | El cliente paga en el mismo chat, sin saltar a otra página donde "se enfría" |
 | **Cobrar 24/7** | El agente genera el link a cualquier hora, aunque estés durmiendo o cerrado |
-| **Cero trabajo manual** | No pasás números de cuenta ni confirmás transferencias a mano |
+| **Cero trabajo manual** | No pasas números de cuenta ni confirmas transferencias a mano |
 | **Todo registrado** | Cada pago queda asociado al cliente, al ticket y (si aplica) al anuncio que lo trajo |
 | **Se dispara el resto solo** | Al confirmarse el pago, arranca la logística y la atribución de la venta |
 
 ## ¿Qué tan fácil es?
 
-Muy fácil. La parte "difícil" (tener una cuenta en la pasarela) es algo que probablemente ya tenés si vendés online. Lo demás:
+Muy fácil. La parte "difícil" (tener una cuenta en la pasarela) es algo que probablemente ya tienes si vendes online. Lo demás:
 
-- **Conectar:** 1 clic desde Configuración → Integraciones → Pagos. Autorizás tu pasarela y listo.
-- **Cobrar:** no configurás nada por venta. El agente detecta la intención de compra, calcula el monto y manda el link **solo**.
+- **Conectar:** 1 clic desde Configuración → Integraciones → Pagos. Autorizas tu pasarela y listo.
+- **Cobrar:** no configuras nada por venta. El agente detecta la intención de compra, calcula el monto y manda el link **solo**.
 - **Después de conectar:** funciona para siempre. Cada vez que un cliente quiera pagar, el link aparece en el chat sin que muevas un dedo.
 
 <Aside type="note" title="¿Cuánto tarda la conexión?">
-Menos de 2 minutos. No necesitás saber nada técnico — solo darle "sí" en la ventana de tu pasarela.
+Menos de 2 minutos. No necesitas saber nada técnico — solo darle "sí" en la ventana de tu pasarela.
 </Aside>
 
 ## Preguntas frecuentes
@@ -115,15 +115,15 @@ La comisión es **la de tu pasarela** (Mercado Pago, Flow, Khipu, Stripe o PayPa
 No. Los pagos caen **directo en tu cuenta** de la pasarela que conectaste. Brote nunca toca tu plata.
 
 **¿Qué pasarela elijo?**
-Depende de dónde y cómo vendés:
+Depende de dónde y cómo vendes:
 
-| Vendés… | Pasarela recomendada |
+| Vendes… | Pasarela recomendada |
 |---|---|
 | En Chile, tarjeta/débito/wallet | **Mercado Pago** o **Flow** |
 | En Chile, transferencia bancaria | **Khipu** |
 | Fuera de Chile / en otras monedas | **Stripe** o **PayPal** |
 
-Podés conectar **más de una** — el agente elige la adecuada según el caso.
+Puedes conectar **más de una** — el agente elige la adecuada según el caso.
 
 **¿El cliente tiene que salir de WhatsApp?**
 No. Las pasarelas abren un checkout optimizado dentro del chat. El cliente paga sin cambiar de app — esa baja fricción es justo lo que dispara la conversión.
@@ -132,7 +132,7 @@ No. Las pasarelas abren un checkout optimizado dentro del chat. El cliente paga 
 Sí. Para membresías o planes mensuales, el agente puede generar un link de **suscripción recurrente**: el cliente acepta una vez y la pasarela cobra automático cada período.
 
 **¿Y si el cliente no paga en el momento?**
-El link queda vivo. Si el cliente lo deja pendiente, el agente puede hacer el follow-up y recordarle, sin que vos tengas que perseguirlo.
+El link queda vivo. Si el cliente lo deja pendiente, el agente puede hacer el follow-up y recordarle, sin que tú tengas que perseguirlo.
 
 ## Próximos pasos
 
@@ -144,7 +144,7 @@ El link queda vivo. Si el cliente lo deja pendiente, el agente puede hacer el fo
     [El flujo dentro del chat →](/pagos/cobro-in-chat)
   </Card>
   <Card title="Atribución de ventas" icon="rocket">
-    [Sabé qué anuncio generó cada venta →](/integraciones/atribucion-roas)
+    [Descubre qué anuncio generó cada venta →](/integraciones/atribucion-roas)
   </Card>
   <Card title="Ver planes" icon="setting">
     [Cobrar in-chat viene desde Starter →](/planes/comparativa)

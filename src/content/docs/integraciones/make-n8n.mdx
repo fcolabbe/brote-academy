@@ -15,8 +15,8 @@ patterns standard que Zapier:
   cambia lifecycle, etc.
 
 <Aside type="tip">
-Si solo necesitás patrones simples (lead → Sheets, payment → Slack),
-usá Brote con Zapier desde
+Si solo necesitas patrones simples (lead → Sheets, payment → Slack),
+usa Brote con Zapier desde
 [Settings → Integraciones → Desarrollador](/integraciones/webhooks-api).
 Make y n8n son para cuando quieres flujos más sofisticados (branching,
 loops, scheduled, JSON transforms).
@@ -36,12 +36,12 @@ loops, scheduled, JSON transforms).
    - `ticket_won` — ticket cerrado ganado.
    - `conversation_closed` — conv archivada manualmente o por IA.
 5. **Secret HMAC**: Brote firma cada payload con HMAC-SHA256. Anota el
-   secret — lo necesitás del lado de Make/n8n para validar firma.
+   secret — lo necesitas del lado de Make/n8n para validar firma.
 
 ### En Make.com
 
 1. Crea un nuevo scenario.
-2. Agregá el módulo **"Webhooks → Custom webhook"**.
+2. Agrega el módulo **"Webhooks → Custom webhook"**.
 3. Click "Add" → "Save" — Make te genera una URL única
    tipo `https://hook.eu1.make.com/abc123def456`.
 4. Copiala y pegala en Brote como URL del webhook.
@@ -54,18 +54,18 @@ loops, scheduled, JSON transforms).
 ### En n8n
 
 1. Crea un nuevo workflow.
-2. Agregá el node **"Webhook"** como trigger.
+2. Agrega el node **"Webhook"** como trigger.
 3. Method: **POST**. Path: déjalo random o customizalo.
 4. n8n te muestra una URL `https://tuserver.com/webhook/abc-def`.
 5. Pegala en Brote como URL.
-6. (Opcional) Activá la firma HMAC-SHA256 en el node Webhook con el
+6. (Opcional) Activa la firma HMAC-SHA256 en el node Webhook con el
    secret de Brote.
-7. Activá el workflow.
+7. Activa el workflow.
 8. Mve un mensaje de prueba. n8n lo captura.
 
 ### Validar firma HMAC (recomendado)
 
-Brote firma cada POST con header `x-brote-signature: sha256=<hex>`. Verificá:
+Brote firma cada POST con header `x-brote-signature: sha256=<hex>`. Verifica:
 
 ```js
 // En un Make Custom JS code o n8n Function node
@@ -93,7 +93,7 @@ payloads falsos.
 
 ### Llamar desde Make
 
-1. Agregá módulo **"HTTP → Make a request"**.
+1. Agrega módulo **"HTTP → Make a request"**.
 2. URL: por ejemplo `https://brote.ai/api/conversations/{contact_id}/messages`
 3. Method: **POST**
 4. Headers:
@@ -106,7 +106,7 @@ payloads falsos.
 
 ### Llamar desde n8n
 
-1. Agregá node **"HTTP Request"**.
+1. Agrega node **"HTTP Request"**.
 2. Method: **POST**
 3. URL: igual que arriba
 4. Authentication: **Generic Credential Type → Header Auth**
@@ -144,7 +144,7 @@ los flows comunes:
 - Lifecycle change → HubSpot CRM
 - Ticket ganado → Notion DB
 
-Son skeletons mínimos — después de importarlos en Make/n8n completás los
+Son skeletons mínimos — después de importarlos en Make/n8n completas los
 detalles específicos (canal Slack, sheet ID, base ID Notion, etc).
 
 ## Posicionamiento competitivo

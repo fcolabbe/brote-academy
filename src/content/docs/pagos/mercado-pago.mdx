@@ -5,7 +5,7 @@ description: "Autoriza Mercado Pago con un click. Tu agente IA genera links de p
 
 import { Aside } from '@astrojs/starlight/components'
 
-Brote se conecta a tu cuenta de Mercado Pago vía OAuth. Cuando autorizás, el agente IA gana acceso a la tool `build_payment_link` y empieza a cobrarte dentro del chat sin que tengas que copiar/pegar nada.
+Brote se conecta a tu cuenta de Mercado Pago vía OAuth. Cuando autorizas, el agente IA gana acceso a la tool `build_payment_link` y empieza a cobrarte dentro del chat sin que tengas que copiar/pegar nada.
 
 ## Por qué Mercado Pago
 
@@ -39,7 +39,7 @@ El flujo end-to-end:
 5. **Cliente paga** en checkout MP.
 6. **MP postea webhook** a Brote con `payment.id` + status `approved`.
 7. **Brote registra el pago** en `mercadopago_payments`, asocia al `conversation_id`, mueve el ticket a "Pago confirmado".
-8. **Agente IA confirma al cliente** en el chat: "Listo, recibí tu pago. Te llega en X días."
+8. **Agente IA confirma al cliente** en el chat: "Listo, recibe tu pago. Te llega en X días."
 9. **Si tienes Zapier/Webhooks activos**: dispara `payment_received` → tu Holded/QuickBooks crea factura.
 
 ## Suscripciones recurrentes

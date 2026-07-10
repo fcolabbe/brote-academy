@@ -5,7 +5,7 @@ description: Brote captura ttclid de anuncios TikTok y dispara CompletePayment s
 
 import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
 
-Si invertís en **TikTok Messaging Ads** (anuncios TikTok que redirigen a
+Si inviertes en **TikTok Messaging Ads** (anuncios TikTok que redirigen a
 WhatsApp), Brote captura el `ttclid` del primer mensaje del cliente y
 manda eventos server-side a tu Pixel TikTok cuando el cliente paga.
 Cierra el loop de ROAS igual que Meta — TikTok sabe qué ad generó qué
@@ -38,12 +38,12 @@ venta.
 
 1. Ve a [TikTok Business Center](https://business.tiktok.com/) → Tools →
    Events Manager.
-2. Elegí tu Pixel (o creá uno).
+2. Elige tu Pixel (o crea uno).
 3. **Pixel Code** aparece en la card (formato `CXXXXXXXXXXXXXXXXX`).
 4. **Settings → Conversions API → Generate Access Token**. Copialo YA —
    solo se muestra una vez.
 5. **Event Set ID** (opcional pero recomendado): es el identificador del
-   set de eventos. Si no lo seteás, TikTok lo infiere del Pixel.
+   set de eventos. Si no lo seteas, TikTok lo infiere del Pixel.
 
 ### Paso 2 — (Opcional) Test Event Code
 
@@ -53,8 +53,8 @@ venta.
 
 ### Paso 3 — Conectar en Brote
 
-1. **Settings → Integraciones → Pagos** → bajá hasta "TikTok Events API".
-2. Pegá Pixel Code + Event Set ID (opcional) + Access Token + Test Code
+1. **Settings → Integraciones → Pagos** → baja hasta "TikTok Events API".
+2. Pega Pixel Code + Event Set ID (opcional) + Access Token + Test Code
    (opcional).
 3. Click **Conectar TikTok**. Brote hace un ping con un evento `Lead`
    minimal para validar credenciales.
@@ -96,7 +96,7 @@ server-side. Diff: respond.io exige configurar el evento por workflow
 - TikTok usa `ttclid` que viene como query param en
   `externalAdReply.sourceUrl` (Brote lo parsea con regex).
 - Por eso TikTok puede fallar la atribución si TikTok cambió el formato
-  de redirect — siempre mirá los logs `[whatsapp.webhook] TikTok ad
+  de redirect — siempre mira los logs `[whatsapp.webhook] TikTok ad
   detected` para confirmar que se capturó.
 
 ## Próximos pasos

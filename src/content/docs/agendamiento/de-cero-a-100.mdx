@@ -1,15 +1,15 @@
 ---
 title: Agendamiento por WhatsApp — de cero a 100
-description: Tus clientes agendan citas y reservas conversando con tu agente IA, sin que toques el teléfono. Guía completa con ejemplo real, qué necesitás, para quién es y qué vas a lograr.
+description: Tus clientes agendan citas y reservas conversando con tu agente IA, sin que toques el teléfono. Guía completa con ejemplo real, qué necesitas, para quién es y qué vas a lograr.
 ---
 
 import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
 
 ## En una frase
 
-**Agendamiento** = tus clientes **toman su turno por WhatsApp conversando con tu agente IA**, que ofrece solo horarios libres reales, confirma la cita y manda recordatorios — todo solo, sin que vos contestes a mano.
+**Agendamiento** = tus clientes **toman su turno por WhatsApp conversando con tu agente IA**, que ofrece solo horarios libres reales, confirma la cita y manda recordatorios — todo solo, sin que tú contestes a mano.
 
-Vos definís **qué se puede reservar** (tus servicios) y **cuándo** (tu disponibilidad). A partir de ahí, cuando un cliente escribe *"¿tenés hora el jueves?"*, el agente le muestra los horarios libres, reserva, confirma y le recuerda la cita antes de que llegue. **Sin Calendly, sin pagar otra herramienta, sin que salga del chat.**
+Tú defines **qué se puede reservar** (tus servicios) y **cuándo** (tu disponibilidad). A partir de ahí, cuando un cliente escribe *"¿tienes hora el jueves?"*, el agente le muestra los horarios libres, reserva, confirma y le recuerda la cita antes de que llegue. **Sin Calendly, sin pagar otra herramienta, sin que salga del chat.**
 
 <Aside type="tip" title="La pregunta que responde esta función">
 "Paso el día contestando WhatsApp para dar horas. ¿Puede alguien **tomar los turnos por mí** sin que se me llene la agenda de huecos ni se me caigan citas?"
@@ -19,18 +19,18 @@ Vos definís **qué se puede reservar** (tus servicios) y **cuándo** (tu dispon
 
 | Te sirve si… | NO te sirve (todavía) si… |
 |---|---|
-| Trabajás **con cita/turno**: peluquerías, barberías, spa, uñas | No tomás citas ni reservas (venta de mostrador puro) |
-| Sos **profesional que vende su tiempo**: kinesiólogo, psicólogo, abogado, dentista, veterinario | Atendés por orden de llegada sin agenda |
-| Tenés **consultorio o clínica** con pacientes que piden hora | No hay nada que reservar con anticipación |
-| Arrendás **alojamiento por noches**: cabañas, hotel, hospedaje | — |
+| Trabajas **con cita/turno**: peluquerías, barberías, spa, uñas | No tomas citas ni reservas (venta de mostrador puro) |
+| Sos **profesional que vende su tiempo**: kinesiólogo, psicólogo, abogado, dentista, veterinario | Atiendes por orden de llegada sin agenda |
+| Tienes **consultorio o clínica** con pacientes que piden hora | No hay nada que reservar con anticipación |
+| Arriendas **alojamiento por noches**: cabañas, hotel, hospedaje | — |
 
 **En criollo:** es para todo negocio que **vive de la agenda** y hoy pierde tiempo (y clientes) dando horas a mano por WhatsApp.
 
 <Aside type="caution" title="Plan requerido: Starter (Brote) en adelante">
-El agendamiento está disponible **desde el plan Starter**. En Mini vas a ver la sección con un aviso de plan requerido; al pasar a Starter o superior se activa. Es una función incluida en tu plan — **no pagás Calendly ni otra suscripción aparte**.
+El agendamiento está disponible **desde el plan Starter**. En Mini vas a ver la sección con un aviso de plan requerido; al pasar a Starter o superior se activa. Es una función incluida en tu plan — **no pagas Calendly ni otra suscripción aparte**.
 </Aside>
 
-## ¿Qué necesitás tener antes de empezar?
+## ¿Qué necesitas tener antes de empezar?
 
 <Steps>
 
@@ -38,11 +38,11 @@ El agendamiento está disponible **desde el plan Starter**. En Mini vas a ver la
 
 2. **Al menos un servicio cargado** — lo que el cliente puede reservar. Cada servicio tiene nombre, duración y, opcional, buffer, precio y dirección. (Ej: "Corte de pelo", 30 min).
 
-3. **Tu disponibilidad semanal** — en qué horarios se puede reservar, por día. Podés poner varias franjas (ej. mañana y tarde con corte de almuerzo).
+3. **Tu disponibilidad semanal** — en qué horarios se puede reservar, por día. Puedes poner varias franjas (ej. mañana y tarde con corte de almuerzo).
 
-4. *(Opcional)* **Google Calendar conectado** — para que las citas se escriban en tu calendario y el agente **nunca agende sobre eventos que ya tenés**. Se conecta con un clic. ([Cómo](/integraciones/calendar/)).
+4. *(Opcional)* **Google Calendar conectado** — para que las citas se escriban en tu calendario y el agente **nunca agende sobre eventos que ya tienes**. Se conecta con un clic. ([Cómo](/integraciones/calendar/)).
 
-5. *(Opcional)* **Una pasarela de pago** — si querés **cobrar para confirmar** la cita y bajar los no-shows (Mercado Pago, Flow o Khipu en Chile; Stripe o PayPal para pagos internacionales).
+5. *(Opcional)* **Una pasarela de pago** — si quieres **cobrar para confirmar** la cita y bajar los no-shows (Mercado Pago, Flow o Khipu en Chile; Stripe o PayPal para pagos internacionales).
 
 </Steps>
 
@@ -70,7 +70,7 @@ Todo se configura en un solo lugar: **Ajustes → Agendamiento**. Con un servici
    *"Listo Ana, te agendé Corte de pelo el jueves a las 17:20 con Vale. Te mando un recordatorio antes 🌱"*
 
 6. **24 horas antes**, Brote le manda solo a Ana:
-   *"🌱 Hola Ana, te recordamos tu Corte de pelo mañana jueves a las 17:20. Si necesitás reagendar o cancelar, respondé este mensaje."* Y otro recordatorio **2 horas antes**.
+   *"🌱 Hola Ana, te recordamos tu Corte de pelo mañana jueves a las 17:20. Si necesitas reagendar o cancelar, responde este mensaje."* Y otro recordatorio **2 horas antes**.
 
 7. **Ana no puede y responde el recordatorio:** *"¿lo puedo mover al viernes a la misma hora?"*. El agente reagenda solo, libera el jueves y reprograma los recordatorios al viernes. Camila ni se enteró — y la hora del jueves quedó libre para otro cliente.
 
@@ -87,8 +87,8 @@ Todo se configura en un solo lugar: **Ajustes → Agendamiento**. Con un servici
 
 **El cálculo que la convenció:** pasó de perder ~3 turnos por semana en huecos y ausencias a casi ninguno. A un ticket promedio de $12.000, eso son **~$140.000 al mes** que antes se le escapaban — más su tiempo de vuelta. Todo por cargar sus servicios y su horario una vez.
 
-<Aside type="tip" title="Esto es lo que lográs">
-Tu agenda se llena **sola** mientras vos trabajás. El cliente agenda en el mismo chat (mejor que mandarlo a una página externa), nunca hay dos citas encima, y los recordatorios se encargan de que la gente **aparezca**.
+<Aside type="tip" title="Esto es lo que logras">
+Tu agenda se llena **sola** mientras tú trabajas. El cliente agenda en el mismo chat (mejor que mandarlo a una página externa), nunca hay dos citas encima, y los recordatorios se encargan de que la gente **aparezca**.
 </Aside>
 
 ## ¿Qué vas a lograr?
@@ -104,10 +104,10 @@ Tu agenda se llena **sola** mientras vos trabajás. El cliente agenda en el mism
 
 ## ¿Qué tan fácil es?
 
-Muy fácil. La única "tarea" es cargar **una vez** tus servicios y tu horario en Ajustes → Agendamiento — literalmente completar nombre, duración y en qué franjas atendés. De ahí en adelante **no tocás nada**: el agente toma los turnos, confirma, recuerda, reagenda y cancela solo. Conectar Google Calendar (opcional) es un clic. Cobrar para confirmar (opcional) es marcar una casilla en el servicio.
+Muy fácil. La única "tarea" es cargar **una vez** tus servicios y tu horario en Ajustes → Agendamiento — literalmente completar nombre, duración y en qué franjas atiendes. De ahí en adelante **no tocas nada**: el agente toma los turnos, confirma, recuerda, reagenda y cancela solo. Conectar Google Calendar (opcional) es un clic. Cobrar para confirmar (opcional) es marcar una casilla en el servicio.
 
 <Aside type="note" title="¿Cuánto tarda dejarlo andando?">
-Menos de 10 minutos: crear tus servicios y pegar tu disponibilidad. No necesitás saber nada técnico.
+Menos de 10 minutos: crear tus servicios y pegar tu disponibilidad. No necesitas saber nada técnico.
 </Aside>
 
 ## Las tres formas de agendar
@@ -117,37 +117,37 @@ Con la misma configuración, tus clientes pueden reservar por tres vías:
 | Vía | Cuándo se usa |
 |---|---|
 | **Agente IA por WhatsApp** | El cliente ya está chateando y pide un turno — el agente lo agenda en la conversación |
-| **Link público de reserva** | Un link que compartís en tu bio de Instagram, web o email; el cliente agenda solo, sin chat ni cuenta ([ver](/agendamiento/link-publico/)) |
-| **Manual** | Cargás una cita a mano desde Ajustes → Agendamiento |
+| **Link público de reserva** | Un link que compartes en tu bio de Instagram, web o email; el cliente agenda solo, sin chat ni cuenta ([ver](/agendamiento/link-publico/)) |
+| **Manual** | Cargas una cita a mano desde Ajustes → Agendamiento |
 
 ## Preguntas frecuentes
 
 **¿Necesito pagar Calendly u otra herramienta?**
-No. El agendamiento viene **incluido** en tu plan Brote (Starter en adelante). No pagás otra suscripción ni por asiento.
+No. El agendamiento viene **incluido** en tu plan Brote (Starter en adelante). No pagas otra suscripción ni por asiento.
 
 **¿El agente puede agendar sobre una reunión que ya tengo?**
-No, si conectás Google Calendar. Brote lee tu disponibilidad (free/busy) antes de ofrecer un horario, así que solo propone lo que está libre de verdad. Bloqueás tiempo personal en tu Google y el agente lo respeta.
+No, si conectas Google Calendar. Brote lee tu disponibilidad (free/busy) antes de ofrecer un horario, así que solo propone lo que está libre de verdad. Bloqueas tiempo personal en tu Google y el agente lo respeta.
 
 **¿Y si tengo varios profesionales o salas?**
 Cada uno puede tener su propio horario y atender solo ciertos servicios. El agente maneja "quiero con la Dra. Rojas" y también "¿quién está libre el martes?". Ver [Cobrar la reserva y agenda por profesional](/agendamiento/servicios-profesionales/).
 
 **¿Puedo cobrar la cita por adelantado?**
-Sí. Marcás **💳 Cobrar para confirmar** en el servicio: la hora queda reservada hasta que el cliente paga el link. Si no paga en el tiempo definido, se libera. Baja mucho los no-shows.
+Sí. Marcas **💳 Cobrar para confirmar** en el servicio: la hora queda reservada hasta que el cliente paga el link. Si no paga en el tiempo definido, se libera. Baja mucho los no-shows.
 
 **¿Sirve para arrendar cabañas o piezas por noche?**
 Sí, con el **modo estadía**: el cliente reserva "del 10 al 14 de julio" en vez de "las 15:00", se cobra por noche y hay precios por temporada. Ver [Alojamiento por noches](/agendamiento/alojamiento-por-noches/).
 
 **¿Qué pasa si el cliente quiere cambiar o cancelar?**
-Solo responde el chat ("¿lo movemos al viernes?") y el agente reagenda o cancela solo, ajustando los recordatorios. Vos no hacés nada.
+Solo responde el chat ("¿lo movemos al viernes?") y el agente reagenda o cancela solo, ajustando los recordatorios. Tú no haces nada.
 
 **¿Los recordatorios gastan mensajes de mi plan?**
-Sí, cuentan como mensajes salientes, pero son de bajo volumen (uno o dos por cita), así que rara vez se nota. Necesitás WhatsApp conectado para que salgan.
+Sí, cuentan como mensajes salientes, pero son de bajo volumen (uno o dos por cita), así que rara vez se nota. Necesitas WhatsApp conectado para que salgan.
 
 ## Próximos pasos
 
 <CardGrid>
   <Card title="Configurar servicios y horarios" icon="setting">
-    [Cargá lo que se puede reservar y cuándo →](/agendamiento/configurar/)
+    [Carga lo que se puede reservar y cuándo →](/agendamiento/configurar/)
   </Card>
   <Card title="Recordatorios automáticos" icon="bell">
     [Cómo bajan tus ausencias →](/agendamiento/recordatorios/)

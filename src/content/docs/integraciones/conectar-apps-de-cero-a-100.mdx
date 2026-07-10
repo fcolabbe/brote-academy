@@ -9,7 +9,7 @@ import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
 
 **Conectar apps** = hacer que lo que pasa en Brote **aparezca solo** en tus otras herramientas (tu planilla de Google, tu CRM, tu email, tu Slack) — y que lo que pasa afuera **entre solo** a Brote. Sin copiar y pegar. Sin programar.
 
-Vos ya usás Brote para conversar y vender por WhatsApp. Pero seguís **copiando a mano** cada cliente nuevo a una planilla, o cada pago a tu contabilidad. Eso es tiempo perdido y errores. Conectar apps hace que ese trabajo **se haga solo**: nuevo cliente en Brote → fila nueva en tu planilla + email de bienvenida, todo automático.
+Tú ya usas Brote para conversar y vender por WhatsApp. Pero sigues **copiando a mano** cada cliente nuevo a una planilla, o cada pago a tu contabilidad. Eso es tiempo perdido y errores. Conectar apps hace que ese trabajo **se haga solo**: nuevo cliente en Brote → fila nueva en tu planilla + email de bienvenida, todo automático.
 
 <Aside type="tip" title="La pregunta que responde esta función">
 "Cada vez que pasa algo en Brote (un cliente nuevo, un pago, un lead caliente), ¿cómo hago que **automáticamente** se registre en mis otras apps sin tocar nada?"
@@ -19,10 +19,10 @@ Vos ya usás Brote para conversar y vender por WhatsApp. Pero seguís **copiando
 
 | Te sirve si… | NO te sirve (todavía) si… |
 |---|---|
-| Ya usás **otras herramientas** (planilla, CRM, email, Slack, contabilidad) además de Brote | Toda tu operación vive dentro de Brote y no la sacás a ningún lado |
-| Copiás datos **a mano** entre Brote y esas apps | No necesitás mover datos entre sistemas |
-| Querés **automatizar** tareas repetitivas sin contratar a un dev | Preferís hacer cada cosa manual (por ahora) |
-| Tenés plan **Pro** o **Business** | Estás en Mini/Starter (mirá "Plan requerido" abajo) |
+| Ya usas **otras herramientas** (planilla, CRM, email, Slack, contabilidad) además de Brote | Toda tu operación vive dentro de Brote y no la sacas a ningún lado |
+| Copias datos **a mano** entre Brote y esas apps | No necesitas mover datos entre sistemas |
+| Quieres **automatizar** tareas repetitivas sin contratar a un dev | Prefieres hacer cada cosa manual (por ahora) |
+| Tienes plan **Pro** o **Business** | Estás en Mini/Starter (mira "Plan requerido" abajo) |
 
 **En criollo:** es para el negocio que ya tiene **más de una herramienta** y está cansado de copiar y pegar entre ellas.
 
@@ -32,10 +32,10 @@ Hay dos caminos y **cada uno pide un plan distinto**:
 - **Zapier** (la forma sin código, con 6.000+ apps): disponible desde **Pro** ($129/mes) y también en **Business** ($349/mes).
 - **Webhooks + API directa** (Make, n8n o cualquier endpoint propio): disponible solo en **Business** ($349/mes), porque requiere infra y soporte específicos.
 
-Si querés lo más fácil y estás en Pro, tu camino es **Zapier**. Si necesitás flujos avanzados o tenés sistemas propios, es **Business**. Más info en la [comparativa de planes](/planes/comparativa/).
+Si quieres lo más fácil y estás en Pro, tu camino es **Zapier**. Si necesitas flujos avanzados o tienes sistemas propios, es **Business**. Más info en la [comparativa de planes](/planes/comparativa/).
 </Aside>
 
-## ¿Qué necesitás tener antes de conectar?
+## ¿Qué necesitas tener antes de conectar?
 
 <Steps>
 
@@ -47,14 +47,14 @@ Si querés lo más fácil y estás en Pro, tu camino es **Zapier**. Si necesitá
    - Camino fácil → cuenta de **Zapier** (tienen plan gratis para empezar) + tu plan Brote en **Pro** o **Business**.
    - Camino avanzado → **Make**, **n8n** o tu propio servidor + plan Brote **Business**.
 
-4. **Una API key de Brote**, que generás en un clic desde `Configuración → Integraciones`. Es la "llave" que conecta Brote con la otra herramienta.
+4. **Una API key de Brote**, que generas en un clic desde `Configuración → Integraciones`. Es la "llave" que conecta Brote con la otra herramienta.
 
-5. Tener claro **qué querés automatizar** (ej.: "cada cliente nuevo → a mi planilla"). Con eso ya armás tu primer flujo.
+5. Tener claro **qué quieres automatizar** (ej.: "cada cliente nuevo → a mi planilla"). Con eso ya armas tu primer flujo.
 
 </Steps>
 
 <Aside type="note">
-No necesitás saber programar. Con Zapier todo es apuntar-y-clickear. La API key la generás con un botón — no hay que entender qué es por dentro.
+No necesitas saber programar. Con Zapier todo es apuntar-y-clickear. La API key la generas con un botón — no hay que entender qué es por dentro.
 </Aside>
 
 ## Ejemplo real: de cero a 100 con Rodrigo 🌱
@@ -63,7 +63,7 @@ No necesitás saber programar. Con Zapier todo es apuntar-y-clickear. La API key
 
 <Steps>
 
-1. **Rodrigo abre Zapier** (con su cuenta gratis) y crea un "Zap" nuevo. Un Zap es una regla del tipo "cuando pase ESTO, hacé AQUELLO".
+1. **Rodrigo abre Zapier** (con su cuenta gratis) y crea un "Zap" nuevo. Un Zap es una regla del tipo "cuando pase ESTO, haz AQUELLO".
 
 2. **Elige el disparador (trigger):** busca "Brote" en Zapier, conecta su cuenta pegando la **API key**, y elige el evento **`create_contact`** — o sea, "cuando se cree un contacto nuevo en Brote".
 
@@ -88,53 +88,53 @@ No necesitás saber programar. Con Zapier todo es apuntar-y-clickear. La API key
 
 **Resultado:** Rodrigo recupera **más de 6 horas al mes** (casi un día entero de trabajo) y **ningún cliente se queda sin registrar ni sin bienvenida**. Esas 6 horas las usa en dar clases, que es lo que le da plata.
 
-<Aside type="tip" title="Esto es lo que lográs">
-Dejás de ser el "copia-pega humano" entre tus apps. El trabajo repetitivo se hace solo, sin errores y al instante → vos dedicás tu tiempo a **vender y atender**, no a mover datos de un lado a otro.
+<Aside type="tip" title="Esto es lo que logras">
+Dejas de ser el "copia-pega humano" entre tus apps. El trabajo repetitivo se hace solo, sin errores y al instante → tú dedicas tu tiempo a **vender y atender**, no a mover datos de un lado a otro.
 </Aside>
 
 ## ¿Qué vas a lograr?
 
-| Automatización | Qué hace por vos | Beneficio concreto |
+| Automatización | Qué hace por ti | Beneficio concreto |
 |---|---|---|
 | **Cliente nuevo → planilla / CRM** | Cada contacto de Brote aparece solo en Sheets, HubSpot, Pipedrive, Notion… | Base de datos siempre al día, cero copia-pega |
 | **Pago confirmado → contabilidad** | Cuando el cliente paga (MP/Flow/Khipu), el monto viaja a tu sistema contable | Facturación sin retrasos ni olvidos |
 | **Lead caliente → aviso al equipo** | El agente marca un lead → llega un ping a Slack/email de ventas | Nadie se pierde una oportunidad tibia |
 | **Pide humano → notificación** | Cuando el cliente pide hablar con una persona, tu equipo se entera al toque | Respuesta más rápida, mejor experiencia |
-| **Planilla → contactos en Brote** | Subís tu base de Google Sheets y entra a Brote lista para campaña | Migrás tu data vieja sin trabajo manual |
+| **Planilla → contactos en Brote** | Subes tu base de Google Sheets y entra a Brote lista para campaña | Migras tu data vieja sin trabajo manual |
 
-La lista real es enorme: con Zapier son **6.000+ apps** las que podés conectar. Estos son solo los casos más pedidos.
+La lista real es enorme: con Zapier son **6.000+ apps** las que puedes conectar. Estos son solo los casos más pedidos.
 
 ## ¿Qué tan fácil es?
 
-**Con Zapier: muy fácil.** Es apuntar-y-clickear. No hay código en ningún paso. Armar tu primer Zap toma unos 10-15 minutos la primera vez, y después es cuestión de minutos. Si sabés usar una planilla, sabés armar un Zap.
+**Con Zapier: muy fácil.** Es apuntar-y-clickear. No hay código en ningún paso. Armar tu primer Zap toma unos 10-15 minutos la primera vez, y después es cuestión de minutos. Si sabes usar una planilla, sabes armar un Zap.
 
-**Con Make o n8n: fácil-intermedio.** Misma idea que Zapier (arrastrar bloques), pero pensados para flujos más sofisticados (con condiciones, bucles, transformaciones). Ideal si ya los usás o querés algo muy a medida.
+**Con Make o n8n: fácil-intermedio.** Misma idea que Zapier (arrastrar bloques), pero pensados para flujos más sofisticados (con condiciones, bucles, transformaciones). Ideal si ya los usas o quieres algo muy a medida.
 
-**Con webhooks + API directa: es para desarrolladores.** Si tenés un sistema propio (un ERP, un CRM hecho a medida), tu equipo técnico conecta Brote con nuestra API. Es el camino más potente y también el más técnico.
+**Con webhooks + API directa: es para desarrolladores.** Si tienes un sistema propio (un ERP, un CRM hecho a medida), tu equipo técnico conecta Brote con nuestra API. Es el camino más potente y también el más técnico.
 
 <Aside type="tip">
-¿Recién empezás? Andá por **Zapier**. Cubre el 90% de los casos sin escribir nada. Los otros caminos son para cuando te quede chico.
+¿Recién empiezas? Ve por **Zapier**. Cubre el 90% de los casos sin escribir nada. Los otros caminos son para cuando te quede chico.
 </Aside>
 
 ## Preguntas frecuentes
 
 **¿Necesito saber programar?**
-Con **Zapier, no.** Todo es elegir de listas y clickear. Programar solo hace falta si vas por el camino de webhooks/API con un sistema propio — y en ese caso lo hace tu equipo técnico, no vos.
+Con **Zapier, no.** Todo es elegir de listas y clickear. Programar solo hace falta si vas por el camino de webhooks/API con un sistema propio — y en ese caso lo hace tu equipo técnico, no tú.
 
 **¿Cuál es la diferencia entre Zapier y los webhooks?**
-**Zapier** es la forma sin código: conectás Brote con 6.000+ apps conocidas apuntando-y-clickeando, disponible desde plan **Pro**. **Los webhooks + API** son la forma directa y técnica: Brote le manda los eventos a tu servidor y vos programás qué hacer, disponible en plan **Business**. Zapier para la mayoría; webhooks para integraciones a medida.
+**Zapier** es la forma sin código: conectas Brote con 6.000+ apps conocidas apuntando-y-clickeando, disponible desde plan **Pro**. **Los webhooks + API** son la forma directa y técnica: Brote le manda los eventos a tu servidor y tú programas qué hacer, disponible en plan **Business**. Zapier para la mayoría; webhooks para integraciones a medida.
 
 **¿Y Make o n8n?**
-Usan la misma infraestructura que los webhooks (por eso van en **Business**), pero te dan una interfaz visual para armar flujos avanzados sin escribir tanto código. Buenísimos si necesitás condiciones, bucles o transformar datos en el camino.
+Usan la misma infraestructura que los webhooks (por eso van en **Business**), pero te dan una interfaz visual para armar flujos avanzados sin escribir tanto código. Buenísimos si necesitas condiciones, bucles o transformar datos en el camino.
 
 **¿La conexión es segura?**
 Sí. Brote firma cada evento que sale con **HMAC-SHA256** (una firma que garantiza que el dato viene de verdad de Brote y nadie lo falsificó). Y la API key es tu llave privada — se muestra una sola vez, guardala bien.
 
 **¿La app de Brote en Zapier ya está pública?**
-Está en **review público por Zapier** y disponible como **app privada** mientras tanto. Pedinos el invite a [hola@brote.ai](mailto:hola@brote.ai) y la conectás igual. Está en producción (v1.0.2), estable y validada con clientes activos.
+Está en **review público por Zapier** y disponible como **app privada** mientras tanto. Pedinos el invite a [hola@brote.ai](mailto:hola@brote.ai) y la conectas igual. Está en producción (v1.0.2), estable y validada con clientes activos.
 
 **¿Cuánto tarda en andar?**
-Tu primer flujo con Zapier lo dejás corriendo en unos 10-15 minutos. Desde ahí funciona solo, sin mantenimiento.
+Tu primer flujo con Zapier lo dejas corriendo en unos 10-15 minutos. Desde ahí funciona solo, sin mantenimiento.
 
 ## Próximos pasos
 

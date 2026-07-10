@@ -24,7 +24,7 @@ casos para voz:
   sábado."
 - **Disculpas cortas** — "Perdón por la demora, ya te confirmo."
 
-Casos donde **NO usar voz**, dejá el agente con texto:
+Casos donde **NO usar voz**, deja el agente con texto:
 
 - Info técnica o numérica (precios, direcciones, links).
 - Texto largo (>300 chars — suena artificial).
@@ -40,7 +40,7 @@ decide cuándo invocarla.
    `no_voice` y manda texto en su lugar (fallback graceful).
 2. Ve a **Settings → Agente IA → Tools habilitadas**.
 3. Marca `send_voice_reply`.
-4. Guardá. Desde el próximo mensaje, el agente puede invocarla.
+4. Guarda. Desde el próximo mensaje, el agente puede invocarla.
 
 ## Cómo el agente decide
 
@@ -49,7 +49,7 @@ El LLM lee la `description` de la tool:
 > Manda una respuesta en AUDIO al cliente usando la voz clonada del
 > comercio. Usar SOLO cuando el cliente mandó una nota de voz primero,
 > o el contexto pide cercanía (saludos, agradecimientos, confirmaciones).
-> Para info técnica o numérica, preferí texto. Max 300 caracteres.
+> Para info técnica o numérica, prefiere texto. Max 300 caracteres.
 
 Y combina con el contexto de la conversación para decidir. Si quieres
 forzar el comportamiento (ej: "siempre responder en audio a clientes
@@ -66,7 +66,7 @@ Cada audio gasta caracteres de tu cap ElevenLabs del plan Brote:
 | Business $349 | 150.000 | 350.000 |
 
 Un audio típico de 30 seg = ~200 chars. Pro con 30k chars cubre ~150
-audios/mes. Si el agente IA y el operador comparten el cap, dimensioná.
+audios/mes. Si el agente IA y el operador comparten el cap, dimensiona.
 
 Cuando el cap se llega, la tool devuelve `hard_cap_exceeded` y el agente
 manda texto en su lugar — nunca rompe el flow, solo degrada graceful.
@@ -77,8 +77,8 @@ El audio generado mantiene la voz clonada con el modelo
 `eleven_multilingual_v2`. Soporta español natural sin acento gringo.
 
 <Aside type="tip">
-Si la voz suena rara o robótica, mejorá la muestra de cloning original
-desde Settings → Voz IA → Reentrenar. Grabá 45-60 seg en lugar de 20,
+Si la voz suena rara o robótica, mejora la muestra de cloning original
+desde Settings → Voz IA → Reentrenar. Graba 45-60 seg en lugar de 20,
 con micrófono limpio y sin ruido de fondo.
 </Aside>
 

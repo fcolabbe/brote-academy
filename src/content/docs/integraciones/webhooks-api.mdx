@@ -1,6 +1,6 @@
 ---
 title: Webhooks y API (Business)
-description: "Recibí eventos firmados en tu servidor. Acción + datos custom para tu integración directa. Plan Business."
+description: "Recibe eventos firmados en tu servidor. Acción + datos custom para tu integración directa. Plan Business."
 ---
 
 import { Aside } from '@astrojs/starlight/components'
@@ -70,7 +70,7 @@ const expected = crypto.createHmac('sha256', WEBHOOK_SECRET)
 const isValid = `sha256=${expected}` === req.headers['x-brote-signature']
 ```
 
-Si no validas el HMAC, cualquiera podría postearte fake events. Validá siempre.
+Si no validas el HMAC, cualquiera podría postearte fake events. Valida siempre.
 
 ### Retries + deliveries log
 
