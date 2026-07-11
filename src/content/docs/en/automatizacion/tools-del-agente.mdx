@@ -1,0 +1,164 @@
+---
+title: AI agent tools
+description: The 18 native tools your Brote agent can run inside the chat — no code, no Zapier in the middle, no app-switching.
+---
+
+import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
+
+Your Brote agent isn't a chatbot that only replies with text. It's an **autonomous agent**
+with **18 native tools** organized by domain. When the customer asks for something —
+a payment, a shipping quote, an appointment — the agent decides which tool to run and executes it
+inside the chat.
+
+Below, the full catalog grouped by layer.
+
+<Aside type="tip">
+Tools are enabled per agent from **Settings → Agents → Enabled tools**.
+Not all of them are on by default: you choose which ones your business needs.
+</Aside>
+
+## Conversation and intent
+
+### `handoff_to_human`
+When the customer asks to talk to a person (or the agent detects a sensitive
+topic), it moves the ticket to the handoff column and notifies the team via
+push. The customer sees a clear "we're connecting you with an advisor" message.
+
+### `change_stage`
+Moves the ticket through the kanban pipeline: `nuevo → calificado → propuesta →
+cerrado-ganado/perdido`. The agent fires it when it detects a progress
+signal ("done, I'll take it" → closed-won).
+
+### `assign_tag`
+Tags the contact with tags like `interesado`, `vip`, `cliente-recurrente`,
+`carrito-abandonado`. Useful for segmenting campaigns later.
+
+### `update_contact`
+Updates contact data: name, email, additional phone. The agent
+infers them from what the customer says, no form needed.
+
+### `set_custom_field`
+Sets custom fields you defined per org. E.g.: `presupuesto`, `fecha-evento`,
+`tamaño-empresa`. They enable reports and segmentation specific to your business.
+
+## Messaging
+
+### `send_template`
+Sends a Meta pre-approved WhatsApp template. Useful for confirmations,
+reminders and messages outside the 24-hour window.
+
+### `send_media`
+Sends images, PDFs, audio or video. The agent picks the appropriate format
+(e.g.: spec sheet as a PDF, product photo as an image).
+
+## Scheduling
+
+### `check_availability`
+Reads your connected Google Calendar directly (Brote's own OAuth, connected in
+**Settings → Scheduling**) and returns the next free slots according to the
+rules you defined (duration, working hours, buffer between meetings). The
+agent checks your real availability (free/busy) from your primary calendar so
+it never books over events you already have.
+
+### `book_appointment`
+Books the slot by writing it to the **"Brote — Citas"** calendar inside your
+Google account and sends the customer an invite. It blocks the time slot
+automatically.
+
+## Catalog and products
+
+### `lookup_product`
+Looks up a product in your catalog (Shopify or Google Sheets). Returns price,
+stock, description, photo. The agent can recommend products based on
+features the customer describes.
+
+### `check_stock`
+Confirms availability of a specific variant before building the cart.
+Prevents the customer from reserving something you don't have.
+
+### `build_cart_link`
+For Shopify: builds a direct cart link with the chosen products.
+The customer opens the link and just confirms the payment — no searching
+for products again.
+
+### `lookup_coupon`
+Verifies a coupon exists and applies it to the cart. Returns the exact discount
+so the agent can be precise: *"with COQUIMBO it's $23 instead of $49"*.
+
+## External data
+
+### `lookup_sheet_data`
+Reads from a connected Google Sheet. Useful for dynamic pricing, branch
+lists, equivalence tables or any data that lives outside the
+product.
+
+## Payments (in-chat)
+
+### `build_payment_link`
+**Key polymorphic tool.** Generates a payment link based on the gateway
+connected in your org. Brote routes automatically with this priority:
+
+1. **Khipu** first (~$300 flat per transaction, CL bank transfer)
+2. **Flow** next (Webpay + Servipag + CL cards)
+3. **Mercado Pago** as fallback (broad LATAM)
+
+The agent just decides *"charge $X"* and Brote picks the gateway. The
+confirmation webhook arrives and the agent closes the ticket automatically.
+
+## Logistics (in-chat)
+
+### `check_shipping_coverage`
+Checks whether the connected courier reaches the customer's district. Works with
+**Chilexpress** and **Starken** — Brote routes by connected courier and warns
+if the district isn't covered before quoting.
+
+### `quote_shipping`
+Quotes a shipment to the customer's district. Returns approximate prices
+(estimated value, not final) with delivery time.
+
+- **Chilexpress**: uses your TCC account if you connected it (~19% discount).
+- **Starken**: uses a business account or the customer's RUT depending on how you configured it.
+
+### `track_shipment`
+Tracks a shipment's status by transport order (OT) number. The
+agent tells the customer: *"your shipment is in transit to La Serena,
+arriving around June 5"*.
+
+## How they compare to respond.io
+
+| Layer | Brote tools | respond.io |
+|---|---|---|
+| Conversation | 5 tools (handoff, stage, tag, contact, field) | yes |
+| Messaging | 2 tools (template, media) | yes |
+| Scheduling | 2 tools (availability, book) | partial |
+| Catalog | 4 tools (product, stock, cart, coupon) | partial |
+| External data | 1 tool (sheet) | partial |
+| **LATAM payments** | 1 polymorphic tool (MP / Flow / Khipu) | ❌ |
+| **LATAM logistics** | 3 tools (coverage / quote / track) | ❌ |
+
+respond.io's gap is structural: it has no native LATAM payments or Chilean
+logistics. Its equivalent actions are horizontal (HTTP request +
+update field + assign). Brote's tools are **vertical**: charging with
+Khipu or quoting Chilexpress is one function call, not a manual
+workflow.
+
+<Aside type="note">
+If you need a tool that isn't in this list (e.g.: sending SMS, calling
+your internal system over HTTP), use the **Incoming Webhook trigger + HTTP
+Request step**, available from the Starter plan and up. We don't make you pay
+$279/mo to open that door.
+</Aside>
+
+## Next steps
+
+<CardGrid>
+  <Card title="Connect Mercado Pago" icon="approve-check">
+    [Step-by-step guide →](/en/pagos/mercado-pago)
+  </Card>
+  <Card title="Set up Brote Copilot" icon="setting">
+    [15-min wizard →](/en/copilot/que-es)
+  </Card>
+  <Card title="Connect Chilexpress" icon="open-book">
+    Coming soon — coverage + quoting + tracking guide
+  </Card>
+</CardGrid>

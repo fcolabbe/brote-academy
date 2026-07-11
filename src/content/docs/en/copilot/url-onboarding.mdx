@@ -1,0 +1,73 @@
+---
+title: Website URL onboarding
+description: "Paste your site's URL and Brote Copilot configures the AI agent automatically. The fastest path if your website already has info."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+If your website has good content (product descriptions, prices, About, Contact), the fastest path to configuring your AI agent is **pasting the URL** — Brote Copilot does everything else.
+
+![Public demo at brote.ai/demo where you try the URL → agent flow](/screenshots/demo-empty.png)
+
+## How it works
+
+1. **You paste the full URL** of your site (e.g. `https://misitio.com`).
+2. **Brote Copilot crawls** automatically:
+   - Home + About + Contact + Services + Products
+   - Up to ~30 relevant internal pages
+   - Detects meta tags, JSON-LD Schema.org, OG tags
+   - Reads visible content (not JS-rendered if it requires infinite scroll)
+3. **Extracts structure**:
+   - Products / services + prices
+   - Hours and contact info
+   - Business vertical (retail, hospitality, healthcare, etc)
+   - Copy tone
+4. **Synthesizes the agent**:
+   - Persona (name, voice, tone)
+   - Matching opening message
+   - FAQs with answers
+   - Typical edge cases
+   - Simplified catalog
+5. **Shows it to you in 60 seconds**, ready to test.
+
+## When URL beats audio
+
+URL onboarding is better when:
+
+- Your site **describes your services in detail** (not just a visual landing page).
+- **Prices are public** or at least ranges.
+- There's a **well-written About** that helps define tone and persona.
+- Your **catalog is online** (not in a private sheet).
+
+If your site is just a landing page with a contact form, better to use the [owner's audio](/en/copilot/audio-onboarding/).
+
+## Cases the crawl can't reach
+
+- **JS-only sites (poorly SSR'd SPA)**: Next.js/Vue/Angular without SSR may be only partially read.
+- **Sites with a paywall** or mandatory login.
+- **Catalogs with many variants** that require clicking filters.
+- **Products that are NOT publicly listed** (B2B).
+
+In those cases you can **combine**: paste the URL + add the owner's audio + manually edit the generated blocks.
+
+<Aside type="tip" title="Strongest combo: URL + audio">
+For the best possible agent, **URL first** (loads catalog + structure), **audio afterwards** (adds human context + edge cases + tone). The system combines both sources and prioritizes whichever has more specific data.
+</Aside>
+
+## Re-run Copilot when you update your site
+
+If you update your site (new prices, new products, redesign), you can **re-run Copilot** from the dashboard without losing your current config:
+
+- It re-crawls the URL.
+- Detects changes vs the previous version.
+- Shows you a **diff** of what it would propose changing.
+- You accept/reject change by change (same as [Copilot Audit](/en/copilot/audit/)).
+
+This lets you keep the agent up to date without reconfiguring from scratch every time.
+
+## Next steps
+
+- [What is Brote Copilot](/en/copilot/que-es/)
+- [Owner audio onboarding](/en/copilot/audio-onboarding/)
+- [Automatic agent audit](/en/copilot/audit/)
+- [Try the public demo without creating an account](https://brote.ai/es/demo)

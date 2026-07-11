@@ -1,0 +1,93 @@
+---
+title: Real estate
+description: "Brote for brokerages and developers: lead qualification, visit scheduling, quote follow-up."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+In real estate, the problem isn't a lack of leads — it's that 80% of them are unqualified. Brote acts as the **virtual SDR** that filters before passing the lead to the human broker.
+
+## The typical flow
+
+1. **Lead arrives** (portal, ad, referral) → enters the Brote chat.
+2. **Qualification**: agent asks about budget, area, bedrooms, urgency, financing.
+3. **Property matching**: agent crosses requirements with your catalog (sheet / Zapier from Inmobalia/Toctoc/InfoCasas).
+4. **If qualified**: schedules a visit in the broker's [Google Calendar](/en/integraciones/calendar/).
+5. **If not qualified**: closes politely with general info + adds to a nurturing cohort.
+6. **Follow-up**: pre/post visit, without burdening the broker.
+
+## Recommended setup
+
+### Custom fields
+
+```
+presupuesto_max (number)
+moneda (select: UF / CLP / USD)
+zona_busqueda (text)
+comuna (select)
+dormitorios (number)
+bath (number)
+parking (boolean)
+tipo_propiedad (select: depto / casa / oficina)
+timeline (select: ya / 3_meses / 6_meses / explorando)
+financiamiento (select: subsidio / banco / contado)
+visita_agendada_fecha (date)
+```
+
+### Useful tags
+
+`califica_premium`, `califica_medio`, `no_califica`, `visita_realizada`, `cotizacion_enviada`, `oferta_en_negociacion`
+
+### Typical qualification rules
+
+The AI agent qualifies with a simple check:
+
+- **Premium qualified**: budget above X UF + timeline under 3 months + approved bank financing.
+- **Medium qualified**: budget OK + 3-6 month timeline.
+- **Not qualified**: budget below your portfolio's minimum or timeline over 6 months.
+
+Each level triggers a different action:
+- Premium → immediate handoff to the broker with a full summary.
+- Medium → standard visit scheduling.
+- Not qualified → polite response + monthly nurture campaign.
+
+<Aside type="tip" title="Property catalog">
+If you sell properties from a rotating portfolio (not fixed inventory), connect [Google Sheets](/en/integraciones/sheets/) to your internal pipeline. When you load a new property, the agent knows about it within 5 min.
+</Aside>
+
+## Conversation example
+
+```
+Cliente: hola, vi el aviso del depto en Vitacura, todavía está?
+
+Agente: Hola! Sí, sigue disponible. Antes de mandarte más info, dale:
+- ¿Estás buscando para vivir o como inversión?
+- ¿Tu presupuesto está cerca de las 6.500 UF que pide el dueño?
+- ¿Para cuándo necesitas tomar la decisión?
+
+Cliente: Para vivir, presupuesto hasta 7.000 UF, queremos en 2 meses
+
+Agente: Buenísimo, vas dentro del rango. Te paso el detalle:
+- Vitacura · 3D2B + servicio
+- 95m² útiles + terraza 12m²
+- Estacionamiento + bodega
+- Conserje 24/7
+
+¿Quieres que agende una visita esta semana? Tengo disponible:
+- Miércoles 16:00 con [Corredor]
+- Sábado 11:00 con [Corredor]
+
+Cliente: Miércoles 16
+
+Agente: ✅ Agendada visita miércoles 16:00. Te llega invite al mail.
+La dirección la mando el día antes.
+
+[Tag aplicado: califica_premium, visita_agendada_fecha actualizado]
+[Handoff summary enviado al corredor por Slack]
+```
+
+## Next steps
+
+- [Configure your AI agent](/en/empezar/primer-agente/)
+- [Google Calendar for scheduling](/en/integraciones/calendar/)
+- [Slack to notify brokers](/en/integraciones/slack/)

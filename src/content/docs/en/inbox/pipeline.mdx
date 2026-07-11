@@ -1,0 +1,55 @@
+---
+title: Kanban pipeline
+description: "Organize your conversations as cards in columns. Blue stages are run by the AI, yellow stages by your human team."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote's kanban pipeline organizes your conversations as **tickets** that move through stages (New lead → In contact → Human handling → Won / Lost). Each vertical defines the stages that make sense for its business.
+
+![Kanban pipeline with tickets distributed across stages](/screenshots/kanban.png)
+
+## The "blue = AI, yellow = human" rule
+
+Brote visually distinguishes stages with color coding:
+
+- **Blue/lime stages**: the AI agent runs these. It moves tickets automatically based on what happens in the conversation.
+- **Yellow/orange stages**: require human action. An operator has to look, decide, and move.
+- **Gray stages**: terminal (Won, Lost, Archived).
+
+This lets you see at a glance **which column needs attention** without filtering manually.
+
+## Multiple pipelines
+
+An org can run several pipelines in parallel — useful when you handle distinct sales flows:
+
+- **Subscriptions**: New lead → In contact → Payment confirmed → Active subscription → Canceled
+- **New customer onboarding**: Signed up → Payment → Setup → Active
+- **Support**: Open claim → Under review → Resolved → Closed
+
+Each conversation creates a ticket in the pipeline that best fits it, according to the AI agent (which detects intent). You can move a ticket between pipelines if it landed in the wrong one.
+
+## How tickets move
+
+| Trigger | Action |
+|---|---|
+| The contact messages for the first time | Creates a ticket in the "New lead" column |
+| The AI agent replies and gathers info | Moves to "In contact" |
+| The AI agent detects a hot lead or a complex case | Moves to "Human handling" + notifies |
+| Payment confirmed via Mercado Pago | Moves to "Payment confirmed" (in the matching pipeline) |
+| An operator closes it as won | Moves to "Won" |
+| 7+ days with no activity and no purchase | Marks it "Lost" |
+
+<Aside type="tip" title="Configurable">
+Transition rules are editable per pipeline. If you want "hot lead" to move to a human only after 3 messages, you can configure that. If you want automatic payments to skip handoff, you can configure that too.
+</Aside>
+
+## Manual drag & drop
+
+Any operator can drag a ticket from one column to another. The change is saved in `ticket_stage_history` for auditing (when it moved, who moved it, from where, to where). Useful for sales-cycle reports.
+
+## Next steps
+
+- [Unified Inbox](/en/inbox/inbox-unificado/)
+- [Handoff to a human](/en/inbox/handoff/)
+- [In-chat payments](/en/pagos/cobro-in-chat/)

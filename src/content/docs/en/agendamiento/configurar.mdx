@@ -1,0 +1,67 @@
+---
+title: Set up services and hours
+description: "Define what can be booked and when. Services with duration and buffer, weekly availability with a lunch break, and the upcoming appointments view."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+All the configuration lives in **Settings → Scheduling**.
+
+<Aside type="note">
+Available from the **Starter** plan. On lower plans you'll see the section with a plan-required notice.
+</Aside>
+
+## 1. Create a service
+
+A service is what the customer can book. Each one has:
+
+- **Name** — e.g. "Haircut", "Photo session", "On-site visit".
+- **Duration** (minutes) — how long the appointment lasts.
+- **Buffer** (minutes) — rest/cleanup time between appointments. It's added to the step between time slots.
+- **Price** (optional) — if you set it, you can later charge it with the [payment link](/en/pagos/cobro-in-chat/).
+- **Address** (optional) — where the service happens; the agent shares it with the customer when booking.
+
+Fill in the fields and click **Add**. You can have multiple services.
+
+<Aside type="tip">
+Professional time-based service (consultations, advisory, sessions)? You can **charge to confirm** the appointment and give **each professional their own calendar**. See [Charge for the booking and per-professional calendar](/en/agendamiento/servicios-profesionales/).
+</Aside>
+
+## 2. Set your weekly availability
+
+You define which hours appointments can be booked, per day of the week. For each day you can add **one or more time blocks** with the **+ block** button.
+
+```
+Lunes a Viernes:  10:00–13:00  y  15:00–18:00   (corte de almuerzo)
+Sábado:           10:00–14:00
+Domingo:          cerrado
+```
+
+When you're done, click **Save availability**. Brote computes the actual free slots = availability − appointments already taken − buffer, respecting your timezone.
+
+<Aside type="caution">
+"Save availability" **replaces** all previous availability with what's on screen. To adjust, edit the blocks and save again.
+</Aside>
+
+## 3. Connect Google Calendar (optional)
+
+From **Settings → Scheduling** you can connect your Google account in one click. Brote uses its own OAuth connection with Google Calendar, so you just authorize and you're done.
+
+Connecting gives you two-way sync:
+
+- **Appointments booked by the agent are written to your Google Calendar**, in a dedicated calendar called **"Brote — Citas"**. That way you see your bookings alongside the rest of your schedule.
+- **Brote reads your availability (free/busy) from your primary calendar** before offering a time slot, so the agent **never books over events you already have**.
+
+<Aside type="tip">
+Block personal time or meetings in your Google calendar and the agent will respect it automatically: it only offers slots that are truly free.
+</Aside>
+
+## 4. View the schedule
+
+On the same page, **Upcoming appointments** shows confirmed bookings. From there you can mark them **completed** or **cancel** them (cancelling frees the slot and deletes pending reminders).
+
+## Done
+
+With at least one active service + availability, you can now:
+- Let the [agent book over WhatsApp](/en/agendamiento/que-es/), and
+- Share your [public booking link](/en/agendamiento/link-publico/).

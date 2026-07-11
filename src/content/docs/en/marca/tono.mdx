@@ -1,0 +1,60 @@
+---
+title: Tone and register
+description: "Neutral Chilean tuteo, never Argentine voseo. Close, direct, no jargon. What we do say and what we don't."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote speaks in **neutral Chilean tuteo** — the variant of Spanish understood across all of LATAM without sounding regional. No Argentine voseo, no region-exclusive slang.
+
+## The rule in one line
+
+> **Tú / tienes / configura / pega**. NEVER **tú / tienes / configura / pega**.
+
+## Why it matters
+
+Brote operates in Chile, Mexico, Argentina, Colombia, Peru, Uruguay and Spain. Each region has its accent:
+
+- **Argentina/Uruguay**: voseo (tú tienes, tú sos).
+- **Mexico**: formal tú (usted in many contexts).
+- **Chile**: informal tuteo (tú tienes, also "vo' ten'" but colloquial).
+- **Colombia/Peru/Spain**: formal/neutral tú.
+
+If the AI agent of your business in Coquimbo (Chile) speaks with Argentine voseo, it sounds off. If it speaks with "vosotros tenéis" (Spain), it sounds even stranger. **Neutral Chilean tuteo** is the lowest common denominator that works across all of LATAM without sounding like any specific region.
+
+## Variant glossary (what we DO and DON'T use)
+
+| Concept | ✓ We use | ✗ We do NOT use |
+|---|---|---|
+| 2nd person pronoun | tú | tú / usted (in informal chat) |
+| Verb "tener" | tienes | tienes / tiene |
+| Verb "configurar" | configura | configura / configure |
+| Verb "pegar" | pega | pega / pegue |
+| "Decir" | di / dile | di / digale |
+| Diminutive | poquito | poquitito |
+| Affirmative tag | bueno / dale | ta' bien / vale / órale |
+| "Aquí" | acá | aquí (sounds formal) |
+| "También" | también | tmb / tb |
+
+## In the app
+
+Brote's dictionary (`src/i18n/dictionaries/es.json`) is audited for neutral Chilean tuteo. If you find a voseo, it's a bug — report it.
+
+In the AI agent configured for each org, the tone **is inherited from the onboarding** ([URL](/en/copilot/url-onboarding/) or [audio](/en/copilot/audio-onboarding/)). If your business is Argentine and you want voseo, you configure it in the "tono" agent_block. But the **Brote dashboard** chat (the one you use as the owner) is always neutral Chilean tuteo.
+
+## What we do NOT do
+
+- **No decorative emojis**: if an emoji adds information (✅ 🎉 📅) we use it. Gratuitous decoration (✨🚀💫), no.
+- **No multiple exclamation marks**: one "!" is enough. No "!!!".
+- **No CAPS for emphasis**: if you have to shout, don't say it. **bold** for emphasis.
+- **No unnecessary anglicisms**: "deadline" → "fecha límite". "feedback" → "comentarios" (OK for technical audiences). "engagement" → depends on context.
+- **No marketing-speak**: "we transform your business", "we revolutionize", "disruptive ecosystem" → no.
+
+<Aside type="tip" title="When in doubt">
+**Imagine you're writing it to a friend who owns an SMB in Coquimbo or Concepción.** If that person would read it as natural, it's fine. If it sounds like copy from a Buenos Aires agency or a technical manual from Mexico City, rewrite it.
+</Aside>
+
+## Next steps
+
+- [Official CTAs](/en/marca/ctas/)
+- [Configure your AI agent's tone](/en/empezar/primer-agente/)

@@ -1,0 +1,111 @@
+---
+title: TikTok Events API (Lower Funnel)
+description: Brote captures the ttclid from TikTok ads and fires server-side CompletePayment when MP/Flow/Khipu approves a payment. Sibling of the Meta Conversions API.
+---
+
+import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
+
+If you invest in **TikTok Messaging Ads** (TikTok ads that redirect to
+WhatsApp), Brote captures the `ttclid` from the customer's first message and
+sends server-side events to your TikTok Pixel when the customer pays.
+It closes the ROAS loop just like Meta — TikTok knows which ad generated which
+sale.
+
+## How it works
+
+```
+1) Cliente ve tu ad TikTok → click "Send Message"
+   └─ TikTok redirige a wa.me/...?ttclid=xxx
+
+2) Brote recibe el msg vía webhook Evolution
+   └─ extrae ttclid del externalAdReply.sourceUrl
+   └─ guarda en contact.metadata.tiktok_attribution
+
+3) Cliente conversa con tu agente IA → recibe link MP/Flow/Khipu
+
+4) Cliente paga → webhook de la pasarela aprueba
+   └─ Brote dispara CompletePayment a TikTok
+   └─ POST https://business-api.tiktok.com/open_api/v1.3/event/track/
+   └─ body con user.{ttclid, sha256(phone), sha256(email)}
+
+5) TikTok matchea el ttclid con el click original y atribuye en Events
+   Manager / Reports.
+```
+
+## Setting up the integration
+
+### Step 1 — Get your Pixel Code + Access Token
+
+1. Go to [TikTok Business Center](https://business.tiktok.com/) → Tools →
+   Events Manager.
+2. Pick your Pixel (or create one).
+3. **Pixel Code** appears on the card (format `CXXXXXXXXXXXXXXXXX`).
+4. **Settings → Conversions API → Generate Access Token**. Copy it NOW —
+   it's shown only once.
+5. **Event Set ID** (optional but recommended): it's the identifier of the
+   event set. If you don't set it, TikTok infers it from the Pixel.
+
+### Step 2 — (Optional) Test Event Code
+
+1. Events Manager → **Test Events** → generate a code like `TEST123`.
+2. Paste it into Brote — events go to Test Events without counting as
+   real conversions.
+
+### Step 3 — Connect in Brote
+
+1. **Settings → Integrations → Payments** → scroll down to "TikTok Events API".
+2. Paste Pixel Code + Event Set ID (optional) + Access Token + Test Code
+   (optional).
+3. Click **Connect TikTok**. Brote pings with a minimal `Lead` event
+   to validate the credentials.
+
+<Aside type="caution">
+TikTok responds 200 OK even on validation errors (it returns
+`code != 0` in the body). Brote checks for that and only saves credentials
+if the ping responds `code: 0`. If it fails, we show you the exact error.
+</Aside>
+
+## What gets sent and when
+
+| Event | When | Properties |
+|---|---|---|
+| `CompletePayment` | When MP/Flow/Khipu approves a payment | value (CLP), currency, content_name |
+| `Lead` (future) | When lifecycle moves to `mql/sql` | — |
+| `InitiateCheckout` (future) | When the agent sends a payment link | value, currency |
+
+For now only `CompletePayment` is automatic.
+
+## Competitive positioning
+
+| Platform | Server-side TikTok Events API |
+|---|---|
+| **Brote** | ✅ `ttclid` capture + automatic `CompletePayment` |
+| respond.io | ✅ "Send TikTok Lower Funnel Event" step (manual workflow) |
+| Wati | ❌ |
+| SleekFlow | ❌ |
+| Manychat | 🟡 Client-side pixel only |
+
+Brote and respond.io are currently the only LATAM-relevant platforms with
+server-side TikTok CAPI. The difference: respond.io requires configuring the event per
+workflow (a manual step); Brote fires it automatically as soon as the payment is approved.
+
+## Key difference vs. Meta CAPI
+
+- Meta uses `ctwa_clid` which arrives in `externalAdReply.ctwaClid` (a
+  dedicated field).
+- TikTok uses `ttclid` which arrives as a query param in
+  `externalAdReply.sourceUrl` (Brote parses it with a regex).
+- That's why TikTok attribution can fail if TikTok changed the redirect
+  format — always check the `[whatsapp.webhook] TikTok ad
+  detected` logs to confirm it was captured.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Meta CAPI (parallel)" icon="rocket">
+    [Meta Conversions API →](/en/integraciones/meta-conversions-api)
+  </Card>
+  <Card title="Connect Mercado Pago" icon="approve-check">
+    [So it fires CompletePayment →](/en/pagos/mercado-pago)
+  </Card>
+</CardGrid>

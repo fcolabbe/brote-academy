@@ -1,0 +1,78 @@
+---
+title: Import contacts from CSV
+description: Upload your existing base as a CSV and Brote dedupes, normalizes and loads it in seconds.
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+If you already have customers on another platform or in a spreadsheet, upload them to Brote
+with a CSV instead of entering them by hand.
+
+## Where
+
+**Settings → Contacts → Import contacts from CSV** (`/app/settings/contacts`).
+
+## CSV format
+
+Brote accepts any CSV with headers in the first row. It recognizes
+these columns (in ES and EN, uppercase or lowercase):
+
+| Recognized header | Maps to |
+|---|---|
+| `name`, `nombre`, `full name` | full name |
+| `phone`, `telefono`, `whatsapp`, `wa`, `celular`, `móvil` | phone |
+| `email`, `mail`, `correo` | email |
+| `notes`, `notas`, `comentarios` | internal notes |
+| `tags`, `etiquetas` (separated by `,` `;` or `|`) | tags |
+| `lifecycle`, `lifecycle_stage`, `stage`, `etapa` | lifecycle stage |
+
+**Requirement**: each row must have at least `phone` or `email`. Rows
+without either are skipped and show up in the report as errors.
+
+### Minimal example
+
+```csv
+nombre,whatsapp,email,etapa,tags
+Juan Pérez,+56 9 1234 5678,juan@email.cl,lead,vip,segunda-compra
+María González,+56987654321,,customer,
+```
+
+<Aside type="tip">
+Brote normalizes phone numbers to international format (`+56...`). If your
+CSV has the number without a `+`, it adds it automatically. It accepts spaces,
+dashes and parentheses — and cleans them up.
+</Aside>
+
+## Import options
+
+### If a duplicate is found
+
+- **Only add tags (default)**: the existing contact stays intact;
+  only the new tags are added to its list.
+- **Skip**: doesn't touch the existing one.
+- **Overwrite all fields**: updates name, phone, email,
+  lifecycle. Use with care.
+
+### Tags for all imported contacts
+
+Useful for marking the batch's origin (e.g. `cyber-monday`, `leads-feria-2026`).
+These tags are added on top of the CSV's tags.
+
+## Quotas
+
+- Up to **10,000 rows per file**.
+- Up to **5 MB in size**.
+- Bigger than that: split it into batches or ask us for an assisted import.
+
+## After the import
+
+Brote shows a report with:
+- `imported`: new rows created.
+- `updated`: existing contacts that were updated.
+- `skipped`: rows with errors or skipped due to the chosen mode.
+- List of errors by row number so you can fix the CSV and
+  re-import only what failed.
+
+If the CSV contained internal duplicates, the system detects them and
+shows them in the **Detected duplicates** section so you can decide what
+to do with each one (see [contact merging](/en/contactos/merge)).

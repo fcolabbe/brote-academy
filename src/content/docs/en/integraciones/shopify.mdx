@@ -1,0 +1,48 @@
+---
+title: Shopify
+description: "Connect your Shopify store so the AI agent can query your catalog + stock + build carts in the chat. Available from the Starter plan."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote has a native integration with the **Shopify Storefront API**. Your AI agent queries products, variants, prices, and stock, and builds pre-filled carts the customer only has to pay for. Available from the **Starter** plan.
+
+## What the agent does with Shopify
+
+- **Catalog lookup**: when the customer asks "do you have model X in blue?", the agent searches your Shopify and replies with the real details + photo + price.
+- **Stock verification**: the agent knows whether there's stock before promising. If there isn't, it offers alternatives or suggests a waitlist.
+- **Build cart link**: it generates a pre-built cart link with the products the customer chose. The customer just clicks → pre-populated checkout in your Shopify.
+- **Cross-recommendation**: if the customer buys X, the agent suggests related products based on your Shopify data.
+
+<Aside type="tip" title="Cart link > Configurator">
+When the customer has identified variant + quantity, the agent prioritizes sending a direct **cart link** (deeplink to the Shopify checkout) over sending them to the configurator. Fewer clicks = more conversion.
+</Aside>
+
+## How to connect
+
+1. Go to **Settings → Integrations → Shopify**.
+2. Enter your **store handle** (e.g., `mitienda.myshopify.com` or `mitienda.com`).
+3. We automatically generate a Storefront API access token by reading `mitienda.com/products.json` (public).
+4. If your store has products not listed publicly (private storefront), paste the Storefront token manually.
+
+## Native subscriptions
+
+If your Shopify uses a subscriptions app (Bold, Recharge, Native Subscriptions), subscriptions appear as **variants** of the product. Brote detects them automatically — the customer can say "I want the subscription" and the agent builds the cart with the subscription variant.
+
+## Synchronization
+
+Data is read on demand when the agent needs it — **there is no periodic sync**. This means:
+
+- Your prices are always up to date (no cache lag).
+- Your stock is real-time.
+- We keep no copy of the catalog in Brote — we trust Shopify as the source of truth.
+
+## Combinable with Mercado Pago
+
+If you want the charge to go through **Mercado Pago** instead of the native Shopify checkout, you can configure that. The agent generates an MP payment link, the customer pays, and the MP webhook triggers the order in your Shopify (via Zapier or Webhooks).
+
+## Next steps
+
+- [Connect Mercado Pago](/en/pagos/mercado-pago/)
+- [In-chat payments](/en/pagos/cobro-in-chat/)
+- [Zapier to sync Shopify with your CRM](/en/integraciones/zapier/)

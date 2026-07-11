@@ -1,0 +1,47 @@
+---
+title: Embeddable webchat
+description: "Paste a snippet into your site and the AI agent replies to visitors 24/7. No external accounts, no third parties."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote's webchat is a JavaScript widget you paste before `</body>` and it starts landing real conversations in your inbox. The AI agent replies to unknown visitors without them having to create an account.
+
+![Embeddable webchat configuration](/screenshots/webchat-config.png)
+
+## Why it matters
+
+- **No third-party dependency**: it's not Tidio, Intercom or Crisp. The widget is served from your domain or `brote.ai`, and the data lives in your organization.
+- **Same AI as on WhatsApp**: the agent replies with the same persona, the same catalogs, the same business rules.
+- **Anonymous visitors = anonymous leads**: if the visitor leaves an email/phone during the conversation, they become an identified contact and enter your pipeline.
+
+## How to connect it
+
+1. Go to **Settings → AI Agent → Webchat**.
+2. Copy the snippet (a `<script>` with your per-org widget key).
+3. Paste it before `</body>` on your site (WordPress, Shopify, Webflow, custom site — works anywhere).
+4. Reload your site: the floating button appears at the bottom right. Click → chat with your AI agent.
+
+## Customization
+
+From the settings you can adjust:
+
+- **Primary color and background** of the floating button
+- **Agent avatar and name** (pulled automatically from onboarding)
+- **Welcome message** (inherited from the AI agent, same prompt for all channels)
+- **Position** of the button (left/right)
+- **Visibility** by hour and day (e.g.: only 9-18, hidden on Sundays)
+
+## When a visitor becomes a contact
+
+If the agent asks for an email/phone and the visitor provides them, Brote creates an identified contact. Until then, they appear as "Web visitor" in the inbox + pipeline. Once identified, all future conversations from that device are linked to the same contact.
+
+<Aside type="tip" title="Combine with Webhooks">
+If you need a newly identified contact to trigger something external (HubSpot, Sheets, Mailchimp), connect [Zapier](/en/integraciones/zapier/) or [Business Webhooks](/en/integraciones/webhooks-api/) — every `new_contact` or `qualify_lead` is posted signed with HMAC.
+</Aside>
+
+## Next steps
+
+- [Connect WhatsApp](/en/canales/whatsapp/)
+- [Charge inside the chat](/en/pagos/cobro-in-chat/)
+- [How the unified Inbox works](/en/inbox/inbox-unificado/)

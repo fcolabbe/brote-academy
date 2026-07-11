@@ -1,0 +1,148 @@
+---
+title: Your sales and contacts in a spreadsheet — from zero to 100
+description: Have every new Brote contact, lead, and sale land on its own in a Google Sheet. For reports and for your team that lives in Excel/Sheets. Complete guide with a real example, what you need, and what you'll achieve.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**Google Sheets + Brote** = every new person who messages your agent (with their name, phone, email, interest, channel, and date) **lands on its own in a Google spreadsheet**, ready for reports or for the team that works in Sheets/Excel.
+
+Your AI agent serves customers all day over WhatsApp, Instagram, or Messenger. That flow of contacts and sales stays inside Brote — but **your admin team, your accountant, or your head of sales live in a spreadsheet**. Until now, someone hand-copied each new customer's data into Sheets. With this integration, **Brote writes the row on its own**: new contact → new row, in real time. Zero copy-paste.
+
+<Aside type="tip" title="The question this feature answers">
+"My agent handles conversations and sells, but my team builds reports in a Google spreadsheet. How do I get **every new customer to show up in Sheets on its own**, without copying anything by hand?"
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | It's NOT for you (yet) if… |
+|---|---|
+| Your team **builds reports in Google Sheets / Excel** | You already work entirely inside Brote and don't need a spreadsheet |
+| You want a **shared record** of leads that fills itself | You manage your catalog in Shopify and don't need a sheet |
+| You have people (admin, accountant, sales) who **don't log into Brote** | You work alone and don't share data with anyone |
+| You want to **report without depending on whoever copies by hand** | You'd rather export a CSV every now and then and be done |
+
+**Plainly put:** it's for the business whose **admin team lives in a spreadsheet** and wants Brote's customers and sales to land there on their own, without keying in data.
+
+<Aside type="note" title="Plan required: Starter (Brote) 🌱">
+The Google Sheets integration is available **from the Starter plan**. It's not in the Mini (sampler) plan. With Starter or higher, your agent can read your spreadsheet as a catalog **and** write every new contact into it.
+</Aside>
+
+## What do you need before connecting?
+
+<Steps>
+
+1. **A Google account** with access to Google Drive (the one you already use for your spreadsheets).
+
+2. **A Google Sheets spreadsheet** created — it can be empty. You'll define columns like `Nombre`, `Email`, `Teléfono`, `Origen`. If you also want to use the sheet as a catalog, add a second tab (`catalog_tab`) with `Producto`, `Precio`, `Stock`.
+
+3. **A channel connected in Brote** (WhatsApp, Instagram, Messenger…) — that's where the contacts that will be written into the spreadsheet come from.
+
+4. An active **Starter plan** or higher.
+
+</Steps>
+
+<Aside type="note">
+When you connect, Brote gives you a **service email** (something like `...@brote.iam.gserviceaccount.com`). You share your spreadsheet with that email in **Editor** mode — that way Brote can write rows. Nothing technical needed: it's the same "Share" button you already use in Google Sheets.
+</Aside>
+
+## Real example: from zero to 100 with Rodrigo 🌱
+
+> **Rodrigo** runs **"Clima Norte"**, an air conditioning installation company in La Serena. His AI agent handles quotes over WhatsApp and Instagram. But his sister **Paula**, who runs the admin side, keeps everything in a Google spreadsheet shared with the accountant and the two field technicians. Every morning, Paula hand-copied the day's new customers from her phone. She lost 40 minutes and sometimes missed one.
+
+<Steps>
+
+1. **Rodrigo connects Google Sheets in Brote** in 3 minutes: he creates a "Leads Clima Norte" spreadsheet with columns `Fecha`, `Nombre`, `Teléfono`, `Interés`, `Canal`, shares it with Brote's service email, and pastes the URL in Settings → Integrations → Google Sheets. He maps which column holds which value. Done.
+
+2. **Camila messages him on WhatsApp** on a Tuesday at 9 PM: *"Hola, quiero cotizar un split de 12.000 BTU para mi living."*
+
+3. **Brote's AI agent handles her**: it asks for her details, gives her a price range, and books a technical visit. Quietly, Brote captures: name "Camila", phone, interest "split 12.000 BTU", channel "WhatsApp".
+
+4. **Automatically, Brote adds a row** to Paula's spreadsheet: `05-07-2026 · Camila · +56 9… · Split 12.000 BTU · WhatsApp`. Without anyone touching anything.
+
+5. **The next morning, Paula opens the spreadsheet** and the 6 leads that came in overnight are already there — with date, channel, and what each one asked for. She copied none of them.
+
+6. **The accountant and the technicians see the same sheet live**: the technicians filter by "visit booked", the accountant sums up the month's closed deals. Everyone works on the same spreadsheet, which fills itself.
+
+</Steps>
+
+**Rodrigo and Paula never hand-copied a contact again.**
+
+**At the end of the month, Paula does the math:**
+
+| Before connecting Sheets | With Google Sheets + Brote |
+|---|---|
+| Hand-copied ~40 min every morning | **0 minutes** — it fills itself |
+| Missed ~3 leads/week | **0 leads lost** in the spreadsheet |
+| Monthly report: half a day building it | Report ready: the sheet already has everything |
+| The accountant asked for the data over WhatsApp | The accountant sees the **same sheet live** |
+| ~48 leads recorded/month | **~62 leads recorded/month** (none get lost) 🎉|
+
+<Aside type="tip" title="This is what you get">
+Your spreadsheet stops being a manual chore and becomes a **record that fills itself**. Your admin team keeps working where they already know (Sheets/Excel), but without keying in data or chasing whoever "hasn't copied today's yet". **Less work, zero lost leads, instant reports.**
+</Aside>
+
+## What will you achieve?
+
+| You get… | Why it matters |
+|---|---|
+| **Every new contact in the spreadsheet, on its own** | Your team doesn't hand-copy or lose leads |
+| **A shared record in real time** | Admin, accountant, and sales see the same thing, live |
+| **Reports without depending on anyone** | The sheet already has the data: filter and sum |
+| **Automatic date, channel, and tags** | You know where each lead came from and when |
+| **Your team stays in Sheets/Excel** | Zero learning curve: they use what they already know |
+
+**The most powerful part:** you don't have to move your team to a new tool. **Brote brings the data to where your people already work.** The agent sells and serves over chat; your usual spreadsheet fills itself behind the scenes.
+
+## How easy is it?
+
+Easy. The connection takes **about 3 minutes** and only requires sharing your spreadsheet:
+
+<Steps>
+
+1. Create or open your spreadsheet in **Google Drive**.
+
+2. In Brote, go to **Settings → Integrations → Google Sheets** — copy the **service email** it shows you.
+
+3. In your spreadsheet, tap **Share**, paste that email, and give it **Editor** permission.
+
+4. Back in Brote, paste your **spreadsheet's URL** → Brote detects the columns → you **map** which one is `Nombre`, `Email`, `Teléfono`, `Origen`. ✅
+
+5. Test it: add a row by hand, wait a few seconds, and ask the agent to record a test contact.
+
+</Steps>
+
+After that, **you do nothing else**. Every new contact the agent handles lands in the sheet on its own.
+
+## Frequently asked questions
+
+**Does Brote need my Google password?**
+No. You share the spreadsheet with a **service email** (a technical Brote account) in Editor mode. Brote can only edit the spreadsheets you've shared with it — nothing else in your Drive.
+
+**Can I use the same spreadsheet as a catalog AND for leads?**
+Yes. In the MVP we support **one spreadsheet per organization**, but you can set up **two tabs** in the same sheet: a `catalog_tab` (for the agent to read prices and stock) and a `leads_tab` (where it writes new contacts). Brote recognizes them separately.
+
+**How fast does a new contact appear in the sheet?**
+A new lead is written the moment it's captured. For catalog **reads**, Brote caches the spreadsheet for 5 minutes (there's a "Refresh now" button if you changed a price and don't want to wait).
+
+**Does it work if my spreadsheet is huge?**
+Up to **5,000 rows** it runs smoothly. If your catalog is bigger than that, an e-commerce integration like Shopify is a better fit. For leads/reports, you're unlikely to hit that size.
+
+**What if I'd rather send the data to another tool (my CRM, another spreadsheet, a system)?**
+Google Sheets is the direct record. If you want to send the same data to **other systems** (your CRM, email, notifications), you build that with automations like Zapier or Make/n8n — same idea, more destinations.
+
+**Do I need a paid plan?**
+Yes, from **Starter**. The Google Sheets integration isn't in the Mini plan.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Google Sheets technical details" icon="setting">
+    [How to connect, modes, and column mapping →](/en/integraciones/sheets)
+  </Card>
+  <Card title="Organize your contacts in Brote" icon="open-book">
+    [Contacts from zero to 100 →](/en/contactos/de-cero-a-100)
+  </Card>
+</CardGrid>

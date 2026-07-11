@@ -1,0 +1,75 @@
+---
+title: Google Calendar
+description: "Your AI agent proposes available times, books the appointment, and sends confirmation + reminders. Without you ever opening Calendar."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote connects to your **Google Calendar** directly, via Brote's own OAuth. The AI agent reads your availability and books appointments on your calendar without you having to open Google.
+
+There are two pieces:
+
+- **It writes the appointments** the agent books into a **"Brote — Citas"** calendar inside your Google account (kept separate and tidy).
+- **It reads your availability (free/busy)** from your main calendar so it **never books over your existing events**.
+
+It's a two-way sync: what the agent books shows up in your Google, and your personal events block those slots for the agent.
+
+## When it matters
+
+Verticals where scheduling is the bottleneck:
+
+- **Healthcare and clinics**: patients requesting appointments over WhatsApp.
+- **Professional services**: consultants, lawyers, dentists, stylists.
+- **Real estate**: property viewings.
+- **B2B**: discovery calls that don't land on Calendly.
+- **Small hospitality**: custom check-in / check-out.
+
+## How to connect
+
+1. Go to **Settings → Scheduling**.
+2. Click **"Connect Google Calendar"**.
+3. Authorize with your Google account (the one with the relevant calendar).
+4. Brote creates the **"Brote — Citas"** calendar for writing appointments, and you choose **which calendar(s) to read for your availability** (you can have several, e.g., "Citas Doctora Pérez", "Visitas Inmuebles Norte").
+
+## How the agent uses it
+
+When a customer asks for an appointment:
+
+```
+Cliente: "necesito reservar una hora con el doctor"
+Agente IA:
+  → invoca find_calendar_slots({calendar_id, duration: 30min, range: next_14_days})
+  → recibe slots disponibles
+"Tengo disponible mañana 10-11h o jueves 15-16h. Cuál te queda mejor?"
+
+Cliente: "jueves 15h"
+
+Agente IA:
+  → invoca create_calendar_event({slot, summary, attendees: [cliente_email]})
+"Confirmado, te agendé jueves 15:00. Te llega el invite a tu mail.
+ Te mando recordatorio el día antes."
+```
+
+## Per-calendar settings
+
+For each connected calendar you can define:
+
+- **Default slot duration** (15 / 30 / 60 / 90 min).
+- **Buffer** between appointments (5 / 10 / 15 min between slots).
+- **Available hours** (e.g., Monday–Friday 9–13 and 15–19).
+- **Minimum notice** (e.g., no appointments with less than 4 hours' notice).
+- **Maximum notice** (e.g., at most 30 days into the future).
+
+## Automatic reminders
+
+When an appointment is booked, the agent can send automatic reminders:
+
+- **24h before**: "Remember your appointment tomorrow at [time]".
+- **1h before**: "Your appointment is in 1 hour, address X".
+- **Easy reschedule**: if the customer replies "can't make it, move it", the agent proposes slots again.
+
+## Next steps
+
+- [Google Sheets](/en/integraciones/sheets/)
+- [Set up your AI agent](/en/empezar/primer-agente/)
+- [Healthcare vertical](/en/verticales/salud/)

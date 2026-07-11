@@ -1,0 +1,151 @@
+---
+title: Mass campaigns — from zero to 100
+description: Send a promo, announcement or reminder over WhatsApp to hundreds of contacts at once — without burning your number. Complete guide with a real example, what you need, who it's for and what you'll achieve.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**Mass campaign** = sending **the same WhatsApp message to hundreds of contacts at once** (a promo, an announcement, a reminder), with the **AI agent continuing each conversation** based on what each person replies.
+
+You already have a customer base: people who bought from you, leads that went lukewarm, subscribers who cooled off. That base is money sitting idle. A campaign wakes it up: you pick who, write the message, and Brote sends it while respecting limits so you **don't burn your WhatsApp**. What sets it apart from a traditional "blast": you're not left with 500 unanswered replies — the AI agent responds, recommends, builds the payment link and labels each contact by their real intent.
+
+<Aside type="tip" title="The question this feature answers">
+"I have 500 customers in my contact list. How do I tell them about my end-of-season promo **without writing one by one** and without Meta banning my number?"
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | NOT for you (yet) if… |
+|---|---|
+| You have a loaded **contact base** (customers, leads) you want to reactivate | You're just starting and barely have contacts |
+| You want to announce **promos, news or reminders** to many at once | You only handle inbound (pure 1:1) |
+| You sell over **WhatsApp** and want the conversation to continue on its own | You don't sell through conversation |
+| You're on the **Pro or Business** plan | You're on Mini or Starter (they don't include campaigns) |
+
+**Plainly put:** it's for the business that already has **a list of people** and wants to sell to them again — with no marketing team and without risking the number.
+
+<Aside type="caution" title="Plan required: Pro or Business — with caps that protect you">
+Mass campaigns are a **Pro and Business** feature. Mini and Starter are designed for 1:1 conversations (handling what comes in), not mass sends. Each plan has **daily and monthly limits that Brote enforces automatically** so Meta doesn't throttle or ban your number:
+
+| Plan | Campaigns/month | Contacts/campaign | Messages/day (total) |
+|---|---:|---:|---:|
+| **Mini** ($29) | 0 — no campaigns | — | — |
+| **Starter** ($49) | 0 — no campaigns | — | — |
+| **Pro** ($129) | 10 | 500 | 800 |
+| **Business** ($349) | unlimited | 1.500 | 2.500 |
+
+These numbers are calibrated with real WhatsApp tolerance data. They're not arbitrary: exceeding them is how you earn a ban. Details in [Caps per plan](/en/campanas/caps/).
+</Aside>
+
+## What do you need before launching?
+
+<Steps>
+
+1. **Contacts loaded in Brote.** A campaign goes out to a *cohort* — a filtered group of your base. If your list is empty, first load or import contacts (via CSV or the ones who already chatted with your agent).
+
+2. **WhatsApp connected.** The channel campaigns go out through. The recommended path is Meta's **official Cloud API** (better number reputation); the standard connection also works.
+
+3. **Respect opt-in / opt-out.** Send only to people who **gave you permission or already chatted with you** — not purchased number lists. And don't worry about opt-out: if someone replies "stop" or "unsubscribe", **Brote removes them automatically** from all future campaigns (details below).
+
+4. An active **Pro or Business plan**.
+
+</Steps>
+
+<Aside type="note">
+You don't need any technical knowledge. If you have contacts, WhatsApp connected and a Pro+ plan, you're ready to launch. The wizard is 4 steps (segment → message → goal → schedule). See [Create your first campaign](/en/campanas/crear/).
+</Aside>
+
+## Real example: from zero to 100 with Camila 🌱
+
+> **Camila** runs **"Trébol"**, a clothing store that sells over WhatsApp and Instagram. Winter season is ending and she's stuck with stock. She has **520 customers** in Brote who bought at some point. She wants to clear the warehouse with a **30% end-of-season sale** — but she knows writing to 520 people by hand is impossible, and that a reckless blast could cost her the number.
+
+<Steps>
+
+1. **Camila segments (Step 1).** Instead of sending to all 520, she filters tightly: customers with a **purchase in the last 12 months** + the `invierno` tag. Brote shows her live: **"487 contacts match"**. Since she's on **Pro** (500 contacts/campaign cap), it just fits. She trims a bit more to the most active and lands on **450**.
+
+2. **Camila writes the message (Step 2).** Something human, not robotic:
+   *"Hi `{nombre}` 👋 We're closing out winter with 30% off everything you liked. Here's the link, it runs through Sunday."* + a photo of the sale rack + a **pre-built payment link**. The `{nombre}` variable is replaced automatically in each send.
+
+3. **Camila sets the goal (Step 3):** *Payment*. That way Brote tracks how many of those 450 people actually end up buying, not just how many reply.
+
+4. **Camila schedules the send (Step 4).** She picks "tomorrow 10:00". Her Pro plan has an **800 messages/day** cap, so all 450 go out **the same day** with no queuing. Brote also respects each contact's **local waking hours** (no 3 AM messages).
+
+5. **The next day, the campaign runs on its own.** Of the 450:
+   - 40 reply "no thanks / not for me" → the AI agent closes politely. **3 write "unsubscribe"** → Brote marks them `opted_out` and they never receive campaigns again.
+   - 90 ask about sizes, colors, "do you have the blue coat?" → the AI agent answers from the catalog, without Camila touching anything.
+   - Interested contacts get the **payment link** from the agent and buy.
+
+6. **Camila opens the dashboard and sees the full funnel:** sent → delivered → replied → **paid**.
+
+</Steps>
+
+**Camila's campaign results (one afternoon, zero messages written by hand):**
+
+| Metric | Number |
+|---|---|
+| Contacts in the cohort | 450 |
+| Replied | 130 (29%) |
+| **Sales closed** | **38 · ~$1.140.000** 🎉 |
+| Opt-outs | 3 (0.7% — healthy) |
+| WhatsApp bans | 0 (Brote enforced the cap) |
+
+**Camila's takeaway (in 10 seconds):** *"38 sales from a rack I was going to liquidate at a loss. Next season I'll run the campaign before clearing out."* Without campaigns she would have dumped that stock at half price in the physical store — or not sold it at all.
+
+<Aside type="tip" title="This is what you get">
+You turn your customer list into **repeat sales** — no marketing team, no writing one by one, and no risking your number. The base you already have is your cheapest sales channel: reactivating it costs next to nothing compared to acquiring a new customer.
+</Aside>
+
+## What will you achieve?
+
+| You'll be able to… | Why it matters |
+|---|---|
+| **Reactivate dormant customers** | Sell again to people who already bought (the cheapest sale there is) |
+| **Announce promos and news** at once | End of season, Black Friday, new product, event |
+| **Send mass reminders** | Renewals, appointments, abandoned carts |
+| **Let the AI close for you** | 500 contacts don't generate 500 conversations — they generate sales and contacts sorted by intent |
+| **Not burn your WhatsApp** | Caps and automatic opt-out keep you within what Meta tolerates |
+
+## How easy is it?
+
+Easy. The wizard is **4 steps** (segment → message → goal → schedule) and takes about **5 minutes**. You don't need marketing or tech skills:
+
+- Brote shows you **how many contacts** match your filter in real time, and warns you **before** you exceed the cap.
+- **Throttling is automatic**: if your cohort exceeds the day's cap, the rest queues itself for the next day. Nothing to calculate.
+- **Opt-out is automatic**: no manual unsubscribe lists.
+- **The AI agent handles the conversations** on its own. You watch the funnel.
+
+## Frequently asked questions
+
+**Can my WhatsApp get banned for sending campaigns?**
+That's exactly the risk the **caps** and **opt-out** exist to prevent. Meta detects mass-send patterns and can throttle or ban a number that overdoes it. That's why each plan has a daily/monthly ceiling that **Brote enforces for you** — it never lets you over-send. Add to that sending only to people who gave you permission and respecting anyone who asks out, and you're within tolerable bounds. Recovering a banned number means 1 to 7 days of downtime, so the cap is deliberately calibrated conservative.
+
+**What is automatic opt-out?**
+If a contact replies "stop", "unsubscribe", "no more messages" or variants, the AI agent **closes politely**, applies the `opted_out` tag and **excludes them from all future campaigns** — even if one of your filters technically includes them, Brote leaves them out. No manual unsubscribe lists. If a campaign generates **more than 3% opt-out**, Brote alerts you to review the message (it usually means the cohort was too aggressive or it read like spam). Details in [Automatic opt-out](/en/campanas/opt-out/).
+
+**Should I use WhatsApp via the official Cloud API or the standard connection?**
+Meta's **official Cloud API** is the recommended one: your number gets better reputation and sends are more stable. The standard connection also works, but it's more sensitive to mass-send patterns — which is why caps are the key protection either way. In practice, **the vast majority of Brote campaigns go out over WhatsApp** because that's where your base is. For Instagram/Messenger there are no Brote-specific caps, but those platforms heavily restrict mass sends to non-followers.
+
+**How many contacts can I send per campaign?**
+Depends on the plan: **Pro** up to **500** per campaign and **800/day** total; **Business** up to **1.500** per campaign and **2.500/day**. If you have more contacts than the daily cap, Brote **queues** the rest for the following days automatically. See [Caps per plan](/en/campanas/caps/).
+
+**Can the same person receive two campaigns?**
+Yes, unless they've opted out. For cap counting, a contact who's in 2 cohorts counts twice.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Create your first campaign" icon="rocket">
+    [The 4-step wizard, step by step →](/en/campanas/crear/)
+  </Card>
+  <Card title="Caps per plan and WA protection" icon="warning">
+    [The limits that protect your number →](/en/campanas/caps/)
+  </Card>
+  <Card title="Automatic opt-out" icon="approve-check">
+    [How Brote honors unsubscribes →](/en/campanas/opt-out/)
+  </Card>
+  <Card title="What campaigns are" icon="open-book">
+    [The concept in detail →](/en/campanas/que-son/)
+  </Card>
+</CardGrid>

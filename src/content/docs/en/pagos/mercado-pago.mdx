@@ -1,0 +1,57 @@
+---
+title: Connect Mercado Pago
+description: "Authorize Mercado Pago with one click. Your AI agent generates payment links inside the chat. The money goes straight to your MP account — Brote never touches it."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote connects to your Mercado Pago account via OAuth. Once you authorize, the AI agent gains access to the `build_payment_link` tool and starts collecting payments inside the chat without you copy/pasting anything.
+
+## Why Mercado Pago
+
+- **MoR in LATAM**: charges in CLP/MXN/ARS/COP/BRL/USD depending on the country, without you having to set up a gateway.
+- **No Stripe or Adyen needed**: for LATAM SMBs, MP is the shortest path to charging online.
+- **Reliable webhooks**: when the customer pays, MP notifies us via webhook and Brote updates the ticket + triggers post-sale campaigns.
+- **Money straight to your account**: Brote is NOT the Merchant of Record for your customers' payments. The money goes to the MP account you connected. Brote only charges its own subscription (via [Polar](/en/planes/polar/)).
+
+<Aside type="caution" title="Difference between Polar and Mercado Pago">
+**Polar** is the MoR through which you pay your Brote subscription (Mini/Starter/Pro/Business). **Mercado Pago** is what you connect to charge YOUR customers. They're two different things — Polar is Brote charging you, MP is you charging others.
+</Aside>
+
+## How to connect
+
+1. Go to **Settings → Integrations → Mercado Pago**.
+2. Click **"Connect with Mercado Pago"**. You're redirected to the MP login.
+3. Log in with your MP account (the one that receives the money).
+4. Authorize the permissions: create payment preferences, receive confirmed-payment webhooks.
+5. You're back in Brote and the integration is **active**.
+
+From that moment the AI agent can generate payment links. Try it in the [Playground](/en/empezar/primer-agente/) — ask the agent: "send me a payment link for $50.000 for an XL box".
+
+## What happens when the customer pays
+
+The end-to-end flow:
+
+1. **The customer tells the agent**: "I'll take it".
+2. **The AI agent invokes** `build_payment_link({amount, description, external_reference: conversation_id})`.
+3. **Brote calls the MP API** → creates the preference → receives the `init_point` URL.
+4. **The agent sends the customer** the payment link in the chat.
+5. **The customer pays** in the MP checkout.
+6. **MP posts a webhook** to Brote with `payment.id` + status `approved`.
+7. **Brote records the payment** in `mercadopago_payments`, associates it with the `conversation_id`, moves the ticket to "Payment confirmed".
+8. **The AI agent confirms with the customer** in the chat: "Done, payment received. It arrives in X days."
+9. **If you have Zapier/Webhooks active**: fires `payment_received` → your Holded/QuickBooks creates the invoice.
+
+## Recurring subscriptions
+
+Mercado Pago supports preapproval (recurring subscriptions). Brote can generate preapproval links for subscription services (monthly membership, pet food plan, SaaS software). The customer accepts once and MP charges automatically every period.
+
+## Discount coupons
+
+If you configured [coupons](/en/empezar/primer-agente/) in your org, the agent can apply them when generating the link: `build_payment_link({...amount, coupon_code: "BIENVENIDO10"})` → MP calculates the discount + reflects it in the checkout.
+
+## Next steps
+
+- [Collect payments inside the chat](/en/pagos/cobro-in-chat/)
+- [Brote billing with Polar](/en/planes/polar/)
+- [Payment webhooks to Zapier](/en/integraciones/zapier/)

@@ -1,0 +1,81 @@
+---
+title: Handoff to a human
+description: "When and how the AI agent passes the conversation to your team. With an auto-generated summary so the operator doesn't have to read 30 messages."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Handoff is the moment the AI agent says "this one's not for me" and passes the conversation to a human operator. Brote does it seamlessly — the customer doesn't notice the switch from bot to human, but your team does.
+
+## When the AI agent triggers a handoff
+
+The AI agent decides to hand off in these typical cases:
+
+- The customer **explicitly asks** to talk to a human ("I want to talk to someone").
+- The customer **asks something out of scope** for the agent (custom pricing, legal cases, formal complaints).
+- The customer **shows frustration** or irritation detectable in their tone.
+- The customer is a **hot lead** identified by the agent (imminent purchase, big B2B opportunity).
+- Technical errors: the agent doesn't understand, the catalog has no answer, a tool failed.
+
+You configure this in **Settings → AI Agent → Edge cases** ([more in Copilot](/en/copilot/que-es/)).
+
+## The auto-generated handoff summary
+
+When it hands off, the AI agent **generates a summary** of the conversation that your operator sees when opening the ticket:
+
+```
+RESUMEN
+- Cliente: María González (+569 ··· ···)
+- Vertical: Retail
+- Canal: WhatsApp
+- Llegó preguntando: "tienen el modelo XYZ en color rojo, talla M?"
+- Estado: producto sin stock, ofrecimos lista de espera, cliente quiere
+  hablar para ver opciones alternativas
+- Intención detectada: alta — pregunta variantes, no precio
+- Última acción IA: derivó a humano + sugirió revisar stock interno
+
+CONTEXTO DEL CLIENTE
+- Compras previas: 0
+- Tags: lead_caliente, retail
+- Notas internas: (ninguna)
+```
+
+This is saved as an internal note on the ticket. The operator doesn't have to read 30 messages to understand — they already have the summary.
+
+## Team notification
+
+When a handoff comes in:
+
+- **Push notification** to each assigned member's device (web push, iOS PWA compatible).
+- **Email** optional (configurable per member).
+- **Slack ping** if you connected the [Slack integration](/en/integraciones/slack/).
+- **Outgoing webhook** `handoff_to_human` if you connected [Business Webhooks](/en/integraciones/webhooks-api/) or [Zapier](/en/integraciones/zapier/).
+
+<Aside type="tip" title="Configurable SLA">
+You can define an SLA per team: "if nobody picks up the handoff in 15 min, escalate priority and notify again". Useful for guaranteeing human response time without losing leads.
+</Aside>
+
+## Operator shortcuts: schedule and charge in one click
+
+When you take over a conversation, you don't have to write everything from scratch. Next to the message box there are two new buttons:
+
+- **📅 Send time slots**: you pick the service and Brote inserts into your message the next real available slots (with price if applicable) plus the public booking link. You review it, tweak it if you want, and send it.
+- **💳 Send payment link**: you pick a priced service — or type a free amount with its description — and Brote generates the real payment link (with whichever gateway you have connected) and drops it into your message, ready to send.
+
+Nothing gets sent on its own: the shortcuts **insert the text into your message** so you always have the last word before sending.
+
+<Aside type="note" title="Requirements">
+The time-slots shortcut needs [scheduling services configured](/en/agendamiento/configurar/); the payment one, a [connected gateway](/en/pagos/mercado-pago/) and a paid plan (the Free plan doesn't allow payments). If something's missing, the button itself tells you what to configure.
+</Aside>
+
+## Back to AI after the handoff
+
+When the operator closes the conversation (won/lost/archived), the AI agent goes back to `active` for that contact. The next interaction is handled by the agent again.
+
+If the operator wants the agent to NOT take over future interactions with that contact (e.g. a VIP customer who requires permanent human attention), they can toggle "AI off for this contact" — then it stays human forever.
+
+## Next steps
+
+- [Unified Inbox](/en/inbox/inbox-unificado/)
+- [Kanban pipeline](/en/inbox/pipeline/)
+- [How to configure the agent's edge cases](/en/copilot/audit/)

@@ -1,0 +1,108 @@
+---
+title: In-chat logistics (Chile)
+description: Brote quotes shipments and tracks orders inside the chat with Chilexpress and Starken. No opening the courier's website, no app switching.
+---
+
+import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
+
+Your AI agent quotes shipments, verifies coverage and tracks orders **right in
+the chat**. Brote automatically routes between the couriers you connected —
+the customer just gets the answer, they don't pick the carrier.
+
+## Supported couriers (Chile)
+
+### Chilexpress
+Three integrated APIs:
+- **Coverage** — verifies whether a county is covered before quoting.
+- **Rating** — returns price + delivery time. If you connected your **TCC**
+  (Tarjeta Cliente Comercial), a ~19% discount applies over the public rate.
+- **Transport Orders / Tracking** — up-to-date shipment status by tracking
+  number.
+
+Set it up in **Settings → Integrations → Chilexpress** with your 3
+subscription keys (Coverage / Quoting / Shipments) from
+[developers.wschilexpress.com](https://developers.wschilexpress.com/).
+
+### Starken
+Chile's second courier, as an alternative or complement. Two integrated APIs:
+- **Quoting** (`consultarTarifas`) — price + estimated days per mode
+  (AGENCIA / DOMICILIO).
+- **Tracking** (`getDetalleSeguimientoNuevo`) — status by freight number.
+
+Set it up in **Settings → Integrations → Starken**. Requires **API**
+credentials (they are not the web portal ones — ask your Starken account
+executive).
+
+<Aside type="caution">
+The credentials you use to log in to `starken.cl` don't work for the API.
+Starken gives you separate API credentials when you sign up for the business
+plan. If you get a `401` error when connecting, that's why.
+</Aside>
+
+## Automatic router
+
+If you connected **both couriers**, Brote picks one by priority:
+
+1. Default: **Chilexpress** (broader national coverage and a more modern API).
+2. Per-org override: in `organizations.settings.shipping_priority` you can
+   force `starken` if your typical customer lives in areas where Starken
+   covers better (southern Chile, rural areas).
+
+The agent only decides *"quote to Providencia, 1 kg"* — Brote picks the
+courier, builds the request, returns the price.
+
+## Agent tools
+
+| Tool | What it does |
+|---|---|
+| `check_shipping_coverage` | Verifies whether the courier reaches the customer's county |
+| `quote_shipping` | Quotes a shipment (price + days) |
+| `track_shipment` | Status of a shipment by tracking number |
+
+[Full tool details →](/en/automatizacion/tools-del-agente)
+
+## Origin configuration
+
+To quote, Brote needs to know **where** the shipment leaves from:
+
+- **Chilexpress**: set `origin_county_code` (a 4-letter code like
+  `STGO`, `VALP`, `CONC`).
+- **Starken**: pick the origin city from the cached list when connecting
+  (it's a dropdown with the valid cities).
+
+Without an origin configured, the agent returns `no_origin_configured` and
+notifies the admin.
+
+## Chilean county resolver
+
+Brote ships with a resolver of **80 major counties** mapped to
+Chilexpress + Starken codes. When the customer writes "Providencia",
+"Quilpué" or "Talcahuano", the agent resolves it automatically without
+asking for the code.
+
+If the county is in a rural zone outside the list, the agent answers
+honestly: *"I'll check with the team whether we deliver to that county and
+confirm"* — **it doesn't make up coverage**.
+
+## Costs
+
+- **Chilexpress**: no Brote cost — you pay the shipment directly to the
+  courier at the quoted rate. If you connect a TCC, you get ~19% off the
+  public rate.
+- **Starken**: no Brote cost — same, you pay per your account or customer
+  rate.
+- **Brote**: included in any plan from Starter $49/mo. It's not an add-on.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Agent tools" icon="rocket">
+    [See the 18 native tools →](/en/automatizacion/tools-del-agente)
+  </Card>
+  <Card title="Starter plan $49" icon="seti:plan">
+    [See pricing →](https://brote.ai/es/pricing)
+  </Card>
+  <Card title="Connect Chilexpress" icon="approve-check">
+    Coming soon — step-by-step guide
+  </Card>
+</CardGrid>

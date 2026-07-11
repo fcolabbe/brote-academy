@@ -1,0 +1,176 @@
+---
+title: Make + n8n — connect Brote to any flow
+description: Brote speaks natively with Make, n8n, Pipedream, and any orchestrator via Webhooks + API keys. Same infrastructure as Zapier — only where you build it changes.
+---
+
+import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
+
+If you already use **Make.com** (formerly Integromat) or **n8n** (open source / self-hosted)
+to orchestrate your apps, Brote connects with no special package. It uses the same
+standard patterns as Zapier:
+
+- **Outgoing webhooks** from Brote → Make/n8n receives the JSON and triggers the
+  chain.
+- **Incoming Bearer API keys** → Make/n8n sends messages, creates contacts,
+  changes lifecycle, etc.
+
+<Aside type="tip">
+If you only need simple patterns (lead → Sheets, payment → Slack),
+use Brote with Zapier from
+[Settings → Integrations → Developer](/en/integraciones/webhooks-api).
+Make and n8n are for when you want more sophisticated flows (branching,
+loops, scheduled, JSON transforms).
+</Aside>
+
+## Pattern 1 — Brote triggers the flow
+
+### In Brote
+
+1. **Settings → Integrations → Developer** → "Webhooks" block.
+2. Click **"Add webhook"**.
+3. URL: paste the **unique URL** Make or n8n gave you (instructions below).
+4. Events to subscribe:
+   - `message_received` — every time a customer message arrives.
+   - `payment_received` — payment confirmed (MP/Flow/Khipu).
+   - `lifecycle_changed` — a contact moved stage.
+   - `ticket_won` — ticket closed as won.
+   - `conversation_closed` — conversation archived manually or by the AI.
+5. **HMAC secret**: Brote signs every payload with HMAC-SHA256. Write down the
+   secret — you'll need it on the Make/n8n side to validate the signature.
+
+### In Make.com
+
+1. Create a new scenario.
+2. Add the **"Webhooks → Custom webhook"** module.
+3. Click "Add" → "Save" — Make generates a unique URL
+   like `https://hook.eu1.make.com/abc123def456`.
+4. Copy it and paste it into Brote as the webhook URL.
+5. Click **"Run once"** in Make.
+6. In Brote, send yourself a test message (or manually fire a
+   `webhook test` from the Webhooks panel).
+7. Make captures the payload + auto-detects the schema → you use those fields
+   in the following modules.
+
+### In n8n
+
+1. Create a new workflow.
+2. Add the **"Webhook"** node as the trigger.
+3. Method: **POST**. Path: leave it random or customize it.
+4. n8n shows you a URL `https://tuserver.com/webhook/abc-def`.
+5. Paste it into Brote as the URL.
+6. (Optional) Enable HMAC-SHA256 signature verification on the Webhook node with
+   Brote's secret.
+7. Activate the workflow.
+8. Send a test message. n8n captures it.
+
+### Validate the HMAC signature (recommended)
+
+Brote signs every POST with the header `x-brote-signature: sha256=<hex>`. Verify:
+
+```js
+// En un Make Custom JS code o n8n Function node
+const crypto = require('crypto')
+const signature = items[0].$header['x-brote-signature']
+const body = JSON.stringify(items[0].json)
+const expected = 'sha256=' + crypto
+  .createHmac('sha256', 'TU_SECRET_BROTE')
+  .update(body)
+  .digest('hex')
+if (signature !== expected) throw new Error('Invalid signature')
+return items
+```
+
+Without signature validation, anyone who knows your public URL can send
+forged payloads.
+
+## Pattern 2 — Make/n8n calls Brote
+
+### Generate an API key
+
+1. **Brote → Settings → Integrations → Developer** → "API keys" block.
+2. Click **"Generate API key"** → copy the token, e.g. `brote_live_xxx`
+   (it's shown **only once**).
+
+### Calling from Make
+
+1. Add the **"HTTP → Make a request"** module.
+2. URL: for example `https://brote.ai/api/conversations/{contact_id}/messages`
+3. Method: **POST**
+4. Headers:
+   ```
+   Authorization: Bearer brote_live_xxx
+   Content-Type: application/json
+   ```
+5. Body type: **Raw JSON**
+6. Body: `{ "text": "Hola desde Make!", "sender_kind": "operator" }`
+
+### Calling from n8n
+
+1. Add the **"HTTP Request"** node.
+2. Method: **POST**
+3. URL: same as above
+4. Authentication: **Generic Credential Type → Header Auth**
+   - Name: `Authorization`
+   - Value: `Bearer brote_live_xxx`
+5. Body Content Type: **JSON**
+6. JSON Body: same as above
+
+## Available endpoints
+
+All Brote endpoints are documented with OpenAPI at
+[brote.ai/docs/api](https://brote.ai/docs/api) (coming soon). The most
+useful ones:
+
+| Endpoint | Method | What for |
+|---|---|---|
+| `/api/conversations/{id}/messages` | POST | Send a message to the customer |
+| `/api/contacts` | POST | Create a contact |
+| `/api/contacts/{id}/lifecycle` | POST | Change lifecycle stage |
+| `/api/contacts/{id}/tags` | POST | Add a tag |
+| `/api/contacts/import` | POST | Bulk import CSV |
+| `/api/zapier/me` | GET | Validate API key + fetch org info |
+
+All require `Authorization: Bearer brote_live_xxx`. Standard HTTP
+errors (401 invalid, 403 forbidden, 404 not found).
+
+## Ready-to-import templates
+
+From **Brote → Settings → Integrations → Developer → "Make / n8n /
+any endpoint"** you can download JSON skeletons for Make and n8n covering
+the common flows:
+
+- New lead → Slack
+- Payment approved → Google Sheets
+- Lifecycle change → HubSpot CRM
+- Ticket won → Notion DB
+
+They're minimal skeletons — after importing them into Make/n8n you fill in the
+specific details (Slack channel, sheet ID, Notion base ID, etc).
+
+## Competitive positioning
+
+| Platform | Make | n8n | Zapier |
+|---|---|---|---|
+| **Brote** | ✅ Webhooks + API native | ✅ Webhooks + API native | ✅ Zapier App live ID 241845 |
+| respond.io | ✅ | ✅ | ✅ |
+| Wati | 🟡 Only via Zapier | 🟡 | ✅ |
+| SleekFlow | 🟡 | ❌ | ✅ |
+
+Brote, respond.io, and Manychat are currently the only LATAM platforms with
+**all three** orchestrators native. The Webhooks + API keys pattern we
+use is **standard** — any new tool (Pipedream, Pabbly,
+Workato) works with no changes on Brote's side.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Generate API key + webhook" icon="approve-check">
+    [Settings → Integrations → Developer](https://brote.ai/es/app/settings/integrations?section=developer)
+  </Card>
+  <Card title="Full Webhooks + API docs" icon="document">
+    [See the complete guide →](/en/integraciones/webhooks-api)
+  </Card>
+  <Card title="Brote on Zapier" icon="rocket">
+    [Zapier App →](/en/integraciones/zapier)
+  </Card>
+</CardGrid>

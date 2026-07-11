@@ -1,0 +1,276 @@
+---
+title: MCP Server — Brote as a tool for Claude / ChatGPT / external agents
+description: Brote implements Anthropic's Model Context Protocol. Any AI agent can invoke your Brote tools as if they were native.
+---
+
+import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
+
+Brote is an **MCP server** (Model Context Protocol — Anthropic's open
+protocol). Any compatible client — Claude Desktop, ChatGPT Custom
+Connectors, your own agents — can connect and use Brote's tools
+as if they were native to the model.
+
+<Aside type="tip">
+This is what we call **agent-to-agent**: you talk to Claude, Claude
+talks to Brote, and Brote acts on your conversations, contacts,
+payments, and logistics. Without you building APIs or Zapier flows.
+</Aside>
+
+## What you can do
+
+Today Brote exposes **9 tools** through the MCP protocol:
+
+| Tool | What it does |
+|---|---|
+| `list_conversations` | Lists Inbox conversations with filters (status, channel) |
+| `get_conversation` | Details + last N messages of a conversation |
+| `send_message` | Sends a message to the customer (with automatic AI handoff) |
+| `upsert_contact` | Creates or updates a contact by phone/email |
+| `assign_tag` | Adds a tag to a contact |
+| `change_lifecycle_stage` | Changes stage (lead → mql → … → customer) |
+| `build_payment_link` | Generates a Mercado Pago link |
+| `quote_shipping` | Quotes a Chilexpress or Starken shipment |
+| `get_inbox_metrics` | Inbox KPIs for the last N days |
+
+Upcoming tools on the roadmap: `lookup_product` (Shopify catalog),
+`check_shipping_coverage`, `track_shipment`, `quote_shipping_starken`,
+`add_internal_note`, `get_contact_history`.
+
+## Endpoint and authentication
+
+- **URL**: `https://brote.ai/api/mcp`
+- **Transport**: HTTP + JSON-RPC 2.0
+- **Auth**: `Authorization: Bearer brote_live_TU_API_KEY`
+- **Protocol version**: `2024-11-05`
+
+To generate an API key:
+1. Go to **Settings → Integrations → "Connect with 6,000+ apps"**.
+2. Click **"Generate API key"**. Copy the token (it's shown only once).
+
+## Connecting from Claude Desktop
+
+<Aside type="caution">
+As of today, Claude Desktop **only supports MCP via stdio**, not direct HTTP.
+To connect to an HTTP MCP server like Brote, we use `mcp-remote`
+(an npm package) as a stdio→HTTP bridge. You need Node + npx installed
+on your machine.
+</Aside>
+
+1. Open Claude Desktop → **Settings → Developer → Edit Config**, or manually edit
+   `~/Library/Application Support/Claude/claude_desktop_config.json`
+   on macOS (equivalent on Windows).
+2. Add the `"brote"` entry inside `mcpServers` — **without deleting the
+   others** you already have (filesystem, notebooklm, etc):
+
+```json
+{
+  "mcpServers": {
+    "brote": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://brote.ai/api/mcp",
+        "--header",
+        "Authorization: Bearer brote_live_TU_API_KEY_AQUI"
+      ]
+    }
+  }
+}
+```
+
+3. Restart Claude Desktop completely (cmd+Q + open again, not
+   just closing the window).
+4. In any conversation, Claude will have access to Brote's 9 tools.
+   Try requests like:
+   - *"List my 10 most recent open conversations from Brote"*
+   - *"Change Pedro González's lifecycle to customer"*
+   - *"Quote a 2kg shipment to Providencia"*
+   - *"Generate a Mercado Pago payment link for $25.000 with description 'Sesión de fotos'"*
+
+### What the handshake looks like (under the hood)
+
+```
+┌────────────────┐                                ┌────────────────┐
+│ Claude Desktop │                                │   brote.ai     │
+│    (stdio)     │                                │   /api/mcp     │
+└───────┬────────┘                                └────────┬───────┘
+        │                                                  │
+        │  1. spawn `npx mcp-remote https://brote.ai/...` │
+        │ ───────────────────────────────────────────────►│
+        │                                                  │
+        │  2. POST initialize                             │
+        │ ───────────────────────────────────────────────►│
+        │  ◄─── { protocolVersion, capabilities, ... }    │
+        │                                                  │
+        │  3. POST notifications/initialized              │
+        │ ───────────────────────────────────────────────►│
+        │  ◄─── 204 No Content                            │
+        │                                                  │
+        │  4. POST tools/list                             │
+        │ ───────────────────────────────────────────────►│
+        │  ◄─── { tools: [9 tool defs] }                  │
+        │                                                  │
+        │  El usuario habla con Claude — Claude decide    │
+        │  cuándo usar las tools de Brote.                 │
+        │                                                  │
+        │  5. POST tools/call (ej: list_conversations)    │
+        │ ───────────────────────────────────────────────►│
+        │  ◄─── { content: [{ type: "text", text }] }     │
+```
+
+Claude reads the `content.text` (stringified JSON in our case) and
+incorporates it into its reasoning to answer you.
+
+## Troubleshooting
+
+### Claude Desktop says "Server disconnected"
+
+1. Open the logs: `~/Library/Logs/Claude/mcp-server-brote.log` (macOS).
+2. Look for the last line with `error` or `Connection error`.
+3. Common causes:
+
+| Error in log | Cause | Fix |
+|---|---|---|
+| `EACCES` or `npx: command not found` | Node/npm aren't on the Claude process's PATH | Make sure Node is installed globally (`brew install node`) and restart Claude |
+| `401 unauthorized` | Invalid or revoked API key | Generate a new one in Settings → Integrations → Developer → API key |
+| `400 Invalid JSON-RPC 2.0 envelope` | Your mcp-remote installation uses an old protocol version | `rm -rf ~/.npm/_npx && killall node` so it downloads the latest |
+| `EAI_AGAIN` or timeout | DNS or your network blocks brote.ai | Try `curl https://brote.ai/api/mcp` from the terminal — if it doesn't respond, it's a network issue |
+
+### The tools don't show up even though it connected
+
+Make sure Claude Desktop is in a **new conversation** (not an
+existing one opened before the restart). MCP servers only load
+when a conversation opens.
+
+Try asking explicitly: *"which tools from the brote MCP do you have
+available?"*. It should list all 9.
+
+### Claude uses Supabase or another MCP instead of Brote
+
+When you have several MCP servers configured, Claude picks which to use.
+If Brote doesn't come up as a valid option for an intent, it's usually
+because:
+- The tool has an ambiguous description → report it to us and we'll improve it.
+- You asked something too generic ("get my data") without mentioning
+  Brote. Be explicit: *"from Brote, list..."*.
+
+### I want to see requests in real time
+
+```bash
+tail -f ~/Library/Logs/Claude/mcp-server-brote.log
+```
+
+Each `Message from client` shows the incoming JSON-RPC. Each
+`Connection error` shows the outgoing one with a code.
+
+## Connecting from your own agent (raw HTTP)
+
+Any agent that speaks JSON-RPC 2.0 can use Brote.
+
+### 1. Initialize
+
+```bash
+curl -X POST https://brote.ai/api/mcp \
+  -H "Authorization: Bearer brote_live_TU_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "initialize",
+    "params": {}
+  }'
+```
+
+Returns `protocolVersion`, `serverInfo`, and `capabilities.tools`.
+
+### 2. List tools
+
+```bash
+curl -X POST https://brote.ai/api/mcp \
+  -H "Authorization: Bearer brote_live_TU_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "method": "tools/list"
+  }'
+```
+
+Returns an array with each tool's JSON Schema definitions.
+
+### 3. Call a tool
+
+```bash
+curl -X POST https://brote.ai/api/mcp \
+  -H "Authorization: Bearer brote_live_TU_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 3,
+    "method": "tools/call",
+    "params": {
+      "name": "list_conversations",
+      "arguments": { "status": "open", "limit": 5 }
+    }
+  }'
+```
+
+The `result.content[0].text` carries the JSON with the response.
+
+## Permissions and scopes
+
+For now, Brote API keys have `*` scope — they can invoke
+any tool over any of the org's data. We'll soon
+add granular scopes (`conversations:read`, `contacts:write`, etc).
+
+<Aside type="caution">
+Treat your API key like a password — any agent that has it can read
+your entire Inbox, message your customers, modify contacts, and
+generate charges. If it leaks, rotate it from Settings → Integrations →
+"Revoke".
+</Aside>
+
+## Discovery
+
+If you need to verify the endpoint is really MCP without sending
+credentials, do a `GET`:
+
+```bash
+curl https://brote.ai/api/mcp
+```
+
+Returns public metadata: server name, version, protocol_version,
+transport, supported methods, and a link to this doc.
+
+## Competitive positioning
+
+| Platform | Own MCP Server |
+|---|---|
+| **Brote** | ✅ 9 tools live (2026-05-29) |
+| respond.io | ✅ |
+| Wati | ❌ |
+| SleekFlow | ❌ |
+| Manychat | ❌ |
+| Hapee.ai | ❌ |
+
+Brote and respond.io are currently the only LATAM-relevant platforms with
+their own MCP Server. The difference: respond.io exposes generic tools;
+Brote exposes **LATAM-vertical** tools — `build_payment_link` with
+Mercado Pago, `quote_shipping` with Chilexpress/Starken, native
+`change_lifecycle_stage`. Your external AI agent can collect payments and ship in CL
+without you writing integrations.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Generate an API key" icon="approve-check">
+    [Settings → Integrations](/en/integraciones/webhooks-api)
+  </Card>
+  <Card title="Full tools catalog" icon="rocket">
+    [AI agent tools →](/en/automatizacion/tools-del-agente)
+  </Card>
+  <Card title="Official MCP spec" icon="external">
+    [spec.modelcontextprotocol.io](https://spec.modelcontextprotocol.io)
+  </Card>
+</CardGrid>

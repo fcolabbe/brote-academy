@@ -1,0 +1,68 @@
+---
+title: Slack
+description: "Notifications to a #channel when a hot lead comes in, a conversation closes, or the AI agent hands off."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote sends notifications to your Slack when important events happen — useful for teams that live in Slack and don't want to open Brote constantly.
+
+## Events it fires
+
+You configure which events go to Slack:
+
+| Event | When |
+|---|---|
+| `new_lead` | New contact identified (captured email/phone) |
+| `handoff_to_human` | The AI agent passes the conversation to a human |
+| `lead_qualified` | Lead marked as "hot" by the agent |
+| `payment_received` | Payment confirmed via [Mercado Pago](/en/pagos/mercado-pago/) |
+| `ticket_won` | Ticket closed as won |
+| `ticket_lost` | Ticket closed as lost |
+| `campaign_completed` | Campaign finished with final stats |
+
+Each event sends a message with relevant info + a direct link to the conversation in Brote.
+
+## How to connect
+
+1. Go to **Settings → Integrations → Slack**.
+2. Click **"Connect Slack"**. It redirects you to Slack's OAuth.
+3. Pick the **workspace** and authorize.
+4. Configure **which channel** each event type goes to (all to the same one, or split into `#ventas`, `#soporte`, `#cobros`).
+5. Test it: ask a colleague to message your agent — you'll see `new_lead` appear in Slack.
+
+## Typical message
+
+```
+🌱 Brote · Nuevo lead caliente
+
+Cliente: María González (+569 ··· ···)
+Canal: WhatsApp
+Vertical: Retail
+Intención: alta — pregunta variantes, no precio
+
+Resumen:
+Cliente preguntó por la caja XL en color rojo, sin stock.
+Quiere lista de espera + ver alternativas. Agente derivó.
+
+[ Ver conversación en Brote → ]
+```
+
+<Aside type="tip" title="Combinable with Zapier">
+If you want Slack to receive custom events not in the list above (e.g., a specific tag applied, a custom_field updated), connect via [Zapier](/en/integraciones/zapier/) — more flexible but requires building the Zap.
+</Aside>
+
+## Threading
+
+If the same conversation fires multiple events (e.g., new_lead → handoff → payment), the Slack messages are posted **in a thread** under the first message. Your channel doesn't fill up with loose updates.
+
+## Limitations
+
+- **Replying to the customer from Slack**: not implemented. To reply to the customer, you open Brote.
+- **Slack actions (buttons)**: not supported yet. Messages are read-only.
+
+## Next steps
+
+- [Zapier (6,000+ apps)](/en/integraciones/zapier/)
+- [Business Webhooks](/en/integraciones/webhooks-api/)
+- [Handoff to a human](/en/inbox/handoff/)

@@ -1,0 +1,130 @@
+---
+title: Cross-channel identity — from zero to 100
+description: Brote recognizes the same customer even if they message you on WhatsApp, Instagram, email or Messenger, and unifies their entire history into a single person. Complete guide with a real example, who it's for and what you'll achieve.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**Cross-channel identity** = Brote realizes that the person messaging you today on WhatsApp is **the same one** who messaged you last week on Instagram and before that by email — and gathers their entire history into **a single person**.
+
+The same customer talks to you through 3 different channels. Without cross-channel identity, Brote (and your team) treats them as **3 strangers** with nothing in common. With cross-channel identity, they're **one person with one history**: your AI agent and your team know who they are, what they discussed before and what they bought — no matter which channel they came through this time.
+
+<Aside type="tip" title="The question this feature answers">
+"This customer already messaged me on another channel. Does Brote realize **it's the same person** or does it make them repeat everything all over again?"
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | It doesn't add much (yet) if… |
+|---|---|
+| You handle **multiple channels** (WhatsApp + Instagram + email + Messenger) | You handle **a single channel** |
+| Your customers message you **more than once** over time | Every contact is one-time and never returns |
+| It bothers you to treat the same customer like a stranger | You don't care about customer history |
+
+**In plain terms:** it's for the business that serves customers across many channels and doesn't want its best customer to look like a stranger every time they switch channels.
+
+<Aside type="note" title="Included — not an extra plan">
+Cross-channel identity is a **core Brote capability**: it works on all plans, no lock. It's not a feature you "activate" or pay for separately — it's built in from the moment you connect your second channel.
+</Aside>
+
+## What do you need before?
+
+<Steps>
+
+1. **At least two channels connected** in Brote (e.g. WhatsApp + Instagram, or WhatsApp + email). With a single channel there's nothing to "cross".
+
+2. **Your AI agent running** — it's the one who, on channels that don't carry a phone or email (Instagram, Messenger), naturally asks the customer for their contact info in order to recognize them.
+
+3. Nothing else. **No rules to configure, no switch to flip, no mapping.** Brote does it on its own as soon as it detects that two contacts are the same person.
+
+</Steps>
+
+<Aside type="tip">
+The more channels you connect, the more powerful it becomes: every new channel you add enriches the customer's single profile instead of creating yet another loose contact.
+</Aside>
+
+## Real example: from zero to 100 with Camila 🌱
+
+> **Camila** owns **"Deco Nube"**, a home decor store. She sells through Instagram, WhatsApp and answers inquiries by email. She has all 3 channels connected to Brote.
+
+<Steps>
+
+1. **First contact — Instagram.** Valentina sees a lamp on Deco Nube's feed and sends a DM: "Hi, do you have this lamp in white?". Brote's AI agent handles it, tells her yes, and —since Instagram doesn't carry a phone or email— naturally asks: "What email or WhatsApp should I send the catalog to?". Valentina leaves her email: valen@correo.cl.
+   *(Silently, Brote saves that email on Valentina's Instagram contact.)*
+
+2. **Second contact — WhatsApp, a week later.** Valentina makes up her mind and messages Deco Nube's WhatsApp: "Hi, I want the white lamp I saw on Insta". Since Brote already associated her email at some point, **it recognizes she's the same person**: it links the WhatsApp contact with the Instagram one under **a single person**.
+   *(The AI agent starts off knowing: "this person already asked me about the white lamp on Instagram". It doesn't make her start from scratch.)*
+
+3. **Third contact — email, for the invoice.** Valentina pays and later writes by email asking for the receipt. Brote **also** links that email contact to the same person, via the valen@correo.cl address it already knew.
+
+4. **Result.** When anyone on Camila's team opens Valentina, they see **a single profile** with everything: the Instagram DM, the WhatsApp conversation, the purchase and the invoice email. One history, not 3 loose contacts.
+
+</Steps>
+
+**What Valentina did NOT have to do:** repeat who she was, which lamp she wanted, or explain her order again on each channel. **What Camila's team did NOT have to do:** guess whether those 3 contacts were the same person.
+
+<Aside type="tip" title="This is what you get">
+The customer feels **known** and that there's **a single conversation** with your business, even when hopping between channels. Zero friction, zero "and who are you again?".
+</Aside>
+
+## What will you achieve?
+
+| Before (without cross-channel identity) | After (with Brote) |
+|---|---|
+| The same customer shows up 3 times, as 3 strangers | One person with their whole history |
+| The agent/team makes them repeat everything on each channel | The agent starts off knowing what they discussed and bought before |
+| "Have we helped you before? Are you a new customer?" | Service with context from the first message |
+| History split into pieces, impossible to follow | A unified timeline per person |
+
+**In one sentence:** better service, zero obvious re-asking, and a customer who feels you're talking to **them**, not to just another anonymous contact.
+
+## How easy is it? (spoiler: you do nothing)
+
+This is the nice part: **it's automatic**. There's no settings screen, no rules to build, no button to press.
+
+- When two contacts share the **same phone** or the **same email**, Brote links them on its own, on the spot.
+- On channels that don't carry that data (Instagram, Messenger), the AI agent **asks for the email or phone** naturally within the conversation — and builds the bridge with it.
+- It's **non-destructive and reversible**: Brote groups contacts under one person without deleting anything. If something was grouped wrong, it can be undone.
+
+<Aside type="caution" title="When it does NOT link on its own">
+Brote links automatically when there's a **strong, exact** signal: same phone or same email (normalized). If a customer uses **two different phones** or **two different emails**, there's no shared data to link them automatically — for those cases there's [manual duplicate merging](/en/contactos/merge/). A similar name does **not** group on its own (to avoid joining two people with the same name); it stays as a suggestion for you to review.
+</Aside>
+
+## Frequently asked questions
+
+**Do I have to activate or configure anything?**
+No. It's built in and works on its own as soon as you have two or more channels connected.
+
+**Does it link contacts from any channel?**
+Yes: WhatsApp, Instagram, Messenger, email and web. The condition is that there's shared data (phone or email). On Instagram and Messenger, which don't carry that data, the agent asks for it in the conversation.
+
+**What if the customer uses two different phones or two different emails?**
+Then there's no shared data to link them automatically. You can link them yourself in one click from [duplicate merging](/en/contactos/merge/).
+
+**Does it join two different people with the same name?**
+No. Brote does **not** group by similar name on its own, precisely to avoid mixing up two different people. The name only generates a suggestion for you to review.
+
+**Can it be undone if it grouped wrong?**
+Yes. Grouping is reversible and doesn't delete information — it can be separated again.
+
+**Is it the same as merging duplicates?**
+They're similar, but no. Cross-channel identity is **automatic** and **doesn't delete** contacts (it groups them under one person). [Duplicate merging](/en/contactos/merge/) is **manual** and does combine contacts into one, for cases Brote can't resolve on its own (two phones, two emails).
+
+## Next steps
+
+<CardGrid>
+  <Card title="Merge duplicates" icon="random">
+    [For linking contacts that don't cross on their own →](/en/contactos/merge/)
+  </Card>
+  <Card title="Unified Inbox" icon="comment">
+    [All conversations in one view →](/en/inbox/inbox-unificado/)
+  </Card>
+  <Card title="Customer stages" icon="list-format">
+    [The lifecycle of each contact →](/en/contactos/lifecycle/)
+  </Card>
+  <Card title="Import contacts" icon="up-caret">
+    [Add your base via CSV →](/en/contactos/importar-csv/)
+  </Card>
+</CardGrid>

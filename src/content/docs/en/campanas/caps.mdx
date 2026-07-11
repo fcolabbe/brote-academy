@@ -1,0 +1,66 @@
+---
+title: Caps per plan and WhatsApp protection
+description: "Daily and monthly limits per plan so your WhatsApp number doesn't earn a Meta ban from over-sending."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Even if you connect WhatsApp through Meta's **official Cloud API** (the recommended path), you shouldn't send thousands of messages unrestricted — Meta detects patterns and can throttle or ban your number. To protect you, each plan has **monthly and daily caps** that Brote enforces automatically.
+
+## Caps per plan
+
+Campaigns are a **Pro and Business** feature. Lower plans don't have mass campaigns.
+
+| Plan | Campaigns/month | Contacts/campaign | Messages/day (total) |
+|---|---:|---:|---:|
+| **Mini** ($29) | 0 — no campaigns | — | — |
+| **Starter** ($49) | 0 — no campaigns | — | — |
+| **Pro** ($129) | 10 | 500 | 800 |
+| **Business** ($349) | unlimited | 1.500 | 2.500 |
+
+<Aside type="caution" title="Why Mini and Starter don't have campaigns">
+Mini and Starter are designed for 1:1 conversations (handling what comes in), not mass sends. Allowing campaigns on those tiers would expose inexperienced users to WA throttling or ban risk. For campaigns, Pro is the minimum.
+</Aside>
+
+## How they're counted
+
+- **One campaign** = one scheduled send. If you launch 3 campaigns in week 1 and 4 in week 2, that's 7/month (calendar month, resets on the 1st).
+- **Contacts/campaign** = unique rows in the cohort. If the same person is in 2 campaigns, they count twice.
+- **Messages/day** = aggregate total across ALL active campaigns that day. If you have campaign A (drip to 50 contacts/day) + campaign B (one-shot to 100 contacts), on the day they overlap they add up to 150/day.
+
+## Automatic throttling
+
+When a campaign is about to exceed your daily cap:
+
+1. Brote sends up to the day's cap.
+2. The rest is **queued** for the next day.
+3. It shows you "Day 1: 200/200 sent · Day 2: 0/200 (queued) · Day 3: 0/200 (queued)" in the dashboard.
+
+If you need to go beyond the cap (e.g.: Black Friday and you have 800 contacts), you have 3 options:
+
+1. **Upgrade your plan**: moving from Pro to Business raises the cap from 800 to 2.500/day and the cohort goes out that same day.
+2. **Wait**: if there's no rush, leave it queued — 4 days later it's all sent.
+3. **Shrink the cohort**: filter tighter (only "hot lead", only "returning customer").
+
+## Why these numbers
+
+The caps are calibrated with real data:
+
+- **Meta tolerates ~200-300 outbound messages/day** from an unverified Business number without penalizing.
+- **800/day** with good number reputation (aged account, two-way conversations) is usually sustainable.
+- **2.500/day** requires a number with a strong history + a healthy inbound/outbound ratio.
+
+If you get banned, it's not because Brote failed you — it's because WA detected something. Reconnecting the number means downtime (1-7 days) + re-verification. That's why the cap is deliberately conservative.
+
+## WA cap vs social channel caps
+
+The caps above apply **only to WhatsApp**. For Instagram/Messenger campaigns there are no Brote-specific caps (the platforms have their own rate limits, much lower — e.g.: IG blocks mass outreach to non-followers).
+
+In practice, **95% of Brote campaigns go over WhatsApp** because that's where your base is.
+
+## Next steps
+
+- [What campaigns are](/en/campanas/que-son/)
+- [Create your first campaign](/en/campanas/crear/)
+- [Automatic opt-out](/en/campanas/opt-out/)
+- [Plan comparison](/en/planes/comparativa/)

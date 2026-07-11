@@ -1,0 +1,60 @@
+---
+title: Facebook Messenger
+description: "Connect your Business page's Messenger through Meta's official channel. Same AI agent replying, same unified inbox. Starter+."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote connects to **Facebook Messenger** through **Meta's official channel** (direct). It works on top of your Facebook Business Page — the messages your page receives are handled by the AI agent just like on WhatsApp or Webchat.
+
+![Integrations hub showing Facebook Messenger](/screenshots/integrations.png)
+
+<Aside type="note" title="Available from Starter">
+Messenger is part of the **Starter** ($49/mo), **Pro** ($129/mo) and **Business** ($349/mo) plans, alongside Instagram. On Mini the agent only operates on WhatsApp + Webchat. The official channels are the same from Starter up. See the [comparison](/en/planes/comparativa/).
+</Aside>
+
+## Before you start
+
+- Your Facebook Page has to be **connected to a Business Manager account**.
+- You have to be a **page admin** to authorize.
+- If the page gets few messages, consider grouping Messenger with Instagram (Meta unifies them as "Meta Inbox") — Brote manages them as two separate channels with the same agent.
+
+## How to connect
+
+1. Go to **Settings → Integrations → Messenger**.
+2. Click **"Connect Messenger"**. It redirects you to Meta's official login.
+3. Log in with your Facebook account (the one that administers the page).
+4. Choose the page you want to connect.
+5. Authorize the permissions: read messages, send messages, manage Pages.
+6. You return to Brote and the account shows as **connected**.
+
+## Meta's limitations (same as IG)
+
+Messenger has rules similar to Instagram's:
+
+- You only reply if the user **wrote first**.
+- After the user's first message you have **24h** to reply without restriction.
+- Past the 24h, only "marketing" if the user accepted a subscription.
+- No proactive mass sending outside the window.
+
+## Typical cases in LATAM
+
+- **Click-to-Messenger ads**: you build an ad in Meta Ads Manager with a "Send Message" CTA → leads land in Brote.
+- **Comments with automatic replies**: when someone comments on a post asking for info, Meta allows your page to send them an automatic DM. Brote treats that DM as the start of a conversation.
+- **Social commerce**: if you have a catalog on your page, the agent can share products in the chat (cart link via [Shopify](/en/integraciones/shopify/)).
+
+## Conversion attribution (Business)
+
+With the **Business** plan ($349/mo), Brote closes the ROAS loop on Messenger too:
+
+- It captures the ad click (**Click-to-Messenger**) when the lead lands in the conversation.
+- When the customer pays (Mercado Pago / Flow / Khipu), Brote fires the **Purchase** event to Meta via the Conversions API (CAPI) — and to TikTok too.
+- That way you measure which ads actually generate sales, not just clicks.
+
+Attribution (Meta + TikTok CAPI) works on all three official channels: WhatsApp, Instagram and Messenger. It's exclusive to the Business plan.
+
+## Next steps
+
+- [Instagram DMs](/en/canales/instagram/)
+- [WhatsApp](/en/canales/whatsapp/)
+- [Unified inbox](/en/inbox/inbox-unificado/)

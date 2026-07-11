@@ -1,0 +1,94 @@
+---
+title: Restaurants & food service
+description: "Brote for restaurants, cafés, dark kitchens: reservations, dynamic menu, delivery orders with in-chat MP payments."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+For food service, Brote acts as the **digital host** that takes reservations, manages delivery orders, answers menu questions and collects payments — all from WhatsApp.
+
+## The 3 typical scenarios
+
+### 1. Restaurant with reservations
+
+- Customer asks about availability → agent checks your table [Google Calendar](/en/integraciones/calendar/).
+- Agent confirms the reservation + captures details (party size, occasion, dietary restrictions).
+- Day before → reminder + option to modify.
+- Day of the reservation → "see you today at [time]".
+
+### 2. Delivery / take-away
+
+- Customer asks for the menu → agent sends the current menu as PDF / link / photo.
+- Customer builds their order → agent calculates total + delivery cost.
+- Agent sends the [MP link](/en/pagos/mercado-pago/) → customer pays.
+- Payment confirmed → agent replies "it's being prepared, estimated time X min".
+- If you have an integration with your kitchen system (via Webhooks/Zapier), the order comes in automatically.
+
+### 3. Café / casual dining
+
+- Customer asks "are you open today?" / "do you have gluten-free cakes?" → agent answers with up-to-date info.
+- Customer books a table for a group → agent captures party size + date.
+- Post-visit → satisfaction survey + coupon for the next visit.
+
+## Recommended setup
+
+### Custom fields
+
+```
+comensales (number)
+fecha_reserva (date)
+ocasion (select: pareja / familia / amigos / negocios / cumple)
+restriccion_dietetica (select: vegano / vegetariano / sin_gluten / sin_lactosa / ninguna)
+mesa_preferida (select: terraza / interior / barra)
+es_cliente_frecuente (boolean)
+ultimo_pedido_delivery (date)
+direccion_delivery (text)
+```
+
+### Useful tags
+
+`reserva_confirmada`, `cliente_frecuente`, `mesa_preferida_terraza`, `restriccion_sin_gluten`, `delivery_zona_norte`, `birthday_mes`
+
+### Key integrations
+
+- **[Google Calendar](/en/integraciones/calendar/)**: each table or shift = a slot.
+- **[Mercado Pago](/en/pagos/mercado-pago/)**: delivery payments + reservation payments (deposit for large groups).
+- **[Google Sheets](/en/integraciones/sheets/)**: dynamic menu (prices + availability per day).
+
+## Conversation example — Reservation
+
+```
+Cliente: Hola, tienen mesa para 4 el sábado a las 21?
+
+Agente: Hola! Sábado 21:00 para 4 personas, déjame ver...
+Sí, tengo mesa en terraza o interior. Algún tipo en particular?
+
+Cliente: terraza si hay
+
+Agente: Perfecto, te reservo en terraza. Para confirmar:
+- ¿Algún cumpleaños o aniversario?
+- ¿Alguien con restricción dietética (vegano, sin gluten, etc)?
+
+Cliente: cumple de mi suegra, hay sin gluten en el menú?
+
+Agente: 🎉 Anoto cumpleaños. Le preparamos algo especial.
+Sí, tenemos opciones sin gluten en entrada, plato principal y postre.
+Te muestro el día de la reserva.
+
+Reserva confirmada:
+📅 Sábado 23 de mayo · 21:00
+👥 4 personas · terraza
+🎂 Cumpleaños de tu suegra
+
+Te confirmo el día antes para asegurar la mesa. Cualquier cambio, avisame!
+```
+
+<Aside type="tip" title="Anti-no-show for large reservations">
+If the table is for 6+ people, configure the agent to ask for a **deposit via MP** to guarantee the reservation. It cuts group no-shows by 60-80%.
+</Aside>
+
+## Next steps
+
+- [Configure your AI agent](/en/empezar/primer-agente/)
+- [Google Calendar](/en/integraciones/calendar/)
+- [Collect payments inside the chat](/en/pagos/cobro-in-chat/)

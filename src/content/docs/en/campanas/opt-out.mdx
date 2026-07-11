@@ -1,0 +1,56 @@
+---
+title: Automatic opt-out
+description: "Brote detects when a contact asks out and excludes them from all future campaigns. LATAM compliance by default."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+When a contact replies to a campaign asking not to receive more messages, Brote detects it automatically and **excludes them from all future campaigns**. No unsubscribe lists to build, no manual filtering.
+
+## Words that trigger opt-out
+
+The AI agent recognizes Spanish variants of unsubscribe requests:
+
+- "stop", "STOP", "baja", "darme de baja"
+- "no quiero más mensajes", "no me mandes más", "déjame en paz"
+- "unsubscribe", "cancelar suscripción"
+- "borrar", "elimíname de tu lista"
+
+It also recognizes the English/Portuguese equivalents if your agent is configured as bilingual.
+
+## What happens on opt-out
+
+1. **It closes the conversation politely**: "Done, I'm taking you off the list. If you ever want to receive info again, message me and I'll reactivate you."
+2. **It marks the contact** with the `opted_out` tag (visible on their profile).
+3. **It excludes them** from future cohorts — even if you build filters that technically include them, Brote leaves them out.
+4. **If you have Webhooks/Zapier enabled**, it fires a `contact_opted_out` event so your CRM/external systems mark them too.
+
+<Aside type="tip" title="It doesn't block inbound conversations">
+Opt-out applies to **outbound mass campaigns**. If that same contact messages you first later ("hi, I have a question"), the AI agent replies normally — that's not spam, it's support. The only thing blocked is your system initiating a message to them.
+</Aside>
+
+## LATAM compliance
+
+Automatic opt-out keeps you compliant with:
+
+- **LGPD (Brazil)**: right to withdraw consent.
+- **LFPDPPP (Mexico)**: right to object.
+- **Law 19.628 (Chile)**: cancellation of data processing.
+- **Law 25.326 (Argentina)**: right to deletion.
+- **GDPR** (if you have EU customers): right to unsubscribe.
+
+Brote isn't legal counsel, but automatic opt-out covers the technical case of "the contact asked out and you don't keep contacting them".
+
+## Reactivating manually
+
+If you want to reactivate a contact (because they messaged asking to come back, or an opt-out happened by mistake), open their profile → remove the `opted_out` tag manually. From that moment they're eligible for campaigns again.
+
+## Opt-out metrics
+
+Each campaign shows you how many contacts opted out. If a campaign generates **\>3% opt-out**, Brote alerts you with a banner suggesting you review the message (it's a sign your cohort was too aggressive, or the message read like spam).
+
+## Next steps
+
+- [What campaigns are](/en/campanas/que-son/)
+- [Create your first campaign](/en/campanas/crear/)
+- [Caps per plan](/en/campanas/caps/)

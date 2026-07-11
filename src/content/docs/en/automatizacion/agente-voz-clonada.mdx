@@ -1,0 +1,116 @@
+---
+title: AI agent replies with your cloned voice
+description: The send_voice_reply tool lets the AI agent send audio replies using your cloned voice — the customer hears it as if it were you.
+---
+
+import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
+
+Once you've cloned your voice in
+[Settings → Voz IA](/en/voz/que-es), you can enable a new AI agent
+tool — `send_voice_reply` — so **the bot replies with audio
+using your voice**. The customer hears it as a personal voice note.
+
+## When to use it
+
+The AI agent decides automatically when to use voice vs text. Good
+cases for voice:
+
+- **The customer sent a voice note first** — replying in audio is
+  natural and keeps the symmetry.
+- **Initial greetings** — "Hi María, how are you?" sounds warm in
+  audio.
+- **Thank-yous** — "Thanks for your purchase!"
+- **Emotional confirmations** — "Done, everything's set for
+  Saturday."
+- **Short apologies** — "Sorry for the delay, confirming now."
+
+Cases where you should **NOT use voice** — let the agent stick to text:
+
+- Technical or numeric info (prices, addresses, links).
+- Long text (\>300 chars — it sounds artificial).
+- Lists or enumerations.
+
+This logic lives in the tool's `description`. The LLM reads it and
+decides when to invoke it.
+
+## Enable the tool
+
+1. Make sure you have a cloned voice in
+   [Settings → Voz IA](/en/voz/que-es). If not, the agent gets a
+   `no_voice` error and sends text instead (graceful fallback).
+2. Go to **Settings → AI Agent → Enabled tools**.
+3. Check `send_voice_reply`.
+4. Save. From the next message on, the agent can invoke it.
+
+## How the agent decides
+
+The LLM reads the tool's `description`:
+
+> Sends an AUDIO reply to the customer using the business's cloned
+> voice. Use ONLY when the customer sent a voice note first,
+> or the context calls for warmth (greetings, thank-yous, confirmations).
+> For technical or numeric info, prefer text. Max 300 characters.
+
+And combines it with the conversation context to decide. If you want
+to force the behavior (e.g. "always reply in audio to VIP
+customers"), add it to the agent's prompt.
+
+## Costs and caps
+
+Each audio spends characters from your Brote plan's ElevenLabs cap:
+
+| Plan | Chars included / month | Hard cap |
+|---|---|---|
+| Starter $49 | 5.000 | 15.000 |
+| Pro $129 | 30.000 | 75.000 |
+| Business $349 | 150.000 | 350.000 |
+
+A typical 30-second audio = ~200 chars. Pro with 30k chars covers ~150
+audios/month. If the AI agent and the operator share the cap, size accordingly.
+
+When the cap is reached, the tool returns `hard_cap_exceeded` and the agent
+sends text instead — it never breaks the flow, it just degrades gracefully.
+
+## Audio quality
+
+The generated audio keeps the cloned voice with the
+`eleven_multilingual_v2` model. It supports natural Spanish with no gringo accent.
+
+<Aside type="tip">
+If the voice sounds off or robotic, improve the original cloning sample
+from Settings → Voz IA → Retrain. Record 45-60 sec instead of 20,
+with a clean microphone and no background noise.
+</Aside>
+
+## Current limitations
+
+- **WhatsApp only** — Instagram/Messenger don't support native PTT audio
+  yet.
+- **One voice per org** — you can't have a separate "Mario voice" and "Jorge voice"
+  in the same agent.
+- **Max 300 chars per audio** — longer text feels artificial.
+
+## Competitive positioning
+
+| Platform | AI replies with voice |
+|---|---|
+| **Brote** | ✅ Owner's cloned voice, via agent tool |
+| respond.io | ✅ Preset voices (stock ElevenLabs voices), no cloning |
+| Wati | ❌ |
+| SleekFlow | ❌ |
+| Hapee | ✅ Preset voice only, not cloned |
+
+Brote is today the only LATAM platform that combines an **AI Agent + the
+business's cloned voice**. Customers can't tell the owner and the AI
+apart.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Clone your voice first" icon="approve-check">
+    [Settings → Voz IA →](/en/voz/que-es)
+  </Card>
+  <Card title="Agent tools" icon="rocket">
+    [Full catalog →](/en/automatizacion/tools-del-agente)
+  </Card>
+</CardGrid>

@@ -1,0 +1,173 @@
+---
+title: Contacts and lifecycle stages (CRM) — from zero to 100
+description: Turn your messy customer spreadsheet into an organized CRM. Import your CSV, remove duplicates, and use lifecycle stages (lead → customer → evangelist) to know who to follow up with. Complete guide with a real example, what you need, and what you'll achieve.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**Contacts (CRM)** = your **organized customer base** inside Brote: who each person is, how to reach them, what **stage** of their journey they're in (just arrived? already bought?) and who's worth following up with today.
+
+Your customers probably live all over the place right now: an Excel spreadsheet, your phone contacts, WhatsApp chats, some Instagram account. **Without a CRM, you don't know who to follow up with** — leads go cold, you message the same customer twice, and you lose the one who was about to buy. With Brote, all your contacts live in one place, without duplicates, and **classified by stage** so you know exactly who's hot and who needs a nudge.
+
+<Aside type="tip" title="The question this feature answers">
+"I have hundreds of customers scattered everywhere. Who is each one, what are they up to, and **who do I message today** to sell more?"
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | It's NOT for you (yet) if… |
+|---|---|
+| You already have a **customer base** (even a messy spreadsheet) | You're just starting out and don't have a single customer |
+| You want to **stop losing leads** by not following up | You sell once and there's never any contact again |
+| You find **the same customer showing up multiple times** in different places | You have fewer than 10 customers and know them all by heart |
+| You want to **segment** for campaigns (message only customers, or only interested prospects) | You don't do follow-ups or campaigns |
+
+**In plain terms:** it's for the business that **already has customers but has them in a mess** and wants to organize them to sell better.
+
+<Aside type="note" title="Plan required: all (it's core)">
+The contacts CRM —CSV import, deduplication, custom fields and lifecycle stages— is **available on all plans**, starting with Mini. It's the foundation of Brote, not a premium feature. Only connected features scale by plan (like mass campaigns or attribution), not the CRM itself.
+</Aside>
+
+## What do you need before starting?
+
+<Steps>
+
+1. **Your current customer base**, in any format. Ideally a **CSV file** (export it from Excel, Google Sheets, or your previous system with "Save as CSV"). If you don't have anything, no problem: you can start from scratch and contacts get created automatically when people message you.
+
+2. The CSV needs, at minimum, a **phone** or **email** column per row. Without at least one of the two, that row can't be imported.
+
+3. Access to **Settings → Contacts** in Brote (you need to be an admin of your account).
+
+4. Nothing technical beyond that. There's nothing to install or configure — you upload the file and Brote does the rest.
+
+</Steps>
+
+<Aside type="tip">
+Does your spreadsheet have headers in Spanish (`nombre`, `telefono`, `correo`) or English (`name`, `phone`, `email`)? It doesn't matter — Brote recognizes both, in uppercase or lowercase. You don't have to rename anything.
+</Aside>
+
+## Real example: from zero to 100 with Rodrigo 🌱
+
+> **Rodrigo** owns **"Muebles del Sur"**, a custom furniture store in Concepción. He sells through WhatsApp and Instagram. After 3 years he collected **1,200 contacts**… all in a chaotic Excel spreadsheet: repeated names, phone numbers with and without `+56`, half-filled columns. He didn't know who to follow up with.
+
+<Steps>
+
+1. **Rodrigo exports his Excel to CSV.** His spreadsheet has columns `nombre`, `whatsapp`, `correo` and one called `estado` with things like "quoted", "bought", "didn't answer". He saves it as `clientes.csv`.
+
+2. **He uploads the CSV to Brote** in Settings → Contacts → Import. Before confirming, he maps his `estado` column: "quoted" → **Opportunity**, "bought" → **Customer**. He picks the **"Only add tags"** option so nothing gets overwritten by mistake.
+
+3. **Brote processes the 1,200 rows in seconds.** It normalizes all phone numbers to `+56 9 ...` format (fixing the ones without a `+` automatically) and gives him a report: **1,050 new contacts**, **90 updated**, **60 skipped** (rows without phone or email, which he fixes and re-imports later).
+
+4. **Brote detects 140 duplicates.** The same customer who messaged from two numbers, or who was loaded twice with the name in uppercase and lowercase. In the "Detected duplicates" section, Rodrigo reviews and taps **"Keep this one"** on the right contact → Brote merges the duplicates into one, preserving all conversations, notes and payments. He's left with **1,010 clean contacts**.
+
+5. **Rodrigo opens the stage funnel** (`/app/contacts/funnel`). For the first time he sees his base organized in columns: **380 Leads**, **210 MQL**, **120 SQL**, **95 Opportunities**, **180 Customers**, **25 Evangelists**. He drags cards between columns to adjust the few that were misclassified.
+
+6. **Now he knows who to follow up with.** He filters the **95 in "Opportunity"** (people who got a quote but didn't close) and sends them a follow-up message with a promo. Of those 95, **18 buy** within the week. Average ticket $180.000 → **$3.240.000 recovered** from customers who were "asleep" in the spreadsheet.
+
+</Steps>
+
+**What changed for Rodrigo, in numbers:**
+
+| Before (Excel spreadsheet) | After (Brote CRM) |
+|---|---|
+| 1,200 rows with ~190 junk/duplicates | 1,010 clean, unique contacts |
+| "I don't know who to follow up with" | 95 Opportunities identified instantly |
+| Follow-up by eye | 18 recovered sales ($3.24M) in 1 week |
+| Messaged the same customer twice | One contact = one person, no duplicates |
+
+<Aside type="tip" title="This is what you get">
+You go from "I have a bunch of customers somewhere" to **"I know exactly who each one is and who I'm messaging today"**. The money that was already in your base —warm customers you forgot about— becomes **sellable again**.
+</Aside>
+
+## What will you achieve?
+
+| Capability | What it is | Why it helps |
+|---|---|---|
+| **Unified base** | All your customers in one place | Stop having info scattered across 5 apps |
+| **CSV import** | Upload your existing spreadsheet in seconds | No loading 1,000 contacts by hand |
+| **Deduplication + merge** | Detects and merges duplicates by phone, email or name | One customer = one contact, no double-messaging |
+| **Custom fields** | Data specific to your industry (size, district, booking date…) | Personalize service and campaigns |
+| **Lifecycle stages** | Classify each person: lead → customer → evangelist | Know who to follow up with and who already bought |
+| **Stage history** | Record of every change (who, when, why) | Audit and detect repurchases (churned → customer) |
+
+## The 7 lifecycle stages (from lead to evangelist)
+
+Each contact has **exactly one stage** marking where they are in their relationship with your business. These are Brote's canonical stages, in order:
+
+| Stage | Color | When you use it |
+|---|---|---|
+| **Lead** | gray | Entered the chat but hasn't qualified yet |
+| **MQL** | blue | Marketing Qualified — showed interest |
+| **SQL** | violet | Sales Qualified — clear intent to buy |
+| **Opportunity** | amber | Negotiating price or terms |
+| **Customer** | green | Paid at least once 🎉 |
+| **Evangelist** | cyan | Customer who refers others to you |
+| **Churned** | red | Lost or inactive customer |
+
+<Aside type="note" title="Brote moves stages on its own (when it can)">
+You don't have to update everything by hand. When a customer **pays** (Mercado Pago, Flow or Khipu) or when you close a ticket as "won", Brote bumps them up to **Customer** automatically. And if they're already Customer/Evangelist/Churned, **it doesn't downgrade them** — it never overwrites a state you set manually.
+</Aside>
+
+<Aside type="caution" title="Stage ≠ ticket pipeline">
+Don't confuse the **lifecycle stage** (belongs to the **person**: only one, marks their relationship with you) with the **kanban pipeline** (belongs to each **conversation/ticket**: one person can have several open at once). They're two different views and they complement each other.
+</Aside>
+
+## How easy is it?
+
+Very easy. The "hard" part is having your customers somewhere — and you already have that. The rest is:
+
+<Steps>
+
+1. **Export your spreadsheet to CSV** (a "Save as" in Excel or Google Sheets): 1 minute.
+
+2. **Upload the file** to Settings → Contacts → Import: 30 seconds.
+
+3. **Review the duplicates** Brote detected and merge them: a few minutes depending on how many you have.
+
+4. **Look at your stage funnel** and start following up with the hot ones: immediate.
+
+</Steps>
+
+There's nothing technical to know. Brote cleans phone numbers, understands your headers in Spanish or English, and shows you a clear report of what was imported and what failed.
+
+## Frequently asked questions
+
+**How many contacts can I import at once?**
+Up to **10,000 rows per file** and **5 MB** in size. If you have more, split it into batches or ask us for an assisted import.
+
+**What happens if my CSV has customers already in Brote?**
+You choose: **only add tags** (leaves the existing contact intact, default and safest), **skip**, or **overwrite** all fields. Brote detects the duplicate by phone or email.
+
+**Can a merge be undone?**
+No, it's **irreversible**. That's why it's best to test with 1-2 before merging many. We do keep a record on the winning contact of what was merged (`merged_from`) in case you need to audit. If you made a mistake, message us and we'll look at the logs.
+
+**Can I add fields specific to my industry?**
+Yes. **Custom fields** let you store data like `talla_preferida`, `comuna`, `fecha_reserva`, etc. The AI agent even fills them in on its own from the conversation, and you can map CSV columns to those fields on import.
+
+**Do I have to use all 7 stages?**
+No. If your business has a simpler funnel, use only the ones you need. The "No stage" column groups contacts you haven't classified yet — you move them whenever you want.
+
+**What if the same customer messages me on WhatsApp and Instagram?**
+If they share an exact phone or email, Brote detects them as duplicates and you can merge them. If the data is different, you have to merge them manually from the detail view.
+
+**Which plan is it in?**
+**All of them**, starting with Mini. The CRM is the foundation of Brote, not a premium feature.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Import your CSV" icon="upload">
+    [Step-by-step import →](/en/contactos/importar-csv)
+  </Card>
+  <Card title="Merge duplicates" icon="random">
+    [Clean up your base →](/en/contactos/merge)
+  </Card>
+  <Card title="Lifecycle stages" icon="list-format">
+    [The 7 stages in detail →](/en/contactos/lifecycle)
+  </Card>
+  <Card title="Tags and custom fields" icon="setting">
+    [Enrich your contacts →](/en/inbox/tags-fields)
+  </Card>
+</CardGrid>

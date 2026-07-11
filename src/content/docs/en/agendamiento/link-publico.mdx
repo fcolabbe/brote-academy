@@ -1,0 +1,66 @@
+---
+title: Public booking link
+description: "A link your customers use to book on their own from your website, Instagram bio or email — no chat and no login. Embeddable as an iframe."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Besides booking over WhatsApp, Brote gives you a **public booking page**: a link any customer can open to grab a slot on their own, without being in a conversation and without creating an account.
+
+## Your link
+
+```
+https://brote.ai/es/book/<slug-de-tu-negocio>
+```
+
+The `slug` is your business identifier. Share it wherever you have traffic:
+
+- **Instagram / TikTok bio**
+- **"Book now" button on your website**
+- **Email signature** or a campaign email
+- **Google Business Profile**
+
+## What the customer sees
+
+1. They pick the **service** (if you have more than one).
+2. They pick a genuinely free **time slot**.
+3. They fill in **name + phone** (email optional — required if the service charges).
+4. They confirm → they see "Appointment confirmed!" and get their [WhatsApp reminder](/en/agendamiento/recordatorios/). If the service requires payment, they go through the payment step first (see below).
+
+The appointment is recorded as a contact + conversation in your Inbox, just as if they had messaged you.
+
+## Embed in your website (iframe)
+
+To embed the booking inside your own page, use the `?embed=1` parameter (it removes the header/footer so it looks clean inside the iframe):
+
+```html
+<iframe
+  src="https://brote.ai/es/book/<slug-de-tu-negocio>?embed=1"
+  width="100%"
+  height="640"
+  style="border:0;border-radius:16px"
+></iframe>
+```
+
+## Services with required payment
+
+If your service has **"charge on booking"** enabled, the public link requires payment to confirm — just like the agent in the chat:
+
+1. The customer picks a time and leaves their details (email becomes required, for the receipt).
+2. Their slot is **held for 15 minutes** with a visible countdown.
+3. They pay with the link shown (Mercado Pago, Flow, Khipu, Stripe or PayPal — depending on what you have connected).
+4. When the payment is approved, the page switches on its own to "Appointment confirmed!" and reminders are activated.
+
+If they don't pay in time, the hold expires and **the slot is offered again** to other customers — no ghost appointments clogging your calendar.
+
+<Aside type="caution" title="You need a connected gateway">
+A service with required payment but no connected gateway can't be booked through the public link (the customer sees a notice to contact you directly). Connect [Mercado Pago](/en/pagos/mercado-pago/), Flow or Khipu before enabling the charge.
+</Aside>
+
+## Anti double-booking
+
+If two people try the same slot, **only one gets it** — the system guarantees it at the database level and offers the second person another time. Taken slots disappear from the list automatically.
+
+<Aside type="note">
+Public booking requires the **Starter** plan or higher and at least one service + availability configured. Otherwise, the link shows "Bookings not available".
+</Aside>

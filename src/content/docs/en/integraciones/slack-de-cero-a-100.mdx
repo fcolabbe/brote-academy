@@ -1,0 +1,186 @@
+---
+title: Slack notifications — from zero to 100
+description: Have your team get an alert in Slack when a lead comes in, a sale closes, or the agent asks for help — and react in minutes without watching Brote. Guide with a real example, what you need, and what you'll achieve.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**Slack notifications** = your team gets an **alert in a Slack channel** every time something important happens in Brote (a lead comes in, a sale closes, the agent asks for help) — so they **react in minutes** without having to watch the app.
+
+Your team already lives in Slack all day. Instead of asking them to open Brote every so often "just in case", Brote **alerts them on its own** in the channel you choose. The alert arrives with the key info and a direct link to the conversation. **The hot lead stops going cold waiting for someone to see it.**
+
+<Aside type="tip" title="The question this feature answers">
+"A lead came in / a sale closed 3 hours ago and nobody saw it. How do I get my team to **react right away** without living inside Brote?"
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | It's NOT for you (yet) if… |
+|---|---|
+| Your team already **works in Slack** all day | You don't use Slack (you use only email or internal WhatsApp) |
+| You're **several people** handling conversations (sales, support, billing) | You're a single person who already watches Brote's Inbox |
+| You want to **react fast** to hot leads and sales | Your leads aren't urgent (you can check once a day) |
+| You want to **split alerts** by channel (`#ventas`, `#soporte`, `#cobros`) | You prefer everything in one place and already have it covered |
+
+**Plainly put:** it's for the team that already **lives in Slack** and doesn't want a hot lead going cold because nobody was watching Brote.
+
+<Aside type="note" title="Which plan do I need?">
+The Slack connection is set up from **Settings → Integrations → Slack** with a 1-click flow (OAuth). If you also want to fire **custom events** not in the standard list (for example, a specific tag being applied), you build that via [Zapier](/en/integraciones/zapier/) or [Webhooks](/en/integraciones/webhooks-api/) — features of higher plans. Check your plan's details in the comparison.
+</Aside>
+
+## What do you need before connecting?
+
+<Steps>
+
+1. **A Slack workspace** where your team works. If you don't have one yet, it's free to create at [slack.com](https://slack.com/).
+
+2. **Permission to install apps** in that workspace (or ask whoever administers Slack to approve the connection — it takes 1 minute).
+
+3. **The channels created** where you want to receive alerts. Recommended: `#ventas` for leads and payments, `#soporte` for handoffs. You can start with just one and split later.
+
+4. **Your Brote AI agent running** on at least one channel (WhatsApp, Instagram, etc.) — that's what generates the events that will land in Slack.
+
+</Steps>
+
+<Aside type="note">
+You don't need to know anything technical. Connecting means authorizing Brote in Slack with one click, like when you connect any app.
+</Aside>
+
+## Real example: from zero to 100 with "Muebles del Sur" 🌱
+
+> **Muebles del Sur** is a custom furniture store in Temuco. It sells through Instagram and WhatsApp. The team is **3 people**: **Carla** (sales), **Diego** (after-sales), and **Rocío** (owner). They're on Slack all day coordinating orders, deliveries, and suppliers — but **nobody had Brote open** all the time.
+
+**The problem (before Slack):** a lead would write asking about a custom wardrobe, the AI agent would reply and get it ready to close… but **the conversation sat waiting in Brote until someone checked it**. Sometimes **4 hours** passed before Carla saw the lead. Several went cold or bought elsewhere.
+
+<Steps>
+
+1. **Rocío connects Slack** in Brote: Settings → Integrations → Slack → "Connect Slack" → picks the team's workspace and authorizes. **Less than 1 minute.**
+
+2. **She configures which channel each event goes to:** `new_lead` and `lead_qualified` → `#ventas`. `handoff_to_human` → `#soporte`. `payment_received` → `#ventas`. All from the same screen, no code.
+
+3. **The next day Valentina comes in** asking about a 2-meter wardrobe. The AI agent shows her measurements, price, and timelines. As soon as Brote identifies her as a hot lead, **an alert appears in Slack's `#ventas`** with her name, the channel, the intent, and a "View conversation" link.
+
+4. **Carla sees the alert in Slack within 2 minutes** (she was there anyway), taps the link, enters Brote, and closes the sale with Valentina while she was still hot. She sends her the payment link.
+
+5. **Valentina pays.** A second alert lands in `#ventas`: `payment_received · $340.000`. Rocío sees it, reacts with a 🎉, and Diego already knows there's a new order to schedule for delivery. **All without opening Brote to find out.**
+
+</Steps>
+
+**The change, in numbers:**
+
+| | Before (no Slack) | After (with Slack) |
+|---|---|---|
+| Time until someone sees the lead | ~4 hours | ~3 minutes |
+| Leads that went cold from delay | Several per week | Almost zero |
+| Did someone have to watch Brote? | Yes, all day | No, Slack alerts them |
+
+<Aside type="tip" title="Why it works">
+It doesn't change **what** your team does — it changes **when they find out**. The alert arrives where they're already looking (Slack), with the link one click away. Reacting in 3 minutes instead of 4 hours is, often, the difference between closing the sale or losing it.
+</Aside>
+
+## Which events can you receive?
+
+You choose which ones you want and which channel each goes to:
+
+| Event | When the alert arrives | Suggested channel |
+|---|---|---|
+| `new_lead` | A new contact comes in (captured email or phone) | `#ventas` |
+| `lead_qualified` | The agent marks the lead as "hot" | `#ventas` |
+| `handoff_to_human` | The AI agent asks a human to take over the conversation | `#soporte` |
+| `payment_received` | A payment is confirmed | `#ventas` or `#cobros` |
+| `ticket_won` | A ticket closes as **won** | `#ventas` |
+| `ticket_lost` | A ticket closes as **lost** | `#ventas` |
+| `campaign_completed` | A campaign finishes, with its final stats | `#marketing` |
+
+Each alert carries the relevant info (customer, channel, intent, summary) **plus a direct link** to the conversation in Brote.
+
+<Aside type="tip" title="Threading: your channel doesn't fill with noise">
+If the same conversation fires several events (for example `new_lead` → `handoff` → `payment_received`), the alerts are grouped **in a thread** under the first message. The channel stays tidy, not flooded with loose messages.
+</Aside>
+
+## What does an alert look like in Slack?
+
+```
+🌱 Brote · Nuevo lead caliente
+
+Cliente: Valentina Rojas (+569 ··· ···)
+Canal: Instagram
+Vertical: Retail — muebles
+Intención: alta — pregunta medidas y tiempos, no regatea precio
+
+Resumen:
+Quiere un ropero de 2 metros a medida. El agente le pasó
+precio ($340.000) y tiempo de entrega. Listo para cerrar.
+
+[ Ver conversación en Brote → ]
+```
+
+## How do you connect it? (this easy)
+
+<Steps>
+
+1. In Brote: **Settings → Integrations → Slack**.
+
+2. Tap **"Connect Slack"** → it takes you to Slack's login (OAuth).
+
+3. Pick your team's **workspace** and **authorize**.
+
+4. Configure **which channel** each event type goes to (all to the same one, or split into `#ventas`, `#soporte`, `#cobros`).
+
+5. **Test it:** ask a colleague to message your agent. You'll see `new_lead` appear in Slack. ✅
+
+</Steps>
+
+## What will you achieve?
+
+- **Reaction in minutes, not hours:** the hot lead lands in the channel your team is already watching.
+- **Nobody has to "guard" Brote:** alerts arrive on their own; your people stay in Slack as usual.
+- **Everyone sees what's theirs:** sales in `#ventas`, support in `#soporte`, billing wherever you want. Less noise, more focus.
+- **Team visibility:** everyone learns about sales and handoffs at the same time → better coordination.
+- **Zero technical friction:** connect once with one click and it works forever.
+
+## How easy is it?
+
+**Very easy.** There's nothing to program and no codes to paste:
+
+- **Connecting:** 1 click (authorizing Brote in your Slack). Less than 1 minute.
+- **Configuring channels:** you pick from a list which channel each event goes to. Another minute.
+- **Maintenance:** zero. Once connected, it runs on its own.
+
+The "hardest" part is deciding **which events** you want and in **which channel** — and you can change that whenever you like.
+
+## Frequently asked questions
+
+**Can I reply to the customer from Slack?**
+Not yet. The alert is read-only: to reply to the customer, you tap the link and open the conversation in Brote. (Action buttons inside Slack aren't supported yet.)
+
+**Can I send all events to a single channel?**
+Yes. You can point everything at one channel, or split them into `#ventas`, `#soporte`, `#cobros` — whatever works for you.
+
+**Does Slack charge me for this?**
+No. The connection uses the Slack app the standard way. You only need a Slack workspace (the free plan works).
+
+**What if I want an event that isn't on the list?** (for example, "when tag X is applied")
+You build that with custom alerts via [Zapier](/en/integraciones/zapier/) or [Webhooks](/en/integraciones/webhooks-api/) — more flexible, but requires setting up the flow. The events in the table above come natively, with nothing to build.
+
+**Will my channel fill up with messages?**
+No. When the same conversation generates several events, they're grouped in a thread. And you choose which events to receive: if something is too noisy, you turn it off.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Slack details" icon="external">
+    [Events, typical message, and limits →](/en/integraciones/slack)
+  </Card>
+  <Card title="Master your Inbox" icon="open-book">
+    [Brote's Inbox from zero to 100 →](/en/inbox/de-cero-a-100)
+  </Card>
+  <Card title="Handoff to a human" icon="right-arrow">
+    [When the agent asks for help →](/en/inbox/handoff)
+  </Card>
+  <Card title="Custom events" icon="puzzle">
+    [With Zapier or Webhooks →](/en/integraciones/zapier)
+  </Card>
+</CardGrid>

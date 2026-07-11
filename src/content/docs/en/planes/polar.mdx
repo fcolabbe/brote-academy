@@ -1,0 +1,66 @@
+---
+title: Billing with Polar
+description: "Polar as Merchant of Record: pay your subscription in local currency, invoiced with per-country VAT, without us touching the money directly."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote doesn't charge its customers directly — it uses **[Polar](https://polar.sh)** as Merchant of Record (MoR). Polar is legally responsible for charging you, issuing the invoice with your country's VAT and moving the money.
+
+## Why Polar and not Stripe
+
+For a traditional LATAM SMB, going with Stripe directly means:
+- A bank account in USD or in a supported jurisdiction.
+- Manual tax compliance (VAT, withholdings).
+- Currency conversion where the customer pays in USD even if they live in CLP.
+
+**Polar solves this by being the merchant**:
+- **Charges in your local currency**: CLP in Chile, MXN in Mexico, ARS in Argentina, COP in Colombia, BRL in Brazil, USD in the US, EUR in Spain. No surprise currency conversion.
+- **Issues the invoice with the correct VAT**: 19% Chile, 16% Mexico, 21% Argentina, 19% Colombia, etc. You just receive a clean invoice.
+- **Handles compliance**: if you sell in 7 countries, you don't need tax registration in 7 — Polar absorbs it as MoR.
+
+## How it works in practice
+
+1. You pick a plan (Mini / Starter / Pro / Business) at `brote.ai/es/pricing`.
+2. Click "Empieza gratis · 14 días" → it takes you to the Polar checkout.
+3. You enter your **country** + **minimal tax details**.
+4. Polar calculates the final price with your country's VAT + currency.
+5. You pay with card (Visa, Mastercard, Amex) or supported local methods (MercadoPago in some countries).
+6. Polar issues the invoice → the PDF arrives in your inbox.
+7. Brote receives the `subscription.created` webhook → your account is activated with the chosen plan.
+
+## The trial fits here too
+
+During the 14-day [trial](/en/planes/trial/) we charge you NOTHING. Polar accepts a card as a payment method but **doesn't charge until day 14** (if you chose to continue).
+
+If you did NOT choose to continue → on day 14 your account enters [read-only mode](/en/planes/trial/) and Polar doesn't charge you.
+
+## Plan changes
+
+If you change plans (e.g. Starter → Pro), Polar:
+- Prorates the cost of the change (charges you only the difference from the day of the change).
+- Issues a **supplementary invoice** for the difference.
+- Your next cycle starts on the new plan.
+
+Same logic when downgrading (Pro → Starter): Polar refunds prorated credit or applies it to the next cycle.
+
+## Coupons and discounts
+
+Polar supports **discount codes**. The [Cupón COQUIMBO](/en/planes/cupon-coquimbo/) is implemented as a Polar Discount applicable to the Starter plan, with `duration: repeating` for 6 months. Other future coupons (summer promo, B2B partners) are managed from Brote's Polar dashboard.
+
+<Aside type="tip" title="Refunds and cancellations">
+**Cancel anytime**, no call or form: a "Cancel subscription" button in your dashboard. Polar processes the cancellation same-day. Your access stays active until the end of the current paid cycle.
+</Aside>
+
+## Difference from Mercado Pago
+
+**Polar** = you pay your Brote subscription (B2B SaaS).
+**[Mercado Pago](/en/pagos/mercado-pago/)** = you charge your end customers (your business).
+
+They're two different things. Polar is the SaaS charging you. MP is the gateway YOU use to charge your customers.
+
+## Next steps
+
+- [Plan comparison](/en/planes/comparativa/)
+- [14-day trial](/en/planes/trial/)
+- [Cupón COQUIMBO](/en/planes/cupon-coquimbo/)

@@ -1,0 +1,101 @@
+---
+title: Frequently asked questions
+description: Answers to the most common questions about Brote, trial, pricing, channels, campaigns and more.
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+## Account and trial
+
+### Do I need a card to get started?
+No. The **14 days are card-free**. We remind you on day 7 and day 12, and only if you decide to continue do you add a payment method.
+
+### Which plan do I get during the trial?
+You start with all the features of the **Starter plan ($49/month)** for 14 days: 500 AI conversations, WhatsApp + Webchat + Instagram + Messenger, payments (Mercado Pago / Flow / Khipu), scheduling, kanban pipeline. When you activate payment you pick the plan that suits you best (you can downgrade to Mini if it's enough).
+
+### What happens if I don't add a card when the trial ends?
+Your account switches to **read-only mode for 30 days**: you can view your conversations, contacts and settings, but the AI agent is paused. After 30 days the account is archived. Data is preserved for another 180 days in case you come back.
+
+## Conversations and quotas
+
+### What counts as a conversation?
+Every thread where the AI agent replies at least once in the monthly cycle. If a customer comes back later with another question, that's a new conversation.
+
+### What happens if I exceed my plan's conversations?
+The AI agent pauses and we let you know so you can upgrade. Your team can keep replying manually from the Inbox with no cap.
+
+### Is there any other quota?
+Each plan has a Knowledge Base cap (30 MB Mini, 100 MB Starter, 500 MB Pro, 5 GB Business). If you upload lots of PDFs / docs, you can hit the cap. Plus, AI conversations per plan: 150 (Mini), 500 (Starter), 1,500 (Pro), 3,000 (Business).
+
+## Plans and billing
+
+### Can I change plans?
+Yes, anytime. The change applies immediately and is prorated against your current cycle.
+
+### How does the annual discount work?
+You pay for 10 months, you get 12 — equal to **2 free months a year** (≈17% off). It applies to all 4 plans and you can activate it anytime.
+
+### How does billing work?
+We work with **Polar as Merchant of Record**: they charge, handle VAT per country and issue the invoice. You just pick the plan.
+
+### Is the COQUIMBO coupon real?
+Yes — a regional promo for SMBs in the Coquimbo Region, Chile. It applies `-USD $26/month on Starter` for 6 months → it comes to **USD $23/month (~$21.600 CLP)**. URL with auto-apply: [brote.ai/es/pricing?coupon=COQUIMBO](https://brote.ai/es/pricing?coupon=COQUIMBO).
+
+## Channels
+
+### Which channels does Brote support?
+Official channels available: **WhatsApp, Instagram DM, Facebook Messenger** (all three via Meta's official channel) and an embeddable **Webchat**. Instagram and Messenger are available from **Starter and up**. **Email and Telegram** are coming **soon** with our own native channel (own email / Telegram Bot API).
+
+### Do I need the official WhatsApp Business API?
+The recommended path is **Meta's official Cloud API**: you connect your number without scanning a QR. There's also **Evolution API** (non-official WhatsApp Business) as an alternative, but the official one is what we recommend.
+
+### How do I connect Instagram and Messenger?
+You connect your **Facebook Page and Instagram account** via Meta's official channel (direct), and the agent replies to DMs. No third-party tools needed.
+
+### Can my personal number use Brote?
+Technically yes, but we recommend using a **number dedicated to the business** (it can be a WhatsApp Business number). Avoid mixing personal conversations with the AI agent's.
+
+## Scheduling and calendar
+
+### How do I connect my calendar?
+Scheduling connects **Google Calendar directly** (Brote's own OAuth) from **Settings → Scheduling**. No third-party tools needed.
+
+### How does it avoid the agent booking over my events?
+The sync is bidirectional: appointments the agent takes are written to a **"Brote — Citas"** calendar inside your Google account, and the agent **reads your availability (free/busy)** from your main calendar so it doesn't book over events you already have.
+
+## Sales attribution
+
+### Does Brote tell me which ad generated each sale?
+Yes, with the **Meta and TikTok Conversions API (CAPI)**. We capture the ad click (Click-to-WhatsApp / Click-to-Messenger / Click-to-Instagram) and fire the Purchase event when the customer pays (Mercado Pago / Flow / Khipu) → you close the ROAS loop. Works on **WhatsApp, Instagram and Messenger**.
+
+### Which plan includes attribution?
+It's **exclusive to the Business plan**, same as the **MCP server**.
+
+## Campaigns
+
+### Are campaigns spam?
+No — they're for **reactivating your own base**: contacts who have already talked with you. Brote has automatic opt-out with "STOP" and daily caps to protect your number.
+
+### How many campaigns can I send per month?
+Depends on the plan: Starter 2/month (100 contacts), Pro 10/month (500 contacts), Business unlimited (1,500 contacts). Details in [Campaigns — Caps per plan](/en/campanas/caps/).
+
+## Security and data
+
+### Who sees my conversations?
+Only your team (the users you invited to your organization). Data is isolated with **Row Level Security** in Postgres — org A can never read org B, not even through an app bug.
+
+### Does Brote touch the money?
+No. When the agent generates a **Mercado Pago** payment link, the payment goes straight to your MP account. Brote only confirms the payment went through.
+
+### Where is my data?
+**Supabase Cloud** (Postgres + Storage) with TLS 1.3 encryption in transit and at rest. App hosting on **Oracle Cloud** (Chile/LATAM). Encrypted daily backups.
+
+## Support
+
+### How do I contact the team?
+- **Email**: [hola@brote.ai](mailto:hola@brote.ai)
+- **Form**: [brote.ai/contact](https://brote.ai/es/contact)
+- **Response time**: \< 24 business hours (prioritized for Business customers)
+
+### Do you have support in my country?
+Yes — we serve in **neutral Chilean Spanish** (we understand LATAM slang across the board), English and Portuguese (limited). We operate from Chile but serve all of LATAM.

@@ -1,0 +1,134 @@
+---
+title: In-chat logistics — from zero to 100
+description: Your AI agent quotes shipping, compares rates and tracks orders inside the chat with Chilexpress and Starken. Complete guide with a real example, what you need, who it's for and what you'll achieve.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**In-chat logistics** = your AI agent answers **"how much is shipping to Concepción?"** on its own, with the exact price and delivery days, and then **tracks the order** — all inside the same conversation, without opening the courier's website.
+
+You sell products you ship to other regions. Every day your customers ask the same things: *"how much is shipping?"*, *"do you deliver to my area?"*, *"where's my order?"*. Today someone on your team opens the Chilexpress website, enters the destination and weight, copies the price and pastes it into the chat. **With Brote, the agent does it on its own in seconds**, with the real rate, 24/7.
+
+<Aside type="tip" title="The question this feature answers">
+"How much is shipping to Concepción and how long does it take?" — answered instantly by the agent, with the courier's real price, without anyone on your team lifting a finger.
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | NOT for you (yet) if… |
+|---|---|
+| You sell **physical products** and **ship them within Chile** | You sell **services** or **digital** products (nothing to ship) |
+| Your customers are in **other regions** and ask about shipping costs | You only sell and deliver **in person** at your store |
+| You already have (or will have) an account with **Chilexpress** or **Starken** | You only offer **in-store pickup** |
+
+**In plain terms:** it's for the store that ships products all over Chile and is tired of quoting shipping by hand.
+
+<Aside type="note" title="Required plan: Starter">
+In-chat logistics is included **from the Starter plan ($49/mo)**. It's not an add-on or a Business-only feature — it's available on Starter, Pro and Business. You only need to connect your courier account.
+</Aside>
+
+## What do you need before connecting?
+
+<Steps>
+
+1. **An account with a Chilean courier** — Chilexpress or Starken (you can connect both).
+   - **Chilexpress:** create your 3 *subscription keys* (Coverage / Quoting / Shipments) at [developers.wschilexpress.com](https://developers.wschilexpress.com/). Free.
+   - **Starken:** ask your Starken account executive for the business plan's **API credentials** (careful: they are **NOT** the same ones you use to log in to `starken.cl`).
+
+2. **Connect the courier in Brote:** go to **Settings → Integrations → Chilexpress** (or **Starken**) and paste your credentials.
+
+3. **Set up the shipping origin** — where your goods ship from:
+   - **Chilexpress:** the origin county code (like `STGO`, `VALP`, `CONC`).
+   - **Starken:** you pick your origin city from a list when connecting.
+
+4. **An active Starter plan** (or higher).
+
+</Steps>
+
+<Aside type="caution" title="Starken credentials">
+If you get a `401` error when connecting Starken, it's almost always because you're using the web portal credentials (`starken.cl`) instead of the API ones. They're different — ask your account executive for the API credentials.
+</Aside>
+
+## Real example: from zero to 100 with Rodrigo 🌱
+
+> **Rodrigo** owns **"Aromas del Valle"**, a specialty coffee and accessories store that ships from Santiago to all of Chile. He sells on WhatsApp. He spends his days quoting shipping by hand and losing sales whenever he replies late.
+
+<Steps>
+
+1. **Rodrigo connects Chilexpress in Brote** in 5 minutes: he pastes his 3 subscription keys and sets the origin to `STGO` (Santiago).
+
+2. **Camila, from Concepción, writes** on a Saturday at 10 PM: *"Hi, I want 2 kilos of coffee. How much is shipping to Concepción?"*
+
+3. **The AI agent handles it on its own:** it recognizes "Concepción", verifies that Chilexpress has coverage, quotes 2 kg and replies right away: *"Shipping to Concepción is $4.990 and arrives in 2 to 3 business days ☕"*.
+   *(Rodrigo was asleep. The agent quoted with the courier's real rate.)*
+
+4. **Camila buys.** The agent sends her the payment link, she pays, and a few days go by.
+
+5. **On Tuesday Camila asks:** *"Where's my order?"*. Rodrigo gives Camila her tracking number and the agent replies: *"Your shipment is **out for delivery** in Concepción, it arrives today 📦"*. Without Rodrigo ever opening the Chilexpress website.
+
+</Steps>
+
+**What changed for Rodrigo in a month:**
+
+| Before (by hand) | With Brote |
+|---|---|
+| Answered quotes during office hours | Quotes **24/7**, even in the middle of the night |
+| ~4 min per quote opening the courier's website | **Seconds**, inside the chat |
+| Customers asked "where's my order?" 3 times | The agent tracks on its own with the tracking number |
+| Lost weekend sales by replying late | Closes sales while the customer is hot |
+
+<Aside type="tip" title="This is what you achieve">
+You stop being the bottleneck for every quote. The customer gets the shipping price instantly — and an instantly informed customer is a customer who **buys faster**.
+</Aside>
+
+## What will you achieve?
+
+| Benefit | What it means for your business |
+|---|---|
+| **Less time quoting by hand** | Your team never opens the courier's website again — the agent answers on its own |
+| **Customers informed 24/7** | Quotes and tracks at any hour, even when you're closed |
+| **Fewer lost sales** | You answer the shipping cost instantly, when the customer has decided |
+| **Real rates, no errors** | The price comes from the courier, not a guesstimate |
+| **Discount with your TCC** | If you connect your Chilexpress Tarjeta Cliente Comercial, a ~19% discount applies over the public rate |
+
+## How easy is it?
+
+Very easy. The "hard" part (having a courier account) is something you already have if you ship products. Connecting in Brote means pasting your credentials once and setting where your goods ship from. **From then on the agent quotes and tracks on its own** — you don't configure anything per shipment or per customer.
+
+Brote includes a **resolver for 80 major counties**: when the customer writes "Providencia", "Quilpué" or "Talcahuano", the agent resolves the county on its own, without asking for weird codes. And if the county falls in a rural zone outside the list, the agent **doesn't make up coverage** — it answers honestly: *"I'll confirm with the team and let you know"*.
+
+## Frequently asked questions
+
+**Does the agent generate the shipping label?**
+Not in this version. Today, in-chat logistics handles **quoting, coverage and tracking** — which is what your customers ask about every day. **Label generation** isn't included yet (it's planned for a future phase). For now you keep generating labels in your courier's portal.
+
+**Which couriers can I connect?**
+**Chilexpress** and **Starken**, Chile's two main couriers. You can connect one or both. If you connect both, Brote picks automatically (Chilexpress by default, with a configurable override if your typical customer is in areas where Starken covers better, like the south).
+
+**How much does Brote charge me per shipment?**
+Zero. Brote only quotes and tracks — you pay the shipping directly to the courier at the quoted rate. The feature is included in your plan from Starter, at no extra cost.
+
+**Do I need to know anything technical?**
+No. You paste your credentials once and that's it. The agent builds the request to the courier, resolves the county and returns the price — all under the hood.
+
+**What if the customer asks about a rural county that's not on the list?**
+The agent is honest: it doesn't invent coverage it can't confirm. It notifies you so you can coordinate and confirm with the customer.
+
+## Next steps
+
+<CardGrid>
+  <Card title="How logistics works" icon="rocket">
+    [Courier details and router →](/en/logistica/)
+  </Card>
+  <Card title="Agent tools" icon="setting">
+    [See the native tools →](/en/automatizacion/tools-del-agente)
+  </Card>
+  <Card title="Connect Chilexpress" icon="approve-check">
+    [developers.wschilexpress.com →](https://developers.wschilexpress.com/)
+  </Card>
+  <Card title="See plans" icon="seti:plan">
+    [Logistics is included from Starter →](https://brote.ai/es/pricing)
+  </Card>
+</CardGrid>

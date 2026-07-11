@@ -1,0 +1,59 @@
+---
+title: What campaigns are
+description: "Mass reactivation of your contact base: the AI agent opens the conversation and continues it based on the replies. Not a dumb blast."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+A **Brote campaign** is a mass send of an initial message to a cohort of your contacts (e.g.: customers who bought on Black Friday 2025, leads who abandoned a cart, lapsed subscribers). The difference from a traditional blast: **the AI agent continues the conversation based on the replies**.
+
+![Campaigns view in the dashboard](/screenshots/campaigns.png)
+
+## The end-to-end flow
+
+1. **You pick a cohort**: filter your contacts by tags, pipeline stage, last purchase date, vertical, etc.
+2. **You write the initial message**: text + optionally media (photo/video) + optionally a pre-built payment link.
+3. **You schedule the send**: now, or at a future date/time.
+4. **Brote sends while respecting** your plan's caps + the contact's local waking hours + automatic opt-out.
+5. **The AI agent takes over** when the contact replies — without you touching anything.
+6. **Real-time tracking**: how many received, how many opened, how many replied, how many bought.
+
+## Why the AI continuing matters
+
+A traditional blast (Mailchimp, WA Business API template) leaves you with hundreds of replies in an inbox that NOBODY answers. Brote is different:
+
+- If the contact says "not interested" → the AI agent closes politely + marks opt-out.
+- If they say "tell me more" → the AI agent gives context + recommends a product.
+- If they say "I want it" → the AI agent builds the payment link.
+- If they ask something out of scope → handoff to a human with a summary.
+
+The result: a 500-contact campaign doesn't generate 500 conversations to handle — it generates 30-50 closed sales and 450 contacts labeled by their real intent.
+
+<Aside type="caution" title="Mandatory caps per plan">
+Because Brote uses Evolution (not the Cloud API), you can't send thousands of messages in minutes without Meta banning you. Each plan has a monthly + daily cap to protect your number. See [Caps per plan](/en/campanas/caps/).
+</Aside>
+
+## Typical use cases
+
+| Cohort | Initial message | Typical result |
+|---|---|---|
+| 2024 customers with no 2025 purchase | "Hi, it's been a while. We've got new pet food arrivals you'll like." | 8-15% reactivation |
+| Abandoned carts, last 7 days | "I saw you left your cart. Any questions? Happy to help you close it." | 12-20% recovery |
+| "Hot" leads with no purchase | "We said we'd send you info. Here it is: [link]" | 25-30% conversion |
+| New product launch | "This just landed, take a look: [photo + description]" | 30-40% engagement |
+| Black Friday | "The 30% off ends tomorrow. If something caught your eye, now's the time." | Weekly sales boost |
+
+## Automatic opt-out
+
+Every campaign includes an implicit opt-out. If a contact replies "stop", "unsubscribe", "no more messages", the AI agent:
+
+- Closes the conversation politely.
+- Marks the contact with the `opted_out` tag.
+- Excludes them from **all future campaigns** automatically.
+- If you ever wanted to invite them back, you'd have to revert the tag manually (you rarely want to).
+
+## Next steps
+
+- [Create your first campaign](/en/campanas/crear/)
+- [Caps per plan and WA protection](/en/campanas/caps/)
+- [Automatic opt-out](/en/campanas/opt-out/)

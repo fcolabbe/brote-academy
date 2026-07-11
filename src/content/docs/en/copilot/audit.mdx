@@ -1,0 +1,62 @@
+---
+title: Automatic agent audit
+description: "Brote Copilot Audit scans real conversations, detects gaps in the agent's answers and proposes quick-tunes you accept or reject."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+**Brote Copilot Audit** is the AI agent's continuous improvement engine. It reads your real conversations, detects where the agent answered poorly (or didn't answer), and proposes specific corrections to apply to the prompt.
+
+![Brote Copilot Audit dashboard](/screenshots/copilot-audit.png)
+
+## How it works
+
+Every so often (or on-demand when you click "Audit now"), Brote Copilot Audit:
+
+1. **Reads the agent's latest real conversations** (last 50-200 depending on plan).
+2. **Detects problematic patterns**:
+   - Frequent questions the agent answered poorly
+   - Escalations to humans that could have been avoided
+   - Missed sales opportunities (customer showed intent + agent didn't close)
+   - Inconsistencies across similar conversations
+   - Information gaps (things the agent does NOT know but should)
+3. **Proposes specific corrections** to the prompt or agent_blocks:
+   - "Add this FAQ with this answer"
+   - "Modify the pricing instruction"
+   - "Change the tone on return questions"
+4. **Generates reviewable recommendations** — you accept, reject, or edit each one before applying it. **It never changes the agent without your OK.**
+
+## The "Pending recommendations" column
+
+It's the heart of the audit. Each row is a suggestion with:
+
+- **Type**: New FAQ / New edge case / Instruction / Tone / Catalog
+- **Reason**: why the copilot detected this (e.g. "3 customers asked about returns, the agent gave 3 different answers")
+- **Proposed change**: the exact diff to the prompt
+- **Buttons**: ✓ Accept / ✗ Reject / ✎ Edit before applying
+
+When you accept, the recommendation is applied to the agent and logged in `copilot_recommendations` with status `applied`. The customer's next conversation already sees the new version.
+
+<Aside type="tip" title="Quick-tunes from audio">
+Besides the automatic audit, you can record a **quick audio** from the owner whenever you notice something to fix ("hey agent, when someone asks X, say Y"). The copilot transcribes + classifies + builds the recommendation. Same review + apply flow.
+</Aside>
+
+## When to use the audit
+
+- **After the initial onboarding**: run an audit at day 3-7. The agent has already talked to real customers; the audit detects the first gaps.
+- **Monthly**: as a routine. The business changes (prices go up, products rotate, new cases appear), the agent adjusts.
+- **When you notice low conversion**: if the agent's conversion rate dropped (visible in [Analytics](/en/inbox/inbox-unificado/)), run an audit to see what changed.
+
+## Metrics you see at the top
+
+- **Conversations audited** in the period
+- **Recommendations generated** (total)
+- **Applied** (how many you accepted)
+- **Pending** (awaiting your review)
+- **Rejected recommendations** (you said no, the copilot learns)
+
+## Next steps
+
+- [What is Brote Copilot](/en/copilot/que-es/)
+- [Audio onboarding](/en/copilot/audio-onboarding/)
+- [Website URL onboarding](/en/copilot/url-onboarding/)

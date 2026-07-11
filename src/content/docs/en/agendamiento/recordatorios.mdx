@@ -1,0 +1,33 @@
+---
+title: Automatic reminders
+description: "Brote sends WhatsApp reminders before each appointment to cut no-shows. Automatic, with nothing for you to touch."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Every time an appointment is booked (by the agent, through the public link, or by hand), Brote **schedules automatic WhatsApp reminders** to cut no-shows.
+
+## How it works
+
+- By default, reminders are scheduled **24 hours** and **2 hours** before the appointment.
+- They're sent over **WhatsApp** to the contact's phone.
+- If the appointment is **rescheduled**, the reminders are rescheduled to the new time.
+- If it's **cancelled**, pending reminders are deleted.
+
+```
+🌱 Hola Camila, te recordamos tu cita de Corte de pelo el jueves 12 de junio, 15:00.
+Si necesitas reagendar o cancelar, responde este mensaje.
+```
+
+## Requirements
+
+- Your org needs **WhatsApp connected** ([how to connect it](/en/canales/whatsapp/)) for the reminder to go out. If it isn't, the appointment is still booked, just without the automatic heads-up.
+- The contact needs a **phone number** (the public link always asks for it).
+
+<Aside type="note">
+Reminders count as outbound messages within your [plan's messaging limits](/en/campanas/caps/). They're low volume (one or two per appointment), so you'll rarely notice.
+</Aside>
+
+## Rescheduling and cancelling
+
+The customer can simply **reply to the reminder** ("can I move it to Friday?") and the AI agent reschedules or cancels in the conversation, adjusting the reminders on its own.

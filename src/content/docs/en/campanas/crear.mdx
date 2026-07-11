@@ -1,0 +1,63 @@
+---
+title: Create your first campaign
+description: "A 4-step wizard: segment, message, goal, schedule. The AI agent takes over when the contact replies."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Creating a campaign in Brote takes 5 minutes. The system is a 4-step wizard designed so any SMB owner can launch one without a marketing team.
+
+![Campaigns section in the Brote dashboard](/screenshots/campaigns.png)
+
+## Step 1 — Segment
+
+You filter your contacts by a combination of:
+
+- **Tag**: any tag from [Tags and custom fields](/en/inbox/tags-fields/) (e.g.: `cliente_2024`, `lead_frio`, `BlackFriday`).
+- **Pipeline stage**: contacts in "Lost" to reactivate, in "Human handling" for follow-up, etc.
+- **Last conversation**: 30 / 60 / 90 / 180 days without a message.
+- **Last purchase**: contacts with/without a recent purchase (via [Mercado Pago](/en/pagos/mercado-pago/)).
+- **Source**: they came in through WhatsApp, Webchat, IG, etc.
+- **Vertical / Custom field**: if you have custom fields (city, company size, plan they use), you filter by those.
+
+As you build the filter, Brote shows a **real-time estimated count** (e.g.: "1,247 contacts match this filter"). If it exceeds your plan's daily/monthly cap, it warns you before proceeding.
+
+## Step 2 — Initial message
+
+- **Free text** (with emoji preview + `{nombre}` variables replaced at send time).
+- **Optional media**: photo, video, audio, PDF — upload from your [Library](/en/inbox/tags-fields/).
+- **Optional payment link**: if the campaign has a closed offer (e.g.: "buy now with 20% off"), you include a pre-built MP link.
+- **Available variables**: `{nombre}`, `{ciudad}`, `{ultima_compra}`, `{tag}`, any `custom_field`.
+
+<Aside type="tip" title="LLM personalization">
+On Pro+, you can enable **per-contact personalized messages**: the AI agent generates an opener tailored to each contact based on their history. Higher conversion, more expensive to process (it consumes your monthly AI conversation quota).
+</Aside>
+
+## Step 3 — Goal
+
+You define what counts as "success" for this campaign — Brote tracks it automatically:
+
+- **Reply**: the contact answered something (engagement).
+- **Conversion**: the contact advanced to a specific pipeline stage.
+- **Payment**: the contact paid via MP link.
+- **Click**: the contact opened an included link.
+- **Visit**: the contact landed on your site (if you have UTMs).
+
+When the campaign closes, Brote shows you the full funnel: sent → delivered → opened → replied → won → paid.
+
+## Step 4 — Schedule
+
+- **Now**: starts in 30 seconds.
+- **Specific date/time**: e.g. "Monday June 9 at 10:00 GMT-3".
+- **Throttling**: the campaign respects the [daily cap](/en/campanas/caps/) — if your plan is Starter (100/day), a 500-contact campaign takes 5 days.
+- **Waking hours**: by default we don't send outside the contact's local waking hours (8:00-21:00 by timezone). Configurable.
+
+## Cancelling early
+
+If you launched and want to cancel, there's a "Pause campaign" button. Messages already sent stay sent; pending ones don't go out.
+
+## Next steps
+
+- [What campaigns are](/en/campanas/que-son/)
+- [Caps per plan](/en/campanas/caps/)
+- [Automatic opt-out](/en/campanas/opt-out/)

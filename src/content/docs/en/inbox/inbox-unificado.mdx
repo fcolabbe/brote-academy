@@ -1,0 +1,69 @@
+---
+title: Unified Inbox
+description: "One inbox for all your conversations — WhatsApp, Webchat, Instagram, Messenger. Filters by channel, stage, and agent."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote's unified Inbox brings every conversation from every channel into a single view. Your team doesn't have to open WhatsApp, Instagram, and Messenger separately — everything lives here.
+
+![Unified Inbox with conversations from multiple channels](/screenshots/inbox.png)
+
+## What you see in the Inbox
+
+Each row in the list is a conversation with:
+
+- **Avatar and initials** of the contact (or "Web visitor" if they're still anonymous)
+- **Name** of the contact (if we have it)
+- **Last message** received or sent, with a preview
+- **Channel**: icon badge (WhatsApp, Instagram, Messenger, Webchat). Email and Telegram are coming soon.
+- **AI vs Human status**: a pill showing whether the agent is handling it or it's in handoff
+- **Tags**: labels you created in [Tags and custom fields](/en/inbox/tags-fields/)
+
+## Available filters
+
+Above the list:
+
+- **All channels** / WhatsApp / Instagram / Messenger / Webchat
+- **All statuses** / Unread / With AI / With human / Closed
+- **All agents** (if your team has more than one) / a specific agent
+- **Free-text search** by name, phone, email, or message content
+
+<Aside type="tip" title="Realtime, no refresh needed">
+The Inbox uses **Supabase Realtime** over WebSocket. When a new message arrives, it appears at the top of the list without you having to refresh. If you're inside a conversation, new messages show up at the end of the thread with an optional sound ping.
+</Aside>
+
+## How your team operates it
+
+| Role | What they can do |
+|---|---|
+| **Superadmin** (owner) | Everything: inbox + settings + billing + admins |
+| **Admin** | Inbox + settings + invite members (no billing) |
+| **Operator (human agent)** | Only assigned conversations + change status + reply |
+
+Assignment: if a conversation enters **handoff** (the AI agent escalated it), the system assigns it to the operator with the lightest load, or to a fixed one if you configured round-robin/preferred.
+
+## Taking over from the AI
+
+Any member with permissions can **pause the AI** in a conversation and reply manually. There are 3 ways:
+
+1. Click the "AI on/off" toggle above the thread.
+2. Type a manual message — it automatically sets the AI to `paused`.
+3. Move the conversation to "human" status on the kanban.
+
+When the conversation is closed (won / lost / archived), the AI goes back to `active` for future interactions with the same contact.
+
+## Quick actions on each conversation
+
+- Mark as **read / unread**
+- **Assign** to another team member
+- **Move in the pipeline** (changes the stage of the linked ticket)
+- **Add a tag** or **create an internal note**
+- **Send a payment link** (if you have Mercado Pago connected)
+- **Close** as won / lost / archived
+
+## Next steps
+
+- [Kanban pipeline](/en/inbox/pipeline/)
+- [Handoff to a human](/en/inbox/handoff/)
+- [Tags and custom fields](/en/inbox/tags-fields/)

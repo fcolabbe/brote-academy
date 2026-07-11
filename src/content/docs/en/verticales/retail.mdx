@@ -1,0 +1,83 @@
+---
+title: Retail / e-commerce
+description: "Brote for online and physical stores. Live Shopify catalog, in-chat MP payments, automatic repurchase, 24/7 support."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+For retail, Brote is the **virtual salesperson** that knows your catalog, calculates prices + stock in real time, builds the cart and collects payment. All inside the chat — without the customer opening your site.
+
+## The end-to-end flow
+
+1. **Pre-sale**: customer asks about a product → agent searches [Shopify](/en/integraciones/shopify/), replies with photo + price + stock.
+2. **Decision**: customer asks about variants / alternatives → agent recommends based on preferences.
+3. **Purchase**: customer confirms → agent generates an [MP link](/en/pagos/mercado-pago/) or a Shopify cart link.
+4. **Post-sale**: customer asks about order status → agent looks up the Shopify order and replies.
+5. **Repurchase**: 30-60 days later → agent suggests restocking the consumable (pet food, skincare products, supplements).
+
+## Recommended setup
+
+### Key integrations
+
+- **[Shopify](/en/integraciones/shopify/)**: catalog lookup + stock + variants + cart link.
+- **[Mercado Pago](/en/pagos/mercado-pago/)**: payments inside the chat.
+- **[Google Sheets](/en/integraciones/sheets/)** (optional): if your catalog lives in a sheet instead of Shopify.
+- **[Zapier](/en/integraciones/zapier/)**: sync leads → Mailchimp / CRM.
+
+### Custom fields
+
+```
+talla_preferida (select por vertical: ropa, calzado, etc)
+direccion_envio (text)
+ciudad (text)
+ultimo_producto_comprado (text)
+fecha_ultima_compra (date)
+suscripcion_activa (boolean)
+```
+
+### Useful tags
+
+`compra_premium`, `requiere_envio_express`, `cliente_vip`, `descuento_aplicado`, `abandono_carrito`, `recompra_pendiente`
+
+## Conversation example
+
+```
+Cliente: hola, tienen el alimento Acana light? para gato
+
+Agente: Sí, tengo el Acana Light & Fit para gato:
+- Bolsa 1.8 kg: $24.990
+- Bolsa 4.5 kg: $54.990 (mejor relación precio/kg)
+- Bolsa 1.8 kg suscripta cada 30 días: $22.491 (10% off)
+
+Tenes 3 unidades en stock de la 4.5 kg. La 1.8 kg está pronto a reponer.
+¿Qué te tinca?
+
+Cliente: la 4.5 suscripta cuanto sale
+
+Agente: La 4.5 kg suscripta cada 30 días queda en $49.491 con 10% off
+recurrente. ¿Quieres que te arme el link?
+
+Cliente: dale
+
+Agente: [link MP de preapproval]
+Al pagar el primer mes ($49.491) queda activa la suscripción.
+Te envío cada 30 días sin que tengas que pedirlo. Puedes pausar o
+cancelar cuando quieras desde tu cuenta MP.
+```
+
+<Aside type="tip" title="Automatic repurchase">
+Configure your agent to **detect your product's consumption cycle** (e.g. pet food lasts ~30 days). 25 days after the last purchase, the agent can start a conversation with `Te queda poco [producto]? Te mando el link de recompra?`. Automatic repurchase conversion is usually 25-40%.
+</Aside>
+
+## Metrics to watch
+
+- **Chat-to-purchase conversion rate**: retail benchmark = 8-15% without a chatbot, 18-25% with Brote well configured.
+- **Abandoned cart recovery**: if you connect the abandonment event (Shopify webhook), the agent attempts recovery — 12-20% recovery.
+- **Average ticket**: the agent can suggest up-sells during the conversation; it usually rises 5-12%.
+
+## Next steps
+
+- [Shopify](/en/integraciones/shopify/)
+- [Mercado Pago](/en/pagos/mercado-pago/)
+- [Collect payments inside the chat](/en/pagos/cobro-in-chat/)
+- [Create a repurchase campaign](/en/campanas/crear/)

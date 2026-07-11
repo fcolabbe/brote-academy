@@ -1,0 +1,154 @@
+---
+title: Connect Brote with other apps — from zero to 100
+description: Take what happens in Brote (new customers, payments, leads) into your other tools (spreadsheet, CRM, email) and back — no code. With Zapier (6,000+ apps), Make, n8n, or webhooks. Real example, who it's for, and what you'll achieve.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**Connecting apps** = making what happens in Brote **show up on its own** in your other tools (your Google spreadsheet, your CRM, your email, your Slack) — and making what happens outside **flow into** Brote on its own. No copy-pasting. No coding.
+
+You already use Brote to chat and sell over WhatsApp. But you're still **hand-copying** every new customer into a spreadsheet, or every payment into your accounting. That's lost time and errors. Connecting apps makes that work **happen by itself**: new customer in Brote → new row in your spreadsheet + welcome email, all automatic.
+
+<Aside type="tip" title="The question this feature answers">
+"Every time something happens in Brote (a new customer, a payment, a hot lead), how do I get it **automatically** recorded in my other apps without touching anything?"
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | It's NOT for you (yet) if… |
+|---|---|
+| You already use **other tools** (spreadsheet, CRM, email, Slack, accounting) besides Brote | Your entire operation lives inside Brote and never leaves it |
+| You copy data **by hand** between Brote and those apps | You don't need to move data between systems |
+| You want to **automate** repetitive tasks without hiring a dev | You prefer doing everything manually (for now) |
+| You're on the **Pro** or **Business** plan | You're on Mini/Starter (see "Plan required" below) |
+
+**Plainly put:** it's for the business that already has **more than one tool** and is tired of copy-pasting between them.
+
+<Aside type="caution" title="Plan required: depends on how you connect">
+There are two paths and **each requires a different plan**:
+
+- **Zapier** (the no-code way, with 6,000+ apps): available from **Pro** ($129/mo) and also on **Business** ($349/mo).
+- **Webhooks + direct API** (Make, n8n, or any endpoint of your own): available only on **Business** ($349/mo), because it requires specific infrastructure and support.
+
+If you want the easiest option and you're on Pro, your path is **Zapier**. If you need advanced flows or have your own systems, it's **Business**. More info in the [plan comparison](/en/planes/comparativa/).
+</Aside>
+
+## What do you need before connecting?
+
+<Steps>
+
+1. **Your Brote account up and running** with at least one channel connected (WhatsApp, Instagram, etc.) — meaning conversations are already coming in.
+
+2. **An account in the destination tool** (Google Sheets, HubSpot, Mailchimp, Notion, Slack… whatever you use).
+
+3. **The right plan** for your path:
+   - Easy path → a **Zapier** account (they have a free plan to start) + your Brote plan on **Pro** or **Business**.
+   - Advanced path → **Make**, **n8n**, or your own server + Brote **Business** plan.
+
+4. **A Brote API key**, generated in one click from `Settings → Integrations`. It's the "key" that connects Brote to the other tool.
+
+5. Being clear on **what you want to automate** (e.g., "every new customer → into my spreadsheet"). With that, you can build your first flow.
+
+</Steps>
+
+<Aside type="note">
+You don't need to know how to code. With Zapier everything is point-and-click. The API key is generated with a button — no need to understand what it is under the hood.
+</Aside>
+
+## Real example: from zero to 100 with Rodrigo 🌱
+
+> **Rodrigo** runs **"Fitness Andes"**, a personal training studio in Santiago. He acquires clients over WhatsApp with his Brote AI agent. The problem: he was logging every new client **by hand** in a Google spreadsheet and sending the welcome email **one by one**. That cost him around 10 minutes per client, and sometimes he forgot.
+
+<Steps>
+
+1. **Rodrigo opens Zapier** (with his free account) and creates a new "Zap". A Zap is a rule like "when THIS happens, do THAT".
+
+2. **He picks the trigger:** he searches for "Brote" in Zapier, connects his account by pasting the **API key**, and picks the **`create_contact`** event — i.e., "when a new contact is created in Brote".
+
+3. **He picks the first action:** "Google Sheets → add row". He connects his "Clientes Fitness Andes" spreadsheet and maps the fields: name, phone, date. **Without writing a single line of code** — just picking from a list.
+
+4. **He adds a second action:** "Gmail → send email". He writes the welcome email once ("Welcome to Fitness Andes! Your first class is…") and tells it to use the new contact's name and email.
+
+5. **He tests the Zap:** Zapier sends a test row to the spreadsheet and a test email. It works. Rodrigo turns the Zap on.
+
+6. **Done, it works on its own forever.** From that moment, everyone who signs up over WhatsApp **automatically** appears in the spreadsheet and receives their welcome email — without Rodrigo touching anything.
+
+</Steps>
+
+**Before vs. after (with 40 new clients per month):**
+
+| | Before (by hand) | After (automatic) |
+|---|---|---|
+| Time per client | ~10 min | 0 min |
+| Time per month | ~6.5 hours | 0 hours |
+| Clients he forgot | 3-4 per month | 0 |
+| Welcome email | Sometimes yes, sometimes no | Always, instantly |
+
+**Result:** Rodrigo gets back **over 6 hours a month** (almost a full workday) and **no client goes unrecorded or unwelcomed**. He spends those 6 hours teaching classes, which is what makes him money.
+
+<Aside type="tip" title="This is what you get">
+You stop being the "human copy-paste" between your apps. Repetitive work happens on its own, error-free and instantly → you spend your time **selling and serving customers**, not moving data around.
+</Aside>
+
+## What will you achieve?
+
+| Automation | What it does for you | Concrete benefit |
+|---|---|---|
+| **New customer → spreadsheet / CRM** | Every Brote contact shows up on its own in Sheets, HubSpot, Pipedrive, Notion… | Database always up to date, zero copy-paste |
+| **Payment confirmed → accounting** | When the customer pays (MP/Flow/Khipu), the amount travels to your accounting system | Invoicing without delays or misses |
+| **Hot lead → team alert** | The agent flags a lead → a ping hits your sales Slack/email | Nobody misses a warm opportunity |
+| **Asks for a human → notification** | When the customer asks to talk to a person, your team knows right away | Faster response, better experience |
+| **Spreadsheet → contacts in Brote** | You upload your Google Sheets base and it enters Brote ready for a campaign | Migrate your old data with no manual work |
+
+The real list is enormous: with Zapier you can connect **6,000+ apps**. These are just the most requested use cases.
+
+## How easy is it?
+
+**With Zapier: very easy.** It's point-and-click. There's no code at any step. Building your first Zap takes about 10-15 minutes the first time, and after that it's a matter of minutes. If you can use a spreadsheet, you can build a Zap.
+
+**With Make or n8n: easy-to-intermediate.** Same idea as Zapier (dragging blocks), but built for more sophisticated flows (with conditions, loops, transformations). Ideal if you already use them or want something very custom.
+
+**With webhooks + direct API: this one's for developers.** If you have your own system (an ERP, a custom-built CRM), your technical team connects Brote through our API. It's the most powerful path and also the most technical.
+
+<Aside type="tip">
+Just getting started? Go with **Zapier**. It covers 90% of cases without writing anything. The other paths are for when you outgrow it.
+</Aside>
+
+## Frequently asked questions
+
+**Do I need to know how to code?**
+With **Zapier, no.** Everything is picking from lists and clicking. Coding is only needed if you go the webhooks/API route with your own system — and in that case your technical team does it, not you.
+
+**What's the difference between Zapier and webhooks?**
+**Zapier** is the no-code way: you connect Brote with 6,000+ well-known apps by pointing-and-clicking, available from the **Pro** plan. **Webhooks + API** are the direct, technical way: Brote sends events to your server and you program what to do, available on the **Business** plan. Zapier for most people; webhooks for custom integrations.
+
+**What about Make or n8n?**
+They use the same infrastructure as webhooks (which is why they require **Business**), but give you a visual interface to build advanced flows without writing as much code. Great if you need conditions, loops, or data transformations along the way.
+
+**Is the connection secure?**
+Yes. Brote signs every outgoing event with **HMAC-SHA256** (a signature guaranteeing the data really comes from Brote and nobody forged it). And the API key is your private key — it's shown only once, so store it safely.
+
+**Is the Brote app on Zapier public yet?**
+It's in **Zapier's public review** and available as a **private app** in the meantime. Ask us for the invite at [hola@brote.ai](mailto:hola@brote.ai) and you can connect it just the same. It's in production (v1.0.2), stable and validated with active customers.
+
+**How long does it take to get running?**
+Your first Zapier flow is up and running in about 10-15 minutes. From there it runs on its own, no maintenance.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Zapier (6,000+ apps)" icon="rocket">
+    [The no-code way, from Pro →](/en/integraciones/zapier)
+  </Card>
+  <Card title="Make + n8n" icon="puzzle">
+    [Advanced flows with no special package →](/en/integraciones/make-n8n)
+  </Card>
+  <Card title="Webhooks and API" icon="document">
+    [Direct integration with your systems (Business) →](/en/integraciones/webhooks-api)
+  </Card>
+  <Card title="See plans" icon="approve-check">
+    [Zapier from Pro · Webhooks on Business →](/en/planes/comparativa)
+  </Card>
+</CardGrid>

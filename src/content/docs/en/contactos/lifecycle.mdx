@@ -1,0 +1,139 @@
+---
+title: Lifecycle stages
+description: Brote provides standard stages to classify contacts along their journey — from lead to customer.
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+The **lifecycle stage** is the customer's stage in their relationship with your
+business. It's orthogonal to the **ticket pipeline** (which is per conversation):
+a person can be `customer` (already paid) and have an open ticket
+in `nuevo` at the same time.
+
+## Kanban pipeline vs Lifecycle funnel — the difference
+
+Brote has two views that look alike but are different:
+
+| | Kanban pipeline | Lifecycle funnel |
+|---|---|---|
+| **Per** | Ticket (one conversation) | Contact (the person) |
+| **Stages** | Defined by the org (New, Qualified, Closed-won/lost…) | Brote canon (Lead → MQL → SQL → Opportunity → Customer → Evangelist → Churned) |
+| **Multiplicity** | One person can have N tickets in N stages | One person = a single lifecycle stage |
+| **Purpose** | Operational workflow of a specific conversation | The customer's relational stage with your business |
+| **URL** | `/app/pipelines/...` | `/app/contacts/funnel` |
+
+### Brote links the two automatically
+
+You don't have to update the lifecycle manually when a ticket closes:
+
+| When this happens | The contact's lifecycle updates like this |
+|---|---|
+| Ticket moves to a stage with `is_won = true` | Bumps from Lead/MQL/SQL/Opportunity → **Customer** |
+| Payment approved in Mercado Pago, Flow or Khipu | Bumps to **Customer** |
+
+If the contact is already `Customer`, `Evangelist` or `Churned`, **it's not downgraded** — Brote doesn't overwrite manual states with automatic ones.
+
+The change is recorded in `contact_lifecycle_history` with `source = 'workflow'` to distinguish it from manual changes (`source = 'manual'`) and imports (`source = 'csv_import'`).
+
+### With Meta CAPI connected
+
+If your org has the Meta Conversions API connected, each lifecycle transition also fires a server-side event:
+
+| Target stage | Meta event |
+|---|---|
+| MQL / SQL | `Lead` |
+| Opportunity | `InitiateCheckout` |
+| Customer | `Purchase` (via payment webhook) |
+| Evangelist | `CompleteRegistration` |
+
+This closes the full attribution funnel: Meta knows which ad generated each Lead, MQL, SQL, Opportunity and Purchase, not just the final conversion.
+
+## Standard stages
+
+| Stage | Color | When |
+|---|---|---|
+| **Lead** | gray | Entered the chat but hasn't qualified yet |
+| **MQL** | blue | Marketing Qualified — interest expressed |
+| **SQL** | violet | Sales Qualified — clear intent to buy |
+| **Opportunity** | amber | Negotiating price/terms |
+| **Customer** | green | Paid at least once |
+| **Evangelist** | cyan | Customer who refers others |
+| **Churned** | red | Lost or inactive customer |
+
+## How to change the stage
+
+### From the visual pipeline (`/app/contacts/funnel`)
+
+The funnel's kanban view shows all your contacts grouped by
+stage. **Drag a card from one column to another** to move the
+contact. Stage-to-stage conversion (% moving from N → N+1) is
+calculated live above each column.
+
+Typical cases:
+- Lead who replied with concrete interest → MQL.
+- MQL who asked for a price → SQL.
+- SQL you sent a quote to → Opportunity.
+- Opportunity that paid → Customer.
+- Customer inactive 3+ months → Churned.
+
+The "No stage" column groups contacts you haven't classified yet.
+Drag them from there to the right column.
+
+Text filter above the board: search by name, phone, email
+or tag. Speeds up work when you have 500+ contacts.
+
+### From a conversation's side panel
+
+In any Inbox conversation, the right-hand panel has a
+"Customer stage" picker. Click → pick the new stage. Brote saves the
+change and records who made it and when in
+`contact_lifecycle_history` (for reporting + auditing).
+
+### From a CSV import
+
+Include a `lifecycle`, `stage` or `etapa` column in your CSV. Valid
+values: `lead`, `mql`, `sql`, `opportunity`, `customer`, `evangelist`,
+`churned`.
+
+### From the AI agent (coming soon)
+
+We're working on an agent tool `set_lifecycle_stage` so
+the AI can move the contact when it detects clear signals (e.g. customer
+says "I already paid" → move to `customer` automatically).
+
+## Reporting
+
+Stages feed:
+
+- **Conversion funnel**: lead → mql → sql → customer (how many move
+  from each stage to the next).
+- **Average time in each stage**: to spot bottlenecks.
+- **Campaign segmentation**: send a broadcast only to `customer` or
+  exclude `churned`.
+
+For now these views live in the general dashboard; in an upcoming
+update we'll have a dedicated funnel at `/app/analytics/funnel`.
+
+<Aside type="tip">
+If your business has a different funnel (e.g. B2B SaaS with `trial → paid`),
+you can ignore the standard stages and use only the ones that apply. It's not
+mandatory to have all stages active.
+</Aside>
+
+## Change history
+
+Every change is recorded:
+
+```sql
+contact_lifecycle_history (
+  contact_id,
+  from_stage,
+  to_stage,
+  changed_by,
+  source ('manual' | 'csv_import' | 'workflow' | 'api'),
+  created_at
+)
+```
+
+Useful for auditing and for detecting reversals (customer coming back from
+`churned` to `customer` = repurchase).

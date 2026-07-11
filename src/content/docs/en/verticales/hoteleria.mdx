@@ -1,0 +1,81 @@
+---
+title: Hospitality & tourism
+description: "Brote configured for boutique hotels, hostels, glamping and tour operators. Reservations, pre-stay, post-stay."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+For hospitality and tourism, Brote acts as the **virtual front desk** that covers all 4 stages of the guest journey — without overloading your real team.
+
+## The typical flow
+
+1. **Pre-booking**: guest asks about availability, prices, photos, policies → agent answers and captures details.
+2. **Booking**: guest confirms → agent sends an MP payment link / preapproval / deposit.
+3. **Pre-stay**: day before → agent sends check-in info, address, WiFi code, host details.
+4. **Post-stay**: day after → agent asks for a review, offers a discount for the next booking.
+
+## Recommended setup
+
+### Custom fields
+
+```
+fecha_check_in (date)
+fecha_check_out (date)
+huespedes_adultos (number)
+huespedes_ninos (number)
+tipo_habitacion (select: standard / suite / departamento)
+pais_origen (text)
+es_repetido (boolean)
+ocasion (select: pareja / familia / negocios / amigos)
+```
+
+### Useful tags
+
+`reserva_confirmada`, `pago_pendiente`, `check_in_hoy`, `repetido`, `oferta_diciembre`, `lead_temporada_alta`
+
+### Key integrations
+
+- **[Google Calendar](/en/integraciones/calendar/)**: the agent checks your real availability and blocks booked dates.
+- **[Mercado Pago](/en/pagos/mercado-pago/)**: deposit + balance payments. Preapproval for rates with a cancellation policy.
+- **[Webhooks/Zapier](/en/integraciones/zapier/)**: when a booking is confirmed → your PMS (Cloudbeds, Mews, Octorate) gets the data.
+
+## Conversation example
+
+```
+Cliente: Hola, tienen para 2 personas del 15 al 18 de junio?
+
+Agente: Hola! Sí, tenemos disponibilidad esos días. Te puedo ofrecer:
+- Habitación standard: $85.000 por noche
+- Suite con vista al mar: $135.000 por noche
+Las 2 incluyen desayuno y WiFi.
+Qué te tinca más?
+
+Cliente: La standard
+
+Agente: Perfecto. Para 3 noches (15, 16, 17) son $255.000 totales.
+Te mando el link de pago con depósito del 30% ($76.500). El saldo
+lo pagas al hacer check-in.
+[link MP]
+
+Cliente: [paga]
+
+Agente: ✅ Recibe tu depósito. Reserva confirmada para Camila Vega
+del 15 al 18 de junio, habitación standard.
+Te escribo el día 14 con info de check-in. Cualquier cambio, avisame!
+```
+
+<Aside type="tip" title="Dynamic rates">
+If your business uses dynamic pricing (high/low season, weekends), configure the agent with a **"tarifas" agent_block** detailing the rules. The agent quotes correctly without you updating anything by hand.
+</Aside>
+
+## Metrics to watch
+
+- **Average response time**: in hospitality you compete with OTAs (Booking, Airbnb). If your agent takes less than 1 min, you win direct bookings (no commission).
+- **Inquiry-to-booking conversion rate**: boutique hotel benchmark = 18-25%. With Brote well configured you reach 30-35%.
+- **Repeat rate** (returning guests): post-stay follow-up with a discount moves this to 15-20%.
+
+## Next steps
+
+- [Configure your first agent](/en/empezar/primer-agente/)
+- [Connect Google Calendar](/en/integraciones/calendar/)
+- [Collect payments inside the chat](/en/pagos/cobro-in-chat/)

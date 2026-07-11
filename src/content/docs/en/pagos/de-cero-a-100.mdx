@@ -1,0 +1,152 @@
+---
+title: In-chat payments — from zero to 100
+description: The AI agent sends a payment link and the customer pays without leaving WhatsApp. Complete guide with a real example, what you need, who it's for and what you'll achieve.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**In-chat payments** = your AI agent **sends a payment link inside the conversation** and the customer pays without leaving WhatsApp (or Instagram, or whichever channel they wrote you on).
+
+The customer asks about a product, the agent quotes, builds the payment link (Mercado Pago, Flow, Khipu, Stripe or PayPal) and sends it in the same chat. The customer taps, pays, and the sale is confirmed — **without sending them to another page, without you touching anything**.
+
+<Aside type="tip" title="The question this feature answers">
+"A customer tells me *'I'll take it'* at 11 PM. How do I charge them **right there**, without the sale going cold or me having to be awake?"
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | NOT for you (yet) if… |
+|---|---|
+| You sell something with a **price** (product, service, plan) and want to charge in the chat | You only provide information and don't charge |
+| You're in **Chile** → you connect **Mercado Pago, Flow or Khipu** | You don't have an account with any gateway |
+| You sell **outside Chile / charge in other currencies** → you connect **Stripe or PayPal** | You only take cash in person |
+| You lose sales because the customer "thinks it over" when sent to pay elsewhere | — |
+
+**In plain terms:** it's for anyone who **sells and wants to charge without friction**, at the exact moment the customer says yes.
+
+<Aside type="note" title="Required plan">
+In-chat payments are a **paid-plan** feature (Starter and up). Connecting your gateway and having the agent generate payment links is included from Starter. Recurring subscriptions and high volume are part of the higher plans. If you're on the trial or on Mini, you'll see the feature available according to your plan.
+</Aside>
+
+## What do you need before connecting?
+
+<Steps>
+
+1. **An account with a payment gateway.** Choose based on where you sell:
+   - **Chile:** [Mercado Pago](https://www.mercadopago.cl/), [Flow](https://www.flow.cl/) or [Khipu](https://khipu.com/) (bank transfer).
+   - **International / other currencies:** [Stripe](https://stripe.com/) or [PayPal](https://www.paypal.com/).
+
+2. **Connect it in Brote.** In **Settings → Integrations → Payments**, tap your gateway and authorize it. For most it's 1 click (it redirects you to the gateway's login and back). The money goes **straight to your account** — Brote never touches it.
+
+3. **Your catalog or prices loaded** so the agent knows how much to charge (products, services or a price table in your agent).
+
+4. **A connected channel** (WhatsApp, Instagram, Messenger…) where your customers come in and where the agent sends the link.
+
+</Steps>
+
+<Aside type="tip" title="The money is yours, direct">
+When you connect Mercado Pago / Flow / Khipu / Stripe / PayPal, your customers' payments land **in your account with that gateway**, not in Brote. Brote only charges its own subscription separately.
+</Aside>
+
+## Real example: from zero to 100 with Vivero Raíz 🌿
+
+> **Javiera** owns **"Vivero Raíz"**, an indoor plant store that sells via WhatsApp and Instagram in Santiago. Before, when someone wanted to buy, she'd share her bank account number for a transfer… and half of them would "leave it for later". This month she connected **Flow** in Brote.
+
+<Steps>
+
+1. **Diego writes on WhatsApp** at 10:40 PM: "Hi, do you have the large Monstera? How much is it?"
+
+2. **Brote's AI agent replies** instantly: "Yes! The large Monstera Deliciosa (25 cm pot) is **$28.900**. Want it delivered to your door?" Diego says: "Yes, I want it 🙌".
+
+3. **The agent quotes the total:** $28.900 + $3.500 delivery = **$32.400**. It confirms the breakdown: "That's $32.400 with delivery included. Shall I proceed?" Diego: "Yes".
+
+4. **The agent builds the payment link** with Flow and sends it in the same chat: *"Here's your link 👉 pay with credit card, debit or bank transfer without leaving the chat."*
+
+5. **Diego pays** the $32.400 from the link, without opening another app. Flow approves the payment.
+
+6. **Brote confirms the sale automatically:** the ticket moves to "Payment confirmed", the agent replies to Diego *"Payment received! We ship tomorrow, I'll send you the tracking 📦"*, and **logistics kicks in** (shipping label) along with **attribution** (if Diego came from an ad, that sale is credited to the ad that generated it).
+
+</Steps>
+
+**Javiera's results after one month with in-chat payments:**
+
+| Before (manual transfers) | After (link in the chat) |
+|---|---|
+| ~50% "I'll leave it for later" | Closes on the spot, 24/7 |
+| She replied and collected by hand | The agent collects on its own, even while she sleeps |
+| No orderly records | Every payment tied to the customer and the ticket |
+
+**From zero (an inquiry at 10:40 PM) to 100 (a collected $32.400 sale) in under 3 minutes — without Javiera touching her phone.**
+
+<Aside type="tip" title="This is what you achieve">
+The sale closes **while the customer is hot**, not when you wake up. Fewer abandoned carts, zero friction, and every peso gets recorded.
+</Aside>
+
+## What will you achieve?
+
+| Benefit | What it means for your business |
+|---|---|
+| **Fewer abandoned carts** | The customer pays in the same chat, without jumping to another page where they "go cold" |
+| **Charge 24/7** | The agent generates the link at any hour, even while you sleep or are closed |
+| **Zero manual work** | No sharing account numbers or confirming transfers by hand |
+| **Everything recorded** | Every payment tied to the customer, the ticket and (where applicable) the ad that brought them |
+| **The rest fires on its own** | When the payment confirms, logistics and sale attribution kick off |
+
+## How easy is it?
+
+Very easy. The "hard" part (having a gateway account) is something you probably already have if you sell online. The rest:
+
+- **Connect:** 1 click from Settings → Integrations → Payments. Authorize your gateway and done.
+- **Charge:** you don't configure anything per sale. The agent detects buying intent, calculates the amount and sends the link **on its own**.
+- **After connecting:** it works forever. Every time a customer wants to pay, the link appears in the chat without you lifting a finger.
+
+<Aside type="note" title="How long does connecting take?">
+Under 2 minutes. You don't need to know anything technical — just click "yes" in your gateway's window.
+</Aside>
+
+## Frequently asked questions
+
+**Do I get charged a commission?**
+The commission is **your gateway's** (Mercado Pago, Flow, Khipu, Stripe or PayPal), the same you'd pay charging outside the chat. **Brote doesn't charge a per-sale commission** — Brote only charges its monthly subscription.
+
+**Does the money pass through Brote?**
+No. Payments land **directly in your account** with the gateway you connected. Brote never touches your money.
+
+**Which gateway should I choose?**
+It depends on where and how you sell:
+
+| You sell… | Recommended gateway |
+|---|---|
+| In Chile, card/debit/wallet | **Mercado Pago** or **Flow** |
+| In Chile, bank transfer | **Khipu** |
+| Outside Chile / other currencies | **Stripe** or **PayPal** |
+
+You can connect **more than one** — the agent picks the right one for each case.
+
+**Does the customer have to leave WhatsApp?**
+No. The gateways open an optimized checkout inside the chat. The customer pays without switching apps — that low friction is exactly what drives conversion.
+
+**Does it work for recurring charges (subscriptions)?**
+Yes. For memberships or monthly plans, the agent can generate a **recurring subscription** link: the customer accepts once and the gateway charges automatically every period.
+
+**What if the customer doesn't pay right away?**
+The link stays live. If the customer leaves it pending, the agent can follow up and remind them, without you having to chase anyone.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Connect Mercado Pago" icon="approve-check">
+    [Step by step for Chile →](/en/pagos/mercado-pago)
+  </Card>
+  <Card title="How in-chat payments work" icon="document">
+    [The flow inside the chat →](/en/pagos/cobro-in-chat)
+  </Card>
+  <Card title="Sales attribution" icon="rocket">
+    [Discover which ad generated each sale →](/en/integraciones/atribucion-roas)
+  </Card>
+  <Card title="See plans" icon="setting">
+    [In-chat payments included from Starter →](/en/planes/comparativa)
+  </Card>
+</CardGrid>

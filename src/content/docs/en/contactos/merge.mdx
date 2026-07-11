@@ -1,0 +1,92 @@
+---
+title: Merge duplicate contacts
+description: Brote automatically detects repeated contacts by phone, email or name, and lets you merge them in one click.
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Contacts get duplicated easily: a person writes from two numbers,
+sends you an email, or reached you twice through different channels. Brote detects
+these duplicates and lets you join them.
+
+## How it detects duplicates
+
+Brote groups contacts by:
+
+- **Exact phone** (best signal, almost always means the same person)
+- **Exact email** (case-insensitive)
+- **Widget `visitor_id`** (same browser returning across sessions)
+- **Normalized name** (lowercase, no accents, no extra spaces) —
+  but only when the contact has a `phone` or `email`. Without that data
+  (anonymous widget visitors), Brote does NOT use the name to detect
+  duplicates.
+
+If the same group shows up under two different criteria (e.g. phone + name),
+only the most reliable match is shown: phone > email > visitor_id > name.
+
+### Anonymous web visitors
+
+When someone writes through the embedded widget (without leaving a name or
+contact info), Brote saves them as `"Visitante web"` with a `visitor_id`
+UUID generated in their browser. These contacts **are not duplicates of each other
+even if they share the name** — they're different people.
+
+Brote recognizes them because they're on the `ANONYMOUS_NAMES` blacklist
+(`Visitante web`, `Web visitor`, `Anonymous`, `Sin nombre`, etc) and
+excludes them from name matching.
+
+If you want to turn an anonymous visitor into an identified contact,
+edit them from the Inbox side panel and add a phone or email.
+When the customer comes back and leaves their info, Brote won't confuse them with
+other anonymous visitors.
+
+## Resolving duplicates
+
+1. Go to **Settings → Contacts** → "Detected duplicates" section.
+2. For each group, it shows the contacts with their lifecycle stage,
+   contact info and creation date.
+3. Click **"Keep this one"** on the winner → Brote merges the rest
+   into it.
+
+## What happens when you merge
+
+The winner (`to_id`) keeps all its fields intact. The losers
+(`from_id`):
+
+- **Conversations**, **tickets**, **notes**, **tasks**, **tags**,
+  **custom fields** and **payments** are reassigned to the winner.
+- **Lifecycle history** is preserved — every stage change
+  from each contact moves to the winner.
+- **Empty fields** on the winner are filled with the loser's data
+  (e.g. the winner had no email, the loser did → the winner ends up
+  with that email).
+- **Tags and notes** are merged (the union of both sets).
+- **Metadata** of the winner takes precedence — the loser is stored in
+  `metadata.merged_from` for auditing.
+- Finally, the loser is deleted.
+
+<Aside type="caution">
+The operation is **irreversible**. Before merging many, validate with
+1-2 that the result is what you expect. If you made a mistake, message us
+and we'll look at the logs to reconstruct.
+</Aside>
+
+## Common cases
+
+**Same customer with two phones**: they switched from Movistar to Entel and
+now there are 2 contacts. Brote doesn't detect them automatically because the
+numbers are different — you'll have to do the merge manually from the
+detail view.
+
+**Customer wrote via WhatsApp and via Instagram**: you end up with two contacts
+on different channels. If they share an exact email or name, Brote detects them;
+otherwise you also have to merge manually.
+
+**Customer with the full name in uppercase and another in lowercase**: Brote
+normalizes names, so it groups these on its own.
+
+## Reporting
+
+Each merge's history lives in the winning contact's `metadata.merged_from[]`
+(an array with the lost UUIDs) + `metadata.merged_at` (timestamp).
+Useful if you audit how many duplicates you resolved this month.

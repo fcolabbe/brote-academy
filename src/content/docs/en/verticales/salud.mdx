@@ -1,0 +1,96 @@
+---
+title: Healthcare & clinics
+description: "Brote for clinics, private practices, veterinarians: conversational triage, scheduling, reminders. Without overloading your team."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+In healthcare, the operational bottleneck is **scheduling**. Clinics lose hours on confirmations, rescheduling, reminders. Brote automates 70-80% of it without replacing the actual clinical role.
+
+<Aside type="caution" title="Brote is NOT medical advice">
+The AI agent **does NOT diagnose or recommend treatments**. It's configured for operational triage (which specialty, how long the appointment is, which documents to bring) and refers to a professional when needed. Any real clinical question → handoff to a human.
+</Aside>
+
+## The typical flow
+
+1. **Patient writes** ("I need to book with Dr. Pérez").
+2. **Agent checks availability** in the doctor's [Google Calendar](/en/integraciones/calendar/).
+3. **Proposes slots** + books the one they pick.
+4. **Captures patient details** (name, RUT, isapre/fonasa, reason for the visit).
+5. **Confirmation** + invite on the patient's calendar.
+6. **Automatic reminders**: 24h before + 1h before.
+7. **Easy rescheduling**: if the patient says they can't make it, the agent proposes slots again.
+
+## Recommended setup
+
+### Custom fields
+
+```
+rut_paciente (text)
+isapre_fonasa (select)
+fecha_cita (date)
+duracion_cita (number, min)
+medico_preferido (text)
+motivo_consulta (text — alto nivel, no detalles clínicos)
+primera_consulta (boolean)
+acompanante (boolean)
+```
+
+### Useful tags
+
+`cita_confirmada`, `primera_vez`, `reagendo`, `no_show_previo`, `fonasa`, `requiere_examenes_previos`
+
+### Key integrations
+
+- **[Google Calendar](/en/integraciones/calendar/)**: a separate calendar per doctor/professional, the agent reads real availability.
+- **[Webhooks](/en/integraciones/webhooks-api/)**: if your clinic uses clinical software (Doctoralia, Reservo, Calmedical), a webhook syncs the appointment.
+- **[Mercado Pago](/en/pagos/mercado-pago/)**: collect the out-of-pocket copay before the appointment.
+
+## Conversation example
+
+```
+Paciente: Hola, necesito una hora con un kinesiólogo
+
+Agente: Hola! Te ayudo. Antes de agendar, una pregunta:
+¿Es por dolor lumbar, hombro, rodilla, deportiva u otro?
+
+Paciente: rodilla, llevo 2 semanas con dolor
+
+Agente: Entendido, te dejo con un kinesiólogo deportivo entonces.
+Es Fonasa, particular, o tienes Isapre?
+
+Paciente: Isapre Banmédica
+
+Agente: Perfecto, tenemos convenio. La consulta sale $25.000
+con copago Banmédica.
+
+Disponibilidad esta semana:
+- Martes 16:00 con [Profesional]
+- Jueves 11:00 con [Profesional]
+- Viernes 18:00 con [Profesional]
+
+Paciente: martes 16
+
+Agente: ✅ Confirmado martes 16:00 con [Profesional].
+Te paso por mail el invite + autorización a firmar al llegar.
+Recordatorio 24h antes. Cualquier cosa, avisame.
+
+[Custom fields actualizados: fecha_cita, medico_preferido, isapre]
+[Tag aplicado: cita_confirmada, primera_vez]
+```
+
+## No-shows: the real problem
+
+Clinics lose 15-25% to no-shows. Brote helps bring that down:
+
+- **24h reminder** → confirms or reschedules automatically.
+- **1h reminder** → last chance.
+- **If a patient tagged `no_show_previo` books again**: the agent asks for an **advance copay via MP** as a commitment.
+
+With these 3 → no-shows drop to 5-10%.
+
+## Next steps
+
+- [Configure your AI agent](/en/empezar/primer-agente/)
+- [Google Calendar](/en/integraciones/calendar/)
+- [Mercado Pago for copays](/en/pagos/mercado-pago/)

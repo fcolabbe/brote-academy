@@ -1,0 +1,69 @@
+---
+title: Tags and custom fields
+description: "Labels to classify conversations and custom fields to enrich contacts based on your vertical."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Tags and custom fields are the two systems you have to classify contacts and conversations beyond pipeline stages.
+
+## Tags — multi-value labels
+
+**Tags** are free-form labels you apply to contacts or conversations. A conversation can carry many tags at once. Useful for:
+
+- Segmenting [campaign](/en/campanas/que-son/) cohorts: `cliente_2024`, `BlackFriday`, `prospect_inmobiliaria_premium`
+- Marking customer traits: `vip`, `requiere_factura`, `delivery_zona_norte`
+- Tracking origin: `vino_de_meta_ad`, `referido_socio`, `evento_expo`
+- Operational flags: `lead_caliente`, `requiere_seguimiento`, `opted_out`
+
+### Creating tags
+
+There are 3 ways to create a tag:
+
+1. **Manually**: on the conversation or contact → "Add tag" → type the name → autocomplete of existing tags.
+2. **Automatically via the AI agent**: if you set up rules (e.g., "when the customer says they're B2B, add the `b2b` tag"), the agent applies them on its own.
+3. **Via Zapier/Webhooks**: if an external system triggers `tag_conversation`, it arrives as a POST and Brote applies it.
+
+### Search and filters
+
+- In the Inbox: filter conversations by tag with the tags dropdown at the top.
+- In contacts: same logic.
+- In campaigns: tags are the primary filter for building cohorts.
+
+## Custom fields — structured data
+
+**Custom fields** are structured attributes you add to your contacts based on your vertical:
+
+| Vertical | Typical fields |
+|---|---|
+| Retail | `talla_preferida`, `direccion_envio`, `ciudad` |
+| Hospitality | `fecha_check_in`, `huespedes`, `tipo_habitacion`, `pais_origen` |
+| Real estate | `presupuesto_max`, `comuna_busqueda`, `dormitorios`, `bath` |
+| Healthcare | `fecha_cita`, `motivo_consulta`, `medico_preferido` |
+| Restaurants | `restriccion_dietetica`, `comensales`, `fecha_reserva` |
+
+Each field has a type: text, number, date, select (list of options), boolean.
+
+### How they get filled
+
+- **Manually** from the contact's profile.
+- **Automatically**: the AI agent captures them from the conversation. If the customer says "it's for 4 people, June 23rd, I want the suite," the agent parses it and fills in `comensales=4, fecha_reserva=2026-06-23, tipo_habitacion=suite`.
+- **Import**: if you upload a contacts CSV, you map columns to custom fields.
+
+### Available as campaign variables
+
+When you create a campaign, you can use `{custom_field_name}` in the message and it gets replaced with each contact's value. Useful for personalizing at scale: `Hola {nombre}, vi que tu última estadía fue en la {tipo_habitacion}, te interesa volver?`
+
+<Aside type="tip" title="Automatic setup per vertical">
+When you do [onboarding from your website URL](/en/copilot/url-onboarding/), Brote Copilot detects your vertical and **pre-configures the typical custom fields for you**. You can add more or remove the ones you don't use afterwards.
+</Aside>
+
+## Media library
+
+Attached to this section is the agent's **Media library** — files (photos, videos, PDFs) the agent can send to customers in conversations. You upload files once, tag them (e.g., `catalogo`, `instructivo`, `politica_devoluciones`), and the agent sends them when relevant.
+
+## Next steps
+
+- [Unified Inbox](/en/inbox/inbox-unificado/)
+- [Kanban pipeline](/en/inbox/pipeline/)
+- [Create your first campaign](/en/campanas/crear/)

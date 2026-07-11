@@ -1,0 +1,157 @@
+---
+title: Meta Conversions API — ROAS attribution
+description: Brote captures the ad click when a customer arrives via WhatsApp, Instagram, or Messenger and sends server-side Purchase events to your Pixel when they pay.
+---
+
+import { Aside, CardGrid, Card } from '@astrojs/starlight/components'
+
+If you invest in Meta ads that lead to a conversation
+(Click-to-WhatsApp, Click-to-Instagram, Click-to-Messenger), you want to
+know **which ad generated which sale**. Brote closes the full loop: it detects
+the incoming ad, saves the attribution on the contact, and when that
+contact pays it sends a `Purchase` event to your Pixel via the Conversions API.
+
+<Aside type="note">
+Attribution works on **all three official Meta channels**:
+WhatsApp, Instagram DM, and Messenger. It's a **Business plan exclusive**
+feature, same as the MCP server.
+</Aside>
+
+## How the flow works
+
+```
+1) Cliente ve tu ad Meta → click "Send Message" / "Enviar mensaje"
+   └─ Meta agrega el click id en el primer msg del canal
+       (ctwa_clid en WhatsApp; el equivalente en Instagram / Messenger)
+
+2) Brote recibe el msg por el canal oficial de Meta
+   └─ extrae el click id del ad + sourceId + título
+   └─ guarda en contact.metadata.attribution (first-touch)
+
+3) Cliente conversa con tu agente IA → recibe link MP/Flow/Khipu
+
+4) Cliente paga → webhook de la pasarela aprueba el pago
+   └─ Brote dispara sendConversionForContact()
+   └─ POST a https://graph.facebook.com/v18.0/{pixel_id}/events
+       body: { event_name: "Purchase", user_data: { ph: sha256(phone),
+               ctwa_clid }, custom_data: { value, currency } }
+
+5) Meta matchea el ctwa_clid con el click original y atribuye la
+   conversión al ad correcto en tu Events Manager.
+```
+
+## Setting up the integration
+
+### Step 1 — Get your Pixel ID + Access Token
+
+1. Go to [Events Manager](https://business.facebook.com/events_manager2).
+2. Pick your Pixel (or create one if you don't have one).
+3. **Pixel ID** appears on the pixel's card (15-16 digits).
+4. **Settings → Conversions API → Generate access token**. Copy it
+   NOW — it's shown only once. If you lose it, generate a new one and
+   revoke the old one.
+
+### Step 2 — (Optional) Test Event Code
+
+During setup, you'll want to validate that events arrive without counting as
+real conversions:
+
+1. In Events Manager → **Test Events** → generate a code like `TEST12345`.
+2. Paste it into Brote when connecting. Events will show up under
+   "Test Events" and won't count in your ROAS reports.
+3. Once validated, remove the code and events start counting as
+   real conversions.
+
+### Step 3 — Connect in Brote
+
+1. **Settings → Integrations → Payments** → scroll down to "Meta Conversions API".
+2. Paste Pixel ID + Access Token + Test Code (optional).
+3. Click **Connect Meta**. Brote pings with a `Lead` event to
+   validate that the credentials work.
+
+<Aside type="tip">
+If the ping fails with "invalid_credentials", it's likely that:
+- The Access Token doesn't belong to the Pixel you pasted
+- The Access Token expired (regenerate it)
+- The Pixel ID is mistyped (digits only, no spaces)
+</Aside>
+
+## What gets sent and when
+
+| Event | When | Custom data |
+|---|---|---|
+| `Purchase` | When MP / Flow / Khipu approves the payment | value (CLP), currency, content_name |
+| `Lead` (future) | When lifecycle moves to `mql` or `sql` | — |
+| `InitiateCheckout` (future) | When the agent sends a payment link | value, currency |
+
+For now only `Purchase` is active automatically. We'll enable the rest
+once we measure usage volume.
+
+## Logs and debugging
+
+Every event sent is recorded in the `meta_conversion_events` table
+with:
+- `status`: `sent | failed`
+- `error_detail` if it failed
+- `payload` with custom_data
+- `fbtrace_id` assigned by Meta (useful for correlating with your Events Manager)
+
+To see the log of the latest events, you can run a query in
+Supabase Studio:
+
+```sql
+select event_name, status, event_value, ctwa_clid, error_detail, sent_at
+from public.meta_conversion_events
+where organization_id = '<tu_org_id>'
+order by sent_at desc
+limit 20;
+```
+
+In Events Manager → **Test Events** you'll see events arriving almost
+in real time (10-30 sec delay).
+
+## Attribution visible in the Inbox
+
+In the conversation of any contact who came from a Meta Ad, the
+side panel shows a blue **"🎯 Came from a Meta Ad"** badge with:
+- Ad title (if Meta sent it)
+- Capture date
+
+Useful so the humans on your team know that customer cost ad money
+and prioritize the response.
+
+## Limits and costs
+
+- **The Meta Conversions API is free** — they don't charge per event.
+- **Rate limit**: 200 events/second per Pixel ID (more than enough
+  for LATAM SMBs).
+- Brote tracks `events_sent_this_month` in `meta_integrations` for
+  visibility (it's not a cap, just info).
+
+## Competitive positioning
+
+| Platform | Integrated Meta CAPI |
+|---|---|
+| **Brote** | ✅ click id (WhatsApp/IG/Messenger) + automatic Purchase from MP/Flow/Khipu |
+| respond.io | ✅ "Send Conversions API Event" step (manual, in a workflow) |
+| Wati | 🟡 Client-side Pixel only (no server CAPI) |
+| SleekFlow | ❌ |
+
+Brote and respond.io are currently the only LATAM-relevant platforms with
+server-side CAPI. The difference: respond.io requires configuring the event per
+workflow; Brote fires it automatically when there's a payment, with nothing to
+touch after connecting.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Click-to-WhatsApp Ads guide" icon="external">
+    [How to create a CTWA ad on Meta →](https://www.facebook.com/business/help/click-to-whatsapp-ads)
+  </Card>
+  <Card title="Connect Mercado Pago" icon="approve-check">
+    [So it fires Purchase events →](/en/pagos/mercado-pago)
+  </Card>
+  <Card title="Lifecycle stages (Lead/MQL)" icon="rocket">
+    Coming soon: automatic events on lifecycle changes
+  </Card>
+</CardGrid>

@@ -1,0 +1,181 @@
+---
+title: Automation — from zero to 100
+description: Have Brote act on its own when events happen — abandoned cart, welcome message, reminders, agent actions fired by triggers. No code. Complete guide with a real example, who it's for and what you'll achieve.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**Automation** = Brote **does things on its own** when something happens, without you watching your phone.
+
+A customer abandons their cart → Brote messages them 2 hours later with a discount. Someone writes to you for the first time → they get a welcome greeting instantly. An appointment is coming up → the reminder goes out. A payment is approved → the ticket closes and gets tagged on its own. **You define the "when X happens, do Y" once, and it runs 24/7** — while you sleep, while you help another customer, while you're on vacation.
+
+<Aside type="tip" title="The question this feature answers">
+"How many sales am I losing because nobody replied in time, nobody followed up, nobody remembered the appointment?"
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | NOT for you (yet) if… |
+|---|---|
+| Sales slip away because **you can't keep up with follow-ups** | You handle everything yourself and always reply instantly |
+| You have **repeatable events** (carts, appointments, payments, first contacts) | Every conversation is unique and there's no pattern |
+| You want the business to **sell and retain on autopilot** | You're just now connecting your first channel |
+
+**Plainly put:** it's for the business that already has momentum and wants Brote to **work on its own** on the things that get forgotten or done late: the follow-up, the welcome, the reminder, the close.
+
+<Aside type="caution" title="Plan required: Pro">
+Automations (along with campaigns and Brote Copilot) are part of the **Pro** plan (USD $129/mo). On Mini and Starter you'll see the feature with a lock. Upgrading to Pro unlocks them. Scheduling reminders are the exception: they work from Starter because they come bundled with the appointments module.
+</Aside>
+
+## What do you need before building your first automation?
+
+<Steps>
+
+1. **A connected channel** — at least WhatsApp ([how to connect it](/en/canales/whatsapp/)). It's where Brote will write when the automation fires.
+
+2. **Your AI agent configured** — the one that replies and continues the conversation when the customer answers. If you haven't set it up yet, [start here](/en/empezar/agente-de-cero-a-100/) or use [Brote Copilot](/en/copilot/que-es/) to get it ready in minutes.
+
+3. **Contacts with data** — a phone number and, for abandoned carts, knowing which product they left behind. All of this fills in on its own via the [agent tools](/en/automatizacion/tools-del-agente/) (`update_contact`, `assign_tag`) as it chats.
+
+4. An active **Pro plan** (or the 14-day trial to test it).
+
+5. **Optional but recommended:** a [connected payment gateway](/en/pagos/de-cero-a-100/) (Mercado Pago, Flow or Khipu) so the automation can send the payment link and close the sale right there.
+
+</Steps>
+
+<Aside type="note">
+No code knowledge or external tools needed. Simple automations are built inside Brote. If you want highly sophisticated flows with your own systems, you can later add [Make, n8n or Zapier](/en/integraciones/make-n8n/) — but you don't need them to start.
+</Aside>
+
+## How it works: trigger → action
+
+Every automation is the same simple idea: **a trigger** (something that happens) connected to **an action** (something Brote does).
+
+**Most-used triggers:**
+
+| When this happens… | It's called |
+|---|---|
+| A customer writes to you for the first time | `message_received` (first contact) |
+| A customer leaves a cart unpaid | abandoned cart (`carrito-abandonado` tag) |
+| A payment is approved | `payment_received` |
+| The contact advances a stage | `lifecycle_changed` |
+| A ticket closes as won | `ticket_won` |
+| A scheduled appointment is coming up | scheduled reminder |
+
+**Actions Brote can take on its own** (via the [agent tools](/en/automatizacion/tools-del-agente/)):
+
+- Send a message (with or without a photo, PDF or audio).
+- Send a ready-made payment link (`build_payment_link`).
+- Tag the contact (`assign_tag`) or move them to another stage (`change_stage`).
+- Hand the ticket to a team member if the topic calls for it (`handoff_to_human`).
+
+And Brote's extra magic: **when the customer replies, the AI agent takes over** and continues the conversation on its own. It doesn't leave you 200 unanswered replies in your inbox.
+
+## Real example: from zero to 100 with Trotamundos 🌱
+
+> **Diego** runs **"Trotamundos"**, an online outdoor sneaker store. He sells over WhatsApp and Instagram. His pain: lots of people build a cart, ask the price… and vanish. Nobody follows up and those sales go cold.
+
+Diego builds **a single automation** for abandoned carts:
+
+<Steps>
+
+1. **The trigger:** when a customer builds a cart (the agent already tags them `carrito-abandonado`) and **2 hours pass without payment**.
+
+2. **The action:** Brote messages them on WhatsApp, on its own:
+   *"Hi Valentina 👟 I saw you left the Trekking Pro in your cart. I'll give you 10% off if we close it today: they're down to $45.000. Want me to send the payment link?"*
+
+3. **Valentina replies** "sure". The **AI agent takes over**: confirms the size, applies the discount and sends her the **Mercado Pago payment link** (`build_payment_link`).
+
+4. **Valentina pays.** The approved payment fires another small automation: the ticket moves to **closed-won** and gets tagged `cliente-recurrente`. Diego touched nothing.
+
+</Steps>
+
+**The previous month, without automation:**
+
+| | Without automation |
+|---|---|
+| Abandoned carts | 120 |
+| Recovered (manual follow-up, too late) | 6 |
+| Recovered sales | $270.000 |
+
+**The first month with the abandoned-cart automation:**
+
+| | With automation |
+|---|---|
+| Abandoned carts | 120 |
+| Recovered (Brote writes at the 2h mark, on its own) | 22 |
+| Recovered sales | **$990.000** 🎉 |
+
+**The difference:** $720.000 more per month, from sales that used to go cold. All with **one automation Diego built once** that runs on its own. The Pro plan that enables it costs less than **one** of those recovered sneakers.
+
+<Aside type="tip" title="This is what you get">
+You stop losing sales to "I didn't get to reply". The follow-up you **never** do on time (because you're selling, shipping or sleeping) happens at the exact right second, done by Brote. Sell more **without working more**.
+</Aside>
+
+## Other typical automations (same pattern)
+
+| You want… | Trigger | Brote's action |
+|---|---|---|
+| Every new customer to get a welcome | Customer's first message | Greeting + business intro |
+| To cut no-shows on your appointments | 24h / 2h before the appointment | [Automatic reminder](/en/agendamiento/recordatorios/) over WhatsApp |
+| To reactivate dormant customers | No purchase in 90 days | "It's been a while — check this out" message |
+| To thank customers after purchase | Payment approved | "Thanks for your purchase! I'm here if you need anything" |
+| To prioritize hot leads | Contact reaches "proposal" stage | `vip` tag + team notification |
+
+<Aside type="note">
+Want to send a mass message to a whole list (not an event-based trigger)? Those are [campaigns](/en/campanas/que-son/) — a Black Friday reactivation, a launch announcement, recovering last week's carts in bulk. Automation and campaigns complement each other: one reacts to events, the other goes out to your base.
+</Aside>
+
+## What will you achieve?
+
+- **Selling on autopilot:** the abandoned cart, the hot lead and the "let me think about it" get followed up **every time**, not just when you remember.
+- **Effortless retention:** reminders that cut no-shows, post-sale messages that build loyalty, reactivation of dormant customers — all automatic.
+- **Your time back:** you stop being the bottleneck. Brote does the repetitive work; you do the work that adds value.
+- **Zero sales lost to forgetting:** the event fires the action instantly. There's no "it slipped my mind".
+
+## How easy is it?
+
+Very easy. A simple automation is built by choosing **when** (the trigger) and **what Brote does** (the action) — like putting a sentence together. No code.
+
+<Aside type="tip" title="The shortcut: Brote Copilot">
+If you don't even want to think about configuration, [Brote Copilot](/en/copilot/que-es/) gets your agent and its actions ready in minutes from your website or an audio note describing your business. Then you just switch on the automations you want.
+</Aside>
+
+## Frequently asked questions
+
+**Do I need to know how to code?**
+No. Simple automations are built inside Brote by picking a trigger and an action. Zero code.
+
+**Does automation send spam?**
+No. Brote respects your plan's [messaging caps](/en/campanas/caps/), the contact's local waking hours and automatic opt-out. If someone says "no more messages", they're excluded automatically.
+
+**What happens when the customer replies to an automated message?**
+The **AI agent takes over** and continues the conversation on its own: it answers questions, builds the cart, sends the payment link or hands off to a human if the topic calls for it. It doesn't leave your inbox full of unanswered replies.
+
+**Which plan includes it?**
+**Pro** (USD $129/mo), along with campaigns and Copilot. Appointment reminders work from Starter because they come with the scheduling module.
+
+**Can I connect external systems (my ERP, my CRM)?**
+Yes, with more advanced flows via [Make, n8n or Zapier](/en/integraciones/make-n8n/) (Pro and up) or [Webhooks + API](/en/integraciones/webhooks-api/) (Business). But for day-to-day automations you don't need any of that.
+
+**What if I'm still selling very little?**
+Automation pays off when you already have repeatable activity (carts, appointments, first contacts). If you're just starting, focus first on [connecting your WhatsApp](/en/canales/whatsapp/) and [setting up your agent](/en/empezar/agente-de-cero-a-100/).
+
+## Next steps
+
+<CardGrid>
+  <Card title="See the agent tools" icon="rocket">
+    [Everything Brote can do on its own →](/en/automatizacion/tools-del-agente)
+  </Card>
+  <Card title="Mass campaigns" icon="open-book">
+    [Go out to your base →](/en/campanas/que-son)
+  </Card>
+  <Card title="Appointment reminders" icon="approve-check">
+    [Cut no-shows automatically →](/en/agendamiento/recordatorios)
+  </Card>
+  <Card title="Set up the agent with Copilot" icon="setting">
+    [Ready in minutes →](/en/copilot/que-es)
+  </Card>
+</CardGrid>

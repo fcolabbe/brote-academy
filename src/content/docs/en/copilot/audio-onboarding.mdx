@@ -1,0 +1,78 @@
+---
+title: Owner audio onboarding
+description: "How to record the perfect audio so Brote Copilot configures your AI agent in 15 minutes without you writing prompts."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+When your website is basic (or you don't have one), the fastest path to configuring your AI agent is recording a **2-5 minute audio** explaining your business. Brote Copilot transcribes + classifies + builds the agent.
+
+## The perfect audio
+
+Brote Copilot gets the most out of your audio if you cover these 5 blocks:
+
+### 1. What you sell / what service you offer (~30s)
+
+> "I'm [your name], owner of [business name]. I sell [product/service] in [city/region]. My customers are [customer type]."
+
+Example: "Hi, I'm María, owner of Tienda Brote in Coquimbo. I sell premium pet food and cat accessories. My customers are cat owners looking for quality without paying pharmacy prices."
+
+### 2. Your typical products/services (~60s)
+
+> "My best-selling products are [3-5 products with prices]. I also offer [additional services]."
+
+Mention:
+- 3-5 star products/services with approximate prices
+- Premium vs budget products
+- Subscription products if you have them
+- Categories you do NOT handle (so the agent knows when to hand off)
+
+### 3. Business rules (~60s)
+
+> "For payment I accept [payment methods]. My hours are [hours]. I ship to [areas] and it takes [timeframes]. My return policy is [policy]."
+
+Also mention:
+- Whether you have a minimum order
+- Whether you offer free delivery above a certain amount
+- Whether you have warranties or exchanges
+
+### 4. Tone you want the agent to use (~30s)
+
+> "I want the agent to talk like [style]. It should be [adjectives: warm/professional/fun/formal]. It should use [informal/formal address]. It should [not use voseo / use Chilean slang / use Spanglish]."
+
+If your brand already has a defined tone, mention it. If not, just speak naturally — the copilot deduces it from your own voice.
+
+### 5. Special cases / handoff (~60s)
+
+> "When the customer asks about [complex cases], hand off to a human. When someone asks about [confidential info], reply [answer]. When a customer is upset, [action]."
+
+Useful so the agent does NOT mess up in sensitive cases.
+
+## Recording tips
+
+- **Quiet environment**: the model transcribes better without background noise.
+- **Speak naturally**: it's not a script, it's like briefing a new employee.
+- **Repeat key data**: prices, hours, contact info — saying them twice fixes them better.
+- **Don't read**: if you read, you sound formal and the agent imitates you. Converse.
+- **Pause between blocks**: it helps the model separate sections.
+
+<Aside type="tip" title="How long should it be?">
+**2-5 minutes is the sweet spot.** Under 2 min usually lacks context. Over 5 min gets repetitive and dilutes what matters. If you naturally end up at 7-8 min, that's OK.
+</Aside>
+
+## What Brote Copilot does with your audio
+
+1. **Transcribes** (Whisper) → text.
+2. **Classifies** sections (products, rules, tone, special cases).
+3. **Detects your vertical** automatically.
+4. **Generates 6 agent_blocks**: persona, instruction, edge_cases, FAQs, simplified catalog, tone.
+5. **Synthesizes an opening message** aligned with your business.
+6. Shows you the agent ready to test in the [Playground](/en/empezar/primer-agente/).
+
+All in **2-5 minutes of processing**.
+
+## Next steps
+
+- [What is Brote Copilot](/en/copilot/que-es/)
+- [Website URL onboarding](/en/copilot/url-onboarding/)
+- [Automatic agent audit](/en/copilot/audit/)

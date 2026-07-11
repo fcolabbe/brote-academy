@@ -1,0 +1,139 @@
+---
+title: Sync Google Calendar — from zero to 100
+description: Connect your Google Calendar to Brote so appointments booked over WhatsApp land in your calendar on their own and the agent never double-books over your events. Complete guide with a real example, what you need, who it's for, and what you'll achieve.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**Syncing Google Calendar** = connecting your Google calendar to Brote so that **the appointments your AI agent books over WhatsApp show up in your calendar on their own**, and so that **the agent never offers a time slot where you already have something**.
+
+You already live in your Google Calendar. With this connection, every appointment the agent books gets written there automatically, and every event you have (a meeting, lunch, a personal block) tells the agent *"don't book here."* **One single calendar, no clashes, no copying appointments by hand.**
+
+<Aside type="tip" title="The question this feature answers">
+"The agent books appointments for me over WhatsApp… but how do I make sure it **doesn't clash** with the meetings I already have in my Google Calendar, and that I **don't have to copy them** one by one?"
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | It's NOT for you (yet) if… |
+|---|---|
+| You already use **Google Calendar** day to day | You don't use a digital calendar |
+| Your AI agent **books appointments over WhatsApp** (you use Brote's scheduling) | You don't take appointments or bookings |
+| You have **personal events or meetings** you don't want stepped on | Your Brote calendar and your life never overlap |
+| You're a professional or business with a calendar: **physical therapist, dentist, lawyer, stylist, consultant, real estate, hospitality** | You serve walk-ins with no calendar |
+
+**Plainly put:** it's for anyone who **already organizes their life in Google Calendar** and wants WhatsApp appointments to flow into that same calendar, without duplicating work or risking double bookings.
+
+<Aside type="caution" title="Plan required: Starter (Brote) and up">
+Google Calendar sync is part of **scheduling**, available **from the Starter plan**. Connecting the calendar itself has no extra cost and isn't billed separately — it's included in your plan. On Mini you'll see scheduling with a plan-required notice; it activates when you upgrade to Starter or higher.
+</Aside>
+
+## What do you need before connecting?
+
+<Steps>
+
+1. **Brote's scheduling up and running** — at least one service and your availability configured. ([How to set it up](/en/agendamiento/configurar/)).
+
+2. **WhatsApp connected in Brote** — that's where the customer asking for an appointment comes in. ([How to connect it](/en/canales/whatsapp/)).
+
+3. **A Google account** with the calendar you use day to day (personal Gmail or your business's Google Workspace).
+
+4. An active **Starter plan** (Brote) or higher.
+
+</Steps>
+
+<Aside type="note">
+You don't need to create anything unusual or know about "APIs". The connection is one click from Brote: you authorize with your Google account and that's it. Brote handles the rest.
+</Aside>
+
+## Real example: from zero to 100 with Dr. Rojas 🦷
+
+> **Dr. Rojas** runs a **dental practice** and already organizes her whole life in Google Calendar: meetings with the lab, lunch, her daughter's classes, a conference on Thursday. Her Brote AI agent was already taking appointments over WhatsApp, but at first it **didn't know about her Google Calendar** — so one Tuesday it booked a cleaning at 11:00… right when she had a meeting with the prosthetics technician. Double booking. Here's how she fixed it by connecting the calendar.
+
+<Steps>
+
+1. **Dr. Rojas goes to Settings → Scheduling** and taps **"Connect Google Calendar"**. She authorizes with her Google account in the window that appears. It takes less than 1 minute.
+
+2. **Brote creates a new calendar called "Brote — Citas"** inside her Google account, separate from her main calendar. That's where the agent's appointments will land, neatly organized and apart from her personal calendar.
+
+3. **Dr. Rojas picks which calendar(s) Brote reads for her availability.** She checks her main calendar → now the agent knows the conference Thursday and the lab meetings are busy.
+
+4. **Camila messages the practice's WhatsApp:** *"Hola, ¿tienen hora para una limpieza esta semana?"*. The agent checks the doctor's real availability (free/busy), **rules out the conference Thursday and the Tuesday 11:00 meeting**, and replies: *"Hi! I have Tuesday 3:30 PM or Wednesday 10:00 AM. Which works for you?"*
+
+5. **Camila replies "Wednesday 10:00".** The agent books it, confirms over WhatsApp, and **writes the appointment into the "Brote — Citas" calendar**. Dr. Rojas touches nothing: she opens her Google and there's Wednesday's 10:00 cleaning, with Camila's name.
+
+6. **That same afternoon Dr. Rojas blocks Friday** in her Google Calendar because she's leaving early. The agent respects it instantly: when another customer asks for a Friday slot, **the agent no longer offers it**. No telling anyone, no editing Brote.
+
+</Steps>
+
+**A month later, Dr. Rojas does the math:**
+
+| | Before (not connected) | With Google Calendar connected |
+|---|---|---|
+| Appointments clashing with meetings | 2–3 per month | 0 |
+| Copying appointments from WhatsApp to Google | One by one, by hand | Automatic |
+| Blocking personal time | The agent booked over it anyway | The agent respects it on its own |
+| Her daily calendar | In two places (Brote + Google) | In one place (Google) |
+
+**The math that convinced her:** every clashing appointment cost her an awkward reschedule with the patient and ~30 minutes of back-and-forth over WhatsApp. She went from 2–3 clashes a month to **zero**, and stopped hand-copying every appointment that came in through chat. All for authorizing her Google account once.
+
+<Aside type="tip" title="This is what you get">
+One single calendar. WhatsApp appointments **land on their own** in your Google, and everything already in Google **puts the brakes** on the agent. Zero double bookings, zero copy-paste.
+</Aside>
+
+## What will you achieve?
+
+| Result | How Brote does it |
+|---|---|
+| **Appointments land in your calendar on their own** | The agent writes each appointment into the "Brote — Citas" calendar in your Google, without you copying anything |
+| **Zero double bookings over your events** | Brote reads your availability (free/busy) before offering a slot — it only proposes what's truly free |
+| **You block time and the agent respects it** | Add an event to your Google (personal, conference, lunch) and the agent stops offering that window instantly |
+| **Your main calendar stays intact and tidy** | The agent's appointments go to a separate calendar ("Brote — Citas"); they don't mix with your personal calendar |
+| **One single source of truth** | You stop looking in two places: your whole day lives in Google Calendar |
+
+## How easy is it?
+
+Very easy. It's **one click**: go to Settings → Scheduling, tap "Connect Google Calendar", authorize with your account, and you're done. Brote creates the "Brote — Citas" calendar on its own, and you choose which calendar to read for your availability. No copying codes, no technical setup.
+
+<Aside type="note" title="How long does it take to get running?">
+Less than 2 minutes, and you only do it once. From then on it works on its own: every new appointment goes into your Google, and every event of yours blocks that slot.
+</Aside>
+
+## Frequently asked questions
+
+**Does it touch or mess up my main calendar?**
+No. Brote **doesn't write to your main calendar**. It creates a separate calendar called **"Brote — Citas"** that only holds the appointments the agent books. Your personal calendar stays intact. From your main calendar, Brote only **reads** your availability so it doesn't book over you.
+
+**Does Brote see the contents of my personal events?**
+For your availability, Brote uses **free/busy** mode: it cares whether a window is **busy or free**, not the details of what you have. It only writes new events (the appointments) into the "Brote — Citas" calendar.
+
+**Can I read multiple calendars?**
+Yes. You can pick several calendars for your availability — for example "Citas Doctora Rojas" and "Visitas Inmuebles Norte" — and the agent respects all of them before offering a slot.
+
+**If I block time in my Google, does the agent stop offering it?**
+Yes, instantly. Add an event to a calendar Brote reads and that slot stops appearing among the available times. It's the simplest way to "close off" time from the agent.
+
+**Do I absolutely need Google Calendar to use scheduling?**
+No. Brote's scheduling works fine without connecting Google. But connecting it gets you two things: appointments land in your usual calendar, and the agent never books over your existing events.
+
+**What if I use Outlook or Apple Calendar?**
+For now, direct sync is with **Google Calendar**. If you use another one, Brote's scheduling keeps working (with its own internal calendar), but automatic sync is Google-only.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Scheduling from zero to 100" icon="rocket">
+    [The complete guide to WhatsApp appointments →](/en/agendamiento/de-cero-a-100/)
+  </Card>
+  <Card title="What scheduling is" icon="open-book">
+    [How your agent books, reschedules, and reminds →](/en/agendamiento/que-es/)
+  </Card>
+  <Card title="Set up services and hours" icon="setting">
+    [Configure what can be booked and when →](/en/agendamiento/configurar/)
+  </Card>
+  <Card title="Connect WhatsApp" icon="approve-check">
+    [The channel appointments come in through →](/en/canales/whatsapp/)
+  </Card>
+</CardGrid>

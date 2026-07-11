@@ -1,0 +1,81 @@
+---
+title: Collect payments inside the chat
+description: "The AI agent detects buying intent, calculates the amount, sends the MP link. The customer pays without leaving WhatsApp. Your ticket moves forward."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+In-chat payments are the feature that moves the needle the most. The AI agent detects when the customer wants to buy, calculates the amount, sends the [Mercado Pago](/en/pagos/mercado-pago/) link and handles the follow-up — all without you having to step in.
+
+## The end-to-end flow
+
+```
+Cliente: "lo quiero llevar"
+Agente IA: 
+  → invoca build_payment_link({amount: 49000, description, ref})
+  → recibe init_point URL de MP
+  → manda link al cliente
+"Listo, acá va el link de pago: https://mpago.la/abc123 
+ Pagas con tarjeta, Mercado Pago o transferencia."
+
+Cliente: [paga en MP]
+
+[MP webhook → Brote → ticket actualizado]
+
+Agente IA:
+"Perfecto, recibe tu pago. Te llega en 2 días hábiles a tu dirección.
+ Cualquier duda, escríbeme."
+```
+
+## How it detects intent
+
+The AI agent detects buying intent from phrases like:
+
+- "I want it", "I'll take it", "give me that"
+- "how do I pay", "what's the payment link"
+- "I've decided", "ok send it"
+- Confirmation after a suggestion ("ok great, that one")
+
+For ambiguous cases ("I'm interested") the agent asks first ("do you want to buy it now or think it over a bit more?") to avoid over-pressuring.
+
+## Amount calculation
+
+The AI agent calculates:
+
+- **Base price** of the chosen products (via [Shopify](/en/integraciones/shopify/) if connected).
+- **Quantity** the customer asks for.
+- **Coupon** if the customer mentions one or if the conversation comes from a campaign with a pre-applied coupon.
+- **Shipping** if you have a shipping cost table configured in agent_blocks.
+- **Taxes** if your business includes them in the final amount (B2B usually invoices them separately).
+
+If in doubt, the agent confirms the breakdown with the customer before sending the link: "Confirming: 1 XL box = $49.000 + shipping $3.500 = $52.500 total. Shall I proceed?".
+
+## What the customer sees
+
+Click the link → native MP checkout:
+
+- Card, debit, MercadoPago wallet, bank transfer.
+- Installments per your MP config (1-12 installments, with/without interest).
+- Instant confirmation when they pay.
+
+<Aside type="tip" title="Without leaving WhatsApp">
+Mercado Pago has a web view optimized for WhatsApp — the customer pays without opening the browser. Removing that friction is what drives conversion.
+</Aside>
+
+## What happens after the payment
+
+1. **MP posts a webhook** to Brote with `payment.id` + status `approved`.
+2. **Brote records it** in `mercadopago_payments`, associates it with the `conversation_id`.
+3. **Moves the pipeline ticket** to "Payment confirmed".
+4. **Notifies the customer** automatically.
+5. **If you have [Zapier](/en/integraciones/zapier/) active**: fires `payment_received` → your Holded creates an invoice, your Sheet logs it, your Shopify marks the order as paid.
+
+## Recurring subscriptions
+
+For subscription services (monthly membership, monthly pet food box, B2B SaaS), the agent can generate a **preapproval link** instead of a one-time payment. The customer accepts once, and MP charges automatically every month/week/whatever you configure.
+
+## Next steps
+
+- [Connect Mercado Pago](/en/pagos/mercado-pago/)
+- [Brote billing with Polar](/en/planes/polar/)
+- [Sync payments to your CRM via Zapier](/en/integraciones/zapier/)

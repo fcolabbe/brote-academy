@@ -1,0 +1,161 @@
+---
+title: WhatsApp scheduling — from zero to 100
+description: Your customers book appointments and reservations by chatting with your AI agent, without you touching the phone. Complete guide with a real example, what you need, who it's for, and what you'll achieve.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**Scheduling** = your customers **book their slot over WhatsApp by chatting with your AI agent**, which offers only genuinely free times, confirms the appointment, and sends reminders — all on its own, without you replying by hand.
+
+You define **what can be booked** (your services) and **when** (your availability). From there, when a customer writes *"do you have an opening on Thursday?"*, the agent shows them the free slots, books, confirms, and reminds them before the appointment. **No Calendly, no extra tool to pay for, no leaving the chat.**
+
+<Aside type="tip" title="The question this feature answers">
+"I spend all day answering WhatsApp to hand out appointments. Can someone **take the bookings for me** without my calendar filling up with gaps or appointments falling through?"
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | NOT for you (yet) if… |
+|---|---|
+| You work **by appointment**: hair salons, barbershops, spas, nails | You don't take appointments or reservations (pure walk-in sales) |
+| You're a **professional who sells your time**: physical therapist, psychologist, lawyer, dentist, veterinarian | You serve customers first-come, first-served with no calendar |
+| You run a **practice or clinic** with patients requesting appointments | There's nothing to reserve in advance |
+| You rent **lodging by the night**: cabins, hotel, guesthouse | — |
+
+**Plainly put:** it's for any business that **lives off its calendar** and today loses time (and customers) handing out appointments by hand over WhatsApp.
+
+<Aside type="caution" title="Plan required: Starter (Brote) and up">
+Scheduling is available **from the Starter plan**. On Mini you'll see the section with a plan-required notice; upgrading to Starter or higher unlocks it. It's a feature included in your plan — **you don't pay for Calendly or any other separate subscription**.
+</Aside>
+
+## What do you need before you start?
+
+<Steps>
+
+1. **WhatsApp connected in Brote** — it's where the customer requests the slot and where reminders go out. ([How to connect it](/en/canales/whatsapp/)).
+
+2. **At least one service created** — what the customer can book. Each service has a name, duration and, optionally, buffer, price and address. (E.g.: "Haircut", 30 min).
+
+3. **Your weekly availability** — which hours can be booked, per day. You can set multiple blocks (e.g. morning and afternoon with a lunch break).
+
+4. *(Optional)* **Google Calendar connected** — so appointments are written to your calendar and the agent **never books over events you already have**. Connects in one click. ([How](/en/integraciones/calendar/)).
+
+5. *(Optional)* **A payment gateway** — if you want to **charge to confirm** the appointment and cut no-shows (Mercado Pago, Flow or Khipu in Chile; Stripe or PayPal for international payments).
+
+</Steps>
+
+<Aside type="note">
+Everything is configured in one place: **Settings → Scheduling**. One service + availability is enough for the agent to start taking bookings.
+</Aside>
+
+## Real example: from zero to 100 with Peluquería Estilo ✂️
+
+> **Peluquería Estilo** is a neighborhood salon with 2 stylists. Before, Camila (the owner) answered WhatsApp between haircuts: she missed messages, gave out times that were already taken, and every week **3 or 4 customers didn't show** because nobody reminded them. Here's how she set it up with Brote.
+
+<Steps>
+
+1. **Camila adds her services** in Settings → Scheduling: "Haircut" (30 min), "Cut + beard" (45 min), "Color" (90 min). She sets a price for each.
+
+2. **She sets her availability:** Monday to Friday 10:00–13:00 and 15:00–19:00, Saturday 10:00–14:00, Sunday closed. Brote will only offer times within those blocks, minus appointments already taken.
+
+3. **She adds her two stylists** as resources ("Nico" and "Vale") and marks which services each one handles. Now two customers can take 4:00 PM the same day with different stylists, without clashing.
+
+4. **Ana writes to the salon's WhatsApp:** *"Hi! Do you have an opening for a haircut Thursday afternoon?"*
+   The AI agent replies on its own, right away:
+   *"Yes 🙌 For Thursday I have 15:00, 15:40 or 17:20. Which works for you?"*
+
+5. **Ana replies "17:20 with Vale".** The agent books the slot, blocks it so nobody else can take it, and confirms:
+   *"Done Ana, I booked your Haircut for Thursday at 17:20 with Vale. I'll send you a reminder beforehand 🌱"*
+
+6. **24 hours before**, Brote sends Ana, automatically:
+   *"🌱 Hi Ana, a reminder of your Haircut tomorrow Thursday at 17:20. If you need to reschedule or cancel, reply to this message."* And another reminder **2 hours before**.
+
+7. **Ana can't make it and replies to the reminder:** *"can I move it to Friday same time?"*. The agent reschedules on its own, frees up Thursday, and moves the reminders to Friday. Camila never even noticed — and Thursday's slot opened up for another customer.
+
+</Steps>
+
+**A month later, Camila runs the numbers:**
+
+| | Before (by hand) | With Brote |
+|---|---|---|
+| Bookings handled over WhatsApp | Whenever she managed to reply | Automatic, 24/7 |
+| Double-bookings | 1–2 per week | 0 (impossible by design) |
+| No-shows | ~3–4 per week | ~1 (reminders eliminated the rest) |
+| Camila's time on the phone | ~1 h per day | Almost none |
+
+**The math that convinced her:** she went from losing ~3 bookings per week to gaps and no-shows to almost none. At an average ticket of $12.000, that's **~$140.000 a month** that used to slip away — plus her time back. All from entering her services and hours once.
+
+<Aside type="tip" title="This is what you get">
+Your calendar fills **on its own** while you work. The customer books in the same chat (better than sending them to an external page), there are never two overlapping appointments, and reminders make sure people **show up**.
+</Aside>
+
+## What will you achieve?
+
+| Result | How Brote does it |
+|---|---|
+| **Fewer no-shows** | Automatic WhatsApp reminders 24 h and 2 h before each appointment |
+| **A full calendar without replying by hand** | The AI agent hands out bookings on its own, 24/7, even while you're working or sleeping |
+| **Zero double-booking** | A taken slot disappears from the list — guaranteed at the database level |
+| **Fewer last-minute cancellations** | Optional **charge to confirm**: the slot isn't reserved until the customer pays |
+| **A tidy calendar** | With Google Calendar, appointments are written to a "Brote — Citas" calendar and respect your personal events |
+| **Nothing to do afterwards** | Customers reschedule and cancel by replying in the chat; the agent adjusts everything on its own |
+
+## How easy is it?
+
+Very easy. The only "task" is entering your services and hours **once** in Settings → Scheduling — literally filling in name, duration, and which blocks you work. From then on **you touch nothing**: the agent takes bookings, confirms, reminds, reschedules and cancels on its own. Connecting Google Calendar (optional) is one click. Charging to confirm (optional) is ticking a checkbox on the service.
+
+<Aside type="note" title="How long does it take to get running?">
+Less than 10 minutes: create your services and enter your availability. No technical knowledge needed.
+</Aside>
+
+## The three ways to book
+
+With the same configuration, your customers can book through three paths:
+
+| Path | When it's used |
+|---|---|
+| **AI agent over WhatsApp** | The customer is already chatting and asks for a slot — the agent books it in the conversation |
+| **Public booking link** | A link you share in your Instagram bio, website or email; the customer books on their own, no chat and no account ([see](/en/agendamiento/link-publico/)) |
+| **Manual** | You enter an appointment by hand from Settings → Scheduling |
+
+## Frequently asked questions
+
+**Do I need to pay for Calendly or another tool?**
+No. Scheduling comes **included** in your Brote plan (Starter and up). You don't pay another subscription or per seat.
+
+**Can the agent book over a meeting I already have?**
+Not if you connect Google Calendar. Brote reads your availability (free/busy) before offering a slot, so it only proposes what's genuinely free. Block personal time in your Google calendar and the agent respects it.
+
+**What if I have several professionals or rooms?**
+Each one can have their own hours and handle only certain services. The agent handles "I want Dr. Rojas" and also "who's free on Tuesday?". See [Charge for the booking and per-professional calendar](/en/agendamiento/servicios-profesionales/).
+
+**Can I charge for the appointment upfront?**
+Yes. Check **💳 Charge to confirm** on the service: the slot stays reserved until the customer pays the link. If they don't pay within the defined time, it's released. It cuts no-shows dramatically.
+
+**Does it work for renting cabins or rooms by the night?**
+Yes, with **stay mode**: the customer books "July 10 to 14" instead of "3:00 PM", you charge per night, and there's seasonal pricing. See [Nightly lodging](/en/agendamiento/alojamiento-por-noches/).
+
+**What happens if the customer wants to change or cancel?**
+They just reply in the chat ("can we move it to Friday?") and the agent reschedules or cancels on its own, adjusting the reminders. You do nothing.
+
+**Do reminders use up messages from my plan?**
+Yes, they count as outbound messages, but they're low volume (one or two per appointment), so you'll rarely notice. You need WhatsApp connected for them to go out.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Set up services and hours" icon="setting">
+    [Enter what can be booked and when →](/en/agendamiento/configurar/)
+  </Card>
+  <Card title="Automatic reminders" icon="bell">
+    [How they cut your no-shows →](/en/agendamiento/recordatorios/)
+  </Card>
+  <Card title="Sync Google Calendar" icon="external">
+    [So nothing books over your events →](/en/integraciones/calendar/)
+  </Card>
+  <Card title="Connect WhatsApp" icon="approve-check">
+    [The channel bookings come in through →](/en/canales/whatsapp/)
+  </Card>
+</CardGrid>

@@ -1,0 +1,77 @@
+---
+title: Charge for the booking and per-professional calendar
+description: "Time-based professional services: each professional with their own hours, an address per service, and charge-to-confirm (the slot is held until the customer pays)."
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components'
+
+Built for **professional services sold by time** (consultations, advisory, sessions, therapy, veterinary care, law firms). It adds three things on top of the [base scheduling](/en/agendamiento/configurar/): an **address** per service, a **per-professional calendar**, and **charge to confirm** the appointment.
+
+Everything is configured in **Settings → Scheduling**. Available from the **Starter** plan.
+
+## Service address
+
+Each service can have an **address** (e.g. "Av. Providencia 1234, of. 4"). When the agent proposes or confirms an appointment, it shares it with the customer automatically. If the service is online, leave it blank.
+
+## Per-professional calendar
+
+If you have **several professionals** (or boxes/rooms) working in parallel, each one can have **their own hours** and handle **only certain services**.
+
+<Steps>
+
+1. **Add the professionals** in the **Resources (team)** section: e.g. "Dr. Rojas", "Dr. Muñoz".
+
+2. **Assign who handles each service.** On each service you'll see **"Handled by:"** chips — check the professionals who provide that service. If you check none, **everyone** handles it.
+
+3. **Give each one their hours.** In **Weekly availability**, use the **"Editing the schedule of:"** selector:
+   - **Org shared schedule** → the common schedule for everyone.
+   - **A professional** → their own schedule (e.g. Dr. Rojas Mon-Wed-Fri 09–18, Dr. Muñoz Tue-Thu 10–19). If a professional has no schedule of their own, they **inherit the org's shared one**.
+
+</Steps>
+
+With this, the agent handles two ways of booking in the chat:
+
+- **"I want Dr. Rojas"** → the agent shows **that professional's calendar**.
+- **"Who's free on Tuesday?"** → the agent lists **the professionals available** that day.
+
+Every slot it offers indicates **which professional** handles it, and the booking **blocks only that professional's calendar** (two different customers can take the same time with different professionals).
+
+<Aside type="note">
+If you don't add professionals, everything works as a single calendar (the classic behavior). Professionals are optional.
+</Aside>
+
+## Charge to confirm the appointment
+
+To reduce **no-shows**, you can require **upfront payment**: the appointment isn't confirmed until the customer pays.
+
+### How to enable it
+
+On the service, check **💳 Charge to confirm** and set the **hold minutes** (default **15**). You need a [connected payment gateway](/en/pagos/cobro-in-chat/) (Mercado Pago, Flow or Khipu in Chile; Stripe or PayPal for international payments).
+
+### How the customer experiences it
+
+<Steps>
+
+1. The customer picks a time and the agent **holds the slot** — but it stays **"awaiting payment"**, not yet **confirmed**. That slot is **blocked** so nobody else can take it.
+
+2. The agent sends the **payment link** in the same chat and tells them how long they have to pay.
+
+3. **If they pay in time** → the appointment **confirms itself**, gets booked, and the [reminders](/en/agendamiento/recordatorios/) are scheduled. The customer receives the confirmation with the address.
+
+4. **If they don't pay** within the defined minutes → the slot is **released** automatically and becomes available to others.
+
+</Steps>
+
+<Aside type="tip">
+A service **without** "Charge to confirm" books directly, as always — the charge is optional per service. You can have some services that charge and others that don't.
+</Aside>
+
+### Useful details
+
+- **The appointment confirms automatically when the payment is approved** — nothing manual for you to do.
+- If the customer **pays just after** the hold expired and the slot is **still free**, the appointment is **re-confirmed** anyway. If someone else took the slot in the meantime, a **flag is left for your team to review** (reschedule or refund) — the customer is never charged twice.
+- Everything is **traceable**: the payment stays linked to the appointment.
+
+<Aside type="caution">
+The charge requires a connected gateway and that the contact has an **email** (the agent asks for it before generating the link). If it's missing, the agent requests it first.
+</Aside>

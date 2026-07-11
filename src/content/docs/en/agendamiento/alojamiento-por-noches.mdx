@@ -1,0 +1,86 @@
+---
+title: Nightly lodging (stay mode)
+description: "For hotels, cabins, and lodging: book units by date range (check-in → check-out), charge for the nights upfront, and prevent double-booking. The AI agent handles it over WhatsApp."
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components'
+
+If you rent **lodging by the night** (cabins, hotel rooms, guesthouses, glamping), Brote's scheduling has a **stay mode**: instead of booking "3:00 PM", the customer books **"July 10 to 14"**. It builds on everything in [scheduling](/en/agendamiento/configurar/) — including [charging for the booking](/en/agendamiento/servicios-profesionales/) — but designed for nights.
+
+You set it up in **Settings → Scheduling**. Available from the **Starter** plan.
+
+## 1. Create your lodging as a service in stay mode
+
+<Steps>
+
+1. In **Services**, enter the name (e.g. "Lakeview Cabin") and in the selector choose **Nightly stay**.
+
+2. Fill in the stay-specific details:
+   - **Price per night** — charged automatically × the number of nights.
+   - **Check-in / Check-out** — arrival and departure times (e.g. 15:00 / 11:00).
+   - **Min / Max nights** (optional) — e.g. 2-night minimum.
+   - **Address** (optional) — the agent shares it with the customer.
+
+3. If you want to charge for the booking upfront, check **💳 Charge to confirm** (recommended to avoid last-minute cancellations).
+
+</Steps>
+
+## 2. Add your units
+
+Each cabin/room is a **unit**. In the **Resources (team)** section, add one for each real unit (e.g. "Cabin 1", "Cabin 2"). With multiple units, the agent **distributes bookings on its own** across the ones that are free, and two customers can book the same dates in different units.
+
+<Aside type="note">
+The "Weekly availability" section is for hourly appointments. In stay mode **you don't need it**: a unit is free every night, except the ones already booked (or blocked for maintenance).
+</Aside>
+
+## 3. How your customer books (through the bot)
+
+<Steps>
+
+1. The customer writes: **"do you have a cabin from July 10 to 14?"**.
+
+2. The agent understands the dates, calculates **4 nights**, and replies with the **available units** and the **total price** (nights × price/night). It also understands "3 nights starting Friday", "this weekend", etc.
+
+3. The customer confirms → the agent **books the unit** for the whole range.
+
+4. If you enabled payment, it sends the **payment link** in the chat; once paid, the stay **confirms itself**. If the customer doesn't pay within the defined time, it's released.
+
+</Steps>
+
+## Seasonal pricing
+
+Charge more in high season (summer, holidays)? Add **seasons** to your lodging and each night is charged based on its date.
+
+<Steps>
+
+1. In the **Seasons** section (it appears under each lodging in stay mode), add a row: **name** (e.g. "High season"), **date range**, and **price per night**.
+
+2. Done. When a customer books, the agent **calculates night by night**: nights that fall in the season use its price, the rest use the base price.
+
+</Steps>
+
+A stay that falls **partly in high season and partly in regular season** is charged correctly, automatically. For example, with a base of $45.000 and high season at $80.000 through February 28, a booking from **Feb 26 to March 4** (6 nights) charges 3 nights at $80.000 + 3 at $45.000 = **$375.000** — the exact mix, without you lifting a finger.
+
+<Aside type="note">
+If two seasons overlap on the same date, the one with the **shorter range** (the most specific) wins. That way a "New Year's Week" can override a broader "High season".
+</Aside>
+
+## Occupancy calendar
+
+In **Settings → Scheduling** you get an **Occupancy** view: a **month × unit** grid where you can see at a glance which cabin is taken on which days.
+
+- **Green** = confirmed booking (paid or no charge).
+- **Amber** = booking awaiting payment.
+- Navigate between months with the arrows to plan your availability.
+
+It's read-only: it gives you the occupancy picture without leaving Brote.
+
+## Details you'll find useful
+
+- **No double-booking**: a single unit won't accept two stays with overlapping dates — Brote guarantees this at the data level.
+- **Same-day turnover**: the checkout night is freed up. If a stay ends on the 14th at 11:00, another can start on the 14th at 15:00 with no conflict.
+- **The checkout night isn't charged**: the 10th to the 14th = **4 nights**.
+
+<Aside type="tip">
+Renting **by the hour** (day-use, rooms, studios)? Use the **Hourly appointment** mode by creating services with whatever duration you offer (e.g. "2 hours", "half day"). Same charge-to-confirm option.
+</Aside>

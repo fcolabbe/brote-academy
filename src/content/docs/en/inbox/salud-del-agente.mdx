@@ -1,0 +1,49 @@
+---
+title: Agent health (heartbeat)
+description: "Brote checks your agent on its own, every 6 hours: downed channels, blocked payments, and customers with purchase intent left waiting — with email alerts and one-click fixes."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+The number one fear of running an AI agent is that it breaks without you noticing: WhatsApp gets unlinked, a customer is left waiting, and you find out when it's too late. Brote solves this with an **automatic health check** that runs on its own — no setup required.
+
+## What Brote checks for you
+
+Every 6 hours, the platform reviews your entire organization:
+
+| Check | What it detects | What you do |
+|---|---|---|
+| 📵 **WhatsApp disconnected** | The QR got unlinked or the session dropped — your agent can't receive or reply | One click → reconnect |
+| 🔌 **Agent with no channel** | Your agent is published but has no active WhatsApp, Instagram, email, or webchat | One click → connect a channel |
+| 💳 **Payments blocked** | You have services that require payment but no payment provider connected — nobody can pay you | One click → connect a provider |
+| ⏳ **Customers waiting for a human** | Conversations escalated to your team with no activity for more than 24 hours | Review the Inbox |
+
+## Where you see it
+
+**On your dashboard (Home)**: if something needs attention, an "Agent health" section appears with color-coded cards — red for breakages, amber for operational issues. Each card takes you straight to the screen where it gets fixed. If everything is healthy, the section doesn't even show up.
+
+**By email**: for serious breakages (channel down, payments blocked), you get an email alert with the fix button, even if you're not looking at the app. Brote doesn't spam you: it only reminds you if the problem persists after 3 days, and stops alerting as soon as you fix it.
+
+## 🔥 Smart triage: which conversations are worth money
+
+On top of the checks, a Brote AI **reads the conversations left waiting for a human** and classifies them every day:
+
+- **🔥 Purchase intent** — the customer wanted to buy, schedule, or pay and was left waiting. Each of these is a sale at risk.
+- **Needs a human** — a legitimate pending question, with no buying signal.
+- **Dead or spam** — goodbyes, already-resolved questions, ads. You can close these guilt-free.
+
+Purchase-intent conversations get their own red card on the dashboard ("🔥 Customers with purchase intent waiting") and a **🔥 Purchase chip** in the Inbox list, so your team tackles them first.
+
+<Aside type="tip" title="A real example">
+During system testing, triage found cases like: *"The customer asked to book and pay for the Pack Matrimonio, shared their email, and is waiting for a payment link that never arrived."* That's exactly the kind of sale that gets lost in silence — and that now has a red card demanding your attention.
+</Aside>
+
+## What it does NOT do (by design)
+
+The health check **never acts on its own**: it doesn't close conversations, doesn't reply to customers, doesn't change your settings. It detects, classifies, and shows you — the decision is always yours. It's a mechanic who checks the engine every morning, not an autopilot.
+
+## Next steps
+
+- [Handoff to a human](/en/inbox/handoff/) — what happens when the agent escalates to your team
+- [Unified Inbox](/en/inbox/inbox-unificado/) — where flagged conversations live
+- [Automatic agent audit](/en/copilot/audit/) — the Copilot's quality review

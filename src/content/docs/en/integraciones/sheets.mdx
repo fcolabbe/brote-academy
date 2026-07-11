@@ -1,0 +1,55 @@
+---
+title: Google Sheets
+description: "Catalog and leads in a shared spreadsheet. Your AI agent reads prices and availability live, and writes new contacts."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+If your business doesn't have Shopify but you do maintain a Google Sheet with products/prices/stock, Brote can read it live. The agent checks the sheet when a customer asks about price or availability.
+
+## Two usage modes
+
+### Read mode — Sheet as a catalog
+
+The agent reads your sheet to answer catalog questions:
+
+- **Customer asks** "how much is the XL box?"
+- **Agent looks up** the row in the sheet → finds price + stock
+- **Replies** "The XL box costs $45.000 and we have 8 in stock"
+
+Useful when:
+- You don't have Shopify or an e-commerce store
+- Your catalog changes 1-2 times a week (doesn't need real e-commerce)
+- You're a service business (pricing by the hour, by package) rather than products
+
+### Write mode — Sheet as a lightweight CRM
+
+Brote writes to the sheet when it captures a new lead:
+
+- **A new customer** enters the chat → the agent captures name, email, phone, interest.
+- **Brote adds a row** to your sheet with timestamp + channel + tags.
+- Useful when your team doesn't use Brote — they can watch leads from the sheet in real time.
+
+## How to connect
+
+1. **Create or open your sheet** in Google Drive.
+2. **Share it** with Brote's service email (we give it to you when connecting) with Editor permission.
+3. In Brote: **Settings → Integrations → Google Sheets** → paste the sheet's URL.
+4. Brote detects the columns → you map which one is "Producto", "Precio", "Stock", "Categoria" for read mode. Map "Nombre", "Email", "Teléfono", "Origen" for write mode.
+5. **Test it**: add a row manually, wait 30 seconds, ask the agent.
+
+<Aside type="tip" title="One sheet per org">
+In the MVP we support **one sheet per organization**. If you keep catalog + leads in separate sheets, merge them into a single Sheet with two tabs (`catalog_tab` and `leads_tab`) — Brote reads them separately but knows both.
+</Aside>
+
+## Performance
+
+- **Cache**: Brote caches reads for 5 minutes. If you update a price, the agent sees it after 5 min at most.
+- **Force refresh**: there's a "Refresh now" button in the settings if you want to force a reload.
+- **Large sheets**: up to 5,000 rows runs smoothly. If your catalog is bigger, consider Shopify.
+
+## Next steps
+
+- [Shopify (e-commerce)](/en/integraciones/shopify/)
+- [Set up your AI agent](/en/empezar/primer-agente/)
+- [Zapier to sync sheets with other systems](/en/integraciones/zapier/)

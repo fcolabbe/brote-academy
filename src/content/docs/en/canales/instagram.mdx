@@ -1,0 +1,64 @@
+---
+title: Instagram DMs
+description: "Connect Instagram (Business account) through Meta's official channel so your AI agent replies to DMs like a human. Available from Starter."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote connects to your Instagram Business through **Meta's official channel (direct)** and replies to DMs automatically with the same AI agent you use on WhatsApp and Webchat. You connect your Instagram account once and the agent replies to the DMs.
+
+![Integrations hub with all available social channels](/screenshots/integrations.png)
+
+<Aside type="note" title="Available from Starter">
+The official channels (Instagram and Messenger) are available from the **Starter** plan ($49/mo) and up. On Mini the agent only operates on WhatsApp + Webchat. One business = its channels: once on Starter or higher, you connect the official channels at no additional cost per channel. See the [plan comparison](/en/planes/comparativa/).
+</Aside>
+
+## What Brote does on Instagram
+
+- Replies to incoming **DMs** with the same prompt + catalog + tone as the main agent.
+- Captures the contact in your unified inbox (same place as WhatsApp + Webchat).
+- Detects purchase intent → can send a Mercado Pago payment link in the same DM.
+- Detects a hot lead → flags the ticket + fires a webhook to your CRM.
+
+## How to connect
+
+1. Go to **Settings → Integrations → Instagram**.
+2. Click **"Connect Instagram"**. It redirects you to Meta's official flow.
+3. Log in with your Instagram Business account (it has to be connected to a Facebook page — Meta requires that, not us).
+4. Authorize the permissions Meta requests: read DMs, send DMs.
+5. You return to Brote and the account shows as **Connected**.
+
+From that moment on, all new DMs appear in your [unified inbox](/en/inbox/inbox-unificado/), filterable by the "Instagram" channel.
+
+## Meta's limitations
+
+Instagram has strict rules:
+
+- You can only reply to DMs if the user **wrote first**.
+- After the user's first message you have **24h** to reply without restriction. Past the 24h, you can only send "marketing" messages if the user accepted a subscription.
+- You can't send mass DMs to contacts who didn't write first (that's spam to Meta).
+
+Brote respects those rules — if your agent tries to reply outside the 24h window, it marks the message as `pending_human_review` and notifies you.
+
+## Sales attribution (Click-to-Instagram ads)
+
+If you run ads with a "Send Message" CTA pointing to Instagram, Brote closes the ROAS loop with **Meta's and TikTok's Conversions API (CAPI)**:
+
+- It captures the ad click (Click-to-Instagram) when the lead messages you.
+- When the customer pays (Mercado Pago / Flow / Khipu), Brote fires the **Purchase** event server-side to Meta → you attribute the sale to the ad that originated it.
+
+<Aside type="tip" title="Business exclusive">
+Conversion attribution (Meta + TikTok CAPI) is exclusive to the **Business** plan ($349/mo), along with outcomes, advanced analytics and the MCP server. It works on all 3 official channels: WhatsApp, Instagram and Messenger.
+</Aside>
+
+## Works together with
+
+- **Post comments**: for now we only reply to DMs. Post comments are managed from the Instagram account itself.
+- **Story replies**: when a user replies to your story → it arrives as a DM → Brote replies the same way.
+- **Click-to-Instagram ads**: if you have Ads Manager active and build an ad with a "Send Message" CTA, leads land in Brote (and are attributed on Business).
+
+## Next steps
+
+- [Messenger (also via Meta's official channel)](/en/canales/messenger/)
+- [Kanban pipeline for your DMs](/en/inbox/pipeline/)
+- [Configure the AI agent](/en/empezar/primer-agente/)

@@ -1,0 +1,172 @@
+---
+title: Cloned voice — from zero to 100
+description: Your AI agent replies with voice notes that sound like you on WhatsApp. Complete guide with a real example, what you need, who it's for and how much audio your plan includes.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**Cloned voice** = your AI agent replies to the customer with a **voice note that actually sounds like you** on WhatsApp — not a robot voice, not a voice actor: **your voice**.
+
+Brote clones your voice once (from a 30-45 second sample). Afterwards, when the moment calls for it, the AI agent replies in audio with that voice: a greeting, a thank-you, a warm confirmation. In a channel where everyone writes cold text, **a human voice note builds trust and closes more**.
+
+<Aside type="tip" title="The question this feature answers">
+"My customers close when they hear my voice. Can my AI agent reply in audio **as if it were me**, without me being there?"
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | NOT for you (yet) if… |
+|---|---|
+| You sell **trust and closeness** — services, healthcare, real estate, coaching, consulting | You sell products where the price/spec closes on its own |
+| Your customers send you **voice notes** and expect similar replies | Your audience prefers text and links only |
+| You serve customers on **WhatsApp** (the only channel with voice for now) | You sell by email or web chat |
+| **You are the face** of the business (broker, doctor, coach, advisor) | You're a brand without a personal face/voice |
+
+**In plain terms:** it's for the business where **a human voice closes more than text** — the one selling a relationship, not just a catalog.
+
+<Aside type="caution" title="Required plan: Starter (Brote) or higher">
+Cloned voice starts on the **Starter** plan. Each plan includes a monthly audio allowance (measured in characters, because the voice provider charges that way). The **Mini** plan doesn't include voice. The exact table of what each plan includes is below.
+</Aside>
+
+## What do you need before starting?
+
+<Steps>
+
+1. **WhatsApp connected in Brote** — it's the only channel where the agent sends audio today.
+
+2. **An active Starter, Pro or Business plan** (Mini doesn't include voice).
+
+3. **A 30-45 second sample of your voice**: a quiet spot, reading any paragraph about your business naturally. That's all Brote needs to clone your voice.
+
+4. **Your AI agent built** — the voice is how it replies; first you need the what (your agent replying in text), then you add the how (audio).
+
+5. (Optional) The `send_voice_reply` function **enabled** on your agent, so the LLM decides on its own when to send audio.
+
+</Steps>
+
+<Aside type="note" title="What if my voice sounds bad in the sample?">
+Clone quality depends on the sample. Record in a quiet place, no echo, with the microphone close. If the result sounds off, retrain with a cleaner recording — you can redo it as many times as you want.
+</Aside>
+
+## Real example: from zero to 100 with Rodrigo 🌱
+
+> **Rodrigo** is an **independent real estate broker** in La Serena. He works alone, handles dozens of WhatsApp inquiries a day and knows one thing: *when the customer hears his voice, they trust him and book the visit*. The problem is he can't keep up recording an audio for each one.
+
+<Steps>
+
+1. **Rodrigo clones his voice once.** He goes to Brote → Settings → AI Voice, records 40 seconds reading an apartment description and taps **Clone**. In 10 seconds his voice is ready.
+
+2. **He enables `send_voice_reply` on his agent** and adds to the prompt: *"When the customer greets or thanks, reply with audio in my voice; for prices and details, use text."*
+
+3. **Camila writes on a Saturday at 9 PM:** "Hi, I saw the apartment on Av. del Mar, is it still available? 😍". Rodrigo is at a barbecue, not looking at his phone.
+
+4. **The AI agent replies in audio, with Rodrigo's voice:** *"Hi Camila! Yes, it's still available, so glad you liked it 🙌 Let me send you the details."* Camila hears the voice note and feels **the broker himself** answered her, on a Saturday night.
+
+5. **The agent continues in text** with the price, common expenses and a link to schedule the visit. Camila books for Tuesday.
+
+6. **Rodrigo only sees the conversation on Sunday** — with the visit already booked. The customer never knew an AI replied.
+
+</Steps>
+
+**After a month using cloned voice, Rodrigo compares:**
+
+| Metric | Before (text only) | With cloned voice |
+|---|---|---|
+| Inquiries that book a visit | 12 out of 100 | 19 out of 100 |
+| Replies outside business hours | 0 (answered the next day) | Instant, in his voice |
+| Time recording audios by hand | 40 min/day | 0 min |
+
+**Translated:** out of every 100 inquiries, he went from **12 to 19 booked visits** — 58% more — without working more hours. The voice he used to record by hand is now sent by his agent, sounding exactly like him.
+
+<Aside type="tip" title="This is what you achieve">
+Your closeness stops depending on your availability. The agent replies 24/7 **with your voice** → the customer feels it's you answering → they trust and close. You sell your relationship **on autopilot**.
+</Aside>
+
+## What will you achieve?
+
+| Before cloned voice | After |
+|---|---|
+| Everyone gets cold text | Key moments arrive in **your voice** |
+| You reply to audios by hand or not at all | The agent sends audio on its own, when it makes sense |
+| Outside business hours, silence | A human-voice reply at any hour |
+| The customer wonders if it's a bot | The customer **recognizes you** and trusts |
+
+Voice doesn't replace text: it **complements** it. The agent uses audio for the emotional (greetings, thank-yous, confirmations) and text for the precise (prices, links, lists). The best of both worlds.
+
+## How easy is it?
+
+Very easy. The "hard" part is recording 40 clean seconds, once.
+
+<Steps>
+
+1. **Record your voice** (30-45 sec) in Settings → AI Voice and tap Clone. Under 1 minute.
+
+2. **Enable the audio function** on your agent. One click.
+
+3. **Tell the agent when to use voice** in its prompt (or keep the default suggestion). Done.
+
+</Steps>
+
+From there it runs on its own: the agent decides when to send audio and when text. And if you run out of your monthly audio allowance, it **falls back to text automatically** — it never leaves the customer without a reply.
+
+<Aside type="note" title="How long until it's ready?">
+Cloning the voice: 5-15 seconds. Setting everything up: under 5 minutes. You don't need to know anything technical.
+</Aside>
+
+## How much audio does my plan include?
+
+Each plan includes a monthly allowance measured in **characters** (not audios), because the voice provider charges per generated character. A short greeting audio is ~100-200 characters.
+
+| Plan | Included / mo | Hard cap | Extra beyond included |
+|---|---|---|---|
+| Trial | 500 | 500 | — |
+| Mini ($29) | 0 | 0 | Voice not included |
+| **Starter ($49)** | **5,000** | 15,000 | $0.20 / 100 chars |
+| **Pro ($129)** | **30,000** | 75,000 | $0.18 / 100 chars |
+| **Business ($349)** | **150,000** | 350,000 | $0.15 / 100 chars |
+| Enterprise | unlimited | unlimited | — |
+
+- **Included:** free within your plan.
+- **Hard cap:** the absolute monthly limit. When reached, the agent falls back to text until next month (or you upgrade).
+- **Extra:** informational for now (not charged yet); billing will be enabled in an upcoming update.
+
+You see your live usage, with progress bars, in Settings → AI Voice.
+
+## Frequently asked questions
+
+**Is it my real voice or an imitation?**
+It's **your real voice**, cloned from the sample you record. It's not an actor or a generic catalog voice — it's Brote cloning your voice with the cloning provider (ElevenLabs). No other platform in LatAm offers an AI agent with the voice **cloned from the business itself**.
+
+**Does it sound robotic?**
+No, if the sample is good. The clone copies your tone, your rhythm and your accent. The key is recording clean (no noise or echo). If it sounded off, retrain with a better recording and it comes out natural.
+
+**How much audio does my plan include?**
+Starter: 5,000 characters/mo. Pro: 30,000. Business: 150,000. Mini doesn't include voice. As a reference, a greeting audio is ~100-200 characters, so Starter covers quite a few short notes per month. The full table is above.
+
+**Which channels does it work on?**
+Only **WhatsApp** for now. It's where the customer expects and values a voice note. Other channels go by text.
+
+**What happens if I run out of allowance?**
+The agent **falls back to text automatically** — the customer always gets a reply, just written instead of audio. You get voice back the next month or by upgrading.
+
+**Does the customer realize it's an AI?**
+No. They hear a voice note that sounds like you and feel you replied in person.
+
+## Next steps
+
+<CardGrid>
+  <Card title="How AI voice works" icon="document">
+    [Clone, configure and use your voice →](/en/voz/que-es)
+  </Card>
+  <Card title="Connect WhatsApp" icon="approve-check">
+    [The channel where voice works →](/en/canales/whatsapp)
+  </Card>
+  <Card title="Build your AI agent" icon="setting">
+    [Audio functions and quick replies →](/en/automatizacion/tools-del-agente)
+  </Card>
+  <Card title="See plans" icon="rocket">
+    [Voice from Starter →](/en/planes/comparativa)
+  </Card>
+</CardGrid>

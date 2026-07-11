@@ -1,0 +1,76 @@
+---
+title: Official CTAs
+description: "Empieza gratis · 14 días — the only official CTA post-GA May 2026. Rules for landing pages, ads, emails."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Since the official GA launch in May 2026, Brote unified its main CTA. This page documents what it is and which rules apply.
+
+## The official CTA
+
+> **Empieza gratis · 14 días**
+
+Accepted variants:
+
+- `Empieza gratis · 14 días` (default)
+- `Probar gratis · 14 días`
+- `Crear cuenta · 14 días gratis` (long form, OK in some contexts)
+
+## Rules
+
+### ✓ What we always include
+
+- **"Gratis" (free)**: because it's a real trial, no card required.
+- **"14 días" (14 days)**: to keep it concrete, not an abstract "free trial".
+- **Implied plan = Starter**: the trial runs on full Starter (500 AI conversations + Shopify + MP + WA + Webchat).
+
+### ✗ What we do NOT use
+
+- ~~"Solicitar demo" (Request a demo)~~ — we're self-service, not enterprise sales with a form.
+- ~~"Contáctanos" (Contact us)~~ — fine in footer/contact, NOT as the main CTA.
+- ~~"Free forever"~~ / "Free plan forever" — we don't have a permanent free tier post-GA.
+- ~~"Compra ahora" (Buy now)~~ — we don't sell one-shot, we sell a subscription.
+- ~~"Beta privada" (Private beta)~~ — not anymore, we left beta in May 2026.
+
+## Pre-GA (historical) vs Post-GA
+
+| Stage | CTA used |
+|---|---|
+| Private beta (2025 - April 2026) | "Solicitar acceso" / "Beta cerrada" |
+| **GA — May 2026** | **"Empieza gratis · 14 días"** |
+
+If you find references to "private beta" in any public output (landing, email, ads, slides), it's **stale** — report or fix it.
+
+## Allowed secondary CTAs
+
+In specific contexts you may use:
+
+- **"Ver demo en vivo" (See live demo)** → links to `/es/demo` (the public demo without signup).
+- **"Hablar con ventas" (Talk to sales)** → on the pricing page for the Business plan (which does justify a prior conversation).
+- **"Iniciar sesión" (Sign in)** → in the navbar for existing users.
+
+None of these ever replace the main CTA **"Empieza gratis · 14 días"** in the hero, pricing cards, blog posts, or main footer.
+
+<Aside type="tip" title="Coquimbo regional coupon">
+If the audience is from Chile's Coquimbo Region, you can use the secondary CTA **"Coquimbo: USD $23/mo for 6 months"** with the coupon pre-applied. URL: `brote.ai/es/pricing?coupon=COQUIMBO`. More in [Cupón COQUIMBO](/en/planes/cupon-coquimbo/).
+</Aside>
+
+## Button styling
+
+Main button style in the Brote brand:
+
+- **Background**: `#C8FF1A` (lime accent)
+- **Text color**: `#000` (black)
+- **Weight**: `font-weight: 600`
+- **Border radius**: `9999px` (pill)
+- **Padding**: `0.75rem 1.5rem` (12px / 24px)
+- **Hover**: lime glow effect + slight scale (1.02)
+
+Implemented in the `action.primary` class of `brand.css` in Academy + in the `<CTA primary>` component on the landing page.
+
+## Next steps
+
+- [Tone and register](/en/marca/tono/)
+- [14-day trial](/en/planes/trial/)
+- [Plan comparison](/en/planes/comparativa/)

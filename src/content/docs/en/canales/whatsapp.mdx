@@ -1,0 +1,85 @@
+---
+title: WhatsApp (official Cloud API)
+description: "Connect your WhatsApp Business to Brote via Meta's official Cloud API — no QR scanning. Evolution API remains as an unofficial alternative."
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+Brote connects to WhatsApp via Meta's **official Cloud API** — the recommended path. You connect your number from Brote without scanning any QR, with the stability and backing of the official API. **Evolution API** remains available as an unofficial alternative (it pairs your number by scanning a QR, just like WhatsApp Web).
+
+![WhatsApp channel configuration in Brote](/screenshots/whatsapp-config.png)
+
+## Official Cloud API (recommended)
+
+It's the recommended way to connect WhatsApp to Brote:
+
+- **No QR.** You connect your number directly from Brote, without linking a phone or re-scanning anything.
+- **Official stability.** Your number doesn't disconnect from inactivity or a phone change.
+- **Meta's backing.** It's the official WhatsApp Business API, built for companies.
+
+<Aside type="danger" title="Before you start: the number CANNOT have an active WhatsApp">
+A number can be on the **WhatsApp app** *or* on the **official API** — never both. If the number you're going to connect already has WhatsApp or WhatsApp Business, **delete that account first**: open WhatsApp on that phone → **Settings → Account → Delete my account**.
+
+💡 Ideally, use a **new/dedicated number** for customer service (a new SIM works), so you don't lose your personal WhatsApp. **90% of connection problems come from skipping this step.**
+</Aside>
+
+### What you need
+
+- Your Brote account on the **Starter plan or higher**, and being an **administrator**.
+- A **Facebook account** (personal — only used for the connection step).
+- A **number** that **doesn't have an active WhatsApp** and can **receive an SMS or call** (for the verification code).
+- Your **business name** as you want your customers to see it.
+
+### How to connect (Cloud API) — 5 to 10 minutes
+
+1. Go to **Settings → WhatsApp** and tap **"Connect official WhatsApp"**.
+2. A **Facebook/Meta** window opens — log in with your Facebook account.
+3. Follow Meta's steps:
+   - Choose or **create your business profile** (the same window creates it if you don't have one).
+   - Enter the **display name** for your WhatsApp (what your customers will see).
+   - Pick your business **category** and enter your **phone number**.
+4. You'll receive a **6-digit code** by SMS or call → enter it to verify the number.
+5. Accept the terms → **done!** 🎉 The window closes on its own and you'll see your number **connected** in Brote.
+
+From that moment on, every message arriving at your WhatsApp shows up in your [unified inbox](/en/inbox/inbox-unificado/), the AI agent replies according to your configuration, and new contacts are created automatically.
+
+<Aside type="note" title="Billing and display name">
+Messaging is billed through your **Brote plan** — you don't set up payments with Meta directly. The **display name** is reviewed by Meta (it must represent your business, nothing generic or misleading); while it's being approved, you can still receive and reply to messages.
+</Aside>
+
+## Evolution API (unofficial alternative)
+
+If you prefer a quick connection without going through the official API, Brote also supports **Evolution API**, an unofficial integration that pairs your number by scanning a QR — just like WhatsApp Web.
+
+### How to connect (Evolution)
+
+1. Go to **Settings → AI Agent → WhatsApp**.
+2. Choose to connect via **Evolution** and a QR appears.
+3. On your phone: open WhatsApp → Settings → Linked devices → Link a device.
+4. Scan the QR. Done — Brote is now replying on that number.
+
+<Aside type="caution" title="Evolution's limitation">
+Because it's an unofficial connection, **WhatsApp mass campaigns** respect per-plan caps (Starter 2/month · 100 contacts, Pro 10/month · 500, Business unlimited/month · 1500/day) to avoid triggering a Meta ban. More in [Caps per plan and WA protection](/en/campanas/caps/).
+</Aside>
+
+## Outbound messages from Brote
+
+Your AI agent can start conversations — not just reply. Three paths:
+
+- **Agent triggers** (after a Shopify event, MP payment, cart abandonment).
+- **[Mass campaigns](/en/campanas/que-son/)** to cohorts of your contact base.
+- **API/Webhooks/Zapier** from external systems ([Zapier](/en/integraciones/zapier/), [Business Webhooks](/en/integraciones/webhooks-api/)).
+
+## Multimedia
+
+The AI agent can send **photos, videos, PDFs and audio** from your [Media library](/en/inbox/tags-fields/). Useful for sending catalogs, how-tos, product sheets or demo videos.
+
+## If the number disconnects (Evolution)
+
+With Evolution, WhatsApp can close the session due to inactivity or a phone change. Brote notifies you by email + push notification. Re-scanning the QR takes 30s and you don't lose message history. With the official Cloud API this doesn't happen: the connection is stable and doesn't depend on a linked phone.
+
+## Next steps
+
+- [Configure your first agent](/en/empezar/primer-agente/)
+- [Connect the embeddable Webchat](/en/canales/webchat/)
+- [Charge inside the chat with Mercado Pago](/en/pagos/cobro-in-chat/)

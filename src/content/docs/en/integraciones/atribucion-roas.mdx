@@ -1,0 +1,182 @@
+---
+title: Sales attribution (ROAS) — from zero to 100
+description: Find out which Meta or TikTok ad generated each sale. Complete guide with a real example, what you need, who it's for, and which metrics you'll get.
+---
+
+import { Aside, CardGrid, Card, Steps } from '@astrojs/starlight/components'
+
+## In one sentence
+
+**Attribution** = knowing **which ad generated each sale**, even if the sale closes on WhatsApp days after the click.
+
+You spend money on Instagram, Facebook, or TikTok ads. Those ads bring people who message you, chat with your AI agent, and end up buying. **Without attribution, you don't know which ad worked** — you only see "I spent $200.000 and sold something." With attribution, you know exactly: *"the red dress ad brought me 8 sales of $40.000 each."*
+
+<Aside type="tip" title="The question this feature answers">
+"I spent $X on ads this month. How much did I sell **thanks to them**, and **which one** performed best?"
+</Aside>
+
+## Who is this feature for?
+
+| It's for you if… | It's NOT for you (yet) if… |
+|---|---|
+| You invest in **Meta (Instagram/Facebook)** or **TikTok** ads | You don't run paid ads |
+| Your ads lead to a **conversation** ("Send message" button / Click-to-WhatsApp) | You only sell in person, without ads |
+| You collect payments **online** (Mercado Pago, Flow, Khipu, Stripe…) | You don't collect payments through Brote / don't record payments |
+
+**Plainly put:** it's for the entrepreneur or business that **runs ads and wants to know if that money pays off**.
+
+<Aside type="caution" title="Plan required: Business (Bosque)">
+Sales attribution is a **Business plan exclusive**. It's Brote's most advanced feature (it closes the ROAS loop + feeds Meta/TikTok optimization), built for businesses already investing in ads at volume. If you're on Mini/Starter/Pro, you'll see the card with a lock — it activates when you upgrade to Business.
+</Aside>
+
+## What do you need before connecting?
+
+<Steps>
+
+1. **A business already running paid ads** on Meta or TikTok (or about to start).
+
+2. **An advertiser account** on the platform:
+   - **Meta:** a [Business Manager](https://business.facebook.com/) with a **Pixel** created (in Events Manager).
+   - **TikTok:** a [TikTok Ads Manager](https://ads.tiktok.com/) account with a **Pixel** created (in Events Manager).
+
+3. **Ads that lead to a message** — the famous *Click-to-WhatsApp*, *Click-to-Instagram*, or *Click-to-Messenger*. These are ads with a "Send message" button instead of "Buy now".
+
+4. **An official channel connected in Brote** (official WhatsApp Cloud, Instagram, or Messenger) — that's where the customer comes in and Brote captures which ad they came from.
+
+5. **A payment provider connected** (Mercado Pago, Flow, Khipu, Stripe, or PayPal) — it's what fires the conversion event when the customer pays.
+
+6. An active **Business plan**.
+
+</Steps>
+
+<Aside type="note">
+Don't have a Pixel yet? You can create one for free in 5 minutes in Meta's or TikTok's Events Manager. It's the "sensor" that receives your conversion data.
+</Aside>
+
+## Real example: from zero to 100 with María 🌱
+
+> **María** runs **"Ropa Aurora"**, an online clothing store on Instagram. She sells over WhatsApp. This month she decided to invest in ads.
+
+<Steps>
+
+1. **María creates a Click-to-WhatsApp ad** on Instagram: a photo of a red dress, with a "Send message" button. Budget: $150.000 per month.
+
+2. **Ana sees the ad** in her feed, loves the dress, and taps "Send message". WhatsApp opens with "Hola, me interesa el vestido rojo 👗".
+   *(Meta attaches an invisible code to that message — the `ctwa_clid` — identifying which ad Ana came from.)*
+
+3. **Brote's AI agent replies** to Ana: it shows her sizes, colors, the price ($40.000), and sends her a **Mercado Pago payment link**.
+   *(Quietly, Brote has already saved on Ana's contact: "came from the red dress ad".)*
+
+4. **Ana pays** the $40.000 through the link. Mercado Pago approves the payment.
+
+5. **Automatically**, Brote tells Instagram/Meta: *"the person who came from the red dress ad bought $40.000"*. Without María touching anything.
+
+6. **Meta connects the dots:** that red dress ad generated a $40.000 sale. The same happens with the other 7 people who bought that month.
+
+</Steps>
+
+**At the end of the month, María opens her Events Manager (or Brote) and sees:**
+
+| Ad | Spend | Attributed sales | ROAS |
+|---|---|---|---|
+| 🔴 Red dress | $80.000 | 8 sales · $320.000 | **4x** 🎉 |
+| 🔵 Blue jeans | $70.000 | 1 sale · $35.000 | 0.5x 😕 |
+
+**María's decision (in 30 seconds):** *"The red dress ad returns 4 times what I invest → I put MORE money into it. The jeans ad loses money → I turn it off."* Without attribution, María would have kept spending on the jeans ad without knowing it wasn't working.
+
+<Aside type="tip" title="This is what you get">
+You stop running ads "blind". Every ad dollar becomes **measurable** → you put money where it performs and cut what doesn't. That is literally **earning more while selling the same**.
+</Aside>
+
+## Which metrics will you get and what are they for?
+
+| Metric | What it is | What it's for |
+|---|---|---|
+| **Attributed sales** | How many sales came from each ad | Knowing which ad works |
+| **Attributed value ($)** | How much money each ad generated | Calculating whether the ad pays off |
+| **ROAS** (Return On Ad Spend) | How much you earn per dollar invested | The king metric: above 1 = you win, below 1 = you lose |
+| **Cost per conversion** | How much each sale cost you in ads | Comparing channels/ads |
+| **Events sent** | How many conversions Brote reported to Meta/TikTok | Verifying the integration is working |
+
+**The most powerful part:** these metrics aren't just for *looking at*. Meta and TikTok use them to **optimize your ad spend automatically** — their algorithm learns "this person bought" and goes out to **find more people like them** to show your ad to. **You feed the algorithm better fuel → it brings you better customers → you spend less per sale.**
+
+## How do you connect it? (this easy)
+
+There are **two ways**. The 1-click option is the easiest.
+
+### Option A — 1-click connection (recommended)
+
+<Steps>
+
+1. In Brote: **Settings → Integrations → Attribution**.
+
+2. On the **Meta** (or TikTok) card, tap **"Connect with 1-click"**.
+
+3. A Meta/TikTok window opens → **you authorize your pixel** with your account.
+
+4. Done. Brote discovers your pixel on its own and it's **connected** ✅. No copying codes.
+
+</Steps>
+
+<Aside type="note" title="How long does it take?">
+Less than 1 minute. You don't need to know anything technical — just click "yes" in the Meta/TikTok window.
+</Aside>
+
+### Option B — Manual connection (if you prefer pasting the values)
+
+<Steps>
+
+1. In Meta/TikTok's **Events Manager**, copy your **Pixel ID** and generate an **Access Token** (Conversions API → Generate token).
+
+2. In Brote: **Settings → Integrations → Attribution** → paste Pixel ID + Access Token → **Connect**.
+
+3. (Optional) Paste a **Test Event Code** to validate without affecting your reports.
+
+</Steps>
+
+## And after connecting? You do nothing else
+
+That's the magic: **you connect once and it works on its own forever.** Every time a customer who came from an ad pays, Brote reports the conversion automatically. There's nothing to configure per ad or per sale.
+
+Also, in the **Inbox**, contacts who came from an ad show a **"🎯 Came from a Meta Ad"** badge — so your team knows that customer cost ad money and prioritizes them.
+
+## Meta vs TikTok — which one do I connect?
+
+Connect **the platform(s) where you run ads**. You can have both at once.
+
+| | Meta (Instagram/Facebook) | TikTok |
+|---|---|---|
+| Entry channels | WhatsApp, Instagram DM, Messenger | TikTok ads → message |
+| Conversion event | Automatic `Purchase` on payment | Automatic `CompletePayment` on payment |
+| Status in Brote | ✅ Available | ✅ Available |
+
+## Frequently asked questions
+
+**Do Meta/TikTok charge me for this?**
+No. The Conversions API / Events API is **free**. You only pay for your ads as usual.
+
+**Is it hard?**
+No. With 1-click, you authorize your pixel and that's it. The "hard" part (having an ads account + pixel + ads) is something you already have if you run ads.
+
+**Is it useful if I don't sell much yet?**
+Attribution shines when **you invest in ads at some volume**. That's why it's a Business plan feature. If you're just starting, focus first on connecting your WhatsApp and building your AI agent.
+
+**What if I don't use Brote's payment providers?**
+The conversion event fires when a connected provider (MP/Flow/Khipu/Stripe/PayPal) approves a payment. If you collect payments elsewhere, the sale isn't attributed automatically.
+
+## Next steps
+
+<CardGrid>
+  <Card title="Meta technical details" icon="external">
+    [Meta Conversions API →](/en/integraciones/meta-conversions-api)
+  </Card>
+  <Card title="TikTok technical details" icon="external">
+    [TikTok Events API →](/en/integraciones/tiktok-events-api)
+  </Card>
+  <Card title="Connect Mercado Pago" icon="approve-check">
+    [So it fires the conversions →](/en/pagos/mercado-pago)
+  </Card>
+  <Card title="See plans" icon="rocket">
+    [Attribution = Business plan →](/en/planes/comparativa)
+  </Card>
+</CardGrid>
